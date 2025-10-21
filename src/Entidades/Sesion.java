@@ -11,15 +11,17 @@ public class Sesion {
     private LocalDate fechaIn;
     private LocalDate fechaFin;
     private Tratamiento tratamiento;
+    private Masajista masajista;
     private List<Instalacion>instalaciones = new ArrayList();
     private DiaSpa diaS;
     private boolean estado;
     
-    public Sesion(int codSesion, LocalDate fechaIn, LocalDate fechaFin, Tratamiento tratamiento, DiaSpa diaS, boolean estado){
+    public Sesion(int codSesion, LocalDate fechaIn, LocalDate fechaFin, Tratamiento tratamiento,Masajista masajista ,DiaSpa diaS, boolean estado){
         this.codSesion = codSesion;
         this.fechaIn = fechaIn;
         this.fechaFin = fechaFin;
         this.tratamiento = tratamiento;
+        this.masajista = masajista;
         this.diaS = diaS;
         this.estado = estado;
     }
@@ -76,8 +78,9 @@ public class Sesion {
         public void setEstado(boolean estado) {
             this.estado = estado;
         }
+        
     public String mostrarInfo(){
-    return'['+"CodSe: "+ codSesion+", fechaInicio:"+ fechaIn+", fechaFin:"+ fechaFin+", tratamiento:"+ tratamiento+", Instalaciones:"+ instalaciones+", Dia_de_Spa: "+diaS+", Estado"+ estado;
+    return'['+"CodSe: "+ codSesion+", fechaInicio:"+ fechaIn+", fechaFin:"+ fechaFin+", tratamiento:"+ tratamiento+", Masajista: "+ masajista+", Instalaciones:"+ instalaciones+", Dia_de_Spa: "+diaS+", Estado"+ estado;
     }
     
 }

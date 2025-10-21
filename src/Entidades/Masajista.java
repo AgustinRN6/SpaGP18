@@ -3,16 +3,14 @@ package Entidades;
 
 public class Masajista {
     private int matricula;
-    private String nombre;
-    private String apellido;
+    private String nombreApellido;
     private long numeroT;
     private String especialidad;
     private boolean estado;
     
-    public Masajista(int matricula, String nombre, String apellido, long numeroT, String especialidad, boolean estado){
+    public Masajista(int matricula, String nombreApellido, long numeroT, String especialidad, boolean estado){
         this.matricula = matricula;
-        this.nombre = nombre;
-        this.apellido = apellido;
+        this.nombreApellido = nombreApellido;
         this.numeroT = numeroT;
         this.especialidad = especialidad;
         this.estado = estado;
@@ -29,20 +27,13 @@ public class Masajista {
             this.matricula = matricula;
         }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombreCompleto() {
+        return nombreApellido;
     }
-        public void setNombre(String nombre) {
-            this.nombre = nombre;
+        public void setNombreCompleto(String nombreApellido) {
+            this.nombreApellido = nombreApellido;
         }
-
-    public String getApellido() {
-        return apellido;
-    }
-        public void setApellido(String apellido) {
-            this.apellido = apellido;
-        }
-
+        
     public long getNumeroT() {
         return numeroT;
     }
@@ -65,7 +56,7 @@ public class Masajista {
         }
     
     public String mostrarInfo(){
-    return'['+"Matricula: "+matricula+", Nombre y apellido: "+ nombre+" "+ apellido+", Especialidad: "+ especialidad+", Numero Tel:"+ numeroT+", Estado:"+ estado +']';
+    return'['+"Matricula: "+matricula+", Nombre y apellido: "+ nombreApellido +", Especialidad: "+ especialidad+", Numero Tel:"+ numeroT+", Estado:"+ estado +']';
     }
     
 }
