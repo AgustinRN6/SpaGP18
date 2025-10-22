@@ -3,15 +3,14 @@ package Entidades;
 
 
 public class Instalacion {
-    private int codIns;
+    private int codIns = -1;
     private String nombre;
     private String detallesUso;
     private int precio30M;
     private Sesion sesion;
     private boolean estado;
     
-    public Instalacion(int codIns, String nombre, String detallesUso, int precio30M, Sesion sesion, boolean estado){
-        this.codIns = codIns;
+    public Instalacion(String nombre, String detallesUso, int precio30M, Sesion sesion, boolean estado){
         this.nombre = nombre;
         this.detallesUso = detallesUso;
         this.precio30M = precio30M;

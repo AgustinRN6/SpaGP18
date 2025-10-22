@@ -5,15 +5,14 @@ import java.util.Date;
 
 
 public class Tratamiento {
-   private int codTrat;
+   private int codTrat = -1;
    private String nombre;
    private Date duracion;
    private int costo;
    private boolean estado;
    private String tipo;
    
-   public Tratamiento(int codTrat, String nombre, Date duracion, int costo, boolean estado, String tipo){
-       this.codTrat = codTrat;
+   public Tratamiento( String nombre, Date duracion, int costo, boolean estado, String tipo){
        this.nombre = nombre;
        this.duracion = duracion;
        this.costo = costo;

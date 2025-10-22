@@ -7,7 +7,7 @@ import java.util.List;
 
 
 public class Sesion {
-    private int codSesion;
+    private int codSesion =-1;
     private LocalDate fechaIn;
     private LocalDate fechaFin;
     private Tratamiento tratamiento;
@@ -16,8 +16,7 @@ public class Sesion {
     private DiaSpa diaS;
     private boolean estado;
     
-    public Sesion(int codSesion, LocalDate fechaIn, LocalDate fechaFin, Tratamiento tratamiento,Masajista masajista ,DiaSpa diaS, boolean estado){
-        this.codSesion = codSesion;
+    public Sesion(LocalDate fechaIn, LocalDate fechaFin, Tratamiento tratamiento,Masajista masajista ,DiaSpa diaS, boolean estado){
         this.fechaIn = fechaIn;
         this.fechaFin = fechaFin;
         this.tratamiento = tratamiento;

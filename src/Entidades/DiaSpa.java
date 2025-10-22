@@ -7,14 +7,13 @@ import java.util.List;
 
 
 public class DiaSpa {
-   private int codPack;
+   private int codPack = -1;
    private LocalDate fechayH;
    private List<Sesion> sesiones = new ArrayList();
    private int monto;
    private boolean estado;
    
-   public DiaSpa(int codPack, LocalDate fechayH, int monto, boolean estado){
-       this.codPack = codPack;
+   public DiaSpa(LocalDate fechayH, int monto, boolean estado){
        this.fechayH = fechayH;
        this.monto = monto;
        this.estado = estado;

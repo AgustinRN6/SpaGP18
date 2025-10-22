@@ -3,16 +3,15 @@ package Entidades;
 
 
 public class Cliente {
-    private int codCli;
+    private int codCli =-1;
     private String nombreC;
     private int edad;
     private String afecciones;
     private int dni;
-    private long telefono;
+    private int telefono;
     private boolean estado;
     
-    public Cliente(int codCli, String nombreC, int edad, String afecciones, int dni, long telefono, boolean estado){
-        this.codCli = codCli;
+    public Cliente(String nombreC, int edad, int dni, int telefono, String afecciones, boolean estado){
         this.nombreC = nombreC;
         this.edad = edad;
         this.afecciones = afecciones;
@@ -23,5 +22,63 @@ public class Cliente {
     public Cliente(){
     
     }
-    
+
+    public int getCodCli() {
+        return codCli;
+    }
+
+    public void setCodCli(int codCli) {
+        this.codCli = codCli;
+    }
+
+    public String getNombreC() {
+        return nombreC;
+    }
+
+    public void setNombreC(String nombreC) {
+        this.nombreC = nombreC;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    public String getAfecciones() {
+        return afecciones;
+    }
+
+    public void setAfecciones(String afecciones) {
+        this.afecciones = afecciones;
+    }
+
+    public int getDni() {
+        return dni;
+    }
+
+    public void setDni(int dni) {
+        this.dni = dni;
+    }
+
+    public int getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(int telefono) {
+        this.telefono = telefono;
+    }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+    public String getInfo(){
+        return'['+"Cod: "+ codCli+", Nombre completo: "+ nombreC+", Edad: "+edad+", dni: "+ dni+", Numero de telefono:"+ telefono+", afecciones: "+ afecciones+", estado: "+ estado;
+    }
 }
