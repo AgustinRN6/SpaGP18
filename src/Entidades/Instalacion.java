@@ -6,15 +6,17 @@ public class Instalacion {
     private int codIns = -1;
     private String nombre;
     private String detallesUso;
+    private String usos;
+    private String apto;
     private int precio30M;
-    private Sesion sesion;
     private boolean estado;
     
-    public Instalacion(String nombre, String detallesUso, int precio30M, Sesion sesion, boolean estado){
+    public Instalacion(String nombre, String detallesUso,String usos, String apto, int precio30M, boolean estado){
         this.nombre = nombre;
         this.detallesUso = detallesUso;
+        this.usos= usos;
+        this.apto = apto;
         this.precio30M = precio30M;
-        this.sesion = sesion;
         this.estado = estado;
     }
     public Instalacion(){
@@ -48,22 +50,31 @@ public class Instalacion {
         public void setPrecio30M(int precio30M) {
             this.precio30M = precio30M;
         }
-
-    public Sesion getSesion() {
-        return sesion;
-    }
-        public void setSesion(Sesion sesion) {
-            this.sesion = sesion;
-        }
-        
+       
     public boolean getEstado(){
         return estado;
     }
         public void setEstado(boolean estado){
             this.estado = estado;
         }
+
+    public String getUsos() {
+        return usos;
+    }
+
+    public void setUsos(String usos) {
+        this.usos = usos;
+    }
+
+    public String getApto() {
+        return apto;
+    }
+
+    public void setApto(String apto) {
+        this.apto = apto;
+    }
     
     public String mostrarInfo(){
-        return'['+"CodigoIns: "+codIns+", NombreIns: "+nombre+", Detalles de uso:"+detallesUso+", Precio por 30 min: "+precio30M+", Sesion asiganada: "+sesion+", Estado: "+ estado+']';
+        return'['+"CodigoIns: "+codIns+", NombreIns: "+nombre+", Detalles de uso:"+detallesUso+",Usos: "+usos+", Apto: "+ apto+", Precio por 30 min: "+precio30M+", Estado: "+ estado+']';
     }
 }

@@ -4,11 +4,11 @@ package Entidades;
 public class Masajista {
     private int matricula;
     private String nombreApellido;
-    private long numeroT;
+    private int numeroT;
     private String especialidad;
     private boolean estado;
     
-    public Masajista(int matricula, String nombreApellido, long numeroT, String especialidad, boolean estado){
+    public Masajista(int matricula, String nombreApellido, int numeroT, String especialidad, boolean estado){
         this.matricula = matricula;
         this.nombreApellido = nombreApellido;
         this.numeroT = numeroT;
@@ -34,10 +34,10 @@ public class Masajista {
             this.nombreApellido = nombreApellido;
         }
         
-    public long getNumeroT() {
+    public int getNumeroT() {
         return numeroT;
     }
-        public void setNumeroT(long numeroT) {
+        public void setNumeroT(int numeroT) {
             this.numeroT = numeroT;
         }
 

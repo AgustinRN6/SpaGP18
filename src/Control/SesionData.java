@@ -19,6 +19,22 @@ public class SesionData {
         this.con = Conexion.getConexion();
     }
     
-    
+    public Sesion buscarSesion(int cod){
+        Sesion se = new Sesion();
+        try{
+        String sqlSL="SELECT * FROM sesion WHERE sesion.codSesion = ?";
+        PreparedStatement ps = con.prepareStatement(sqlSL);
+        ps.setInt(1, cod);
+        ResultSet resultado = ps.executeQuery();
+        while(resultado.next()){
+           //Masajista m = ;clase data
+           //Tratamiento t= ; clase data
+        }
+        
+        }catch(java.sql.SQLException error){
+            JOptionPane.showMessageDialog(null, error.getMessage());
+        }
+        return se;
+    }
     
 }
