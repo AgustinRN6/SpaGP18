@@ -105,7 +105,51 @@ public class MasajistasData {
     
     public List<Masajista> mostrarPorEspecialidad(String especialidad){
         List<Masajista> masajistas = new ArrayList();
-        String sqlSL="";
+        String sqlSL="SELECT * FROM masajista WHERE masajista.especialidad LIKE '%"+especialidad+"%' ";
+        try{
+            PreparedStatement ps = con.prepareStatement(sqlSL);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                Masajista m = new Masajista();
+                m.setMatricula(rs.getInt("matricula"));
+                m.setNombreCompleto(rs.getString("nombreApellido"));
+                m.setNumeroT(rs.getInt("telefono"));
+                m.setEspecialidad(rs.getString("especialidad"));
+                m.setEstado(rs.getBoolean("estado"));
+                masajistas.add(m);
+                
+            }
+        }catch(java.sql.SQLException error){
+            JOptionPane.showMessageDialog(null, error.getMessage());
+        }
         return masajistas;
+    }
+    public void darDeAlta(int matricula){
+        String sqlUP="UPDATE FROM masajista SET estado = 1 WHERE masajista.matricula = ? ";
+        try{
+        PreparedStatement ps = con.prepareStatement(sqlUP);
+        ps.setInt(1, matricula);
+        
+        if(ps.executeUpdate() > 0){
+            JOptionPane.showMessageDialog(null, "Masajista dado de baja!!!!");
+        }
+        
+        }catch(java.sql.SQLException error){
+        JOptionPane.showMessageDialog(null, error.getMessage());
+        }
+    }
+    public void darDeBaja(int matricula){
+        String sqlUP="UPDATE FROM masajista SET estado = 0 WHERE masajista.matricula = ? ";
+        try{
+        PreparedStatement ps = con.prepareStatement(sqlUP);
+        ps.setInt(1, matricula);
+        
+        if(ps.executeUpdate() > 0){
+            JOptionPane.showMessageDialog(null, "Masajista dado de baja!!!!");
+        }
+        
+        }catch(java.sql.SQLException error){
+        JOptionPane.showMessageDialog(null, error.getMessage());
+        }
     }
 }

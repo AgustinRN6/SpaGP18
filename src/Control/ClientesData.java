@@ -34,7 +34,7 @@ public class ClientesData {
             }
             ResultSet rs= ps.getGeneratedKeys();
             while(rs.next()){
-            c.setCodCli(rs.getInt("codCli"));
+            c.setCodCli(rs.getInt(1));
             }
         }catch(java.sql.SQLException error){
             JOptionPane.showMessageDialog(null, error.getMessage());
