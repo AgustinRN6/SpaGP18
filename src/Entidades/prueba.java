@@ -41,11 +41,12 @@ public class prueba {
     InstalacionesData instalaciones = new InstalacionesData();
     MasajistasData masajistas = new MasajistasData();
     SesionData sesiones = new SesionData();
-  
+    TratamientosData tratamientos = new TratamientosData();
     //probamos metodos de las clases DATAS(PERSISTENCIA).....................................................................................
    
     //INSERT INTO
-    /*clientes.subirCliente(c1);
+    /*
+    clientes.subirCliente(c1);
     clientes.subirCliente(c2);
     clientes.subirCliente(c3);
     clientes.subirCliente(c4);
@@ -59,15 +60,22 @@ public class prueba {
     instalaciones.cargarInstalacion(i2);
     instalaciones.cargarInstalacion(i3);
     instalaciones.cargarInstalacion(i4);
+    
+    tratamientos.cargarTratamiento(t1);
+    tratamientos.cargarTratamiento(t2);
+    tratamientos.cargarTratamiento(t3);
+    tratamientos.cargarTratamiento(t4);
     */
-    //SELECT * FROM tabla WHERE ID,MATRICULA O CODINSTAL=?
+    
+    //SELECT * FROM tabla WHERE tabla.keyprimary = ? ;
         /*
         System.out.println(clientes.buscarCliente(4).getInfo());
         System.out.println(masajistas.buscarMasajista(1111).mostrarInfo());
         System.out.println(instalaciones.buscarInstalacion(1).mostrarInfo());
+        System.out.println(tratamientos.buscarTratamiento(1).mostrarInfo());
         */
-  
-    //SELECT *
+        
+    //SELECT * FROM tabla
     /*
         System.out.println("CLIENTES ");
     for(Cliente c: clientes.mostrarClientes()){
@@ -92,7 +100,15 @@ public class prueba {
         System.out.println(m.mostrarInfo());
     }
         System.out.println(".....................................................................");
+    
+        System.out.println("TRATAMIENTOS");
+    for(Tratamiento t: tratamientos.mostrarTratamientos()){
+        System.out.println(t.mostrarInfo());
+    }
+        System.out.println(".....................................................................");
     */
+    
+    
     }
     
 }

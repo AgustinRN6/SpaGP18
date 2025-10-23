@@ -19,16 +19,22 @@ public class SesionData {
         this.con = Conexion.getConexion();
     }
     
-    public Sesion buscarSesion(int cod){
-        Sesion se = new Sesion();
+    public void crearSesion(Sesion s, Tratamiento t, Masajista m, Instalacion i){
+        String sqlUP="INSERT INTO sesion()";
+    }
+    
+    /*public Sesion buscarSesion(int cod){
+        MasajistasData mas = new MasajistasData();
+        TratamientosData tas = new TratamientosData();
+        InstalacionesData ins = new InstalacionesData();
         try{
         String sqlSL="SELECT * FROM sesion WHERE sesion.codSesion = ?";
         PreparedStatement ps = con.prepareStatement(sqlSL);
         ps.setInt(1, cod);
         ResultSet resultado = ps.executeQuery();
         while(resultado.next()){
-           //Masajista m = ;clase data
-           //Tratamiento t= ; clase data
+           Masajista m = mas.buscarMasajista(resultado.getInt("masajista"))  ;
+           Tratamiento t= tas.buscarTratamiento(resultado.getInt("tratamiento")); 
         }
         
         }catch(java.sql.SQLException error){
@@ -36,5 +42,5 @@ public class SesionData {
         }
         return se;
     }
-    
+    */
 }
