@@ -1,22 +1,22 @@
 
 package Entidades;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class Sesion {
     private int codSesion =-1;
-    private LocalDate fechaIn;
-    private LocalDate fechaFin;
-    private Tratamiento tratamiento;
-    private Masajista masajista;
-    private Instalacion instalacion ;
-    private DiaSpa diaS;
+    private LocalDateTime fechaIn;
+    private LocalDateTime fechaFin;
+    private int tratamiento;
+    private int masajista;
+    private int instalacion ;
+    private int diaS;
     private boolean estado;
     
-    public Sesion(LocalDate fechaIn, LocalDate fechaFin, Tratamiento tratamiento,Masajista masajista ,Instalacion instalacion,DiaSpa diaS, boolean estado){
+    public Sesion(LocalDateTime fechaIn, LocalDateTime fechaFin, int tratamiento,int masajista ,int instalacion,int diaS, boolean estado){
         this.fechaIn = fechaIn;
         this.fechaFin = fechaFin;
         this.tratamiento = tratamiento;
@@ -37,31 +37,31 @@ public class Sesion {
             this.codSesion = codSesion;
         }
 
-    public LocalDate getFechaIn() {
+    public LocalDateTime getFechaIn() {
         return fechaIn;
     }
-        public void setFechaIn(LocalDate fechaIn) {
+        public void setFechaIn(LocalDateTime fechaIn) {
             this.fechaIn = fechaIn;
         }
 
-    public LocalDate getFechaFin() {
+    public LocalDateTime getFechaFin() {
         return fechaFin;
     }
-        public void setFechaFin(LocalDate fechaFin) {
+        public void setFechaFin(LocalDateTime fechaFin) {
             this.fechaFin = fechaFin;
         }
 
-    public Tratamiento getTratamiento() {
+    public int getTratamiento() {
         return tratamiento;
     }
-        public void setTratamiento(Tratamiento tratamiento) {
+        public void setTratamiento(int tratamiento) {
             this.tratamiento = tratamiento;
         }
         
-    public DiaSpa getDiaS() {
+    public int getDiaS() {
         return diaS;
     }
-        public void setDiaS(DiaSpa diaS) {
+        public void setDiaS(int diaS) {
             this.diaS = diaS;
         }
 
@@ -72,19 +72,19 @@ public class Sesion {
             this.estado = estado;
         }
 
-    public Masajista getMasajista() {
+    public int getMasajista() {
         return masajista;
     }
 
-    public void setMasajista(Masajista masajista) {
+    public void setMasajista(int masajista) {
         this.masajista = masajista;
     }
 
-    public Instalacion getInstalacion() {
+    public int getInstalacion() {
         return instalacion;
     }
 
-    public void setInstalacion(Instalacion instalacion) {
+    public void setInstalacion(int instalacion) {
         this.instalacion = instalacion;
     }
         
