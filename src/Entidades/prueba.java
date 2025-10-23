@@ -1,7 +1,7 @@
 
 package Entidades;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import Control.*;
 import java.time.LocalTime;
 import java.util.Date;
@@ -9,7 +9,7 @@ import java.util.Date;
 public class prueba {
     public static void main(String[] args){
     //CLASES ENTIDADES.....................................................................................
-    DiaSpa diaS = new DiaSpa(LocalDate.of(25, 12, 1),1500, true);
+    DiaSpa diaS = new DiaSpa(LocalDateTime.now(),"facial",1, 1500, true);
     
     Masajista ma1 = new Masajista(1111,"Gloria Rosales",255512,"Facial",true);
     Masajista ma2 = new Masajista(3333,"Mario Gonzales",2321312,"Corporal",true);

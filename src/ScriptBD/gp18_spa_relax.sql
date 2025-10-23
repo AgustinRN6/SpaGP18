@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-10-2025 a las 01:28:41
+-- Tiempo de generación: 24-10-2025 a las 00:32:21
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -49,7 +49,6 @@ CREATE TABLE `dia_de_spa` (
   `codPack` int(11) NOT NULL,
   `fechaHora` datetime NOT NULL,
   `preferencias` varchar(100) NOT NULL,
-  `codCli` int(11) NOT NULL,
   `estado` tinyint(1) NOT NULL,
   `monto` int(11) NOT NULL,
   `cliente` int(11) NOT NULL
