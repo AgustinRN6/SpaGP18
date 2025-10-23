@@ -15,25 +15,26 @@ public class prueba {
     Masajista ma2 = new Masajista(3333,"Mario Gonzales",2321312,"Corporal",true);
     Masajista ma3 = new Masajista(4444,"Gustavo Dominguez",26641234,"Estetico",true);
     Masajista ma4 = new Masajista(2232,"Leandro Gutierrez",1231212,"Relajacion",true);
-    Masajista ma5 = new Masajista(5555,"Cambio",12222222,"cambio",true);
+    Masajista ma5 = new Masajista(9999,"Prueba",99999,"Prueba",true);
     
     Cliente c1 = new Cliente("Ian Quimey Pereyra",20, 43330, 2654512,"Alergico  a la crema",true);
     Cliente c2 = new Cliente("Ramiro Elias Moran",23, 410002, 2512313,"Alergico a las piedras",true);
     Cliente c3 = new Cliente("Agustin Rosales Neyra",21, 431230, 26123423,"Alergico al crema",true);
     Cliente c4 = new Cliente("Prueba",99, 0011112, 1231231231,"Alergico a la alergia",true);
-    Cliente c5 = new Cliente("Cambio",99,111111,2222222,"cambio",true);
+    
     
     Instalacion i1 = new Instalacion("Jacuzzi","Entrar en la pileta y relajarse","Solo recreativo","Para todos",1500,true);
     Instalacion i2 = new Instalacion("Piscina Climatizada","Entrar en la piscina y relajarse","Recreativos","Para mayores de edad",1000,true);
     Instalacion i3 = new Instalacion("Sauna","Entrar en la sala y sentarse","Relajacion","Para mayores de edad",1200, true);
     Instalacion i4 = new Instalacion("Prueba","Prueba","Prueba","Prueba",2000,true);
-    Instalacion i5 = new Instalacion("Cambio","Cambio","Cambio","Cambio",2000,true);
+    
     
     Tratamiento t1 = new Tratamiento("Tratamiento","Facial basico: exfoliacion y limpieza",LocalTime.of(2, 0, 0),10000,true,"facial");
     Tratamiento t2 = new Tratamiento("Tratamiento","Hidroterapia: Sesiones en saunas o jacuzzis",LocalTime.of(1, 0, 0),15000,true,"corporal");
     Tratamiento t3 = new Tratamiento("Masaje","Especialiado: incluye aromaterapia",LocalTime.of(2, 30, 0),10000,true,"especializado");
     Tratamiento t4 = new Tratamiento("Masaje","Sueco: Terapia de relajacion cuerpo completo",LocalTime.of(2, 0, 0),20000,true,"Corporal");
     Tratamiento t5 = new Tratamiento("Prueba","Prueba",LocalTime.of(1, 0, 0),100000,true,"Prueba");
+    
     //CLASES DATAS.....................................................................................
     
     ClientesData clientes = new ClientesData();
@@ -43,7 +44,7 @@ public class prueba {
     SesionData sesiones = new SesionData();
     TratamientosData tratamientos = new TratamientosData();
     //probamos metodos de las clases DATAS(PERSISTENCIA).....................................................................................
-   
+    
     //INSERT INTO
     /*
     clientes.subirCliente(c1);
@@ -55,6 +56,7 @@ public class prueba {
     masajistas.agregarMasajista(ma2);
     masajistas.agregarMasajista(ma3);
     masajistas.agregarMasajista(ma4);
+    masajistas.agregarMasajista(ma5);
     
     instalaciones.cargarInstalacion(i1);
     instalaciones.cargarInstalacion(i2);
@@ -66,6 +68,35 @@ public class prueba {
     tratamientos.cargarTratamiento(t3);
     tratamientos.cargarTratamiento(t4);
     */
+    
+
+    //UPDATE
+    
+    Tratamiento t = tratamientos.buscarTratamiento(5);
+    Masajista m = masajistas.buscarMasajista(999999);
+    Instalacion i = instalaciones.buscarInstalacion(1);
+    Cliente c = clientes.buscarCliente(4);
+  
+    Masajista ma6 = new Masajista(5555,"Cambio",12222222,"cambio",true);
+    int id2 = m.getMatricula();
+    ma6.setMatricula(id2);
+    Cliente c5 = new Cliente("Cambio",99,111111,2222222,"cambio",true);
+    int id4 = c.getCodCli();
+    c1.setCodCli(id4);
+    Instalacion i5 = new Instalacion("Cambio","Cambio","Cambio","Cambio",2000,true);
+    int id3 = i.getCodIns();
+    i1.setCodIns(id3);
+    Tratamiento t6 = new Tratamiento("Cambio","Cambio",LocalTime.of(1, 0, 0),100000,true,"Cambio");
+    int id1 = t.getCodTrat();
+    t5.setCodTrat(id1);
+    
+ 
+    
+    clientes.modificarCliente(c1);
+    tratamientos.actualizarTratamiento(t5);
+    instalaciones.modificarInstalacion(i1);
+    masajistas.actualizarMasajista(ma6);
+    
     
     //SELECT * FROM tabla WHERE tabla.keyprimary = ? ;
         /*

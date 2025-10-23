@@ -46,7 +46,7 @@ public class MasajistasData {
         }
     }
     public void actualizarMasajista(Masajista m){
-        String sqlUP="UPDATE masajista SET matricula ? , nombreApellido = ? , telefono = ? , especialidad = ? , estado = ? WHERE masajista.matricula = ?";
+        String sqlUP="UPDATE masajista SET matricula = ? , nombreApellido = ? , telefono = ? , especialidad = ? , estado = ? WHERE masajista.matricula = ?";
         try{
            PreparedStatement ps = con.prepareStatement(sqlUP);
            ps.setInt(1, m.getMatricula());
@@ -56,7 +56,7 @@ public class MasajistasData {
            ps.setBoolean(5, m.isEstado());
            ps.setInt(6, m.getMatricula());
            if(ps.executeUpdate() > 0){
-               JOptionPane.showConfirmDialog(null, "Masajista actualizada");
+               JOptionPane.showMessageDialog(null, "Masajista actualizada");
            }
         }catch(java.sql.SQLException error){
             JOptionPane.showMessageDialog(null, error.getMessage());
@@ -125,7 +125,7 @@ public class MasajistasData {
         return masajistas;
     }
     public void darDeAlta(int matricula){
-        String sqlUP="UPDATE FROM masajista SET estado = 1 WHERE masajista.matricula = ? ";
+        String sqlUP="UPDATE masajista SET estado = 1 WHERE masajista.matricula = ? ";
         try{
         PreparedStatement ps = con.prepareStatement(sqlUP);
         ps.setInt(1, matricula);
@@ -139,7 +139,7 @@ public class MasajistasData {
         }
     }
     public void darDeBaja(int matricula){
-        String sqlUP="UPDATE FROM masajista SET estado = 0 WHERE masajista.matricula = ? ";
+        String sqlUP="UPDATE masajista SET estado = 0 WHERE masajista.matricula = ? ";
         try{
         PreparedStatement ps = con.prepareStatement(sqlUP);
         ps.setInt(1, matricula);

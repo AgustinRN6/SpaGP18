@@ -125,7 +125,7 @@ public class InstalacionesData {
     return instalaciones;
     }
     public void darDeAlta(int codInstal){
-            String sqlUP="UPDATE FROM instalacion SET estado = 1 WHERE instalacion.codInstal = ?";
+            String sqlUP="UPDATE instalacion SET estado = 1 WHERE instalacion.codInstal = ?";
         try{
             PreparedStatement ps = con.prepareStatement(sqlUP);
             ps.setInt(1, codInstal);
@@ -137,7 +137,7 @@ public class InstalacionesData {
         }
     }
     public void darDeBaja(int codInstal){
-        String sqlUP="UPDATE FROM instalacion SET estado = 0 WHERE instalacion.codInstal = ?";
+        String sqlUP="UPDATE instalacion SET estado = 0 WHERE instalacion.codInstal = ?";
         try{
             PreparedStatement ps = con.prepareStatement(sqlUP);
             ps.setInt(1, codInstal);

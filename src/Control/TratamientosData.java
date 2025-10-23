@@ -55,7 +55,7 @@ public class TratamientosData {
     }
     
     public void actualizarTratamiento(Tratamiento t){
-        String sqlUP="UPDATE FROM tratamiento SET nombre = ?, detalle = ?, duracion = ?, costo = ?, estado = ?, tipo = ? WHERE tratamiento.codTratam = ?";
+        String sqlUP="UPDATE tratamiento SET nombre = ?, detalle = ?, duracion = ?, costo = ?, estado = ?, tipo = ? WHERE tratamiento.codTratam = ?";
         try{
         PreparedStatement ps = con.prepareStatement(sqlUP);
         ps.setString(1, t.getNombre());
@@ -123,7 +123,7 @@ public class TratamientosData {
     }
     
     public void darDeAlta(int codTratam){
-            String sqlUP="UPDATE FROM tratamiento SET estado = 1 WHERE tratamiento.codTratam = ?";
+            String sqlUP="UPDATE tratamiento SET estado = 1 WHERE tratamiento.codTratam = ?";
         try{
         PreparedStatement ps = con.prepareStatement(sqlUP);
         if(ps.executeUpdate()> 0){
@@ -135,7 +135,7 @@ public class TratamientosData {
     }
     
     public void darDeBaja(int codTratam){
-        String sqlUP="UPDATE FROM tratamiento SET estado = 0 WHERE tratamiento.codTratam = ?";
+        String sqlUP="UPDATE tratamiento SET estado = 0 WHERE tratamiento.codTratam = ?";
         try{
         PreparedStatement ps = con.prepareStatement(sqlUP);
         if(ps.executeUpdate()> 0){
