@@ -57,7 +57,7 @@ public class DiaSPAData {
                 
     }
     
-    //DROP
+    //DELETE
     public void borrarDiaSpa(int eliminar) {
         
         String query = "DELETE FROM dia_de_spa WHERE codPack = ?";

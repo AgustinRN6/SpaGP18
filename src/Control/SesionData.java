@@ -9,6 +9,7 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -59,38 +60,184 @@ public class SesionData {
         
     }
     
-    //DROP
+    //DELETE
+    public void borrarSesion(int borrar) {
+        
+        String query = "DELETE FROM sesion WHERE codSesion = ?";
+        
+        try {
+
+            PreparedStatement ps = con.prepareStatement(query);
+
+            ps.setInt(0, borrar);
+
+            if (ps.executeUpdate() > 0) {
+
+                JOptionPane.showMessageDialog(null, "La sesión ha sido eliminado!");
+
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No pudo eliminarse la sesión " + ex.getMessage());
+        }
+
+    }
     
     //UPDATE
-    
-    //SELECT 1
-    
-    //SELECT TODOS
-    
-    //UPDATE alta lógica
-    
-    //UPDATE baja lógica
-    
-    
-    
-    /*public Sesion buscarSesion(int cod){
-        MasajistasData mas = new MasajistasData();
-        TratamientosData tas = new TratamientosData();
-        InstalacionesData ins = new InstalacionesData();
-        try{
-        String sqlSL="SELECT * FROM sesion WHERE sesion.codSesion = ?";
-        PreparedStatement ps = con.prepareStatement(sqlSL);
-        ps.setInt(1, cod);
-        ResultSet resultado = ps.executeQuery();
-        while(resultado.next()){
-           Masajista m = mas.buscarMasajista(resultado.getInt("masajista"))  ;
-           Tratamiento t= tas.buscarTratamiento(resultado.getInt("tratamiento")); 
+    public void actualizarSesion(Sesion s) {
+        
+        String query = "UPDATE sesion SET fechaHoraInicio = ? ,fechaHoraFin = ? "
+                + ",tratamiento = ? , masajista = ? ,dia_De_Spa =  ? "
+                + ",instalacion = ? WHERE codSesion = ?";
+        
+        try {
+
+            PreparedStatement ps = con.prepareStatement(query);
+
+            ps.setTimestamp(1, Timestamp.valueOf(s.getFechaIn()));
+            ps.setTimestamp(2, Timestamp.valueOf(s.getFechaFin()));
+            ps.setInt(3, s.getTratamiento());
+            ps.setInt(4, s.getMasajista());
+            ps.setInt(5, s.getDiaS());
+            ps.setInt(6, s.getInstalacion());
+            ps.setInt(7, s.getCodSesion());
+
+            if (ps.executeUpdate() > 0) {
+
+                JOptionPane.showMessageDialog(null, "Se ha actualizado la sesión con éxito!");
+
+            }
+
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No pudo actualizarse la sesión " + ex.getMessage());
         }
         
-        }catch(java.sql.SQLException error){
-            JOptionPane.showMessageDialog(null, error.getMessage());
-        }
-        return se;
     }
-    */
+    
+    //SELECT 1
+    public Sesion mostrarSesion(int mostrar) {
+        
+        Sesion sesion = new Sesion();
+        
+        String query = "SELECT * FROM sesion WHERE codSesion =  ?";
+        
+        try {
+
+            PreparedStatement ps = con.prepareStatement(query);
+
+            ps.setInt(0, mostrar);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+
+                sesion.setFechaIn(rs.getTimestamp("fechaHoraInicio").toLocalDateTime());
+                sesion.setFechaFin(rs.getTimestamp("fechaHoraFin").toLocalDateTime());
+                sesion.setTratamiento(rs.getInt("tratamiento"));
+                sesion.setMasajista(rs.getInt("masajista"));
+                sesion.setDiaS(rs.getInt("dia_De_Spa"));;
+                sesion.setEstado(rs.getBoolean("estado"));
+                sesion.setInstalacion(rs.getInt("instalacion"));
+
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No pudo mostrarse la sesion " + ex.getMessage());
+        }
+        
+        
+        return sesion;
+        
+        
+    }
+    
+    //SELECT TODOS
+    public List<Sesion> mostrarTodasSesiones() {
+        
+        List<Sesion> todasSesiones = new ArrayList();
+        
+        String query = "SELECT * FROM sesion ";
+
+        try {
+
+            PreparedStatement ps = con.prepareStatement(query);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                
+                Sesion sesion = new Sesion();
+
+                sesion.setFechaIn(rs.getTimestamp("fechaHoraInicio").toLocalDateTime());
+                sesion.setFechaFin(rs.getTimestamp("fechaHoraFin").toLocalDateTime());
+                sesion.setTratamiento(rs.getInt("tratamiento"));
+                sesion.setMasajista(rs.getInt("masajista"));
+                sesion.setDiaS(rs.getInt("dia_De_Spa"));;
+                sesion.setEstado(rs.getBoolean("estado"));
+                sesion.setInstalacion(rs.getInt("instalacion"));
+                
+                todasSesiones.add(sesion);
+
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No pudo cargarse las sesiones " + ex.getMessage());
+        }
+        
+        return todasSesiones;
+        
+    }
+    
+    //UPDATE alta lógica
+    public void altaSesion(int alta) {
+        
+        String query = "UPDATE sesion SET estado = 1 WHERE codSesion = ?";
+
+        try {
+
+            PreparedStatement ps = con.prepareStatement(query);
+
+            ps.setInt(1, alta);
+
+            if (ps.executeUpdate() > 0) {
+
+                JOptionPane.showMessageDialog(null, "Se ha dado de alta la sesión con éxito!");
+
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No pudo darse de alta la sesión " + ex.getMessage());
+        }
+        
+    }
+    
+    //UPDATE baja lógica
+    public void bajaSesion(int baja) {
+
+        String query = "UPDATE sesion SET estado = 0 WHERE codSesion = ?";
+
+        try {
+
+            PreparedStatement ps = con.prepareStatement(query);
+
+            ps.setInt(1, baja);
+
+            if (ps.executeUpdate() > 0) {
+
+                JOptionPane.showMessageDialog(null, "Se ha dado de baja la sesión con éxito!");
+
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No pudo darse de baja la sesión " + ex.getMessage());
+        }
+
+    }
+        
+        
 }
+    
+
+    
+    
