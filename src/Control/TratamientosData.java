@@ -122,6 +122,30 @@ public class TratamientosData {
         return tratamientos;
     }
     
+    public List<Tratamiento> mostrarTratamientosTipos(String tipo){
+        List<Tratamiento>tratamientos = new ArrayList();
+        String sqlSL="SELECT * FROM masajista WHERE masajista.especialidad LIKE '%"+tipo+"%' ";        
+        try{
+        PreparedStatement ps = con.prepareStatement(sqlSL);
+        ResultSet resultado = ps.executeQuery();
+        while(resultado.next()){
+            Tratamiento t = new Tratamiento();
+            t.setCodTrat(resultado.getInt("codTratam"));
+            t.setNombre(resultado.getString("nombre"));
+            t.setDetalle(resultado.getString("detalle"));
+            t.setDuracion( (resultado.getTime("duracion").toLocalTime()));
+            t.setCosto(resultado.getInt("costo"));
+            t.setEstado(resultado.getBoolean("estado"));
+            t.setTipo(resultado.getString("tipo"));
+            tratamientos.add(t);
+        }
+        }catch(java.sql.SQLException error){
+            JOptionPane.showMessageDialog(null, error.getMessage());
+        }
+        
+        return tratamientos;
+    }
+    
     public void darDeAlta(int codTratam){
             String sqlUP="UPDATE tratamiento SET estado = 1 WHERE tratamiento.codTratam = ?";
         try{

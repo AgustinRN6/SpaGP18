@@ -25,7 +25,7 @@ public class DiaSPAData {
     //INSERT
     public void crearDiaSpa(DiaSpa d) {
         
-        String query = "INSERT INTO dia_de_spa(fechaHora, preferencias, estado, monto, cliente) VALUES (?,?,?,?,?,?)";
+        String query = "INSERT INTO dia_de_spa(fechaHora, preferencias, estado, monto, cliente) VALUES (?,?,?,?,?)";
         
         try {
             
