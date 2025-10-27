@@ -44,10 +44,34 @@ public class SesionData {
                 JOptionPane.showMessageDialog(null, "Se ha creado la sesión con éxito!");
 
             }
-
+            
+            /*
+            //PONER EN FALSE A TRATAMIENTO, MASAJISTA E INSTALACIONES DEBIDO A QUE ESTAN OCUPADOS....
+            InstalacionesData instalaciones = new InstalacionesData();
+            MasajistasData masajistas = new MasajistasData();
+            TratamientosData tratamientos = new TratamientosData();
+            DiaSPAData dia = new DiaSPAData();
+            
+            Instalacion i = instalaciones.buscarInstalacion(s.getInstalacion());
+            i.setEstado(false);
+            instalaciones.modificarInstalacion(i);
+            
+            Masajista m = masajistas.buscarMasajista(s.getMasajista());
+            m.setEstado(false);
+            masajistas.actualizarMasajista(m);
+            
+            Tratamiento t = tratamientos.buscarTratamiento(s.getTratamiento());
+            t.setEstado(false);
+            tratamientos.actualizarTratamiento(t);
+            
+            DiaSpa d = dia.cargarDiaSpa(s.getDiaS());
+            d.setEstado(false);
+            dia.actualizarDiaSpa(d);
+            */
+            
             ResultSet rs = ps.getGeneratedKeys();
 
-            if (rs.next()) {
+             while(rs.next()) {
 
                 s.setCodSesion(rs.getInt(1));
 
@@ -168,7 +192,7 @@ public class SesionData {
             while (rs.next()) {
                 
                 Sesion sesion = new Sesion();
-
+                sesion.setCodSesion(rs.getInt("CodSesion"));
                 sesion.setFechaIn(rs.getTimestamp("fechaHoraInicio").toLocalDateTime());
                 sesion.setFechaFin(rs.getTimestamp("fechaHoraFin").toLocalDateTime());
                 sesion.setTratamiento(rs.getInt("tratamiento"));
