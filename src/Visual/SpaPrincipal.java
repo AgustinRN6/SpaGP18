@@ -86,6 +86,11 @@ public class SpaPrincipal extends javax.swing.JFrame {
         jmMasajistas.setText("Masajistas");
 
         jmiMasajistas.setText("Masajistas");
+        jmiMasajistas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiMasajistasActionPerformed(evt);
+            }
+        });
         jmMasajistas.add(jmiMasajistas);
 
         jmbMenu.add(jmMasajistas);
@@ -139,6 +144,16 @@ public class SpaPrincipal extends javax.swing.JFrame {
     private void jmiCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCerrarActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jmiCerrarActionPerformed
+
+    private void jmiMasajistasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiMasajistasActionPerformed
+        // TODO add your handling code here:
+        Escritorio.removeAll();
+        Escritorio.repaint();
+        GestionMasajista gm = new GestionMasajista();
+        gm.setVisible(true);
+        Escritorio.add(gm);
+        Escritorio.moveToFront(gm);
+    }//GEN-LAST:event_jmiMasajistasActionPerformed
 
     /**
      * @param args the command line arguments
