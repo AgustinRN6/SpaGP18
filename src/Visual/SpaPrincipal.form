@@ -13,6 +13,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="jmiClientes"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmiClientesActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -25,6 +28,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Dia Spa"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmiDiaSpaActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

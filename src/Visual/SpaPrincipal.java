@@ -59,6 +59,11 @@ public class SpaPrincipal extends javax.swing.JFrame {
         jmClientes.setText("Clientes");
 
         jmiClientes.setText("jmiClientes");
+        jmiClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiClientesActionPerformed(evt);
+            }
+        });
         jmClientes.add(jmiClientes);
 
         jmbMenu.add(jmClientes);
@@ -66,6 +71,11 @@ public class SpaPrincipal extends javax.swing.JFrame {
         jmDiaSpa.setText("dia Spa");
 
         jmiDiaSpa.setText("Dia Spa");
+        jmiDiaSpa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiDiaSpaActionPerformed(evt);
+            }
+        });
         jmDiaSpa.add(jmiDiaSpa);
 
         jmbMenu.add(jmDiaSpa);
@@ -154,6 +164,20 @@ public class SpaPrincipal extends javax.swing.JFrame {
         Escritorio.add(gm);
         Escritorio.moveToFront(gm);
     }//GEN-LAST:event_jmiMasajistasActionPerformed
+
+    private void jmiClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiClientesActionPerformed
+        // TODO add your handling code here:
+        Escritorio.removeAll();
+        Escritorio.repaint();
+        GestionClientes gc = new GestionClientes();
+        gc.setVisible(true);
+        Escritorio.add(gc);
+        Escritorio.moveToFront(gc);
+    }//GEN-LAST:event_jmiClientesActionPerformed
+
+    private void jmiDiaSpaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiDiaSpaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jmiDiaSpaActionPerformed
 
     /**
      * @param args the command line arguments
