@@ -26,21 +26,473 @@ public class VistaSesion extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        bgDatos = new javax.swing.ButtonGroup();
+        jpDatos = new javax.swing.JPanel();
+        jlTitulo = new javax.swing.JLabel();
+        jlIDSesion = new javax.swing.JLabel();
+        jtfID = new javax.swing.JTextField();
+        jlFechaHora = new javax.swing.JLabel();
+        jdcInicio = new com.toedter.calendar.JDateChooser();
+        jdcFin = new com.toedter.calendar.JDateChooser();
+        jlFechaHoraInicio = new javax.swing.JLabel();
+        jlFechaHoraFin = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jtfHoraInicio = new javax.swing.JTextField();
+        jtfMinutosInicio = new javax.swing.JTextField();
+        jtfHoraFin = new javax.swing.JTextField();
+        jtfMinutosFin = new javax.swing.JTextField();
+        jSeparator2 = new javax.swing.JSeparator();
+        jlDatos = new javax.swing.JLabel();
+        jtfIDTratamientos = new javax.swing.JTextField();
+        jlIDDatos = new javax.swing.JLabel();
+        jlDetalle = new javax.swing.JLabel();
+        jrbTratamientos = new javax.swing.JRadioButton();
+        jrbMasajistas = new javax.swing.JRadioButton();
+        jrbInstalacion = new javax.swing.JRadioButton();
+        jrbDiasDeSpa = new javax.swing.JRadioButton();
+        jtfDetalles = new javax.swing.JTextField();
+        jspTablaDatos = new javax.swing.JScrollPane();
+        jtTablaDatos = new javax.swing.JTable();
+        jlDatos1 = new javax.swing.JLabel();
+        jpBotones = new javax.swing.JPanel();
+        jbNuevo = new javax.swing.JButton();
+        jbGuardar = new javax.swing.JButton();
+        jbActualizar = new javax.swing.JButton();
+        jbEliminar = new javax.swing.JButton();
+        jbAltaLogica = new javax.swing.JButton();
+        jbBajaLogica = new javax.swing.JButton();
+        jpTabla = new javax.swing.JPanel();
+        jspTabla = new javax.swing.JScrollPane();
+        jtTabla = new javax.swing.JTable();
+        jlInfoSesiones = new javax.swing.JLabel();
+        jbActualizarTabla = new javax.swing.JButton();
+        jlFiltro = new javax.swing.JLabel();
+        jtfFiltro = new javax.swing.JTextField();
+
+        setBackground(new java.awt.Color(222, 243, 248));
+        setPreferredSize(new java.awt.Dimension(700, 500));
+
+        jpDatos.setBackground(new java.awt.Color(198, 243, 247));
+        jpDatos.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jlTitulo.setFont(new java.awt.Font("Consolas", 1, 36)); // NOI18N
+        jlTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlTitulo.setText("Gestor de las Sesiones");
+
+        jlIDSesion.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
+        jlIDSesion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlIDSesion.setText("ID (identificador de la sesión)");
+
+        jtfID.setEditable(false);
+        jtfID.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        jtfID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        jlFechaHora.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
+        jlFechaHora.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlFechaHora.setText("Fecha y hora de la sesión");
+
+        jdcInicio.setDateFormatString("dd MMM yyyy");
+
+        jdcFin.setDateFormatString("dd MMM yyyy");
+
+        jlFechaHoraInicio.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        jlFechaHoraInicio.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlFechaHoraInicio.setText("inicio");
+
+        jlFechaHoraFin.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        jlFechaHoraFin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlFechaHoraFin.setText("fin");
+
+        jtfHoraInicio.setEditable(false);
+        jtfHoraInicio.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        jtfHoraInicio.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        jtfMinutosInicio.setEditable(false);
+        jtfMinutosInicio.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        jtfMinutosInicio.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        jtfHoraFin.setEditable(false);
+        jtfHoraFin.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        jtfHoraFin.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        jtfMinutosFin.setEditable(false);
+        jtfMinutosFin.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        jtfMinutosFin.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        jlDatos.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
+        jlDatos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlDatos.setText("Tratamientos");
+
+        jtfIDTratamientos.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        jtfIDTratamientos.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        jlIDDatos.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        jlIDDatos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlIDDatos.setText("Identificador");
+
+        jlDetalle.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        jlDetalle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlDetalle.setText("Detalle");
+
+        bgDatos.add(jrbTratamientos);
+        jrbTratamientos.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
+        jrbTratamientos.setSelected(true);
+        jrbTratamientos.setText("tratamientos");
+        jrbTratamientos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrbTratamientosActionPerformed(evt);
+            }
+        });
+
+        bgDatos.add(jrbMasajistas);
+        jrbMasajistas.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
+        jrbMasajistas.setText("masajistas");
+        jrbMasajistas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrbMasajistasActionPerformed(evt);
+            }
+        });
+
+        bgDatos.add(jrbInstalacion);
+        jrbInstalacion.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
+        jrbInstalacion.setText("instalación");
+
+        bgDatos.add(jrbDiasDeSpa);
+        jrbDiasDeSpa.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
+        jrbDiasDeSpa.setText("Dias de spa");
+
+        jtfDetalles.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        jtfDetalles.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        jtTablaDatos.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jtTablaDatos.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
+        jtTablaDatos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jspTablaDatos.setViewportView(jtTablaDatos);
+
+        jlDatos1.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
+        jlDatos1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlDatos1.setText("Elija la opción de los datos a visualizar");
+
+        javax.swing.GroupLayout jpDatosLayout = new javax.swing.GroupLayout(jpDatos);
+        jpDatos.setLayout(jpDatosLayout);
+        jpDatosLayout.setHorizontalGroup(
+            jpDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jlFechaHora, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jpDatosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jlTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jlIDSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jtfID)
+                    .addComponent(jSeparator1)
+                    .addGroup(jpDatosLayout.createSequentialGroup()
+                        .addGroup(jpDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jlFechaHoraInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jdcInicio, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jpDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jdcFin, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
+                            .addComponent(jlFechaHoraFin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jpDatosLayout.createSequentialGroup()
+                        .addComponent(jtfHoraInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jtfMinutosInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jtfHoraFin, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jtfMinutosFin, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jlDatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jpDatosLayout.createSequentialGroup()
+                        .addGroup(jpDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jlIDDatos, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                            .addComponent(jtfIDTratamientos))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jpDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jlDetalle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jtfDetalles)))
+                    .addGroup(jpDatosLayout.createSequentialGroup()
+                        .addComponent(jrbMasajistas)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jrbDiasDeSpa))
+                    .addGroup(jpDatosLayout.createSequentialGroup()
+                        .addComponent(jrbTratamientos)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jrbInstalacion))
+                    .addComponent(jspTablaDatos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jlDatos1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jpDatosLayout.setVerticalGroup(
+            jpDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpDatosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jlTitulo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jlIDSesion)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jtfID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addComponent(jlFechaHora)
+                .addGap(18, 18, 18)
+                .addGroup(jpDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlFechaHoraInicio)
+                    .addComponent(jlFechaHoraFin))
+                .addGap(4, 4, 4)
+                .addGroup(jpDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jdcInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jdcFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jpDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtfHoraInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfMinutosInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfHoraFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfMinutosFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jlDatos1)
+                .addGap(7, 7, 7)
+                .addGroup(jpDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jrbTratamientos)
+                    .addComponent(jrbInstalacion))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jpDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jrbMasajistas)
+                    .addComponent(jrbDiasDeSpa))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jlDatos)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jpDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlIDDatos)
+                    .addComponent(jlDetalle))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jpDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtfIDTratamientos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfDetalles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jspTablaDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jpBotones.setBackground(new java.awt.Color(198, 243, 247));
+        jpBotones.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jbNuevo.setBackground(new java.awt.Color(239, 242, 183));
+        jbNuevo.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
+        jbNuevo.setText("Nuevo");
+
+        jbGuardar.setBackground(new java.awt.Color(214, 183, 242));
+        jbGuardar.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
+        jbGuardar.setText("Guardar");
+
+        jbActualizar.setBackground(new java.awt.Color(239, 183, 242));
+        jbActualizar.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
+        jbActualizar.setText("Actualizar");
+
+        jbEliminar.setBackground(new java.awt.Color(245, 164, 164));
+        jbEliminar.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
+        jbEliminar.setText("Eliminar");
+
+        jbAltaLogica.setBackground(new java.awt.Color(200, 242, 183));
+        jbAltaLogica.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
+        jbAltaLogica.setText("Alta lógica");
+
+        jbBajaLogica.setBackground(new java.awt.Color(242, 220, 183));
+        jbBajaLogica.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
+        jbBajaLogica.setText("Baja lógica");
+
+        javax.swing.GroupLayout jpBotonesLayout = new javax.swing.GroupLayout(jpBotones);
+        jpBotones.setLayout(jpBotonesLayout);
+        jpBotonesLayout.setHorizontalGroup(
+            jpBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpBotonesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jbGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                    .addComponent(jbNuevo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jpBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jbActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jpBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jbAltaLogica, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbBajaLogica, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jpBotonesLayout.setVerticalGroup(
+            jpBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpBotonesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbAltaLogica, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jpBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbBajaLogica, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(8, Short.MAX_VALUE))
+        );
+
+        jpTabla.setBackground(new java.awt.Color(198, 243, 247));
+        jpTabla.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jtTabla.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jtTabla.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
+        jtTabla.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jspTabla.setViewportView(jtTabla);
+
+        jlInfoSesiones.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
+        jlInfoSesiones.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlInfoSesiones.setText("información de las sesiones");
+
+        jbActualizarTabla.setBackground(new java.awt.Color(239, 183, 242));
+        jbActualizarTabla.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
+        jbActualizarTabla.setText("Actualizar tabla");
+
+        jlFiltro.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        jlFiltro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlFiltro.setText("Filtro (ID)");
+        jlFiltro.setToolTipText("");
+
+        jtfFiltro.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        jtfFiltro.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        javax.swing.GroupLayout jpTablaLayout = new javax.swing.GroupLayout(jpTabla);
+        jpTabla.setLayout(jpTablaLayout);
+        jpTablaLayout.setHorizontalGroup(
+            jpTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpTablaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jspTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jlInfoSesiones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbActualizarTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jtfFiltro)
+                    .addComponent(jlFiltro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jpTablaLayout.setVerticalGroup(
+            jpTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpTablaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jlInfoSesiones)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jbActualizarTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jlFiltro)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jtfFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jspTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jpDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jpBotones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jpTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jpBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jpTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jpDatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jrbMasajistasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbMasajistasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jrbMasajistasActionPerformed
+
+    private void jrbTratamientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbTratamientosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jrbTratamientosActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup bgDatos;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JButton jbActualizar;
+    private javax.swing.JButton jbActualizarTabla;
+    private javax.swing.JButton jbAltaLogica;
+    private javax.swing.JButton jbBajaLogica;
+    private javax.swing.JButton jbEliminar;
+    private javax.swing.JButton jbGuardar;
+    private javax.swing.JButton jbNuevo;
+    private com.toedter.calendar.JDateChooser jdcFin;
+    private com.toedter.calendar.JDateChooser jdcInicio;
+    private javax.swing.JLabel jlDatos;
+    private javax.swing.JLabel jlDatos1;
+    private javax.swing.JLabel jlDetalle;
+    private javax.swing.JLabel jlFechaHora;
+    private javax.swing.JLabel jlFechaHoraFin;
+    private javax.swing.JLabel jlFechaHoraInicio;
+    private javax.swing.JLabel jlFiltro;
+    private javax.swing.JLabel jlIDDatos;
+    private javax.swing.JLabel jlIDSesion;
+    private javax.swing.JLabel jlInfoSesiones;
+    private javax.swing.JLabel jlTitulo;
+    private javax.swing.JPanel jpBotones;
+    private javax.swing.JPanel jpDatos;
+    private javax.swing.JPanel jpTabla;
+    private javax.swing.JRadioButton jrbDiasDeSpa;
+    private javax.swing.JRadioButton jrbInstalacion;
+    private javax.swing.JRadioButton jrbMasajistas;
+    private javax.swing.JRadioButton jrbTratamientos;
+    private javax.swing.JScrollPane jspTabla;
+    private javax.swing.JScrollPane jspTablaDatos;
+    private javax.swing.JTable jtTabla;
+    private javax.swing.JTable jtTablaDatos;
+    private javax.swing.JTextField jtfDetalles;
+    private javax.swing.JTextField jtfFiltro;
+    private javax.swing.JTextField jtfHoraFin;
+    private javax.swing.JTextField jtfHoraInicio;
+    private javax.swing.JTextField jtfID;
+    private javax.swing.JTextField jtfIDTratamientos;
+    private javax.swing.JTextField jtfMinutosFin;
+    private javax.swing.JTextField jtfMinutosInicio;
     // End of variables declaration//GEN-END:variables
 }
