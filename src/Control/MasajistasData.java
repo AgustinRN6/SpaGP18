@@ -179,7 +179,7 @@ public class MasajistasData {
         ps.setInt(1, matricula);
         
         if(ps.executeUpdate() > 0){
-            JOptionPane.showMessageDialog(null, "Masajista dado de baja!!!!");
+            JOptionPane.showMessageDialog(null, "Masajista dado de alta!!!!");
         }
         
         }catch(java.sql.SQLException error){
