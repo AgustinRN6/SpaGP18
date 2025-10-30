@@ -518,13 +518,14 @@ private void cargarCampos(){
     String precio30M = String.valueOf(jtTablaInstalaciones.getValueAt(filaS, 3));
     String usos = String.valueOf(jtTablaInstalaciones.getValueAt(filaS, 4));
     String apto = String.valueOf(jtTablaInstalaciones.getValueAt(filaS, 5));
-    
+    int idd = (Integer) jtTablaInstalaciones.getValueAt(filaS, 0);
     txtNombre.setText(nombre);
     txtDetallesUso.setText(detallesUso);
     txtApto.setText(apto);
     txtUsos.setText(usos);
     txtPrecio30M.setText(precio30M);
     txtID.setText(id);
+    i.setCodIns(idd);
 }
 
 }

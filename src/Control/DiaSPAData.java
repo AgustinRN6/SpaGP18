@@ -60,13 +60,13 @@ public class DiaSPAData {
     //DELETE
     public void borrarDiaSpa(int eliminar) {
         
-        String query = "DELETE FROM dia_de_spa WHERE codPack = ?";
+        String query = "DELETE FROM dia_de_spa WHERE dia_de_spa.codPack = ?";
 
         try {
 
             PreparedStatement ps = con.prepareStatement(query);
 
-            ps.setInt(0, eliminar);
+            ps.setInt(1, eliminar);
             
             if (ps.executeUpdate() > 0) {
                 
@@ -112,24 +112,26 @@ public class DiaSPAData {
         
         DiaSpa diaSpa = new DiaSpa();
         
-        String query = "SELECT * FROM dia_de_spa WHERE codPack = ?";
-
+        String query = "SELECT * FROM dia_de_spa WHERE dia_de_spa.codPack = ?";
+        
         try {
-
+            
             PreparedStatement ps = con.prepareStatement(query);
-
-            ps.setInt(0, cargar);
+            
+            ps.setInt(1, cargar);
             
             ResultSet rs = ps.executeQuery();
             
             if (rs.next()) {
                 
+                
                 diaSpa.setCodPack(rs.getInt("codPack"));
-                diaSpa.setFechayH(rs.getTimestamp("FechaHora").toLocalDateTime());
+                diaSpa.setFechayH(rs.getTimestamp("fechaHora").toLocalDateTime());
                 diaSpa.setPrefencias(rs.getString("preferencias"));
                 diaSpa.setEstado(rs.getBoolean("estado"));
                 diaSpa.setMonto(rs.getInt("monto"));
                 diaSpa.setCliente(rs.getInt("cliente"));
+                
             }
                        
         } catch (SQLException ex) {
@@ -219,10 +221,7 @@ public class DiaSPAData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No pudo darse de baja el dia de spa " + ex.getMessage());
         }
-
+        
     }
-    
-    
-    
-    
+        
 }

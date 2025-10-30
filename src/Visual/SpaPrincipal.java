@@ -149,6 +149,12 @@ public class SpaPrincipal extends javax.swing.JFrame {
 
     private void jmiInstalacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiInstalacionesActionPerformed
         // TODO add your handling code here:
+        Escritorio.removeAll();
+        Escritorio.repaint();
+        GestionInstalacion gi = new GestionInstalacion();
+        gi.setVisible(true);
+        Escritorio.add(gi);
+        Escritorio.moveToFront(gi);
     }//GEN-LAST:event_jmiInstalacionesActionPerformed
 
     private void jmiCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCerrarActionPerformed
@@ -177,6 +183,12 @@ public class SpaPrincipal extends javax.swing.JFrame {
 
     private void jmiDiaSpaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiDiaSpaActionPerformed
         // TODO add your handling code here:
+        Escritorio.removeAll();
+        Escritorio.repaint();
+        GestionSpa gs = new GestionSpa();
+        gs.setVisible(true);
+        Escritorio.add(gs);
+        Escritorio.moveToFront(gs);
     }//GEN-LAST:event_jmiDiaSpaActionPerformed
 
     /**

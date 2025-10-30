@@ -412,7 +412,7 @@ public class GestionClientes extends javax.swing.JInternalFrame {
     private void jbBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBajaActionPerformed
         // TODO add your handling code here:
         if(validarCampos() == true){
-            clientes.darDeAlta(c.getCodCli());
+            clientes.darDeBaja(c.getCodCli());
             cargarTabla();
             vaciarCampos();
         }
@@ -533,8 +533,7 @@ private void cargarCampos(){
     String dni = String.valueOf(jtTablaClientes.getValueAt(filaS, 3));
     String afecciones = String.valueOf(jtTablaClientes.getValueAt(filaS, 4));
     String numeroT = String.valueOf(jtTablaClientes.getValueAt(filaS, 5));
-    
-    
+    int idd = (Integer) jtTablaClientes.getValueAt(filaS, 0);
     
     txtNombreC.setText(nombreC);
     txtNumeroT.setText(numeroT);
@@ -542,6 +541,7 @@ private void cargarCampos(){
     txtEdad.setText(edad);
     txtDNI.setText(dni);
     txtID.setText(id);
+    c.setCodCli(idd);
     
 }
 

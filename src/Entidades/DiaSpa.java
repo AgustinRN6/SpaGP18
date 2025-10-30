@@ -11,7 +11,6 @@ public class DiaSpa {
    private LocalDateTime fechayH;
    private String prefencias;
    private int cliente;
-   private List<Sesion> sesiones = new ArrayList();
    private int monto;
    private boolean estado;
    
@@ -39,13 +38,6 @@ public class DiaSpa {
     }
         public void setFechayH(LocalDateTime fechayH) {
             this.fechayH = fechayH;
-        }
-
-    public List<Sesion> getSesiones() {
-        return sesiones;
-    }
-        public void setSesiones(List<Sesion> sesiones) {
-            this.sesiones = sesiones;
         }
 
     public String getPrefencias() {
@@ -82,6 +74,6 @@ public class DiaSpa {
         }
    
     public String mostrarInfo(){
-    return'['+"CodPack: "+ codPack+", Fecha y Hora: "+ fechayH+", Sesiones: "+ sesiones+", Monto: "+ monto+", Estado: "+ estado+']';
+    return'['+"CodPack: "+ codPack+", Fecha y Hora: "+ fechayH+", Monto: "+ monto+", Estado: "+ estado+']';
     }
 }

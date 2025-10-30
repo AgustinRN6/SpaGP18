@@ -10,7 +10,7 @@ import java.util.Date;
 public class prueba {
     public static void main(String[] args){
     //CLASES ENTIDADES.....................................................................................
-    DiaSpa diaS1 = new DiaSpa(LocalDateTime.now(),"facial",6, 1500, true);
+    DiaSpa diaS1 = new DiaSpa(LocalDateTime.of(2025, 9, 12, 18, 30),"facial",6, 1500, true);
     DiaSpa diaS2 = new DiaSpa(LocalDateTime.now(),"Corporal",7, 1500, true);
     DiaSpa diaS3 = new DiaSpa(LocalDateTime.now(),"Estetico",8, 1500, true);
     DiaSpa diaS4 = new DiaSpa(LocalDateTime.now(),"Prueba",9, 1500, true);
@@ -57,7 +57,6 @@ public class prueba {
     //probamos metodos de las clases DATAS(PERSISTENCIA).....................................................................................
     
     //INSERT INTO
-    
     
     /*
     dia.crearDiaSpa(diaS1);
@@ -164,10 +163,7 @@ public class prueba {
     }
         System.out.println(".....................................................................");
     
-        System.out.println("DiasSpa");
-    for(DiaSpa d: dia.cargarTodosDiaSpa()){
-        System.out.println(d.mostrarInfo());
-    }
+
         System.out.println(".....................................................................");
         
         System.out.println("Sesiones");
@@ -176,7 +172,8 @@ public class prueba {
     }
         System.out.println(".....................................................................");
     */
-
+        System.out.println(dia.cargarDiaSpa(13).mostrarInfo());
+        
     }
     
 }

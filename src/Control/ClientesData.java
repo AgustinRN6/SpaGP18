@@ -125,6 +125,32 @@ public class ClientesData {
         }
         return clientes;
     }
+        public List<Cliente> mostrarClientesActivos(){
+        List<Cliente> clientes = new ArrayList();
+        try{
+            
+            String sqlSL="SELECT * FROM cliente WHERE cliente.estado = 1";
+            PreparedStatement ps = con.prepareStatement(sqlSL);
+            ResultSet resultado = ps.executeQuery();
+            while(resultado.next()){
+            Cliente c = new Cliente();
+            
+            c.setCodCli(resultado.getInt("codCli"));
+            c.setNombreC(resultado.getString("nombreCompleto"));
+            c.setEdad(resultado.getInt("edad"));
+            c.setDni(resultado.getInt("dni"));
+            c.setTelefono(resultado.getInt("telefono"));
+            c.setAfecciones(resultado.getString("afecciones"));
+            c.setEstado(resultado.getBoolean("estado"));
+            clientes.add(c);
+            }
+        
+        
+        }catch(java.sql.SQLException error){
+            JOptionPane.showMessageDialog(null, error.getMessage());
+        }
+        return clientes;
+    }
     
     public void darDeAlta(int id ){
         String sqlUP="UPDATE cliente SET estado = 1 WHERE cliente.codCli = ?";
