@@ -4,6 +4,8 @@
  */
 package Visual;
 
+import javax.swing.JScrollPane;
+
 /**
  *
  * @author Agustin
@@ -108,6 +110,11 @@ public class SpaPrincipal extends javax.swing.JFrame {
         jmSesion.setText("Sesion");
 
         jmiSesion.setText("Sesion");
+        jmiSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiSesionActionPerformed(evt);
+            }
+        });
         jmSesion.add(jmiSesion);
 
         jmbMenu.add(jmSesion);
@@ -190,6 +197,20 @@ public class SpaPrincipal extends javax.swing.JFrame {
         Escritorio.add(gs);
         Escritorio.moveToFront(gs);
     }//GEN-LAST:event_jmiDiaSpaActionPerformed
+
+    private void jmiSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiSesionActionPerformed
+        
+        Escritorio.removeAll();
+        Escritorio.repaint();
+        VistaSesion vs = new VistaSesion();
+        vs.setVisible(true);
+        vs.setSize(Escritorio.getSize());
+        vs.setMaximizable(true);
+        vs.setResizable(true);
+        Escritorio.add(vs);
+        Escritorio.moveToFront(vs);
+        
+    }//GEN-LAST:event_jmiSesionActionPerformed
 
     /**
      * @param args the command line arguments
