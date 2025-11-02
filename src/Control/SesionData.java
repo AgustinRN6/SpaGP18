@@ -93,7 +93,7 @@ public class SesionData {
 
             PreparedStatement ps = con.prepareStatement(query);
 
-            ps.setInt(0, borrar);
+            ps.setInt(1, borrar);
 
             if (ps.executeUpdate() > 0) {
 
@@ -144,23 +144,24 @@ public class SesionData {
         
         Sesion sesion = new Sesion();
         
-        String query = "SELECT * FROM sesion WHERE codSesion =  ?";
+        String query = "SELECT * FROM sesion WHERE codSesion = ?";
         
         try {
 
             PreparedStatement ps = con.prepareStatement(query);
 
-            ps.setInt(0, mostrar);
+            ps.setInt(1, mostrar);
 
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
 
+                sesion.setCodSesion(rs.getInt("codSesion"));
                 sesion.setFechaIn(rs.getTimestamp("fechaHoraInicio").toLocalDateTime());
                 sesion.setFechaFin(rs.getTimestamp("fechaHoraFin").toLocalDateTime());
                 sesion.setTratamiento(rs.getInt("tratamiento"));
                 sesion.setMasajista(rs.getInt("masajista"));
-                sesion.setDiaS(rs.getInt("dia_De_Spa"));;
+                sesion.setDiaS(rs.getInt("dia_De_Spa"));
                 sesion.setEstado(rs.getBoolean("estado"));
                 sesion.setInstalacion(rs.getInt("instalacion"));
 

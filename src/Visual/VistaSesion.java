@@ -380,10 +380,20 @@ public class VistaSesion extends javax.swing.JInternalFrame {
         jbActualizar.setBackground(new java.awt.Color(239, 183, 242));
         jbActualizar.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
         jbActualizar.setText("Actualizar");
+        jbActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbActualizarActionPerformed(evt);
+            }
+        });
 
         jbEliminar.setBackground(new java.awt.Color(245, 164, 164));
         jbEliminar.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
         jbEliminar.setText("Eliminar");
+        jbEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbEliminarActionPerformed(evt);
+            }
+        });
 
         jbAltaLogica.setBackground(new java.awt.Color(200, 242, 183));
         jbAltaLogica.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
@@ -397,6 +407,11 @@ public class VistaSesion extends javax.swing.JInternalFrame {
         jbBajaLogica.setBackground(new java.awt.Color(242, 220, 183));
         jbBajaLogica.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
         jbBajaLogica.setText("Baja lógica");
+        jbBajaLogica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbBajaLogicaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpBotonesLayout = new javax.swing.GroupLayout(jpBotones);
         jpBotones.setLayout(jpBotonesLayout);
@@ -451,6 +466,11 @@ public class VistaSesion extends javax.swing.JInternalFrame {
 
             }
         ));
+        jtTabla.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtTablaMouseClicked(evt);
+            }
+        });
         jspTabla.setViewportView(jtTabla);
 
         jlInfoSesiones.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
@@ -530,7 +550,10 @@ public class VistaSesion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jrbTratamientosActionPerformed
 
     private void jbAltaLogicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAltaLogicaActionPerformed
-        // TODO add your handling code here:
+        int altaLogica = Integer.parseInt(jtfID.getText());
+        sesion.altaSesion(altaLogica);
+        cargarSesion(null, -1);
+        crearSesion();
     }//GEN-LAST:event_jbAltaLogicaActionPerformed
 
     private void jbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoActionPerformed
@@ -556,6 +579,31 @@ public class VistaSesion extends javax.swing.JInternalFrame {
     private void jtTablaDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtTablaDatosMouseClicked
         cargarInformacionSecundaria(evt.getPoint());
     }//GEN-LAST:event_jtTablaDatosMouseClicked
+
+    private void jtTablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtTablaMouseClicked
+        //Cargar los datos al clickear la tabla general
+        cargarInformacion(evt.getPoint());
+    }//GEN-LAST:event_jtTablaMouseClicked
+
+    private void jbActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbActualizarActionPerformed
+        verificacionIngreso("ACTUALIZAR");
+        cargarSesion(null, -1);
+        crearSesion();
+    }//GEN-LAST:event_jbActualizarActionPerformed
+
+    private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
+        int eliminar = Integer.parseInt(jtfID.getText());
+        sesion.borrarSesion(eliminar);
+        cargarSesion(null, -1);
+        crearSesion();
+    }//GEN-LAST:event_jbEliminarActionPerformed
+
+    private void jbBajaLogicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBajaLogicaActionPerformed
+        int bajaLogica = Integer.parseInt(jtfID.getText());
+        sesion.bajaSesion(bajaLogica);
+        cargarSesion(null, -1);
+        crearSesion();
+    }//GEN-LAST:event_jbBajaLogicaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -815,7 +863,7 @@ public class VistaSesion extends javax.swing.JInternalFrame {
                 
             }
             
-            if(estadoGuardar) { //Que se presente en el cuadro ID y descripción la informacion guardada en datos
+            //if(estadoGuardar) { //Que se presente en el cuadro ID y descripción la informacion guardada en datos
                 
                 if (datos[0] == -1) {
                     jtfIDDatos.setText("");
@@ -823,7 +871,7 @@ public class VistaSesion extends javax.swing.JInternalFrame {
                     jtfIDDatos.setText("" + datos[0]);
                 }
                 
-            }
+            //}
             
         }
             
@@ -858,7 +906,7 @@ public class VistaSesion extends javax.swing.JInternalFrame {
                 
             }
             
-            if(estadoGuardar) { //Que se presente en el cuadro ID y descripción la informacion guardada en datos
+            //if(estadoGuardar) { //Que se presente en el cuadro ID y descripción la informacion guardada en datos
                 
                 if (datos[1] == -1) {
                     jtfIDDatos.setText("");
@@ -866,7 +914,7 @@ public class VistaSesion extends javax.swing.JInternalFrame {
                     jtfIDDatos.setText("" + datos[1]);
                 }
                 
-            }
+            //}
             
         }
             
@@ -901,7 +949,7 @@ public class VistaSesion extends javax.swing.JInternalFrame {
                 
             }
             
-            if (estadoGuardar) { //Que se presente en el cuadro ID y descripción la informacion guardada en datos
+            //if (estadoGuardar) { //Que se presente en el cuadro ID y descripción la informacion guardada en datos
 
                 if (datos[2] == -1) {
                     jtfIDDatos.setText("");
@@ -909,7 +957,7 @@ public class VistaSesion extends javax.swing.JInternalFrame {
                     jtfIDDatos.setText("" + datos[2]);
                 }
 
-            }
+            //}
             
         }
                         
@@ -944,7 +992,7 @@ public class VistaSesion extends javax.swing.JInternalFrame {
                 
             }
             
-            if (estadoGuardar) { //Que se presente en el cuadro ID y descripción la informacion guardada en datos
+            //if (estadoGuardar) { //Que se presente en el cuadro ID y descripción la informacion guardada en datos
 
                 if (datos[3] == -1) {
                     jtfIDDatos.setText("");
@@ -953,7 +1001,7 @@ public class VistaSesion extends javax.swing.JInternalFrame {
                 }
 
 
-            }
+            //}
             
         }
         
@@ -968,18 +1016,23 @@ public class VistaSesion extends javax.swing.JInternalFrame {
             jbEliminar.setEnabled(false);
             jbAltaLogica.setEnabled(false);
             jbBajaLogica.setEnabled(false);
-            jbNuevo.setEnabled(true);
             jbGuardar.setEnabled(true);
             estadoGuardar = true;
         } else
         {
             jbActualizar.setEnabled(true);
             jbEliminar.setEnabled(true);
-            jbAltaLogica.setEnabled(true);
-            jbBajaLogica.setEnabled(true); 
-            jbNuevo.setEnabled(false);
             jbGuardar.setEnabled(false);
             estadoGuardar = false;
+            if(jtfEstado.getText().equalsIgnoreCase("ACTIVO")) {
+                jbAltaLogica.setEnabled(false);
+                jbBajaLogica.setEnabled(true); 
+            } else 
+            {
+                jbBajaLogica.setEnabled(false); 
+                jbAltaLogica.setEnabled(true);
+            }
+                    
         }
         
 
@@ -1107,8 +1160,15 @@ public class VistaSesion extends javax.swing.JInternalFrame {
             } else {
                 
                 if (boton.equalsIgnoreCase("GUARDAR")) {
-                    Sesion s = new Sesion(fechaInicio, fechaFinal,codTratamientos,codMasajista, codInstalaciones,codDiaSpa, true);
+                    Sesion s = new Sesion(fechaInicio, fechaFinal, codTratamientos, codMasajista, codInstalaciones, codDiaSpa, true);
                     sesion.crearSesion(s);
+                }
+                
+                if (boton.equalsIgnoreCase("ACTUALIZAR")) {
+                    boolean estado = sesion.mostrarSesion(Integer.parseInt(jtfID.getText())).isEstado();
+                    Sesion s = new Sesion(fechaInicio, fechaFinal, codTratamientos, codMasajista, codInstalaciones, codDiaSpa, estado);
+                    s.setCodSesion(Integer.parseInt(jtfID.getText()));
+                    sesion.actualizarSesion(s);
                 }
                 
             }
@@ -1202,6 +1262,56 @@ public class VistaSesion extends javax.swing.JInternalFrame {
             
         }
         
+        
+        
+    }
+    
+    private void cargarInformacion(Point evento) {
+        
+        int seleccionFila = jtTabla.rowAtPoint(evento);
+
+        int columnaID = 0;
+        
+        for (int i = 0; i < jtTabla.getColumnCount(); i++) {
+            if (jtTabla.getColumnName(i).equals("ID sesion")) {
+                columnaID = i;
+            }
+        }
+        
+        int ID_Sesion = (int)(jtTabla.getValueAt(seleccionFila, columnaID));
+        
+        Sesion s = sesion.mostrarSesion(ID_Sesion);
+        
+        jtfID.setText(""+s.getCodSesion());
+   
+        Date fechaInicio = Date.from(s.getFechaIn().toLocalDate().atStartOfDay(ZoneId.systemDefault()).toInstant());
+        
+        jdcInicio.setDate(fechaInicio);
+        
+        Date fechaFin = Date.from(s.getFechaFin().toLocalDate().atStartOfDay(ZoneId.systemDefault()).toInstant());
+        
+        jdcFin.setDate(fechaFin);
+        
+        LocalDateTime fechaHoraInicio = s.getFechaIn();
+        
+        jtfHoraInicio.setText(""+fechaHoraInicio.getHour());
+        jtfMinutosInicio.setText(""+fechaHoraInicio.getMinute());
+        
+        LocalDateTime fechaHoraFin = s.getFechaFin();
+
+        jtfHoraFin.setText("" + fechaHoraFin.getHour());
+        jtfMinutosFin.setText("" + fechaHoraFin.getMinute());
+        
+        datos[0] = s.getMasajista();
+        datos[1] = s.getTratamiento();
+        datos[2] = s.getInstalacion();
+        datos[3] = s.getDiaS();
+        
+        estadoSesion(s.isEstado());
+        
+        cargarTablaSecundaria(datos);
+        
+        nuevaSesion(false);
         
         
     }
