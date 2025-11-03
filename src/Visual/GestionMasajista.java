@@ -658,7 +658,7 @@ private void cargarCampos(){
     if(estados == true){
         jbAlta.setEnabled(false);
         jbBaja.setEnabled(true);
-    }else if(estado == false){
+    }else if(estados == false){
         jbAlta.setEnabled(true);
         jbBaja.setEnabled(false);
     }

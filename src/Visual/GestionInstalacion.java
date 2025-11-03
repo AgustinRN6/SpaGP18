@@ -660,11 +660,11 @@ private void cargarCampos(){
     txtID.setText(id);
     i.setCodIns(idd);
     //habilita e inhabilita segun el estado del objeto.
-    boolean estado = Boolean.valueOf(jtTablaInstalaciones.getValueAt(filaS, 6).toString());
-    if(estado == true){
+    boolean estados = Boolean.valueOf(jtTablaInstalaciones.getValueAt(filaS, 6).toString());
+    if(estados == true){
         jbAlta.setEnabled(false);
         jbBaja.setEnabled(true);
-    }else if(estado == false){
+    }else if(estados == false){
         jbAlta.setEnabled(true);
         jbBaja.setEnabled(false);
     }

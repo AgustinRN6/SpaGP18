@@ -18,8 +18,6 @@ public class GestionSpa extends javax.swing.JInternalFrame {
     ClientesData clientes = new ClientesData();
     //objeto que sirve para poder asignarles atributos y luego enviarlos a la base de datos
     DiaSpa d = new DiaSpa();
-    //variable que me permite obtener el true o false de los radioButton.
-    private boolean estado;
     
     
     private DefaultTableModel modeloT = new DefaultTableModel(){
@@ -60,9 +58,6 @@ public class GestionSpa extends javax.swing.JInternalFrame {
         txtCliente = new javax.swing.JTextField();
         jbSalir = new javax.swing.JButton();
         jbSubir = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
-        jrbAlta = new javax.swing.JRadioButton();
-        jrbBaja = new javax.swing.JRadioButton();
         txtHora = new javax.swing.JTextField();
         txtMinuto = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
@@ -109,12 +104,13 @@ public class GestionSpa extends javax.swing.JInternalFrame {
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Monto($)");
+        jLabel5.setText("Precio estimado");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Minuto");
 
+        txtMonto.setEditable(false);
         txtMonto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtMontoActionPerformed(evt);
@@ -140,28 +136,6 @@ public class GestionSpa extends javax.swing.JInternalFrame {
         jbSubir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbSubirActionPerformed(evt);
-            }
-        });
-
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Estado");
-
-        bgpEstados.add(jrbAlta);
-        jrbAlta.setForeground(new java.awt.Color(255, 255, 255));
-        jrbAlta.setText("Alta");
-        jrbAlta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jrbAltaActionPerformed(evt);
-            }
-        });
-
-        bgpEstados.add(jrbBaja);
-        jrbBaja.setForeground(new java.awt.Color(255, 255, 255));
-        jrbBaja.setText("Baja");
-        jrbBaja.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jrbBajaActionPerformed(evt);
             }
         });
 
@@ -202,11 +176,6 @@ public class GestionSpa extends javax.swing.JInternalFrame {
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jpPanelDiaSpaLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jcbClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPanelDiaSpaLayout.createSequentialGroup()
                         .addGroup(jpPanelDiaSpaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jpPanelDiaSpaLayout.createSequentialGroup()
@@ -233,26 +202,25 @@ public class GestionSpa extends javax.swing.JInternalFrame {
                                         .addComponent(jLabel6)
                                         .addGap(2, 2, 2)
                                         .addComponent(txtMinuto, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpPanelDiaSpaLayout.createSequentialGroup()
-                                        .addGroup(jpPanelDiaSpaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpPanelDiaSpaLayout.createSequentialGroup()
-                                                .addComponent(jLabel5)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(txtMonto))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpPanelDiaSpaLayout.createSequentialGroup()
-                                                .addComponent(jLabel8)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jrbAlta)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jrbBaja)))
-                                        .addGap(46, 46, 46)
-                                        .addComponent(jbSubir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(212, 212, 212))
+                    .addGroup(jpPanelDiaSpaLayout.createSequentialGroup()
+                        .addGroup(jpPanelDiaSpaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jpPanelDiaSpaLayout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jcbClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jpPanelDiaSpaLayout.createSequentialGroup()
+                                .addComponent(jbSubir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(jpPanelDiaSpaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jpPanelDiaSpaLayout.createSequentialGroup()
                                         .addComponent(jbActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jbNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(212, 212, 212)))
+                                        .addComponent(jbNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jpPanelDiaSpaLayout.setVerticalGroup(
@@ -284,19 +252,14 @@ public class GestionSpa extends javax.swing.JInternalFrame {
                         .addComponent(txtHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtMinuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jpPanelDiaSpaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpPanelDiaSpaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpPanelDiaSpaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jbSubir, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jbActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jbNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jpPanelDiaSpaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel8)
-                        .addComponent(jrbAlta)
-                        .addComponent(jrbBaja)))
+                    .addComponent(jLabel5)
+                    .addComponent(txtMonto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jpPanelDiaSpaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbSubir, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -399,7 +362,7 @@ public class GestionSpa extends javax.swing.JInternalFrame {
                         .addComponent(jLabel10))
                     .addComponent(jLabel7))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -448,16 +411,6 @@ public class GestionSpa extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         cargarCliente();
     }//GEN-LAST:event_jcbClientesActionPerformed
-
-    private void jrbAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbAltaActionPerformed
-        // TODO add your handling code here:
-        estado = true;
-    }//GEN-LAST:event_jrbAltaActionPerformed
-
-    private void jrbBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbBajaActionPerformed
-        // TODO add your handling code here:
-        estado = false;
-    }//GEN-LAST:event_jrbBajaActionPerformed
 
     private void jtTablaDiaSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtTablaDiaSMouseClicked
         // TODO add your handling code here:
@@ -547,7 +500,6 @@ public class GestionSpa extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbActualizar;
@@ -562,8 +514,6 @@ public class GestionSpa extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jpPanelDiaSpa;
     private javax.swing.JPanel jpPanelPrincipal;
     private javax.swing.JPanel jpPanelTabla;
-    private javax.swing.JRadioButton jrbAlta;
-    private javax.swing.JRadioButton jrbBaja;
     private javax.swing.JTable jtTablaDiaS;
     private javax.swing.JTextField txtCliente;
     private javax.swing.JTextField txtHora;
@@ -636,7 +586,7 @@ private boolean validarCampos(){
         d.setPrefencias(preferencias);
         d.setFechayH(LocalDateTime.of(fecha, hora));
         d.setMonto(monto);
-        d.setEstado(estado);
+        d.setEstado(true);
         
         return true;
         
@@ -663,7 +613,7 @@ private void cargarCampos(){
     //mediante estas dos variables le asigno al objeto d(DiaSpa) las dos llaves foraneas.
     int codPack= (Integer) jtTablaDiaS.getValueAt(filaS, 0);
     int codClien= (Integer) jtTablaDiaS.getValueAt(filaS,2);
-    //con esto podemos dar de alta, baja, borra y actualizar.
+    //ya con el codPack(Key Primary o llave primaria) podemos dar de alta, baja, borra y actualizar. debido a que se lo setea al objeto d(DiaSpa)
     d.setCodPack(codPack);
     d.setCliente(codClien);
     /*creamos un objeto dia mediante el metodo cargarDiaSpa que nos retorna el diaDeSpa especifico mediante el codPack.
@@ -694,8 +644,8 @@ private void cargarCampos(){
     txtID.setText(id);
     
     //metodo que habilita o inhabilita segun el estado del objeto seleccionado.
-    boolean estados = Boolean.valueOf(jtTablaDiaS.getValueAt(filaS, 5).toString());
-    if(estados == true){
+    boolean estado = Boolean.valueOf(jtTablaDiaS.getValueAt(filaS, 5).toString());
+    if(estado == true){
         jbAlta.setEnabled(false);
         jbBaja.setEnabled(true);
     }else if(estado == false){
@@ -710,8 +660,6 @@ private void inhabilitarCampos(){
     txtHora.setEnabled(false);
     txtMinuto.setEnabled(false);
     txtMonto.setEnabled(false);
-    jrbAlta.setEnabled(false);
-    jrbBaja.setEnabled(false);
     jdtFecha.setEnabled(false);
 }
 
@@ -720,8 +668,7 @@ private void habilitarCampos(){
     txtHora.setEnabled(true);
     txtMinuto.setEnabled(true);
     txtMonto.setEnabled(true);
-    jrbAlta.setEnabled(true);
-    jrbBaja.setEnabled(true);
+
     jdtFecha.setEnabled(true);
 }
 private void cargarCliente(){

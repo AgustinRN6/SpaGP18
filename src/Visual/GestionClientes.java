@@ -564,12 +564,12 @@ private void cargarCampos(){
     
     int idd = (Integer) jtTablaClientes.getValueAt(filaS, 0);
     //habilita e inhabilita segun el estado del objeto.
-    boolean estado = Boolean.valueOf(jtTablaClientes.getValueAt(filaS, 6).toString());
+    boolean estados = Boolean.valueOf(jtTablaClientes.getValueAt(filaS, 6).toString());
     
-    if(estado == true){
+    if(estados == true){
         jbBaja.setEnabled(true);
         jbAlta.setEnabled(false);
-    }else if(estado == false){
+    }else if(estados == false){
         jbAlta.setEnabled(true);
         jbBaja.setEnabled(false);
     }
