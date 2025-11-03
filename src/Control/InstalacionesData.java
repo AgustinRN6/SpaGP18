@@ -114,7 +114,7 @@ public class InstalacionesData {
                 i.setNombre(resultado.getString("nombre"));
                 i.setDetallesUso(resultado.getString("detalleDeUso"));
                 i.setPrecio30M(resultado.getInt("precio30M"));
-                i.setEstado(true);
+                i.setEstado(resultado.getBoolean("estado"));
                 i.setUsos(resultado.getString("usos"));
                 i.setApto(resultado.getString("apto"));
                 instalaciones.add(i);
@@ -137,7 +137,7 @@ public class InstalacionesData {
                 i.setNombre(resultado.getString("nombre"));
                 i.setDetallesUso(resultado.getString("detalleDeUso"));
                 i.setPrecio30M(resultado.getInt("precio30M"));
-                i.setEstado(true);
+                i.setEstado(resultado.getBoolean("estado"));
                 i.setUsos(resultado.getString("usos"));
                 i.setApto(resultado.getString("apto"));
                 instalaciones.add(i);
@@ -151,7 +151,7 @@ public class InstalacionesData {
         List<Instalacion>instalaciones = new ArrayList();
         
         try{
-            String sqlSL="Select i.* FROM instalacion i, sesion s WHERE i.codInstal = s.instalacion AND i.estado = 1";
+            String sqlSL="Select i.* FROM instalacion i WHERE  i.estado = 1";
             PreparedStatement ps = con.prepareStatement(sqlSL);
             ResultSet resultado = ps.executeQuery();
             while(resultado.next()){
@@ -160,7 +160,7 @@ public class InstalacionesData {
                 i.setNombre(resultado.getString("nombre"));
                 i.setDetallesUso(resultado.getString("detalleDeUso"));
                 i.setPrecio30M(resultado.getInt("precio30M"));
-                i.setEstado(true);
+                i.setEstado(resultado.getBoolean("estado"));
                 i.setUsos(resultado.getString("usos"));
                 i.setApto(resultado.getString("apto"));
                 instalaciones.add(i);
@@ -191,6 +191,32 @@ public class InstalacionesData {
             ps.setInt(1, codInstal);
             if(ps.executeUpdate() > 0){
                 JOptionPane.showMessageDialog(null, "Instalacion dada de baja");
+            }
+        }catch(java.sql.SQLException error){
+            JOptionPane.showMessageDialog(null, error.getMessage());
+        }
+    }
+    
+        public void libre(int codInstal){
+            String sqlUP="UPDATE instalacion SET estado = 1 WHERE instalacion.codInstal = ?";
+        try{
+            PreparedStatement ps = con.prepareStatement(sqlUP);
+            ps.setInt(1, codInstal);
+            if(ps.executeUpdate() > 0){
+                System.out.println("Instalacion libre!!!!");
+            }
+        }catch(java.sql.SQLException error){
+            JOptionPane.showMessageDialog(null, error.getMessage());
+        }
+    }
+    
+    public void reserva(int codInstal){
+        String sqlUP="UPDATE instalacion SET estado = 0 WHERE instalacion.codInstal = ?";
+        try{
+            PreparedStatement ps = con.prepareStatement(sqlUP);
+            ps.setInt(1, codInstal);
+            if(ps.executeUpdate() > 0){
+                System.out.println("la instalacion fue reservada con exito!!!!!");
             }
         }catch(java.sql.SQLException error){
             JOptionPane.showMessageDialog(null, error.getMessage());

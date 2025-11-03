@@ -60,6 +60,8 @@ public class MasajistasData {
            ps.setInt(6, m.getMatricula());
            if(ps.executeUpdate() > 0){
                JOptionPane.showMessageDialog(null, "Masajista actualizada");
+           }else{
+               JOptionPane.showMessageDialog(null, "No se pudo encontrar el masajistas(coloque bien la matricula)");
            }
         }catch(java.sql.SQLException error){
             JOptionPane.showMessageDialog(null, error.getMessage());
@@ -152,7 +154,7 @@ public class MasajistasData {
     
     public List<Masajista> mostrarPorEspecialidad(String especialidad){
         List<Masajista> masajistas = new ArrayList();
-        String sqlSL="SELECT * FROM masajista WHERE masajista.especialidad LIKE '%"+especialidad+"%' ";
+        String sqlSL="SELECT * FROM masajista WHERE masajista.especialidad LIKE '%"+especialidad+"%' AND masajista.estado = 1";
         try{
             PreparedStatement ps = con.prepareStatement(sqlSL);
             ResultSet rs = ps.executeQuery();
@@ -195,6 +197,37 @@ public class MasajistasData {
         
         if(ps.executeUpdate() > 0){
             JOptionPane.showMessageDialog(null, "Masajista dado de baja!!!!");
+        }
+        
+        }catch(java.sql.SQLException error){
+        JOptionPane.showMessageDialog(null, error.getMessage());
+        }
+    
+    } 
+    
+    public void libre(int matricula){
+        String sqlUP="UPDATE masajista SET estado = 1 WHERE masajista.matricula = ? ";
+        try{
+        PreparedStatement ps = con.prepareStatement(sqlUP);
+        ps.setInt(1, matricula);
+        
+        if(ps.executeUpdate() > 0){
+            System.out.println("El masajista se ha liberado con exito!!!");
+        }
+        
+        }catch(java.sql.SQLException error){
+        JOptionPane.showMessageDialog(null, error.getMessage());
+        }
+    }
+    
+    public void reserva(int matricula){
+        String sqlUP="UPDATE masajista SET estado = 0 WHERE masajista.matricula = ? ";
+        try{
+        PreparedStatement ps = con.prepareStatement(sqlUP);
+        ps.setInt(1, matricula);
+        
+        if(ps.executeUpdate() > 0){
+            System.out.println("El masajista fue reservado con exito!!!");
         }
         
         }catch(java.sql.SQLException error){

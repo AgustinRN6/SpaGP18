@@ -45,29 +45,22 @@ public class SesionData {
 
             }
             
-            /*
+            
             //PONER EN FALSE A TRATAMIENTO, MASAJISTA E INSTALACIONES DEBIDO A QUE ESTAN OCUPADOS....
             InstalacionesData instalaciones = new InstalacionesData();
             MasajistasData masajistas = new MasajistasData();
             TratamientosData tratamientos = new TratamientosData();
             DiaSPAData dia = new DiaSPAData();
             
-            Instalacion i = instalaciones.buscarInstalacion(s.getInstalacion());
-            i.setEstado(false);
-            instalaciones.modificarInstalacion(i);
             
-            Masajista m = masajistas.buscarMasajista(s.getMasajista());
-            m.setEstado(false);
-            masajistas.actualizarMasajista(m);
+            instalaciones.reserva(s.getInstalacion());
             
-            Tratamiento t = tratamientos.buscarTratamiento(s.getTratamiento());
-            t.setEstado(false);
-            tratamientos.actualizarTratamiento(t);
+            masajistas.reserva(s.getMasajista());
             
-            DiaSpa d = dia.cargarDiaSpa(s.getDiaS());
-            d.setEstado(false);
-            dia.actualizarDiaSpa(d);
-            */
+            dia.Reserva(s.getDiaS());
+            
+            tratamientos.reserva(s.getTratamiento());
+            
             
             ResultSet rs = ps.getGeneratedKeys();
 
@@ -90,7 +83,22 @@ public class SesionData {
         String query = "DELETE FROM sesion WHERE codSesion = ?";
         
         try {
-
+          
+            //se desocupan el masajista, la instalacion, el tratamiento y el dia!!! 
+            Sesion s = mostrarSesion(borrar);
+            
+            InstalacionesData instalaciones = new InstalacionesData();
+            MasajistasData masajistas = new MasajistasData();
+            TratamientosData tratamientos = new TratamientosData();
+            DiaSPAData dia = new DiaSPAData();
+            
+            instalaciones.libre(s.getInstalacion());
+            masajistas.libre(s.getMasajista());
+            dia.libre(s.getDiaS());
+            tratamientos.libre(s.getTratamiento());
+            
+            
+            
             PreparedStatement ps = con.prepareStatement(query);
 
             ps.setInt(1, borrar);
@@ -100,7 +108,9 @@ public class SesionData {
                 JOptionPane.showMessageDialog(null, "La sesión ha sido eliminado!");
 
             }
-
+            
+            
+            
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No pudo eliminarse la sesión " + ex.getMessage());
         }

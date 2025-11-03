@@ -159,7 +159,7 @@ public class DiaSPAData {
                 DiaSpa diaSpa = new DiaSpa();
 
                 diaSpa.setCodPack(rs.getInt("codPack"));
-                diaSpa.setFechayH(rs.getTimestamp("FechaHora").toLocalDateTime());
+                diaSpa.setFechayH(rs.getTimestamp("fechaHora").toLocalDateTime());
                 diaSpa.setPrefencias(rs.getString("preferencias"));
                 diaSpa.setEstado(rs.getBoolean("estado"));
                 diaSpa.setMonto(rs.getInt("monto"));
@@ -215,6 +215,50 @@ public class DiaSPAData {
             if (ps.executeUpdate() > 0) {
 
                 JOptionPane.showMessageDialog(null, "Se ha dado de baja el día de spa con éxito!");
+
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No pudo darse de baja el dia de spa " + ex.getMessage());
+        }
+        
+    }
+    //metodo que funciona en conjunto con la creacion de una sesion
+        public void libre(int alta) {
+        
+        String query = "UPDATE dia_de_spa SET estado= 1 WHERE codPack = ?";
+
+        try {
+
+            PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+
+            ps.setInt(1, alta);
+
+            if (ps.executeUpdate() > 0) {
+
+                System.out.println("El dia se ha liberado!!!!");
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No pudo darse de alta el dia de spa " + ex.getMessage());
+        }
+        
+    }
+    
+    //UPDATE baja lógica
+    public void Reserva(int baja) {
+
+        String query = "UPDATE dia_de_spa SET estado= 0 WHERE codPack = ?";
+
+        try {
+
+            PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+
+            ps.setInt(1, baja);
+
+            if (ps.executeUpdate() > 0) {
+
+                System.out.println("Se ha reservado el dia con exito!");
 
             }
 

@@ -41,7 +41,7 @@ public class prueba {
     Tratamiento t4 = new Tratamiento("Masaje Corporal","Sueco: Terapia de relajacion cuerpo completo",LocalTime.of(2, 0, 0),20000,true,"Corporal");
     Tratamiento t5 = new Tratamiento("Prueba","Prueba",LocalTime.of(1, 0, 0),100000,true,"Prueba");
     
-    Sesion s1 = new Sesion(LocalDateTime.of(2025, 9, 9, 5, 0), LocalDateTime.of(2025, 9, 9, 8, 0),1,1111,1,1,true);
+    Sesion s1 = new Sesion(LocalDateTime.of(2025, 9, 9, 5, 0), LocalDateTime.of(2025, 9, 9, 8, 0),6,1,8,20,true);
     Sesion s2 = new Sesion(LocalDateTime.of(2025, 9, 9, 5, 0), LocalDateTime.of(2025, 9, 9, 8, 0),1,1111,1,1,true);
     Sesion s3 = new Sesion(LocalDateTime.of(2025, 9, 9, 5, 0), LocalDateTime.of(2025, 9, 9, 8, 0),1,1,1111,1,true);
     Sesion s4 = new Sesion(LocalDateTime.of(2025, 9, 9, 5, 0), LocalDateTime.of(2025, 9, 9, 8, 0),1,1,1111,1,true);
@@ -88,8 +88,7 @@ public class prueba {
     tratamientos.cargarTratamiento(t4);
     tratamientos.cargarTratamiento(t5);
     */
-
-    //UPDATE
+        //UPDATE
     /*
     Sesion s = sesiones.mostrarSesion(3);
     Tratamiento t = tratamientos.buscarTratamiento(5);
