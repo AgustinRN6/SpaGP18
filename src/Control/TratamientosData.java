@@ -148,8 +148,9 @@ public class TratamientosData {
     
     public void darDeAlta(int codTratam){
             String sqlUP="UPDATE tratamiento SET estado = 1 WHERE tratamiento.codTratam = ?";
-        try{
+        try{           
         PreparedStatement ps = con.prepareStatement(sqlUP);
+        ps.setInt(1, codTratam);
         if(ps.executeUpdate()> 0){
             JOptionPane.showMessageDialog(null, "Tratamiento dado de alta");
         }
@@ -162,6 +163,7 @@ public class TratamientosData {
         String sqlUP="UPDATE tratamiento SET estado = 0 WHERE tratamiento.codTratam = ?";
         try{
         PreparedStatement ps = con.prepareStatement(sqlUP);
+        ps.setInt(1, codTratam);
         if(ps.executeUpdate()> 0){
             JOptionPane.showMessageDialog(null, "Tratamiento dado de baja");
         }

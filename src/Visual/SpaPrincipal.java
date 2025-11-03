@@ -122,6 +122,11 @@ public class SpaPrincipal extends javax.swing.JFrame {
         jmTratamientos.setText("Tratamientos");
 
         jmiTratamientos.setText("Tratamientos");
+        jmiTratamientos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiTratamientosActionPerformed(evt);
+            }
+        });
         jmTratamientos.add(jmiTratamientos);
 
         jmbMenu.add(jmTratamientos);
@@ -211,6 +216,20 @@ public class SpaPrincipal extends javax.swing.JFrame {
         Escritorio.moveToFront(vs);
         
     }//GEN-LAST:event_jmiSesionActionPerformed
+
+    private void jmiTratamientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiTratamientosActionPerformed
+        
+        Escritorio.removeAll();
+        Escritorio.repaint();
+        VistaTratamientos vt = new VistaTratamientos();
+        vt.setVisible(true);
+        vt.setSize(Escritorio.getSize());
+        vt.setMaximizable(true);
+        vt.setResizable(true);
+        Escritorio.add(vt);
+        Escritorio.moveToFront(vt);
+        
+    }//GEN-LAST:event_jmiTratamientosActionPerformed
 
     /**
      * @param args the command line arguments
