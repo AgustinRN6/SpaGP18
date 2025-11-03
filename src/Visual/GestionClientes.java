@@ -11,6 +11,7 @@ public class GestionClientes extends javax.swing.JInternalFrame {
     ClientesData clientes  = new ClientesData();
     Cliente c = new Cliente();
     private boolean estado;
+    private boolean es;
     private DefaultTableModel modeloT = new DefaultTableModel(){
     @Override
     public boolean isCellEditable(int fila, int columna){ 
@@ -99,7 +100,6 @@ public class GestionClientes extends javax.swing.JInternalFrame {
 
         bgpEstados.add(jrbAlta);
         jrbAlta.setForeground(new java.awt.Color(255, 255, 255));
-        jrbAlta.setSelected(true);
         jrbAlta.setText("Alta");
         jrbAlta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -402,11 +402,9 @@ public class GestionClientes extends javax.swing.JInternalFrame {
 
     private void jbBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBorrarActionPerformed
         // TODO add your handling code here:
-        if(validarCampos() == true){
             clientes.borrarCliente(c.getCodCli());
             cargarTabla();
             vaciarCampos();
-        }
     }//GEN-LAST:event_jbBorrarActionPerformed
 
     private void jbActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbActualizarActionPerformed
@@ -426,20 +424,19 @@ public class GestionClientes extends javax.swing.JInternalFrame {
 
     private void jbAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAltaActionPerformed
         // TODO add your handling code here:
-        if(validarCampos() == true){
+
             clientes.darDeAlta(c.getCodCli());
             cargarTabla();
             vaciarCampos();
-        }
+        
     }//GEN-LAST:event_jbAltaActionPerformed
 
     private void jbBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBajaActionPerformed
         // TODO add your handling code here:
-        if(validarCampos() == true){
             clientes.darDeBaja(c.getCodCli());
             cargarTabla();
             vaciarCampos();
-        }
+        
     }//GEN-LAST:event_jbBajaActionPerformed
 
     private void jbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoActionPerformed
@@ -564,8 +561,18 @@ private void cargarCampos(){
     String dni = String.valueOf(jtTablaClientes.getValueAt(filaS, 3));
     String afecciones = String.valueOf(jtTablaClientes.getValueAt(filaS, 4));
     String numeroT = String.valueOf(jtTablaClientes.getValueAt(filaS, 5));
-    int idd = (Integer) jtTablaClientes.getValueAt(filaS, 0);
     
+    int idd = (Integer) jtTablaClientes.getValueAt(filaS, 0);
+    //habilita e inhabilita segun el estado del objeto.
+    boolean estado = Boolean.valueOf(jtTablaClientes.getValueAt(filaS, 6).toString());
+    
+    if(estado == true){
+        jbBaja.setEnabled(true);
+        jbAlta.setEnabled(false);
+    }else if(estado == false){
+        jbAlta.setEnabled(true);
+        jbBaja.setEnabled(false);
+    }
     txtNombreC.setText(nombreC);
     txtNumeroT.setText(numeroT);
     txtAfecciones.setText(afecciones);

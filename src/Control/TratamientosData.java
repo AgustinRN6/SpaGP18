@@ -124,7 +124,7 @@ public class TratamientosData {
     
     public List<Tratamiento> mostrarTratamientosTipos(String tipo){
         List<Tratamiento>tratamientos = new ArrayList();
-        String sqlSL="SELECT * FROM masajista WHERE masajista.especialidad LIKE '%"+tipo+"%' ";        
+        String sqlSL="SELECT * FROM tratamiento WHERE tratamiento.tipo LIKE '%"+tipo+"%'  ";        
         try{
         PreparedStatement ps = con.prepareStatement(sqlSL);
         ResultSet resultado = ps.executeQuery();

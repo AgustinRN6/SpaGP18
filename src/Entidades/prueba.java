@@ -173,6 +173,9 @@ public class prueba {
     */
         System.out.println(dia.cargarDiaSpa(13).mostrarInfo());
         
+        for(Tratamiento t: tratamientos.mostrarTratamientosTipos("Corporal")){
+            System.out.println(t.mostrarInfo());
+        }
     }
     
 }

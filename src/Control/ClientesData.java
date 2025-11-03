@@ -178,5 +178,30 @@ public class ClientesData {
         }
     }
     
+        public void libre(int id ){
+        String sqlUP="UPDATE cliente SET estado = 1 WHERE cliente.codCli = ?";
+        try{
+            PreparedStatement  ps = con.prepareStatement(sqlUP);
+            ps.setInt(1, id);
+            if(ps.executeUpdate()   > 0){
+                System.out.println("El cliente se ha liberado del dia de spa!!!");
+            }
+        }catch(java.sql.SQLException error){
+        JOptionPane.showMessageDialog(null, error.getMessage());
+        }
+        
+    }
+    public void ocupado(int id){
+        String sqlUP="UPDATE cliente SET estado = 0 WHERE cliente.codCli = ?";
+        try{
+            PreparedStatement  ps = con.prepareStatement(sqlUP);
+            ps.setInt(1, id);
+            if(ps.executeUpdate()   > 0){
+                System.out.println("El cliente fue asigando a un dia de Spa");
+            }
+        }catch(java.sql.SQLException error){
+        JOptionPane.showMessageDialog(null, error.getMessage());
+        }
+    }
     
 }

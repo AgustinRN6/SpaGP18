@@ -100,7 +100,6 @@ public class GestionMasajista extends javax.swing.JInternalFrame {
 
         bgpEstados.add(jrbAlta);
         jrbAlta.setForeground(new java.awt.Color(255, 255, 255));
-        jrbAlta.setSelected(true);
         jrbAlta.setText("Alta");
         jrbAlta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -656,6 +655,13 @@ private void cargarCampos(){
     txtNumeroT.setText(numeroT);
     txtEspecialidad.setText(especialidad);
     
+    if(estados == true){
+        jbAlta.setEnabled(false);
+        jbBaja.setEnabled(true);
+    }else if(estado == false){
+        jbAlta.setEnabled(true);
+        jbBaja.setEnabled(false);
+    }
 }
 //METODO SELECT* FROM masajista WHERE especialidad LIKE '%tipo%'
 private void cargarCombo(){

@@ -43,6 +43,8 @@ public class DiaSPAData {
                 
             }
             
+            
+            
             ResultSet rs = ps.getGeneratedKeys();
             
             if (rs.next()) {
@@ -50,6 +52,9 @@ public class DiaSPAData {
                 d.setCodPack(rs.getInt(1));
                 
             }
+            
+            ClientesData clientes = new ClientesData();
+            clientes.ocupado(d.getCliente());
             
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No pudo crearse el dia de spa " + ex.getMessage());
@@ -63,7 +68,9 @@ public class DiaSPAData {
         String query = "DELETE FROM dia_de_spa WHERE dia_de_spa.codPack = ?";
 
         try {
-
+            ClientesData clientes = new ClientesData();
+            DiaSpa d = cargarDiaSpa(eliminar);
+            clientes.libre(d.getCliente());
             PreparedStatement ps = con.prepareStatement(query);
 
             ps.setInt(1, eliminar);

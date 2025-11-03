@@ -149,7 +149,6 @@ public class GestionSpa extends javax.swing.JInternalFrame {
 
         bgpEstados.add(jrbAlta);
         jrbAlta.setForeground(new java.awt.Color(255, 255, 255));
-        jrbAlta.setSelected(true);
         jrbAlta.setText("Alta");
         jrbAlta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -345,6 +344,11 @@ public class GestionSpa extends javax.swing.JInternalFrame {
         jLabel7.setText("Dias agendados");
 
         txtID.setEnabled(false);
+        txtID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIDActionPerformed(evt);
+            }
+        });
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
@@ -391,10 +395,9 @@ public class GestionSpa extends javax.swing.JInternalFrame {
                         .addComponent(jbBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jbBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jpPanelTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel7)
-                        .addGroup(jpPanelTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10))))
+                        .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel10))
+                    .addComponent(jLabel7))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
                 .addContainerGap())
@@ -527,6 +530,10 @@ public class GestionSpa extends javax.swing.JInternalFrame {
     private void txtMontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMontoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMontoActionPerformed
+
+    private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIDActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -685,6 +692,17 @@ private void cargarCampos(){
     txtMinuto.setText(minutos);
     txtPreferencias.setText(preferencia);
     txtID.setText(id);
+    
+    //metodo que habilita o inhabilita segun el estado del objeto seleccionado.
+    boolean estados = Boolean.valueOf(jtTablaDiaS.getValueAt(filaS, 5).toString());
+    if(estados == true){
+        jbAlta.setEnabled(false);
+        jbBaja.setEnabled(true);
+    }else if(estado == false){
+        jbAlta.setEnabled(true);
+        jbBaja.setEnabled(false);
+    }
+    
     
 }
 private void inhabilitarCampos(){
