@@ -171,4 +171,28 @@ public class TratamientosData {
             JOptionPane.showMessageDialog(null, error.getMessage());
         }    
     }
+            public void libre(int codTratam){
+            String sqlUP="UPDATE tratamiento SET estado = 1 WHERE tratamiento.codTratam = ?";
+        try{
+        PreparedStatement ps = con.prepareStatement(sqlUP);
+        if(ps.executeUpdate()> 0){
+            JOptionPane.showMessageDialog(null, "Tratamiento dado de alta");
+        }
+        }catch(java.sql.SQLException error){
+            System.out.println("El tratamiento se ha liberado con exito!!!!");
+        }
+    }
+    
+    public void reserva(int codTratam){
+        String sqlUP="UPDATE tratamiento SET estado = 0 WHERE tratamiento.codTratam = ?";
+        try{
+        PreparedStatement ps = con.prepareStatement(sqlUP);
+        ps.setInt(1, codTratam);
+        if(ps.executeUpdate()> 0){
+            System.out.println("El tratamiento se ha reservado con exito!!!");
+        }
+        }catch(java.sql.SQLException error){
+            JOptionPane.showMessageDialog(null, error.getMessage());
+        }    
+    }
 }
