@@ -27,6 +27,10 @@ public class VistaTratamientos extends javax.swing.JInternalFrame {
     
     TratamientosData tratamientos = new TratamientosData();
     
+    //Se crea constante global para filtrar el tipo de tratamiento
+    String[] opcion = {"facial", "corporal", "relajacion", "estetico"};
+    byte punteroOpcion = -1;
+    
     
     //Se crea el modelo de la tabla, y se reemplaza el valor de celda editable a falso
     private DefaultTableModel modeloTabla = new DefaultTableModel() {
@@ -47,6 +51,7 @@ public class VistaTratamientos extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        bgBotonesTratamiento = new javax.swing.ButtonGroup();
         jpFondo = new javax.swing.JPanel();
         jpBotones = new javax.swing.JPanel();
         jbNuevo = new javax.swing.JButton();
@@ -61,6 +66,12 @@ public class VistaTratamientos extends javax.swing.JInternalFrame {
         jlInfoSesiones = new javax.swing.JLabel();
         jlFiltro = new javax.swing.JLabel();
         jtfFiltro = new javax.swing.JTextField();
+        jrbFacial = new javax.swing.JRadioButton();
+        jrbCorporal = new javax.swing.JRadioButton();
+        jrbRelajacion = new javax.swing.JRadioButton();
+        jrbEstetico = new javax.swing.JRadioButton();
+        jrbTodos = new javax.swing.JRadioButton();
+        jlFiltroPorTipo = new javax.swing.JLabel();
         jlTitulo = new javax.swing.JLabel();
         jpDatos = new javax.swing.JPanel();
         jlID = new javax.swing.JLabel();
@@ -213,6 +224,56 @@ public class VistaTratamientos extends javax.swing.JInternalFrame {
         jtfFiltro.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
         jtfFiltro.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
+        bgBotonesTratamiento.add(jrbFacial);
+        jrbFacial.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        jrbFacial.setText("Facial");
+        jrbFacial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrbFacialActionPerformed(evt);
+            }
+        });
+
+        bgBotonesTratamiento.add(jrbCorporal);
+        jrbCorporal.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        jrbCorporal.setText("Corporal");
+        jrbCorporal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrbCorporalActionPerformed(evt);
+            }
+        });
+
+        bgBotonesTratamiento.add(jrbRelajacion);
+        jrbRelajacion.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        jrbRelajacion.setText("Relajación");
+        jrbRelajacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrbRelajacionActionPerformed(evt);
+            }
+        });
+
+        bgBotonesTratamiento.add(jrbEstetico);
+        jrbEstetico.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        jrbEstetico.setText("Estético");
+        jrbEstetico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrbEsteticoActionPerformed(evt);
+            }
+        });
+
+        bgBotonesTratamiento.add(jrbTodos);
+        jrbTodos.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        jrbTodos.setText("Todos");
+        jrbTodos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrbTodosActionPerformed(evt);
+            }
+        });
+
+        jlFiltroPorTipo.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        jlFiltroPorTipo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlFiltroPorTipo.setText("Elija según tipo");
+        jlFiltroPorTipo.setToolTipText("");
+
         javax.swing.GroupLayout jpTablaLayout = new javax.swing.GroupLayout(jpTabla);
         jpTabla.setLayout(jpTablaLayout);
         jpTablaLayout.setHorizontalGroup(
@@ -223,7 +284,21 @@ public class VistaTratamientos extends javax.swing.JInternalFrame {
                     .addComponent(jspTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jlInfoSesiones, javax.swing.GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE)
                     .addComponent(jtfFiltro)
-                    .addComponent(jlFiltro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jlFiltro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jpTablaLayout.createSequentialGroup()
+                        .addGroup(jpTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jpTablaLayout.createSequentialGroup()
+                                .addComponent(jrbFacial, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jrbCorporal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jrbRelajacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jlFiltroPorTipo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jpTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jrbEstetico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jrbTodos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jpTablaLayout.setVerticalGroup(
@@ -235,8 +310,18 @@ public class VistaTratamientos extends javax.swing.JInternalFrame {
                 .addComponent(jlFiltro)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jtfFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jpTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jrbTodos)
+                    .addComponent(jlFiltroPorTipo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jspTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addGroup(jpTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jrbFacial)
+                    .addComponent(jrbCorporal)
+                    .addComponent(jrbRelajacion)
+                    .addComponent(jrbEstetico))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jspTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -391,9 +476,9 @@ public class VistaTratamientos extends javax.swing.JInternalFrame {
                 .addGroup(jpFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jpBotones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jpFondoLayout.createSequentialGroup()
-                        .addComponent(jpDatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jpDatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jpTabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jpTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jpFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jpFondoLayout.createSequentialGroup()
@@ -474,8 +559,34 @@ public class VistaTratamientos extends javax.swing.JInternalFrame {
         crearTratamiento();
     }//GEN-LAST:event_jbBajaLogicaActionPerformed
 
+    private void jrbFacialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbFacialActionPerformed
+        punteroOpcion = 0;
+        cargarTabla(-1);
+    }//GEN-LAST:event_jrbFacialActionPerformed
+
+    private void jrbCorporalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbCorporalActionPerformed
+        punteroOpcion = 1;
+        cargarTabla(-1);
+    }//GEN-LAST:event_jrbCorporalActionPerformed
+
+    private void jrbRelajacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbRelajacionActionPerformed
+        punteroOpcion = 2;
+        cargarTabla(-1);
+    }//GEN-LAST:event_jrbRelajacionActionPerformed
+
+    private void jrbEsteticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbEsteticoActionPerformed
+        punteroOpcion = 3;
+        cargarTabla(-1);
+    }//GEN-LAST:event_jrbEsteticoActionPerformed
+
+    private void jrbTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbTodosActionPerformed
+        punteroOpcion = -1;
+        cargarTabla(-1);
+    }//GEN-LAST:event_jrbTodosActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup bgBotonesTratamiento;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
@@ -489,6 +600,7 @@ public class VistaTratamientos extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jlDetalle;
     private javax.swing.JLabel jlDuracion;
     private javax.swing.JLabel jlFiltro;
+    private javax.swing.JLabel jlFiltroPorTipo;
     private javax.swing.JLabel jlID;
     private javax.swing.JLabel jlInfoSesiones;
     private javax.swing.JLabel jlNombre;
@@ -499,6 +611,11 @@ public class VistaTratamientos extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jpDatos;
     private javax.swing.JPanel jpFondo;
     private javax.swing.JPanel jpTabla;
+    private javax.swing.JRadioButton jrbCorporal;
+    private javax.swing.JRadioButton jrbEstetico;
+    private javax.swing.JRadioButton jrbFacial;
+    private javax.swing.JRadioButton jrbRelajacion;
+    private javax.swing.JRadioButton jrbTodos;
     private javax.swing.JScrollPane jspTabla;
     private javax.swing.JTable jtTabla;
     private javax.swing.JTextArea jtaDetalle;
@@ -532,13 +649,22 @@ public class VistaTratamientos extends javax.swing.JInternalFrame {
         
         Utilitario.limpiarTabla(modeloTabla);
         
-        Iterator<Tratamiento> iterar = tratamientos.mostrarTratamientos().iterator();
+        Iterator<Tratamiento> iterar;
+        if (punteroOpcion > -1) {
+            
+            iterar = tratamientos.mostrarTratamientosTipos(opcion[punteroOpcion]).iterator();
+            
+        } else {
+            iterar = tratamientos.mostrarTratamientos().iterator();
+        }
+        
         while (iterar.hasNext()) {
             Tratamiento t = iterar.next();
             if (filtro == -1) {
                 modeloTabla.addRow(new Object[]{t.getCodTrat(), t.getNombre(), t.getDetalle(),
                     t.getDuracion(),t.getCosto(),t.getTipo(), Utilitario.estadoParaTabla(t.isEstado())});
             }
+            
 
         }
         
