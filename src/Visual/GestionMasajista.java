@@ -4,14 +4,19 @@ package Visual;
 import Control.MasajistasData;
 import Control.Utilitario;
 import Entidades.Masajista;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
 public class GestionMasajista extends javax.swing.JInternalFrame {
 
+    Color verdeActivo = new Color(200,242,183);
+    Color rojoInactivo = new Color(245,164,164);
+    
+    
+    
     MasajistasData masajistas = new MasajistasData();
-    private boolean estado;
     Masajista m = new Masajista();
     private DefaultTableModel modeloT = new DefaultTableModel(){
     @Override
@@ -43,15 +48,12 @@ public class GestionMasajista extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        bgpEstados = new javax.swing.ButtonGroup();
         jpPanelPrincipal = new javax.swing.JPanel();
         jpPanelMasajista = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jrbAlta = new javax.swing.JRadioButton();
-        jrbBaja = new javax.swing.JRadioButton();
         txtMatricula = new javax.swing.JTextField();
         txtNombreC = new javax.swing.JTextField();
         txtNumeroT = new javax.swing.JTextField();
@@ -62,6 +64,7 @@ public class GestionMasajista extends javax.swing.JInternalFrame {
         jbSalir = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jbNuevo = new javax.swing.JButton();
+        jtEstado = new javax.swing.JTextField();
         jpPanelTabla = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtTablaMasajistas = new javax.swing.JTable();
@@ -97,24 +100,6 @@ public class GestionMasajista extends javax.swing.JInternalFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Especialidad");
-
-        bgpEstados.add(jrbAlta);
-        jrbAlta.setForeground(new java.awt.Color(255, 255, 255));
-        jrbAlta.setText("Alta");
-        jrbAlta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jrbAltaActionPerformed(evt);
-            }
-        });
-
-        bgpEstados.add(jrbBaja);
-        jrbBaja.setForeground(new java.awt.Color(255, 255, 255));
-        jrbBaja.setText("Baja");
-        jrbBaja.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jrbBajaActionPerformed(evt);
-            }
-        });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -161,6 +146,17 @@ public class GestionMasajista extends javax.swing.JInternalFrame {
             }
         });
 
+        jtEstado.setBackground(new java.awt.Color(200, 242, 180));
+        jtEstado.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
+        jtEstado.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jtEstado.setText("Libre");
+        jtEstado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jtEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtEstadoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpPanelMasajistaLayout = new javax.swing.GroupLayout(jpPanelMasajista);
         jpPanelMasajista.setLayout(jpPanelMasajistaLayout);
         jpPanelMasajistaLayout.setHorizontalGroup(
@@ -192,18 +188,16 @@ public class GestionMasajista extends javax.swing.JInternalFrame {
                                 .addComponent(txtEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jpPanelMasajistaLayout.createSequentialGroup()
                                 .addComponent(jLabel5)
-                                .addGap(18, 18, 18)
-                                .addComponent(jrbAlta)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jrbBaja))
+                                .addComponent(jtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jpPanelMasajistaLayout.createSequentialGroup()
-                                .addGap(62, 62, 62)
+                                .addGap(75, 75, 75)
                                 .addComponent(jbSubir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jbActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jbNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 98, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jpPanelMasajistaLayout.setVerticalGroup(
@@ -230,15 +224,14 @@ public class GestionMasajista extends javax.swing.JInternalFrame {
                     .addComponent(txtEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpPanelMasajistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jrbAlta)
-                    .addComponent(jrbBaja)
-                    .addComponent(jLabel5))
+                    .addComponent(jLabel5)
+                    .addComponent(jtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpPanelMasajistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbSubir, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jpPanelTabla.setBackground(new java.awt.Color(0, 102, 153));
@@ -390,7 +383,7 @@ public class GestionMasajista extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jpPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jpPanelTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jpPanelMasajista, javax.swing.GroupLayout.PREFERRED_SIZE, 514, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jpPanelMasajista, javax.swing.GroupLayout.DEFAULT_SIZE, 526, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpPanelTablaSecundaria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -402,7 +395,7 @@ public class GestionMasajista extends javax.swing.JInternalFrame {
                 .addGroup(jpPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jpPanelTablaSecundaria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jpPanelPrincipalLayout.createSequentialGroup()
-                        .addComponent(jpPanelMasajista, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jpPanelMasajista, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(jpPanelTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -427,18 +420,6 @@ public class GestionMasajista extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jrbAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbAltaActionPerformed
-        // TODO add your handling code here:
-        System.out.println(evt.getActionCommand());
-        estado = true;
-    }//GEN-LAST:event_jrbAltaActionPerformed
-
-    private void jrbBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbBajaActionPerformed
-        // TODO add your handling code here:
-        System.out.println(evt.getActionCommand());
-        estado = false;
-    }//GEN-LAST:event_jrbBajaActionPerformed
 
     private void jbSubirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSubirActionPerformed
         // TODO add your handling code here:
@@ -512,9 +493,12 @@ public class GestionMasajista extends javax.swing.JInternalFrame {
         habilitarCampos();
     }//GEN-LAST:event_jbNuevoActionPerformed
 
+    private void jtEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtEstadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtEstadoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup bgpEstados;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -537,8 +521,7 @@ public class GestionMasajista extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jpPanelPrincipal;
     private javax.swing.JPanel jpPanelTabla;
     private javax.swing.JPanel jpPanelTablaSecundaria;
-    private javax.swing.JRadioButton jrbAlta;
-    private javax.swing.JRadioButton jrbBaja;
+    private javax.swing.JTextField jtEstado;
     private javax.swing.JTable jtTablaMasajistaEspecialidad;
     private javax.swing.JTable jtTablaMasajistas;
     private javax.swing.JTextField txtEspecialidad;
@@ -602,7 +585,7 @@ private boolean validarCampos(){
         m.setNumeroT(numeroT);
         m.setEspecialidad(especialidad);
         m.setNombreCompleto(nombreC);
-        m.setEstado(estado);
+        m.setEstado(true);
  
         
         return true;
@@ -619,7 +602,6 @@ private void vaciarCampos(){
     txtNumeroT.setText("");
     txtEspecialidad.setText("");
     txtMatricula.setText("");
-    bgpEstados.clearSelection();
 }
 
 
@@ -628,8 +610,7 @@ private void inhabilitarCampos(){
     txtNombreC.setEnabled(false);
     txtNumeroT.setEnabled(false);
     txtEspecialidad.setEnabled(false);
-    jrbAlta.setEnabled(false);
-    jrbBaja.setEnabled(false);
+
 }
 
 private void habilitarCampos(){
@@ -637,8 +618,6 @@ private void habilitarCampos(){
     txtNombreC.setEnabled(true);
     txtNumeroT.setEnabled(true);
     txtEspecialidad.setEnabled(true);
-    jrbAlta.setEnabled(true);
-    jrbBaja.setEnabled(true);
 }
 //METODO ACTUALIZAR
 private void cargarCampos(){
@@ -658,9 +637,13 @@ private void cargarCampos(){
     if(estados == true){
         jbAlta.setEnabled(false);
         jbBaja.setEnabled(true);
+        jtEstado.setBackground(verdeActivo);
+        jtEstado.setText("Libre");
     }else if(estados == false){
         jbAlta.setEnabled(true);
         jbBaja.setEnabled(false);
+        jtEstado.setBackground(rojoInactivo);
+        jtEstado.setText("Ocupado");
     }
 }
 //METODO SELECT* FROM masajista WHERE especialidad LIKE '%tipo%'

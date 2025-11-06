@@ -83,20 +83,27 @@ public class SesionData {
         String query = "DELETE FROM sesion WHERE codSesion = ?";
         
         try {
-          
-            //se desocupan el masajista, la instalacion, el tratamiento y el dia!!! 
+            
             Sesion s = mostrarSesion(borrar);
             
+            //se desocupan el masajista, la instalacion, el tratamiento y el dia es eliminado!!! 
+            
             InstalacionesData instalaciones = new InstalacionesData();
+            
             MasajistasData masajistas = new MasajistasData();
+            
             TratamientosData tratamientos = new TratamientosData();
+            
             DiaSPAData dia = new DiaSPAData();
             
-            instalaciones.libre(s.getInstalacion());
-            masajistas.libre(s.getMasajista());
+            //metodos para eliminar dia, y poner los demas objetos en libre o activo
             dia.libre(s.getDiaS());
-            tratamientos.libre(s.getTratamiento());
             
+            instalaciones.libre(s.getInstalacion());
+            
+            masajistas.libre(s.getMasajista());
+            
+            tratamientos.libre(s.getTratamiento());
             
             
             PreparedStatement ps = con.prepareStatement(query);
@@ -109,7 +116,7 @@ public class SesionData {
 
             }
             
-            
+     
             
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No pudo eliminarse la sesión " + ex.getMessage());
@@ -269,8 +276,30 @@ public class SesionData {
         }
 
     }
-        
-        
+    //Metodo que me retorna el precio de la sesion.    
+    public int precioTotal(Sesion s){
+    
+            TratamientosData trat = new TratamientosData();
+    
+            InstalacionesData ins = new InstalacionesData();
+    
+            DiaSPAData dia = new DiaSPAData();
+            
+            //creo los objetos y les saco la informacion edl atributo monto, la hora y costo.
+            Instalacion i = ins.buscarInstalacion(s.getInstalacion());
+   
+            Tratamiento t = trat.buscarTratamiento(s.getTratamiento());
+    
+            DiaSpa d = dia.cargarDiaSpa(s.getDiaS());
+            
+            //metodo que retorna la cantidad de horas que dura el tratamiento en total.
+            int tiempoTotal = t.getDuracion().getHour();
+            //suma el precio por 30 minutos * lo que dure la sesion + el costo del tratamiento
+            int precioTotal = (i.getPrecio30M() * tiempoTotal)+ t.getCosto();
+   
+            return precioTotal;
+        }
+    
 }
     
 

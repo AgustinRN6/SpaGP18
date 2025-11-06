@@ -151,7 +151,7 @@ public class MasajistasData {
         }
         return masajistas;
     }
-    
+
     public List<Masajista> mostrarPorEspecialidad(String especialidad){
         List<Masajista> masajistas = new ArrayList();
         String sqlSL="SELECT * FROM masajista WHERE masajista.especialidad LIKE '%"+especialidad+"%' AND masajista.estado = 1";

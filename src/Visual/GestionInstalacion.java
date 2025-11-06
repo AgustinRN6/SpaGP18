@@ -5,15 +5,19 @@ import Control.InstalacionesData;
 import Control.Utilitario;
 import Entidades.Instalacion;
 import Entidades.Masajista;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
 public class GestionInstalacion extends javax.swing.JInternalFrame {
 
+    
+    Color verdeLibre = new Color(200,242,183);
+    Color rojoOcupado = new Color(245,164,164);
+    
     InstalacionesData instalaciones = new InstalacionesData();
     Instalacion i = new Instalacion();
-    private boolean estado;
     
     private DefaultTableModel modeloT = new DefaultTableModel(){
     @Override
@@ -44,7 +48,6 @@ public class GestionInstalacion extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        bgpEstados = new javax.swing.ButtonGroup();
         jpPanelPrincipal = new javax.swing.JPanel();
         jpPanelInstalacion = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -62,9 +65,8 @@ public class GestionInstalacion extends javax.swing.JInternalFrame {
         txtApto = new javax.swing.JTextField();
         txtPrecio30M = new javax.swing.JTextField();
         txtUsos = new javax.swing.JTextField();
-        jrbLibre = new javax.swing.JRadioButton();
-        jrbOcupado = new javax.swing.JRadioButton();
         jbNuevo = new javax.swing.JButton();
+        jtEstado = new javax.swing.JTextField();
         jpPanelTabla = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtTablaInstalaciones = new javax.swing.JTable();
@@ -145,24 +147,6 @@ public class GestionInstalacion extends javax.swing.JInternalFrame {
             }
         });
 
-        bgpEstados.add(jrbLibre);
-        jrbLibre.setForeground(new java.awt.Color(255, 255, 255));
-        jrbLibre.setText("Libre");
-        jrbLibre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jrbLibreActionPerformed(evt);
-            }
-        });
-
-        bgpEstados.add(jrbOcupado);
-        jrbOcupado.setForeground(new java.awt.Color(255, 255, 255));
-        jrbOcupado.setText("Ocupado");
-        jrbOcupado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jrbOcupadoActionPerformed(evt);
-            }
-        });
-
         jbNuevo.setBackground(new java.awt.Color(204, 204, 204));
         jbNuevo.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
         jbNuevo.setForeground(new java.awt.Color(51, 51, 51));
@@ -170,6 +154,18 @@ public class GestionInstalacion extends javax.swing.JInternalFrame {
         jbNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbNuevoActionPerformed(evt);
+            }
+        });
+
+        jtEstado.setEditable(false);
+        jtEstado.setBackground(new java.awt.Color(200, 242, 183));
+        jtEstado.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
+        jtEstado.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jtEstado.setText("Libre");
+        jtEstado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jtEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtEstadoActionPerformed(evt);
             }
         });
 
@@ -190,17 +186,14 @@ public class GestionInstalacion extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel7)
                                 .addGap(18, 18, 18)
                                 .addComponent(txtUsos, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jpPanelInstalacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpPanelInstalacionLayout.createSequentialGroup()
-                                    .addComponent(jLabel5)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(txtApto))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpPanelInstalacionLayout.createSequentialGroup()
-                                    .addComponent(jLabel8)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jrbLibre)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jrbOcupado)))
+                            .addGroup(jpPanelInstalacionLayout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtApto, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jpPanelInstalacionLayout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel2)
                             .addGroup(jpPanelInstalacionLayout.createSequentialGroup()
                                 .addComponent(jLabel4)
@@ -213,7 +206,7 @@ public class GestionInstalacion extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPanelInstalacionLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 16, Short.MAX_VALUE)
                         .addComponent(jbSubir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jbActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -252,9 +245,8 @@ public class GestionInstalacion extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpPanelInstalacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jrbLibre)
-                    .addComponent(jrbOcupado))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jtEstado))
+                .addGap(15, 15, 15)
                 .addGroup(jpPanelInstalacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbSubir, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -452,16 +444,6 @@ public class GestionInstalacion extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jrbLibreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbLibreActionPerformed
-        // TODO add your handling code here:
-        estado = true;
-    }//GEN-LAST:event_jrbLibreActionPerformed
-
-    private void jrbOcupadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbOcupadoActionPerformed
-        // TODO add your handling code here:
-        estado = false;
-    }//GEN-LAST:event_jrbOcupadoActionPerformed
-
     private void jbSubirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSubirActionPerformed
         // TODO add your handling code here:
         if(validarCampos()== true){
@@ -526,9 +508,12 @@ public class GestionInstalacion extends javax.swing.JInternalFrame {
         habilitarCampos();
     }//GEN-LAST:event_jbNuevoActionPerformed
 
+    private void jtEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtEstadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtEstadoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup bgpEstados;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -552,8 +537,7 @@ public class GestionInstalacion extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jpPanelInstalacion;
     private javax.swing.JPanel jpPanelPrincipal;
     private javax.swing.JPanel jpPanelTabla;
-    private javax.swing.JRadioButton jrbLibre;
-    private javax.swing.JRadioButton jrbOcupado;
+    private javax.swing.JTextField jtEstado;
     private javax.swing.JTable jtTablaInstalaciones;
     private javax.swing.JTable jtTablaInstalacionesLibres;
     private javax.swing.JTextField txtApto;
@@ -621,7 +605,7 @@ private boolean validarCampos(){
                 i.setApto(apto);
                 i.setPrecio30M(precio30M);
                 i.setUsos(usos);
-                i.setEstado(estado);
+                i.setEstado(true);
                 
                 return true;
             }catch(java.lang.NumberFormatException error){
@@ -639,7 +623,8 @@ txtApto.setText("");
 txtUsos.setText("");
 txtPrecio30M.setText("");
 txtID.setText("");
-bgpEstados.clearSelection();
+jtEstado.setText("Libre");
+jtEstado.setBackground(verdeLibre);
 }
 
 //METODO ACTUALIZAR..........................................................
@@ -664,9 +649,13 @@ private void cargarCampos(){
     if(estados == true){
         jbAlta.setEnabled(false);
         jbBaja.setEnabled(true);
+        jtEstado.setBackground(verdeLibre);
+        jtEstado.setText("Libre");
     }else if(estados == false){
         jbAlta.setEnabled(true);
         jbBaja.setEnabled(false);
+                jtEstado.setBackground(rojoOcupado);
+        jtEstado.setText("Ocupado");
     }
 }
 private void inhabilitarCampos(){
@@ -675,8 +664,6 @@ private void inhabilitarCampos(){
     txtApto.setEnabled(false);
     txtUsos.setEnabled(false);
     txtPrecio30M.setEnabled(false);
-    jrbLibre.setEnabled(false);
-    jrbOcupado.setEnabled(false);
 }
 private void habilitarCampos(){
     txtNombre.setEnabled(true);
@@ -684,7 +671,5 @@ private void habilitarCampos(){
     txtApto.setEnabled(true);
     txtUsos.setEnabled(true);
     txtPrecio30M.setEnabled(true);
-    jrbLibre.setEnabled(true);
-    jrbOcupado.setEnabled(true);
 }
 }

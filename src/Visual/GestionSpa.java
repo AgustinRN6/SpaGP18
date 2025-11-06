@@ -3,6 +3,7 @@ package Visual;
 
 import Control.*;
 import Entidades.*;
+import java.awt.Color;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -13,6 +14,10 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class GestionSpa extends javax.swing.JInternalFrame {
+    
+    //colores para el texfield de estado
+    Color verdeActivo = new Color(200,242,183);
+    Color rojoInactivo = new Color(245,164,164);
     //clases data
     DiaSPAData dias = new DiaSPAData();
     ClientesData clientes = new ClientesData();
@@ -43,7 +48,6 @@ public class GestionSpa extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        bgpEstados = new javax.swing.ButtonGroup();
         jpPanelPrincipal = new javax.swing.JPanel();
         jpPanelDiaSpa = new javax.swing.JPanel();
         jcbClientes = new javax.swing.JComboBox<>();
@@ -52,9 +56,7 @@ public class GestionSpa extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jdtFecha = new com.toedter.calendar.JDateChooser();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        txtMonto = new javax.swing.JTextField();
         txtCliente = new javax.swing.JTextField();
         jbSalir = new javax.swing.JButton();
         jbSubir = new javax.swing.JButton();
@@ -65,6 +67,8 @@ public class GestionSpa extends javax.swing.JInternalFrame {
         jbActualizar = new javax.swing.JButton();
         jbNuevo = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jtEstado = new javax.swing.JTextField();
         jpPanelTabla = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtTablaDiaS = new javax.swing.JTable();
@@ -80,6 +84,8 @@ public class GestionSpa extends javax.swing.JInternalFrame {
         jpPanelDiaSpa.setBackground(new java.awt.Color(0, 102, 153));
         jpPanelDiaSpa.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
 
+        jcbClientes.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jcbClientes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID clientes" }));
         jcbClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcbClientesActionPerformed(evt);
@@ -102,20 +108,9 @@ public class GestionSpa extends javax.swing.JInternalFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Hora");
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Precio estimado");
-
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Minuto");
-
-        txtMonto.setEditable(false);
-        txtMonto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMontoActionPerformed(evt);
-            }
-        });
 
         txtCliente.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txtCliente.setForeground(new java.awt.Color(0, 51, 204));
@@ -165,10 +160,28 @@ public class GestionSpa extends javax.swing.JInternalFrame {
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Cliente Info");
 
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setText("Estado");
+
+        jtEstado.setBackground(new java.awt.Color(200, 242, 180));
+        jtEstado.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
+        jtEstado.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jtEstado.setText("Libre");
+        jtEstado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+
         javax.swing.GroupLayout jpPanelDiaSpaLayout = new javax.swing.GroupLayout(jpPanelDiaSpa);
         jpPanelDiaSpa.setLayout(jpPanelDiaSpaLayout);
         jpPanelDiaSpaLayout.setHorizontalGroup(
             jpPanelDiaSpaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPanelDiaSpaLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jbSubir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jbActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jbNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(180, 180, 180))
             .addGroup(jpPanelDiaSpaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpPanelDiaSpaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,8 +214,7 @@ public class GestionSpa extends javax.swing.JInternalFrame {
                                         .addGap(18, 18, 18)
                                         .addComponent(jLabel6)
                                         .addGap(2, 2, 2)
-                                        .addComponent(txtMinuto, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING))
+                                        .addComponent(txtMinuto, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(212, 212, 212))
                     .addGroup(jpPanelDiaSpaLayout.createSequentialGroup()
@@ -212,14 +224,9 @@ public class GestionSpa extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jcbClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jpPanelDiaSpaLayout.createSequentialGroup()
-                                .addComponent(jbSubir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addGroup(jpPanelDiaSpaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jpPanelDiaSpaLayout.createSequentialGroup()
-                                        .addComponent(jbActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jbNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jLabel12)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -251,16 +258,18 @@ public class GestionSpa extends javax.swing.JInternalFrame {
                         .addComponent(jLabel6)
                         .addComponent(txtHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtMinuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(10, 10, 10)
                 .addGroup(jpPanelDiaSpaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(txtMonto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jpPanelDiaSpaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbSubir, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jpPanelDiaSpaLayout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(jpPanelDiaSpaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jbSubir, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jbActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jbNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jpPanelDiaSpaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel12)
+                        .addComponent(jtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         jpPanelTabla.setBackground(new java.awt.Color(0, 102, 153));
@@ -307,11 +316,6 @@ public class GestionSpa extends javax.swing.JInternalFrame {
         jLabel7.setText("Dias agendados");
 
         txtID.setEnabled(false);
-        txtID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIDActionPerformed(evt);
-            }
-        });
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
@@ -362,7 +366,7 @@ public class GestionSpa extends javax.swing.JInternalFrame {
                         .addComponent(jLabel10))
                     .addComponent(jLabel7))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -409,6 +413,7 @@ public class GestionSpa extends javax.swing.JInternalFrame {
 
     private void jcbClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbClientesActionPerformed
         // TODO add your handling code here:
+        txtCliente.setText("");
         cargarCliente();
     }//GEN-LAST:event_jcbClientesActionPerformed
 
@@ -417,6 +422,7 @@ public class GestionSpa extends javax.swing.JInternalFrame {
         /*este metodo permite que el usuario a la hora de (actualizar, borrar, alta logica, baja logica), les ingrese su respectivas id
         y se le asigne al objeto d(DiaSpa) y luego con ese dato pueda modificar la fila(tupla) deseada
             este metodo es esencial para el funcionamiento de los demas metodos*/
+        
         cargarCampos();
         habilitarCampos();
     }//GEN-LAST:event_jtTablaDiaSMouseClicked
@@ -480,24 +486,15 @@ public class GestionSpa extends javax.swing.JInternalFrame {
         habilitarCampos();
     }//GEN-LAST:event_jbNuevoActionPerformed
 
-    private void txtMontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMontoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtMontoActionPerformed
-
-    private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIDActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup bgpEstados;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
@@ -514,12 +511,12 @@ public class GestionSpa extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jpPanelDiaSpa;
     private javax.swing.JPanel jpPanelPrincipal;
     private javax.swing.JPanel jpPanelTabla;
+    private javax.swing.JTextField jtEstado;
     private javax.swing.JTable jtTablaDiaS;
     private javax.swing.JTextField txtCliente;
     private javax.swing.JTextField txtHora;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtMinuto;
-    private javax.swing.JTextField txtMonto;
     private javax.swing.JTextField txtPreferencias;
     // End of variables declaration//GEN-END:variables
 
@@ -552,14 +549,16 @@ private boolean validarCampos(){
     /*este metodo verifica si cada campo del jTextField esta vacio o contiene algun dato.
       en caso de que un campo este sin rellenar entra en un bloque if o if else y se le muestra una ventana emergente
      en donde le falta llenar y va hasta el final del metodo para retornar false*/
-    if(txtPreferencias.getText().isEmpty()){
+    if(txtCliente.getText().isEmpty()){
+        JOptionPane.showMessageDialog(null, "Seleccione un cliente!!!!");
+    }else if(txtPreferencias.getText().isEmpty()){
         JOptionPane.showMessageDialog(null, "Ingrese sus preferencias");
+    }else if(jdtFecha.getDate() == null){
+        JOptionPane.showMessageDialog(null, "Ingrese la fecha");
     }else if(txtHora.getText().isEmpty()){
         JOptionPane.showMessageDialog(null, "Ingrese la hora");
     }else if(txtMinuto.getText().isEmpty()){
         JOptionPane.showMessageDialog(null, "Ingrese los minutos");
-    }else if(txtMonto.getText().isEmpty()){
-        JOptionPane.showMessageDialog(null, "Ingrese el monto");
     }else{
         /*en caso de que todos los campos hayan comprobado que tienen algun dato,
         se procede a parsearlos a variables que sean faciales de identificar.
@@ -567,7 +566,6 @@ private boolean validarCampos(){
         sale sus respectivos carteles indicando la falla*/
         try{
             int idC = Integer.valueOf(jcbClientes.getSelectedItem().toString());
-            int monto = Integer.parseInt(txtMonto.getText());
             int hs = Integer.parseInt(txtHora.getText());
             int minutos = Integer.parseInt(txtMinuto.getText());
             String preferencias = txtPreferencias.getText();
@@ -585,7 +583,7 @@ private boolean validarCampos(){
         d.setCliente(idC);
         d.setPrefencias(preferencias);
         d.setFechayH(LocalDateTime.of(fecha, hora));
-        d.setMonto(monto);
+        d.setMonto(0);
         d.setEstado(true);
         
         return true;
@@ -598,13 +596,18 @@ private boolean validarCampos(){
     }
     return false;
 }
+
 private void vaciarCampos(){
+    //setea los jTextField a "" y el jCombBox al indice  0, la jdtCalendar a null.
     txtHora.setText("");
     txtMinuto.setText("");
-    txtMonto.setText("");
     txtID.setText("");
     txtPreferencias.setText("");
-    bgpEstados.clearSelection();
+    jtEstado.setText("Libre");
+    jtEstado.setBackground(verdeActivo);
+    txtCliente.setText("");
+    jcbClientes.setSelectedIndex(0);
+    jdtFecha.setDate(null);
 }
 
 private void cargarCampos(){
@@ -619,27 +622,22 @@ private void cargarCampos(){
     /*creamos un objeto dia mediante el metodo cargarDiaSpa que nos retorna el diaDeSpa especifico mediante el codPack.
       para luego con los metodos get, obtener los datos y ponerlos en los jTextField*/
     DiaSpa dia= dias.cargarDiaSpa(codPack);
-
+    
     //Todas estas variables sirven para poder setear los jTextField y por ende rellenar sus campos.
+    String cliente = String.valueOf(codClien);
     String minuto = String.valueOf(dia.getFechayH().getMinute());
-    String monto = String.valueOf(dia.getMonto());
     String hora = String.valueOf(dia.getFechayH().getHour());
-    
-    int hs = dia.getFechayH().getHour();
-    int min = dia.getFechayH().getMinute();
-    
-    String minutos = String.valueOf(dia.getFechayH().getMinute());
     String preferencia = dia.getPrefencias();
     String id = String.valueOf(dia.getCodPack());
     
     LocalDate fecha = dia.getFechayH().toLocalDate();
-    LocalTime horario = LocalTime.of(hs, min);
+    int hs = dia.getFechayH().getHour();
+    int min = dia.getFechayH().getMinute();
     
-    
+    jcbClientes.setSelectedItem(cliente);
     jdtFecha.setDate(Date.valueOf(fecha));
-    txtMonto.setText(monto);
     txtHora.setText(hora);
-    txtMinuto.setText(minutos);
+    txtMinuto.setText(minuto);
     txtPreferencias.setText(preferencia);
     txtID.setText(id);
     
@@ -648,9 +646,13 @@ private void cargarCampos(){
     if(estado == true){
         jbAlta.setEnabled(false);
         jbBaja.setEnabled(true);
+        jtEstado.setText("Libre");
+        jtEstado.setBackground(verdeActivo);
     }else if(estado == false){
         jbAlta.setEnabled(true);
         jbBaja.setEnabled(false);
+        jtEstado.setText("Ocupado");
+        jtEstado.setBackground(rojoInactivo);
     }
     
     
@@ -659,24 +661,29 @@ private void inhabilitarCampos(){
     txtPreferencias.setEnabled(false);
     txtHora.setEnabled(false);
     txtMinuto.setEnabled(false);
-    txtMonto.setEnabled(false);
     jdtFecha.setEnabled(false);
+    jcbClientes.setEnabled(false);
 }
 
 private void habilitarCampos(){
     txtPreferencias.setEnabled(true);
     txtHora.setEnabled(true);
     txtMinuto.setEnabled(true);
-    txtMonto.setEnabled(true);
-
     jdtFecha.setEnabled(true);
+    jcbClientes.setEnabled(true);
 }
+
 private void cargarCliente(){
     /*metodo que funciona en conjunto al Jcombobox.
      el usario elije el id y carga informacion que este relacionada al id*/
+    //si el item seleccionado no es igual a ID clientes. que proceda a cargar la info.
+    if(!jcbClientes.getSelectedItem().toString().equals("ID clientes")){
+    
     int idC = Integer.valueOf(jcbClientes.getSelectedItem().toString());
     Cliente c = clientes.buscarCliente(idC);
     txtCliente.setText("Nombre completo: "+ c.getNombreC()+", Edad: "+c.getEdad()+", DNI: "+c.getDni());
+    }
+    
 }
 
 }

@@ -845,9 +845,12 @@ public class VistaSesion extends javax.swing.JInternalFrame {
                 }
                 
             }
-            
-            Iterator<Masajista> iterar = masajistas.mostrarMasajistas().iterator();
+            //si el id no esta asginado todavia entonces no entra al bloque if e itera normalmente
+            if( !(datos[1] == -1)){
+            Tratamiento t = tratamientos.buscarTratamiento(datos[1]);
+                        Iterator<Masajista> iterar = masajistas.mostrarPorEspecialidad(t.getTipo()).iterator();
             while (iterar.hasNext()) {
+                
                 Masajista m = iterar.next();
                 //if (opcion[0] == -1) {
                     modeloTablaSecundaria.addRow(new Object[]{m.getMatricula(), m.getNombreCompleto(), m.getNumeroT(),
@@ -860,8 +863,11 @@ public class VistaSesion extends javax.swing.JInternalFrame {
                         m.getEspecialidad(), Utilitario.estadoParaTabla(m.isEstado())});
                     
                 }*/
-                
             }
+            }
+            
+            
+
             
             //if(estadoGuardar) { //Que se presente en el cuadro ID y descripción la informacion guardada en datos
                 
@@ -877,6 +883,7 @@ public class VistaSesion extends javax.swing.JInternalFrame {
             
         if (jrbTratamientos.isSelected())
         {
+           
             int columnaID = 0;
             
             for (int i = 0; i < jtTablaDatos.getColumnCount(); i++) {
@@ -1162,6 +1169,9 @@ public class VistaSesion extends javax.swing.JInternalFrame {
                 if (boton.equalsIgnoreCase("GUARDAR")) {
                     Sesion s = new Sesion(fechaInicio, fechaFinal, codTratamientos, codMasajista, codInstalaciones, codDiaSpa, true);
                     sesion.crearSesion(s);
+                    
+                    //metodo que carga el monto segun la instalacion y el tratamiento
+                    cargarPrecioDia(s);
                 }
                 
                 if (boton.equalsIgnoreCase("ACTUALIZAR")) {
@@ -1192,6 +1202,7 @@ public class VistaSesion extends javax.swing.JInternalFrame {
         int columnaID = 0;
         
         if (jrbMasajistas.isSelected()) {
+            
             for (int i = 0; i < jtTablaDatos.getColumnCount(); i++) {
                 if (jtTabla.getColumnName(i).equals("Matricula")) {
                     columnaID = i;
@@ -1210,6 +1221,7 @@ public class VistaSesion extends javax.swing.JInternalFrame {
               
         if (jrbTratamientos.isSelected()) {
             
+                
             for (int i = 0; i < jtTablaDatos.getColumnCount(); i++) {
                 if (jtTabla.getColumnName(i).equals("ID")) {
                     columnaID = i;
@@ -1338,5 +1350,14 @@ public class VistaSesion extends javax.swing.JInternalFrame {
         
     }
 
+    private void cargarPrecioDia(Sesion s){
 
+       DiaSPAData dia = new DiaSPAData();
+       DiaSpa d = dia.cargarDiaSpa(s.getDiaS());
+       int precio = sesion.precioTotal(s);
+       
+       d.setMonto(precio);
+       dia.actualizarMonto(d);
+    
+    }
 }

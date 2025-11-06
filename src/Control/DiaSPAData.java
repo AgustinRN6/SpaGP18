@@ -53,9 +53,6 @@ public class DiaSPAData {
                 
             }
             
-            ClientesData clientes = new ClientesData();
-            clientes.ocupado(d.getCliente());
-            
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No pudo crearse el dia de spa " + ex.getMessage());
         }
@@ -233,7 +230,7 @@ public class DiaSPAData {
     //metodo que funciona en conjunto con la creacion de una sesion
         public void libre(int alta) {
         
-        String query = "UPDATE dia_de_spa SET estado= 1 WHERE codPack = ?";
+        String query = "UPDATE dia_de_spa SET estado= 1, monto = 0 WHERE codPack = ?";
 
         try {
 
@@ -274,5 +271,21 @@ public class DiaSPAData {
         }
         
     }
-        
+ 
+    public void actualizarMonto(DiaSpa d){
+    String sqlUP="UPDATE dia_de_spa SET monto = ? WHERE codPack = ?";
+    
+    try{
+        PreparedStatement ps = con.prepareStatement(sqlUP);
+        ps.setInt(1, d.getMonto());
+        ps.setInt(2, d.getCodPack());
+    
+        if(ps.executeUpdate() > 0){
+            System.out.println("se ha actualizado el monto!!!");
+        }
+    }catch(SQLException ex ){
+        JOptionPane.showMessageDialog(null, ex.getMessage());
+    }
+    
+    }
 }
