@@ -77,13 +77,13 @@ public class GestionMasajista extends javax.swing.JInternalFrame {
         jtTablaMasajistaEspecialidad = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
         jcbEspecialidades = new javax.swing.JComboBox<>();
+        txtBuscarE = new javax.swing.JTextField();
         jpPanelEstado = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jtEstado = new javax.swing.JTextField();
         jbSalir = new javax.swing.JButton();
 
         jpPanelPrincipal.setBackground(new java.awt.Color(102, 153, 255));
-        jpPanelPrincipal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 204), 4));
 
         jpPanelMasajista.setBackground(new java.awt.Color(0, 102, 153));
         jpPanelMasajista.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
@@ -104,21 +104,9 @@ public class GestionMasajista extends javax.swing.JInternalFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nombre completo");
 
-        txtNumeroT.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNumeroTActionPerformed(evt);
-            }
-        });
-
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Numero de Telefono");
-
-        txtEspecialidad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEspecialidadActionPerformed(evt);
-            }
-        });
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -172,9 +160,9 @@ public class GestionMasajista extends javax.swing.JInternalFrame {
         );
 
         jpPanelBotones1.setBackground(new java.awt.Color(0, 102, 153));
-        jpPanelBotones1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jpPanelBotones1.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
 
-        jbNuevo.setBackground(new java.awt.Color(204, 204, 204));
+        jbNuevo.setBackground(new java.awt.Color(204, 215, 255));
         jbNuevo.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
         jbNuevo.setText("Nuevo");
         jbNuevo.setToolTipText("");
@@ -235,9 +223,9 @@ public class GestionMasajista extends javax.swing.JInternalFrame {
                 .addGroup(jpPanelMasajistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
                     .addGroup(jpPanelMasajistaLayout.createSequentialGroup()
-                        .addComponent(jpPanelInfoMasajista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                        .addComponent(jpPanelBotones1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jpPanelInfoMasajista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                        .addComponent(jpPanelBotones1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(20, 20, 20))
         );
         jpPanelMasajistaLayout.setVerticalGroup(
@@ -245,10 +233,10 @@ public class GestionMasajista extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPanelMasajistaLayout.createSequentialGroup()
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jpPanelMasajistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jpPanelBotones1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jpPanelInfoMasajista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(9, Short.MAX_VALUE))
+                .addGroup(jpPanelMasajistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jpPanelBotones1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jpPanelInfoMasajista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         jpPanelTabla.setBackground(new java.awt.Color(0, 102, 153));
@@ -357,7 +345,7 @@ public class GestionMasajista extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        jpPanelTablaSecundaria.setBackground(new java.awt.Color(102, 153, 255));
+        jpPanelTablaSecundaria.setBackground(new java.awt.Color(102, 213, 255));
         jpPanelTablaSecundaria.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jtTablaMasajistaEspecialidad.setModel(new javax.swing.table.DefaultTableModel(
@@ -385,6 +373,14 @@ public class GestionMasajista extends javax.swing.JInternalFrame {
             }
         });
 
+        txtBuscarE.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtBuscarE.setToolTipText("");
+        txtBuscarE.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtBuscarEKeyTyped(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpPanelTablaSecundariaLayout = new javax.swing.GroupLayout(jpPanelTablaSecundaria);
         jpPanelTablaSecundaria.setLayout(jpPanelTablaSecundariaLayout);
         jpPanelTablaSecundariaLayout.setHorizontalGroup(
@@ -398,7 +394,8 @@ public class GestionMasajista extends javax.swing.JInternalFrame {
                         .addGap(20, 20, 20)
                         .addGroup(jpPanelTablaSecundariaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jcbEspecialidades, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jcbEspecialidades, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtBuscarE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpPanelTablaSecundariaLayout.setVerticalGroup(
@@ -408,7 +405,9 @@ public class GestionMasajista extends javax.swing.JInternalFrame {
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jcbEspecialidades, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtBuscarE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -416,7 +415,7 @@ public class GestionMasajista extends javax.swing.JInternalFrame {
         jpPanelEstado.setBackground(new java.awt.Color(102, 153, 255));
         jpPanelEstado.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Estado del masajista");
 
@@ -425,11 +424,6 @@ public class GestionMasajista extends javax.swing.JInternalFrame {
         jtEstado.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jtEstado.setText("Libre");
         jtEstado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        jtEstado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtEstadoActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jpPanelEstadoLayout = new javax.swing.GroupLayout(jpPanelEstado);
         jpPanelEstado.setLayout(jpPanelEstadoLayout);
@@ -470,11 +464,11 @@ public class GestionMasajista extends javax.swing.JInternalFrame {
                     .addGroup(jpPanelPrincipalLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jpPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jpPanelMasajista, javax.swing.GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE)
-                            .addComponent(jpPanelTabla, javax.swing.GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE))
+                            .addComponent(jpPanelMasajista, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
+                            .addComponent(jpPanelTabla, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(jpPanelPrincipalLayout.createSequentialGroup()
-                        .addGap(135, 135, 135)
+                        .addGap(138, 138, 138)
                         .addComponent(jpPanelEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(jpPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -488,18 +482,18 @@ public class GestionMasajista extends javax.swing.JInternalFrame {
             jpPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpPanelPrincipalLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jpPanelMasajista, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jpPanelEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jpPanelTabla, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(jpPanelPrincipalLayout.createSequentialGroup()
-                .addGap(0, 6, Short.MAX_VALUE)
-                .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jpPanelTablaSecundaria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
+                .addGroup(jpPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpPanelPrincipalLayout.createSequentialGroup()
+                        .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jpPanelTablaSecundaria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jpPanelPrincipalLayout.createSequentialGroup()
+                        .addComponent(jpPanelMasajista, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jpPanelEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jpPanelTabla, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)))
+                .addGap(9, 9, 9))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -595,17 +589,11 @@ public class GestionMasajista extends javax.swing.JInternalFrame {
         habilitarCampos();
     }//GEN-LAST:event_jbNuevoActionPerformed
 
-    private void jtEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtEstadoActionPerformed
+    private void txtBuscarEKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarEKeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_jtEstadoActionPerformed
-
-    private void txtNumeroTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumeroTActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNumeroTActionPerformed
-
-    private void txtEspecialidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEspecialidadActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEspecialidadActionPerformed
+        String especialidad = txtBuscarE.getText();
+        cargarTablaEspecialidad(especialidad);
+    }//GEN-LAST:event_txtBuscarEKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -638,6 +626,7 @@ public class GestionMasajista extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jtEstado;
     private javax.swing.JTable jtTablaMasajistaEspecialidad;
     private javax.swing.JTable jtTablaMasajistas;
+    private javax.swing.JTextField txtBuscarE;
     private javax.swing.JTextField txtEspecialidad;
     private javax.swing.JTextField txtMatricula;
     private javax.swing.JTextField txtNombreC;
@@ -716,6 +705,9 @@ private void vaciarCampos(){
     txtNumeroT.setText("");
     txtEspecialidad.setText("");
     txtMatricula.setText("");
+    jtTablaMasajistas.clearSelection();
+    jbAlta.setEnabled(true);
+    jbBaja.setEnabled(true);
 }
 
 

@@ -1171,7 +1171,7 @@ public class VistaSesion extends javax.swing.JInternalFrame {
                     sesion.crearSesion(s);
                     
                     //metodo que carga el monto segun la instalacion y el tratamiento
-                    cargarPrecioDia(s);
+                    sesion.cargarPrecioTotal(s);
                 }
                 
                 if (boton.equalsIgnoreCase("ACTUALIZAR")) {
@@ -1348,16 +1348,5 @@ public class VistaSesion extends javax.swing.JInternalFrame {
         jtfDetalles.setText("");
         cargarTablaSecundaria(datos);
         
-    }
-
-    private void cargarPrecioDia(Sesion s){
-
-       DiaSPAData dia = new DiaSPAData();
-       DiaSpa d = dia.cargarDiaSpa(s.getDiaS());
-       int precio = sesion.precioTotal(s);
-       
-       d.setMonto(precio);
-       dia.actualizarMonto(d);
-    
     }
 }

@@ -39,10 +39,7 @@ public class GestionClientes extends javax.swing.JInternalFrame {
 
         jpPanelPrincipal = new javax.swing.JPanel();
         jpPanelCliente = new javax.swing.JPanel();
-        jbSubir = new javax.swing.JButton();
-        jbActualizar = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
-        jbNuevo = new javax.swing.JButton();
         jbSalir = new javax.swing.JButton();
         jpPaneelInfoCliente = new javax.swing.JPanel();
         txtNombreC = new javax.swing.JTextField();
@@ -55,6 +52,10 @@ public class GestionClientes extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtNumeroT = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
+        jbNuevo = new javax.swing.JButton();
+        jbSubir = new javax.swing.JButton();
+        jbActualizar = new javax.swing.JButton();
         jpPanelTabla = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtTablaClientes = new javax.swing.JTable();
@@ -77,36 +78,9 @@ public class GestionClientes extends javax.swing.JInternalFrame {
         jpPanelCliente.setBackground(new java.awt.Color(0, 102, 153));
         jpPanelCliente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
 
-        jbSubir.setBackground(new java.awt.Color(153, 255, 153));
-        jbSubir.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
-        jbSubir.setText("Subir");
-        jbSubir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbSubirActionPerformed(evt);
-            }
-        });
-
-        jbActualizar.setBackground(new java.awt.Color(102, 204, 255));
-        jbActualizar.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
-        jbActualizar.setText("Actualizar");
-        jbActualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbActualizarActionPerformed(evt);
-            }
-        });
-
         jLabel9.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Cliente");
-
-        jbNuevo.setBackground(new java.awt.Color(204, 204, 204));
-        jbNuevo.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
-        jbNuevo.setText("Nuevo");
-        jbNuevo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbNuevoActionPerformed(evt);
-            }
-        });
 
         jbSalir.setBackground(new java.awt.Color(255, 51, 51));
         jbSalir.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
@@ -120,12 +94,6 @@ public class GestionClientes extends javax.swing.JInternalFrame {
         jpPaneelInfoCliente.setBackground(new java.awt.Color(0, 102, 153));
         jpPaneelInfoCliente.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        txtNombreC.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreCActionPerformed(evt);
-            }
-        });
-
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Nombre completo");
@@ -137,12 +105,6 @@ public class GestionClientes extends javax.swing.JInternalFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Afecciones");
-
-        txtDNI.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDNIActionPerformed(evt);
-            }
-        });
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -161,24 +123,24 @@ public class GestionClientes extends javax.swing.JInternalFrame {
                 .addGroup(jpPaneelInfoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpPaneelInfoClienteLayout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtNombreC, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jpPaneelInfoClienteLayout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jpPaneelInfoClienteLayout.createSequentialGroup()
                         .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtAfecciones, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtAfecciones, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jpPaneelInfoClienteLayout.createSequentialGroup()
                         .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jpPaneelInfoClienteLayout.createSequentialGroup()
                         .addComponent(jLabel5)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtNumeroT, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtNumeroT, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpPaneelInfoClienteLayout.setVerticalGroup(
@@ -207,6 +169,61 @@ public class GestionClientes extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel1.setBackground(new java.awt.Color(0, 102, 153));
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+
+        jbNuevo.setBackground(new java.awt.Color(204, 215, 255));
+        jbNuevo.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
+        jbNuevo.setText("Nuevo");
+        jbNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbNuevoActionPerformed(evt);
+            }
+        });
+
+        jbSubir.setBackground(new java.awt.Color(153, 255, 153));
+        jbSubir.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
+        jbSubir.setText("Subir");
+        jbSubir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSubirActionPerformed(evt);
+            }
+        });
+
+        jbActualizar.setBackground(new java.awt.Color(102, 204, 255));
+        jbActualizar.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
+        jbActualizar.setText("Actualizar");
+        jbActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbActualizarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jbActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jbSubir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jbNuevo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jbNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jbSubir, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jbActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jpPanelClienteLayout = new javax.swing.GroupLayout(jpPanelCliente);
         jpPanelCliente.setLayout(jpPanelClienteLayout);
         jpPanelClienteLayout.setHorizontalGroup(
@@ -221,27 +238,19 @@ public class GestionClientes extends javax.swing.JInternalFrame {
                     .addGroup(jpPanelClienteLayout.createSequentialGroup()
                         .addComponent(jpPaneelInfoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jpPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jbActualizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jbSubir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jbNuevo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jpPanelClienteLayout.setVerticalGroup(
             jpPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpPanelClienteLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPanelClienteLayout.createSequentialGroup()
                 .addGroup(jpPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jpPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPanelClienteLayout.createSequentialGroup()
-                        .addComponent(jbNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jbSubir, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jpPaneelInfoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jpPaneelInfoCliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(13, 13, 13))
         );
 
@@ -331,7 +340,7 @@ public class GestionClientes extends javax.swing.JInternalFrame {
             .addGroup(jpPanelTablaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpPanelTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 522, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 548, Short.MAX_VALUE)
                     .addGroup(jpPanelTablaLayout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -346,7 +355,7 @@ public class GestionClientes extends javax.swing.JInternalFrame {
                     .addComponent(jLabel8)
                     .addComponent(jpPanelBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -359,18 +368,13 @@ public class GestionClientes extends javax.swing.JInternalFrame {
         jtEstado.setText("Libre");
         jtEstado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Estado del cliente");
 
         txtID.setEnabled(false);
-        txtID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIDActionPerformed(evt);
-            }
-        });
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Identificador");
 
@@ -412,10 +416,10 @@ public class GestionClientes extends javax.swing.JInternalFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jpPanelEstadoID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPanelPrincipalLayout.createSequentialGroup()
-                        .addGroup(jpPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jpPanelCliente, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jpPanelTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jpPanelPrincipalLayout.createSequentialGroup()
+                        .addGroup(jpPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jpPanelTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jpPanelCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap())))
         );
         jpPanelPrincipalLayout.setVerticalGroup(
@@ -425,7 +429,7 @@ public class GestionClientes extends javax.swing.JInternalFrame {
                 .addComponent(jpPanelCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpPanelEstadoID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addComponent(jpPanelTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -468,9 +472,11 @@ public class GestionClientes extends javax.swing.JInternalFrame {
 
     private void jbBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBorrarActionPerformed
         // TODO add your handling code here:
+
             clientes.borrarCliente(c.getCodCli());
             cargarTabla();
             vaciarCampos();
+        
     }//GEN-LAST:event_jbBorrarActionPerformed
 
     private void jbActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbActualizarActionPerformed
@@ -490,19 +496,24 @@ public class GestionClientes extends javax.swing.JInternalFrame {
 
     private void jbAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAltaActionPerformed
         // TODO add your handling code here:
-
+        if (c.getCodCli() == -1) {
+            JOptionPane.showMessageDialog(null, "Seleccione algun cliente de la tabla");
+        } else {
             clientes.darDeAlta(c.getCodCli());
             cargarTabla();
             vaciarCampos();
-        
+        }
     }//GEN-LAST:event_jbAltaActionPerformed
 
     private void jbBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBajaActionPerformed
         // TODO add your handling code here:
+        if(c.getCodCli() == -1){
+            JOptionPane.showMessageDialog(null, "Seleccione algun cliente de la tabla");
+        }else{
             clientes.darDeBaja(c.getCodCli());
             cargarTabla();
             vaciarCampos();
-        
+        }
     }//GEN-LAST:event_jbBajaActionPerformed
 
     private void jbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoActionPerformed
@@ -510,18 +521,6 @@ public class GestionClientes extends javax.swing.JInternalFrame {
         vaciarCampos();
         habilitarCampos();
     }//GEN-LAST:event_jbNuevoActionPerformed
-
-    private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIDActionPerformed
-
-    private void txtNombreCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreCActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreCActionPerformed
-
-    private void txtDNIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDNIActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDNIActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -534,6 +533,7 @@ public class GestionClientes extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbActualizar;
     private javax.swing.JButton jbAlta;
@@ -559,128 +559,136 @@ public class GestionClientes extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
 //TABLA..........................................................
-public void cargarModelo(){
-    modeloT.addColumn("ID:");
-    modeloT.addColumn("Nombre Completo");
-    modeloT.addColumn("Edad");
-    modeloT.addColumn("DNI");
-    modeloT.addColumn("Afecciones");
-    modeloT.addColumn("Telefono");
-    modeloT.addColumn("¿Ocupado?");
-    jtTablaClientes.setModel(modeloT);
-}    
-public void cargarTabla(){
-    borrarFilas();
-    for(Cliente cli: clientes.mostrarClientes()){
-        modeloT.addRow(new Object[]{cli.getCodCli(), cli.getNombreC(),cli.getEdad(), cli.getDni(), cli.getAfecciones(), cli.getTelefono(), cli.isEstado()});
-    }
-}
+    public void cargarModelo() {
+        modeloT.addColumn("ID:");
+        modeloT.addColumn("Nombre Completo");
+        modeloT.addColumn("Edad");
+        modeloT.addColumn("DNI");
+        modeloT.addColumn("Afecciones");
+        modeloT.addColumn("Telefono");
+        modeloT.addColumn("¿Ocupado?");
+        jtTablaClientes.setModel(modeloT);
+    }    
 
-public void borrarFilas(){
-    int indice = jtTablaClientes.getRowCount() -1;
-    
-    for (int i = indice ; i >= 0; i--) {
-        modeloT.removeRow(i);
-    }
-}
-//CAMPOS TEXTFIELD..........................................................    
-private boolean validarCampos(){
-
-    if(txtNombreC.getText().isEmpty()){
-        JOptionPane.showMessageDialog(null, "Ingrese el Nombre completo!!!!!");
-    } else if(txtEdad.getText().isEmpty()){
-        JOptionPane.showMessageDialog(null, "Ingrese la edad!!!!!");
-    } else if(txtAfecciones.getText().isEmpty()){
-        JOptionPane.showMessageDialog(null, "Ingrese la afecciones!!!!!");
-    }   else if(txtDNI.getText().isEmpty()){
-        JOptionPane.showMessageDialog(null, "Ingrese el DNI!!!!!");
-    }else if(txtNumeroT.getText().isEmpty()){
-        JOptionPane.showMessageDialog(null, "Ingrese el numero Telefonico!!!!!");
-    }else{
-        
-        try{
-            
-        String nombreC = txtNombreC.getText();
-        String afecciones = txtAfecciones.getText();
-        int edad = Integer.parseInt(txtEdad.getText());
-        int dni = Integer.parseInt(txtDNI.getText());
-        int numeroT = Integer.parseInt(txtNumeroT.getText());
-        
-        c.setNombreC(nombreC);
-        c.setEdad(edad);
-        c.setAfecciones(afecciones);
-        c.setDni(dni);
-        c.setTelefono(numeroT);
-        c.setEstado(true);
-        return true;
-        
-        }catch(java.lang.NumberFormatException error){
-        JOptionPane.showMessageDialog(null, "Ingrese los datos en el formato adecuado!!!!!");
+    public void cargarTabla() {
+        borrarFilas();
+        for (Cliente cli : clientes.mostrarClientes()) {
+            modeloT.addRow(new Object[]{cli.getCodCli(), cli.getNombreC(), cli.getEdad(), cli.getDni(), cli.getAfecciones(), cli.getTelefono(), cli.isEstado()});
         }
     }
-       return false;
-       
+    
+    public void borrarFilas() {
+        int indice = jtTablaClientes.getRowCount() - 1;
+        
+        for (int i = indice; i >= 0; i--) {
+            modeloT.removeRow(i);
+        }
     }
-private void vaciarCampos(){
-    txtNombreC.setText("");
-    txtNumeroT.setText("");
-    txtAfecciones.setText("");
-    txtEdad.setText("");
-    txtDNI.setText("");
-    txtNumeroT.setText("");
-    txtID.setText("");
-}
+//CAMPOS TEXTFIELD..........................................................    
 
-private void cargarCampos(){
-    int filaS = jtTablaClientes.getSelectedRow();
-    String id = String.valueOf(jtTablaClientes.getValueAt(filaS, 0));
-    String nombreC = String.valueOf(jtTablaClientes.getValueAt(filaS, 1));
-    String edad =  String.valueOf(jtTablaClientes.getValueAt(filaS, 2));
-    String dni = String.valueOf(jtTablaClientes.getValueAt(filaS, 3));
-    String afecciones = String.valueOf(jtTablaClientes.getValueAt(filaS, 4));
-    String numeroT = String.valueOf(jtTablaClientes.getValueAt(filaS, 5));
-    
-    int idd = (Integer) jtTablaClientes.getValueAt(filaS, 0);
-    //habilita e inhabilita segun el estado del objeto.
-    boolean estados = Boolean.valueOf(jtTablaClientes.getValueAt(filaS, 6).toString());
-    
-    if(estados == true){
-        jbBaja.setEnabled(true);
-        jbAlta.setEnabled(false);
-        jtEstado.setText("Activo");
-        jtEstado.setBackground(verdeActivo);
-    }else if(estados == false){
+    private boolean validarCampos() {
+        
+        if (txtNombreC.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese el Nombre completo!!!!!");
+        } else if (txtEdad.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese la edad!!!!!");
+        } else if (txtAfecciones.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese la afecciones!!!!!");
+        } else if (txtDNI.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese el DNI!!!!!");
+        } else if (txtNumeroT.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese el numero Telefonico!!!!!");
+        } else {
+            
+            try {
+                
+                String nombreC = txtNombreC.getText();
+                String afecciones = txtAfecciones.getText();
+                int edad = Integer.parseInt(txtEdad.getText());
+                int dni = Integer.parseInt(txtDNI.getText());
+                int numeroT = Integer.parseInt(txtNumeroT.getText());
+                
+                c.setNombreC(nombreC);
+                c.setEdad(edad);
+                c.setAfecciones(afecciones);
+                c.setDni(dni);
+                c.setTelefono(numeroT);
+                c.setEstado(true);
+                return true;
+                
+            } catch (java.lang.NumberFormatException error) {
+                JOptionPane.showMessageDialog(null, "Ingrese los datos en el formato adecuado!!!!!");
+            }
+        }
+        return false;
+        
+    }
+
+    private void vaciarCampos() {
+        txtNombreC.setText("");
+        txtNumeroT.setText("");
+        txtAfecciones.setText("");
+        txtEdad.setText("");
+        txtDNI.setText("");
+        txtNumeroT.setText("");
+        txtID.setText("");
+        jtTablaClientes.clearSelection();
+        c.setCodCli(-1);
         jbAlta.setEnabled(true);
-        jbBaja.setEnabled(false);
-        jtEstado.setBackground(rojoInactivo);
-        jtEstado.setText("Ocupado");
+        jbBaja.setEnabled(true);
     }
-    txtNombreC.setText(nombreC);
-    txtNumeroT.setText(numeroT);
-    txtAfecciones.setText(afecciones);
-    txtEdad.setText(edad);
-    txtDNI.setText(dni);
-    txtID.setText(id);
-    c.setCodCli(idd);
     
-}
+    private void cargarCampos() {
+        int filaS = jtTablaClientes.getSelectedRow();
+        String id = String.valueOf(jtTablaClientes.getValueAt(filaS, 0));
+        String nombreC = String.valueOf(jtTablaClientes.getValueAt(filaS, 1));
+        String edad = String.valueOf(jtTablaClientes.getValueAt(filaS, 2));
+        String dni = String.valueOf(jtTablaClientes.getValueAt(filaS, 3));
+        String afecciones = String.valueOf(jtTablaClientes.getValueAt(filaS, 4));
+        String numeroT = String.valueOf(jtTablaClientes.getValueAt(filaS, 5));
+        
+        int idd = (Integer) jtTablaClientes.getValueAt(filaS, 0);
+        //habilita e inhabilita segun el estado del objeto.
+        boolean estados = Boolean.valueOf(jtTablaClientes.getValueAt(filaS, 6).toString());
+        
+        if (estados == true) {
+            jbBaja.setEnabled(true);
+            jbAlta.setEnabled(false);
+            jtEstado.setText("Activo");
+            jtEstado.setBackground(verdeActivo);
+        } else if (estados == false) {
+            jbAlta.setEnabled(true);
+            jbBaja.setEnabled(false);
+            jtEstado.setBackground(rojoInactivo);
+            jtEstado.setText("Ocupado");
+        }
+        txtNombreC.setText(nombreC);
+        txtNumeroT.setText(numeroT);
+        txtAfecciones.setText(afecciones);
+        txtEdad.setText(edad);
+        txtDNI.setText(dni);
+        txtID.setText(id);
+        c.setCodCli(idd);
+        
+    }
+    
+    private void inhabilitarCampos() {
+        txtNombreC.setEnabled(false);
+        txtNumeroT.setEnabled(false);
+        txtEdad.setEnabled(false);
+        txtAfecciones.setEnabled(false);
+        txtDNI.setEnabled(false);
+        txtID.setEnabled(false);
+        
+    }
 
-private void inhabilitarCampos(){
-    txtNombreC.setEnabled(false);
-    txtNumeroT.setEnabled(false);
-    txtEdad.setEnabled(false);
-    txtAfecciones.setEnabled(false);
-    txtDNI.setEnabled(false);
-    txtID.setEnabled(false);
-
-}
-private void habilitarCampos(){
-    txtNombreC.setEnabled(true);
-    txtNumeroT.setEnabled(true);
-    txtEdad.setEnabled(true);
-    txtAfecciones.setEnabled(true);
-    txtDNI.setEnabled(true);
-    txtID.setEnabled(true);
-}
-
+    private void habilitarCampos() {
+        txtNombreC.setEnabled(true);
+        txtNumeroT.setEnabled(true);
+        txtEdad.setEnabled(true);
+        txtAfecciones.setEnabled(true);
+        txtDNI.setEnabled(true);
+        txtID.setEnabled(true);
+    }
+    
 }

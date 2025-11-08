@@ -25,6 +25,10 @@ public class DiaSPAData {
     //INSERT
     public void crearDiaSpa(DiaSpa d) {
         
+        ClientesData clientes = new ClientesData();
+        Cliente c = clientes.buscarCliente(d.getCliente());
+        clientes.ocupado(c.getCodCli());
+        
         String query = "INSERT INTO dia_de_spa(fechaHora, preferencias, estado, monto, cliente) VALUES (?,?,?,?,?)";
         
         try {
@@ -52,6 +56,7 @@ public class DiaSPAData {
                 d.setCodPack(rs.getInt(1));
                 
             }
+            
             
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No pudo crearse el dia de spa " + ex.getMessage());
