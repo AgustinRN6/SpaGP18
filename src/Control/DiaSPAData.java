@@ -187,6 +187,41 @@ public class DiaSPAData {
         
     }
     
+        public List<DiaSpa> cargarDiasSpaActivos() {
+        
+        List<DiaSpa> cargarTodos = new ArrayList();
+        
+        String query = "SELECT * FROM dia_de_spa WHERE dia_de_spa.estado = 1";
+        
+        try {
+
+            PreparedStatement ps = con.prepareStatement(query);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                
+                DiaSpa diaSpa = new DiaSpa();
+
+                diaSpa.setCodPack(rs.getInt("codPack"));
+                diaSpa.setFechayH(rs.getTimestamp("fechaHora").toLocalDateTime());
+                diaSpa.setPrefencias(rs.getString("preferencias"));
+                diaSpa.setEstado(rs.getBoolean("estado"));
+                diaSpa.setMonto(rs.getInt("monto"));
+                diaSpa.setCliente(rs.getInt("cliente"));
+                
+                cargarTodos.add(diaSpa);
+                
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No pudo cargarse todos los dias de spa " + ex.getMessage());
+        }
+        
+        
+        return cargarTodos;
+        
+    }
     //UPDATE alta lógica
     public void altaLogicaDiaSpa(DiaSpa alta) {
         

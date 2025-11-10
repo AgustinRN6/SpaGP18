@@ -578,18 +578,16 @@ public class GestionSpa extends javax.swing.JInternalFrame {
                     .addComponent(jpPanelTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jpPanelPrincipalLayout.createSequentialGroup()
                         .addComponent(jpPanelDiaSpa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jpPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jpPanelInformacionC, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jpPanelPrincipalLayout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(jpPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jpPanelInformacionC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPanelPrincipalLayout.createSequentialGroup()
-                                        .addGap(0, 70, Short.MAX_VALUE)
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(jpPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jpPanelPrincipalLayout.createSequentialGroup()
                                         .addComponent(jpPanelEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(105, 105, 105))))
-                            .addGroup(jpPanelPrincipalLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addGap(105, 105, 105))
+                                    .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap())
         );
         jpPanelPrincipalLayout.setVerticalGroup(
@@ -772,7 +770,8 @@ public class GestionSpa extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     private void cargarCombo() {
-        for (Cliente c : clientes.mostrarClientesActivos()) {
+        //carga el jcombobox con todos los clientes sin importar su estado.
+        for (Cliente c : clientes.mostrarClientes()) {
             String id = String.valueOf(c.getCodCli());
             jcbClientes.addItem(id);
         }
@@ -893,10 +892,9 @@ public class GestionSpa extends javax.swing.JInternalFrame {
         String id = String.valueOf(dia.getCodPack());
 
         LocalDate fecha = dia.getFechayH().toLocalDate();
-        int hs = dia.getFechayH().getHour();
-        int min = dia.getFechayH().getMinute();
 
         jcbClientes.setSelectedItem(cliente);
+        
         jdtFecha.setDate(Date.valueOf(fecha));
         txtHora.setText(hora);
         txtMinuto.setText(minuto);
@@ -954,18 +952,18 @@ public class GestionSpa extends javax.swing.JInternalFrame {
     private boolean tarjetaDeCredito(){
             //patron 1234 1234 1234 1243.
             String formato ="\\d{4}+\s+\\d{4}+\s+\\d{4}+\s+\\d{4}";
-            String tarjeta = " ";
+            String tarjeta;
             
             //muestra un input dialog que el usuario debe escribir los digitos de su tarjeta para poder abonar
-            
-            tarjeta = JOptionPane.showInputDialog("Ingrese los digitos de su tarjeta antes de poder abonar");
-            
+            tarjeta = JOptionPane.showInputDialog("Ingrese los digitos de su tarjeta antes de poder abonar EJ(1234 1234 1234 1234)");
+            //si la tarjeta no coincide con el formato entonces se le pide el ingreso nuevamente
             if(!tarjeta.matches(formato)){
                 JOptionPane.showMessageDialog(null, "Ingrese una tarjeta valida");
             }else{
-                JOptionPane.showMessageDialog(null, "Proceda con la sesion");
+                System.out.println("su tarjeta fue registrada con exito!!!!");
                 return true;
             }
+           
             return false;
     }
 }

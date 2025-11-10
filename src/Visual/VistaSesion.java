@@ -6,6 +6,7 @@ import Entidades.*;
 import java.awt.Color;
 import java.awt.Point;
 import java.time.DateTimeException;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -144,9 +145,11 @@ public class VistaSesion extends javax.swing.JInternalFrame {
         jlFechaHoraFin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlFechaHoraFin.setText("fin");
 
+        jtfHoraInicio.setEditable(false);
         jtfHoraInicio.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
         jtfHoraInicio.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
+        jtfMinutosInicio.setEditable(false);
         jtfMinutosInicio.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
         jtfMinutosInicio.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
@@ -428,11 +431,9 @@ public class VistaSesion extends javax.swing.JInternalFrame {
                     .addComponent(jbEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpBotonesLayout.createSequentialGroup()
-                        .addComponent(jbBajaLogica)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jbBajaLogica)
                     .addComponent(jbAltaLogica))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpBotonesLayout.setVerticalGroup(
             jpBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -543,10 +544,13 @@ public class VistaSesion extends javax.swing.JInternalFrame {
 
     private void jrbMasajistasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbMasajistasActionPerformed
         columnasTablaSecundaria();
+        jlDatos.setText("Masajistas");
     }//GEN-LAST:event_jrbMasajistasActionPerformed
 
     private void jrbTratamientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbTratamientosActionPerformed
         columnasTablaSecundaria();
+        jlDatos.setText("Tratamientos");
+
     }//GEN-LAST:event_jrbTratamientosActionPerformed
 
     private void jbAltaLogicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAltaLogicaActionPerformed
@@ -564,10 +568,13 @@ public class VistaSesion extends javax.swing.JInternalFrame {
 
     private void jrbInstalacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbInstalacionActionPerformed
         columnasTablaSecundaria();
+        jlDatos.setText("Instalaciones");
+            
     }//GEN-LAST:event_jrbInstalacionActionPerformed
 
     private void jrbDiasDeSpaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbDiasDeSpaActionPerformed
         columnasTablaSecundaria();
+        jlDatos.setText("Dia de spa");
     }//GEN-LAST:event_jrbDiasDeSpaActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
@@ -982,7 +989,7 @@ public class VistaSesion extends javax.swing.JInternalFrame {
                 
             }
             
-            Iterator<DiaSpa> iterar = diasdespa.cargarTodosDiaSpa().iterator();
+            Iterator<DiaSpa> iterar = diasdespa.cargarDiasSpaActivos().iterator();
             while (iterar.hasNext()) {
                 DiaSpa d = iterar.next();
                 //if (opcion[3] == -1) {
@@ -1179,6 +1186,8 @@ public class VistaSesion extends javax.swing.JInternalFrame {
                     Sesion s = new Sesion(fechaInicio, fechaFinal, codTratamientos, codMasajista, codInstalaciones, codDiaSpa, estado);
                     s.setCodSesion(Integer.parseInt(jtfID.getText()));
                     sesion.actualizarSesion(s);
+                    sesion.cargarPrecioTotal(s);
+                    
                 }
                 
             }
@@ -1214,13 +1223,14 @@ public class VistaSesion extends javax.swing.JInternalFrame {
             datos[0] = ID_Masajista;
             
             jtfIDDatos.setText(""+datos[0]);
-            
-            
+        //metodo para cargar los JtextField  
+        Masajista m = masajistas.buscarMasajista(datos[0]);
+        jtfDetalles.setText(m.getEspecialidad());
             
         }
               
         if (jrbTratamientos.isSelected()) {
-            
+
                 
             for (int i = 0; i < jtTablaDatos.getColumnCount(); i++) {
                 if (jtTabla.getColumnName(i).equals("ID")) {
@@ -1234,12 +1244,19 @@ public class VistaSesion extends javax.swing.JInternalFrame {
             
             jtfIDDatos.setText(""+datos[1]);
             
+        //metodo para cargar los JtextField    
             
-            
+           Tratamiento t = tratamientos.buscarTratamiento(datos[1]);
+           String min = String.valueOf(t.getDuracion().getMinute());
+           String hora= String.valueOf(t.getDuracion().getHour());
+           jtfDetalles.setText(t.getDetalle());
+           jtfHoraFin.setText(hora);
+           jtfMinutosFin.setText(min);
+        
         }
         
         if (jrbInstalacion.isSelected()) {
-            
+
             for (int i = 0; i < jtTablaDatos.getColumnCount(); i++) {
                 if (jtTabla.getColumnName(i).equals("ID")) {
                     columnaID = i;
@@ -1252,12 +1269,14 @@ public class VistaSesion extends javax.swing.JInternalFrame {
             
             jtfIDDatos.setText(""+datos[2]);
             
-
+        //metodo para cargar los JtextField  
+            Instalacion i = instalaciones.buscarInstalacion(datos[2]);
+            jtfDetalles.setText(i.getDetallesUso());
             
         }
         
         if (jrbDiasDeSpa.isSelected()) {
-            
+
             for (int i = 0; i < jtTablaDatos.getColumnCount(); i++) {
                 if (jtTabla.getColumnName(i).equals("ID")) {
                     columnaID = i;
@@ -1270,8 +1289,15 @@ public class VistaSesion extends javax.swing.JInternalFrame {
             
             jtfIDDatos.setText(""+datos[3]);
             
-            
-            
+
+            DiaSpa d = diasdespa.cargarDiaSpa(datos[3]);
+            Date fecha = Date.from(d.getFechayH().toLocalDate().atStartOfDay(ZoneId.systemDefault()).toInstant());
+            String min = String.valueOf(d.getFechayH().getMinute());
+            String hs = String.valueOf(d.getFechayH().getHour());
+            jdcInicio.setDate(fecha);
+            jdcFin.setDate(fecha);
+            jtfHoraInicio.setText(hs);
+            jtfMinutosInicio.setText(min);
         }
         
         

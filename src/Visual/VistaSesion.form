@@ -278,6 +278,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="jtfHoraInicio">
           <Properties>
+            <Property name="editable" type="boolean" value="false"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Consolas" size="14" style="1"/>
             </Property>
@@ -286,6 +287,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="jtfMinutosInicio">
           <Properties>
+            <Property name="editable" type="boolean" value="false"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Consolas" size="14" style="1"/>
             </Property>
