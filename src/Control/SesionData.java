@@ -302,7 +302,6 @@ public class SesionData {
             /*metodo que retorna la cantidad de horas que dura el tratamiento en total.
             cada hora consta de 2 media horas entonces si por ejemplo me da 2 horas en total lo multiplico por 2 y me daria la cantidad total */
             int tiempoTotal = t.getDuracion().getHour() * 2;
-            
             int precioTotal = 0;
             
             if(t.getDuracion().getMinute() >= 30){
