@@ -132,7 +132,7 @@ public class MasajistasData {
     
     public List<Masajista> mostrarMasajistasDisponibles(){
         List<Masajista> masajistas = new ArrayList();
-        String sqlSL="SELECT * FROM masajista WHERE masajistas.estado = 1";
+        String sqlSL="SELECT * FROM masajista WHERE masajista.estado = 1";
         try{
             PreparedStatement ps = con.prepareStatement(sqlSL);
             ResultSet rs = ps.executeQuery();

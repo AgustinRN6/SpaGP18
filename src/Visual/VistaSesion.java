@@ -853,9 +853,8 @@ public class VistaSesion extends javax.swing.JInternalFrame {
                 
             }
             //si el id no esta asginado todavia entonces no entra al bloque if e itera normalmente
-            if( !(datos[1] == -1)){
-            Tratamiento t = tratamientos.buscarTratamiento(datos[1]);
-                        Iterator<Masajista> iterar = masajistas.mostrarPorEspecialidad(t.getTipo()).iterator();
+
+                Iterator<Masajista> iterar = masajistas.mostrarMasajistasDisponibles().iterator();
             while (iterar.hasNext()) {
                 
                 Masajista m = iterar.next();
@@ -870,7 +869,7 @@ public class VistaSesion extends javax.swing.JInternalFrame {
                         m.getEspecialidad(), Utilitario.estadoParaTabla(m.isEstado())});
                     
                 }*/
-            }
+            
             }
             
             
