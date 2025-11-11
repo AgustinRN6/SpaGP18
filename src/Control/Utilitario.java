@@ -1,10 +1,56 @@
 
 package Control;
 
+import Entidades.Masajista;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
 public class Utilitario {
+
+    private Connection con = null;
+    
+    public Utilitario() {
+        this.con = Conexion.getConexion();
+    }
+    
+    //Para limpiar todas las tablas
+    public void limpiarTodasLasTablas() {
+        
+        try{
+            PreparedStatement ps = con.prepareStatement("SET FOREIGN_KEY_CHECKS = 0");
+            ps.executeUpdate();
+            ps = con.prepareStatement("DELETE FROM sesion");
+            ps.executeUpdate();
+            ps = con.prepareStatement("DELETE FROM dia_de_spa");
+            ps.executeUpdate();
+            ps = con.prepareStatement("DELETE FROM instalacion");
+            ps.executeUpdate();
+            ps = con.prepareStatement("DELETE FROM masajista");
+            ps.executeUpdate();
+            ps = con.prepareStatement("DELETE FROM tratamiento");
+            ps.executeUpdate();
+            ps = con.prepareStatement("DELETE FROM cliente");
+            ps.executeUpdate();
+            ps = con.prepareStatement("SET FOREIGN_KEY_CHECKS = 1");
+            ps.executeUpdate();
+            
+            if (ps.executeUpdate() > 0) {
+
+                JOptionPane.showMessageDialog(null, "Se pudo realizar el update correspondiente!");
+
+            }
+            
+        }catch(java.sql.SQLException error){
+            JOptionPane.showMessageDialog(null, "Error update: "+error.getMessage());
+        }
+        
+    }
+    
+    
     
     //Se utilizará para comparar dos valores numericos
     public static boolean compararValores(int busqueda, int buscado) {
