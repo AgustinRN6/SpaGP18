@@ -93,6 +93,7 @@ public class VistaTratamientos extends javax.swing.JInternalFrame {
         jlDetalle = new javax.swing.JLabel();
         scpDetalle = new javax.swing.JScrollPane();
         jtaDetalle = new javax.swing.JTextArea();
+        jbEliminar1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(201, 233, 240));
 
@@ -467,6 +468,15 @@ public class VistaTratamientos extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
+        jbEliminar1.setBackground(new java.awt.Color(255, 51, 0));
+        jbEliminar1.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
+        jbEliminar1.setText("salir");
+        jbEliminar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbEliminar1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpFondoLayout = new javax.swing.GroupLayout(jpFondo);
         jpFondo.setLayout(jpFondoLayout);
         jpFondoLayout.setHorizontalGroup(
@@ -478,7 +488,10 @@ public class VistaTratamientos extends javax.swing.JInternalFrame {
                     .addGroup(jpFondoLayout.createSequentialGroup()
                         .addComponent(jpDatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jpTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jpTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpFondoLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jbEliminar1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
             .addGroup(jpFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jpFondoLayout.createSequentialGroup()
@@ -489,7 +502,9 @@ public class VistaTratamientos extends javax.swing.JInternalFrame {
         jpFondoLayout.setVerticalGroup(
             jpFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpFondoLayout.createSequentialGroup()
-                .addGap(55, 55, 55)
+                .addGap(11, 11, 11)
+                .addComponent(jbEliminar1)
+                .addGap(18, 18, 18)
                 .addGroup(jpFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jpTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jpFondoLayout.createSequentialGroup()
@@ -584,6 +599,10 @@ public class VistaTratamientos extends javax.swing.JInternalFrame {
         cargarTabla(-1);
     }//GEN-LAST:event_jrbTodosActionPerformed
 
+    private void jbEliminar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminar1ActionPerformed
+        setVisible(false);
+    }//GEN-LAST:event_jbEliminar1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgBotonesTratamiento;
@@ -595,6 +614,7 @@ public class VistaTratamientos extends javax.swing.JInternalFrame {
     private javax.swing.JButton jbAltaLogica;
     private javax.swing.JButton jbBajaLogica;
     private javax.swing.JButton jbEliminar;
+    private javax.swing.JButton jbEliminar1;
     private javax.swing.JButton jbGuardar;
     private javax.swing.JButton jbNuevo;
     private javax.swing.JLabel jlDetalle;

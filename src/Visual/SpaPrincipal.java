@@ -48,6 +48,7 @@ public class SpaPrincipal extends javax.swing.JFrame {
         initComponents();
         cargarDiseñosDeTablas();
         cargarTablas();
+        
     }
 
     /**
@@ -103,7 +104,6 @@ public class SpaPrincipal extends javax.swing.JFrame {
         jmiCerrar = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1000, 850));
 
         Escritorio.setPreferredSize(new java.awt.Dimension(900, 700));
 
@@ -429,19 +429,18 @@ public class SpaPrincipal extends javax.swing.JFrame {
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(EscritorioLayout.createSequentialGroup()
                 .addGap(94, 94, 94)
-                .addGroup(EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jpPanelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jpPanelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jpPanelSecundario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(143, Short.MAX_VALUE))
+                .addContainerGap(139, Short.MAX_VALUE))
         );
         EscritorioLayout.setVerticalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(EscritorioLayout.createSequentialGroup()
-                .addGap(50, 50, 50)
                 .addComponent(jpPanelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpPanelSecundario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(144, Short.MAX_VALUE))
         );
 
         jmClientes.setText("Clientes");
@@ -552,7 +551,7 @@ public class SpaPrincipal extends javax.swing.JFrame {
 
     private void jmiInstalacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiInstalacionesActionPerformed
         // TODO add your handling code here:
-        Escritorio.removeAll();
+        
         Escritorio.repaint();
         GestionInstalacion gi = new GestionInstalacion();
         gi.setVisible(true);
@@ -566,7 +565,7 @@ public class SpaPrincipal extends javax.swing.JFrame {
 
     private void jmiMasajistasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiMasajistasActionPerformed
         // TODO add your handling code here:
-        Escritorio.removeAll();
+        
         Escritorio.repaint();
         GestionMasajista gm = new GestionMasajista();
         gm.setVisible(true);
@@ -576,7 +575,7 @@ public class SpaPrincipal extends javax.swing.JFrame {
 
     private void jmiClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiClientesActionPerformed
         // TODO add your handling code here:
-        Escritorio.removeAll();
+        
         Escritorio.repaint();
         GestionClientes gc = new GestionClientes();
         gc.setVisible(true);
@@ -586,7 +585,7 @@ public class SpaPrincipal extends javax.swing.JFrame {
 
     private void jmiDiaSpaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiDiaSpaActionPerformed
         // TODO add your handling code here:
-        Escritorio.removeAll();
+        
         Escritorio.repaint();
         GestionSpa gs = new GestionSpa();
         gs.setVisible(true);
@@ -595,8 +594,7 @@ public class SpaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jmiDiaSpaActionPerformed
 
     private void jmiSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiSesionActionPerformed
-        
-        Escritorio.removeAll();
+                
         Escritorio.repaint();
         VistaSesion vs = new VistaSesion();
         vs.setVisible(true);
@@ -610,7 +608,6 @@ public class SpaPrincipal extends javax.swing.JFrame {
 
     private void jmiTratamientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiTratamientosActionPerformed
         
-        Escritorio.removeAll();
         Escritorio.repaint();
         VistaTratamientos vt = new VistaTratamientos();
         vt.setVisible(true);
@@ -767,5 +764,6 @@ public class SpaPrincipal extends javax.swing.JFrame {
             modeloTablaSesiones.addRow(new Object[]{s.getCodSesion(), s.getFechaIn(), s.getFechaFin()});
         }      
     }
+    
     
 }
