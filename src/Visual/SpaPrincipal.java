@@ -92,13 +92,11 @@ public class SpaPrincipal extends javax.swing.JFrame {
         jmiClientes = new javax.swing.JMenuItem();
         jmDiaSpa = new javax.swing.JMenu();
         jmiDiaSpa = new javax.swing.JMenuItem();
-        jmInstalaciones = new javax.swing.JMenu();
-        jmiInstalaciones = new javax.swing.JMenuItem();
-        jmMasajistas = new javax.swing.JMenu();
-        jmiMasajistas = new javax.swing.JMenuItem();
         jmSesion = new javax.swing.JMenu();
         jmiSesion = new javax.swing.JMenuItem();
-        jmTratamientos = new javax.swing.JMenu();
+        jmGestionSpa = new javax.swing.JMenu();
+        jmiInstalaciones = new javax.swing.JMenuItem();
+        jmiMasajistas = new javax.swing.JMenuItem();
         jmiTratamientos = new javax.swing.JMenuItem();
         jmCerrar = new javax.swing.JMenu();
         jmiCerrar = new javax.swing.JMenuItem();
@@ -119,6 +117,9 @@ public class SpaPrincipal extends javax.swing.JFrame {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Sesiones en curso");
 
+        jScrollPane5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 102, 102), 2, true));
+
+        jtSesiones.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jtSesiones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -164,6 +165,9 @@ public class SpaPrincipal extends javax.swing.JFrame {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Masajistas disponibles");
 
+        jScrollPane3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 102, 102), 2, true));
+
+        jtMasajistas.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jtMasajistas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -228,6 +232,9 @@ public class SpaPrincipal extends javax.swing.JFrame {
         jpTratamientos.setBackground(new java.awt.Color(0, 153, 153));
         jpTratamientos.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        jScrollPane1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 102, 102), 2, true));
+
+        jtTratamientos.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jtTratamientos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -314,6 +321,9 @@ public class SpaPrincipal extends javax.swing.JFrame {
         jpInstalaciones.setBackground(new java.awt.Color(0, 153, 153));
         jpInstalaciones.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        jScrollPane2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 102, 102), 2, true));
+
+        jtInstalaciones.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jtInstalaciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -432,20 +442,21 @@ public class SpaPrincipal extends javax.swing.JFrame {
                 .addGroup(EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jpPanelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jpPanelSecundario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(139, Short.MAX_VALUE))
+                .addContainerGap(143, Short.MAX_VALUE))
         );
         EscritorioLayout.setVerticalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(EscritorioLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
                 .addComponent(jpPanelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(35, 35, 35)
                 .addComponent(jpPanelSecundario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(144, Short.MAX_VALUE))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
 
         jmClientes.setText("Clientes");
 
-        jmiClientes.setText("jmiClientes");
+        jmiClientes.setText("Ingreso de datos");
         jmiClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmiClientesActionPerformed(evt);
@@ -457,7 +468,8 @@ public class SpaPrincipal extends javax.swing.JFrame {
 
         jmDiaSpa.setText("dia Spa");
 
-        jmiDiaSpa.setText("Dia Spa");
+        jmiDiaSpa.setText("Agende su dia");
+        jmiDiaSpa.setToolTipText("");
         jmiDiaSpa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmiDiaSpaActionPerformed(evt);
@@ -467,34 +479,9 @@ public class SpaPrincipal extends javax.swing.JFrame {
 
         jmbMenu.add(jmDiaSpa);
 
-        jmInstalaciones.setText("Instalaciones");
-        jmInstalaciones.setToolTipText("");
-
-        jmiInstalaciones.setText("Instalaciones");
-        jmiInstalaciones.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiInstalacionesActionPerformed(evt);
-            }
-        });
-        jmInstalaciones.add(jmiInstalaciones);
-
-        jmbMenu.add(jmInstalaciones);
-
-        jmMasajistas.setText("Masajistas");
-
-        jmiMasajistas.setText("Masajistas");
-        jmiMasajistas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiMasajistasActionPerformed(evt);
-            }
-        });
-        jmMasajistas.add(jmiMasajistas);
-
-        jmbMenu.add(jmMasajistas);
-
         jmSesion.setText("Sesion");
 
-        jmiSesion.setText("Sesion");
+        jmiSesion.setText("Gestione su sesion");
         jmiSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmiSesionActionPerformed(evt);
@@ -504,17 +491,34 @@ public class SpaPrincipal extends javax.swing.JFrame {
 
         jmbMenu.add(jmSesion);
 
-        jmTratamientos.setText("Tratamientos");
+        jmGestionSpa.setText("Gestion-SPA");
+        jmGestionSpa.setToolTipText("");
 
-        jmiTratamientos.setText("Tratamientos");
+        jmiInstalaciones.setText("Gestion - Instalacion");
+        jmiInstalaciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiInstalacionesActionPerformed(evt);
+            }
+        });
+        jmGestionSpa.add(jmiInstalaciones);
+
+        jmiMasajistas.setText("Gestion - Masajistas");
+        jmiMasajistas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiMasajistasActionPerformed(evt);
+            }
+        });
+        jmGestionSpa.add(jmiMasajistas);
+
+        jmiTratamientos.setText("Gestion - Tratamientos");
         jmiTratamientos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmiTratamientosActionPerformed(evt);
             }
         });
-        jmTratamientos.add(jmiTratamientos);
+        jmGestionSpa.add(jmiTratamientos);
 
-        jmbMenu.add(jmTratamientos);
+        jmbMenu.add(jmGestionSpa);
 
         jmCerrar.setText("Cerrar");
 
@@ -542,7 +546,8 @@ public class SpaPrincipal extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(Escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 821, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(Escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 815, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -631,7 +636,7 @@ public class SpaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         int filaS = jtInstalaciones.getSelectedRow();
         String detalles = jtInstalaciones.getValueAt(filaS, 1).toString();
-        
+        jtaDetallesI.setText(detalles);
     }//GEN-LAST:event_jtInstalacionesMouseClicked
 
     /**
@@ -687,10 +692,8 @@ public class SpaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jmCerrar;
     private javax.swing.JMenu jmClientes;
     private javax.swing.JMenu jmDiaSpa;
-    private javax.swing.JMenu jmInstalaciones;
-    private javax.swing.JMenu jmMasajistas;
+    private javax.swing.JMenu jmGestionSpa;
     private javax.swing.JMenu jmSesion;
-    private javax.swing.JMenu jmTratamientos;
     private javax.swing.JMenuBar jmbMenu;
     private javax.swing.JMenuItem jmiCerrar;
     private javax.swing.JMenuItem jmiClientes;
@@ -745,7 +748,7 @@ public class SpaPrincipal extends javax.swing.JFrame {
         Utilitario.limpiarTabla(modeloTablaSesiones);
         Utilitario.limpiarTabla(modeloTablaInstalacion);
         Utilitario.limpiarTabla(modeloTablaMasajistas);
-        Utilitario.limpiarTabla(modeloTablaSesiones);
+        Utilitario.limpiarTabla(modeloTablaTratamientos);
 
         //tratamientos nombre, detalles del tratamiento costo y duracion
         for (Tratamiento t : tratamientos.mostrarTratamientos()) {
@@ -764,6 +767,5 @@ public class SpaPrincipal extends javax.swing.JFrame {
             modeloTablaSesiones.addRow(new Object[]{s.getCodSesion(), s.getFechaIn(), s.getFechaFin()});
         }      
     }
-    
     
 }

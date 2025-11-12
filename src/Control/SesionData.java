@@ -44,24 +44,7 @@ public class SesionData {
                 JOptionPane.showMessageDialog(null, "Se ha creado la sesión con éxito!");
 
             }
-            
-            
-            //PONER EN FALSE A TRATAMIENTO, MASAJISTA E INSTALACIONES DEBIDO A QUE ESTAN OCUPADOS....
-            InstalacionesData instalaciones = new InstalacionesData();
-            MasajistasData masajistas = new MasajistasData();
-            TratamientosData tratamientos = new TratamientosData();
-            DiaSPAData dia = new DiaSPAData();
-            
-            
-            instalaciones.reserva(s.getInstalacion());
-            
-            masajistas.reserva(s.getMasajista());
-            
-            dia.Reserva(s.getDiaS());
-            
-            tratamientos.reserva(s.getTratamiento());
-            
-            
+                        
             ResultSet rs = ps.getGeneratedKeys();
 
              while(rs.next()) {
@@ -81,26 +64,6 @@ public class SesionData {
     public void borrarSesion(int borrar) {
         
         String query = "DELETE FROM sesion WHERE codSesion = ?";
-        
-            Sesion s = mostrarSesion(borrar);
-            
-            //se desocupan el masajista, la instalacion, el tratamiento y el dia es eliminado!!! 
-            
-            InstalacionesData instalaciones = new InstalacionesData();
-            
-            MasajistasData masajistas = new MasajistasData();
-            
-            TratamientosData tratamientos = new TratamientosData();
-            
-            DiaSPAData dia = new DiaSPAData();
-            
-            //metodos para eliminar dia, y poner los demas objetos en libre o activo
-            
-            instalaciones.libre(s.getInstalacion());
-            
-            masajistas.libre(s.getMasajista());
-            
-            tratamientos.libre(s.getTratamiento());
             
         try {
             
@@ -122,8 +85,7 @@ public class SesionData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No pudo eliminarse la sesión " + ex.getMessage());
         }
-
-        dia.borrarDiaSpa(s.getDiaS());
+        
     }
     
     //UPDATE
@@ -279,7 +241,7 @@ public class SesionData {
 
     }
     //Metodo que me retorna el precio de la sesion.    
-    public void cargarPrecioTotal(Sesion s){
+   /* public void cargarPrecioTotal(Sesion s){
     
             TratamientosData trat = new TratamientosData();
     
@@ -299,8 +261,8 @@ public class SesionData {
             d.setMonto(0);
             dia.actualizarMonto(d);
             
-            /*metodo que retorna la cantidad de horas que dura el tratamiento en total.
-            cada hora consta de 2 media horas entonces si por ejemplo me da 2 horas en total lo multiplico por 2 y me daria la cantidad total */
+            metodo que retorna la cantidad de horas que dura el tratamiento en total.
+            cada hora consta de 2 media horas entonces si por ejemplo me da 2 horas en total lo multiplico por 2 y me daria la cantidad total 
             int tiempoTotal = t.getDuracion().getHour() * 2;
             int precioTotal = 0;
             
@@ -315,7 +277,7 @@ public class SesionData {
             d.setMonto(precioTotal);
             dia.actualizarMonto(d);
             
-        }
+        }*/
     
 }
     

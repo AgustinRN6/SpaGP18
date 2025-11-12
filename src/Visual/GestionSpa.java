@@ -37,6 +37,7 @@ public class GestionSpa extends javax.swing.JInternalFrame {
         cargarCombo();
         cargarModelo();
         cargarTabla();
+        ajusteDeFecha();
     }
 
     /**
@@ -81,13 +82,11 @@ public class GestionSpa extends javax.swing.JInternalFrame {
         jpPanelInformacionC = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         txtNombreC = new javax.swing.JTextField();
         txtEdad = new javax.swing.JTextField();
-        txtAfecciones = new javax.swing.JTextField();
         txtDNI = new javax.swing.JTextField();
         txtNumeroT = new javax.swing.JTextField();
         jbSalir = new javax.swing.JButton();
@@ -433,10 +432,6 @@ public class GestionSpa extends javax.swing.JInternalFrame {
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Edad");
 
-        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setText("Afecciones");
-
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("Dni");
@@ -453,8 +448,6 @@ public class GestionSpa extends javax.swing.JInternalFrame {
         txtNombreC.setEditable(false);
 
         txtEdad.setEditable(false);
-
-        txtAfecciones.setEditable(false);
 
         txtDNI.setEditable(false);
 
@@ -479,10 +472,6 @@ public class GestionSpa extends javax.swing.JInternalFrame {
                         .addComponent(jLabel14)
                         .addGap(18, 18, 18)
                         .addComponent(txtDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jpPanelInformacionCLayout.createSequentialGroup()
-                        .addComponent(jLabel13)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtAfecciones, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jpPanelInformacionCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jLabel11)
                         .addGroup(jpPanelInformacionCLayout.createSequentialGroup()
@@ -504,11 +493,7 @@ public class GestionSpa extends javax.swing.JInternalFrame {
                 .addGroup(jpPanelInformacionCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jpPanelInformacionCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
-                    .addComponent(txtAfecciones, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jpPanelInformacionCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
                     .addComponent(txtDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -599,7 +584,7 @@ public class GestionSpa extends javax.swing.JInternalFrame {
                         .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
                         .addComponent(jpPanelInformacionC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(17, 17, 17)
+                        .addGap(33, 33, 33)
                         .addComponent(jpPanelEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jpPanelDiaSpa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -649,14 +634,11 @@ public class GestionSpa extends javax.swing.JInternalFrame {
         /*si el metodo validar campo retorna true, indica que se pudo parsear y asignar los atributos al objeto d(DiaSpa)
           y se puede proceder a subir esos mismos datos a la BD spa_relax*/
         if(validarCampos()== true){
-                /*en caso de que el usuario haya puesto los datos de su tarjeta bien
-                  se procede a cargar el dia de spa*/
-                if(tarjetaDeCredito() == true){
                 dias.crearDiaSpa(d);
                 cargarTabla();
                 vaciarCampos();
                 inhabilitarCampos();
-                } 
+                
             }
     }//GEN-LAST:event_jbSubirActionPerformed
 
@@ -725,7 +707,6 @@ public class GestionSpa extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
@@ -758,7 +739,6 @@ public class GestionSpa extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jpPanelTabla;
     private javax.swing.JTextField jtEstado;
     private javax.swing.JTable jtTablaDiaS;
-    private javax.swing.JTextField txtAfecciones;
     private javax.swing.JTextField txtDNI;
     private javax.swing.JTextField txtEdad;
     private javax.swing.JTextField txtHora;
@@ -771,7 +751,7 @@ public class GestionSpa extends javax.swing.JInternalFrame {
 
     private void cargarCombo() {
         //carga el jcombobox con todos los clientes sin importar su estado.
-        for (Cliente c : clientes.mostrarClientes()) {
+        for (Cliente c : clientes.mostrarClientesActivos()) {
             String id = String.valueOf(c.getCodCli());
             jcbClientes.addItem(id);
         }
@@ -863,7 +843,6 @@ public class GestionSpa extends javax.swing.JInternalFrame {
         txtNombreC.setText("");
         txtEdad.setText("");
         txtDNI.setText("");
-        txtAfecciones.setText("");
         txtNumeroT.setText("");
         //setearlo al -1 me sirve para verificar si al seleccionar y cargar los campos y luego poner nuevo tiene seleccionado alguno
         d.setCodPack(-1);
@@ -943,13 +922,13 @@ public class GestionSpa extends javax.swing.JInternalFrame {
             txtNombreC.setText(c.getNombreC());
             txtEdad.setText(String.valueOf(c.getEdad()));
             txtDNI.setText(String.valueOf(c.getDni()));
-            txtAfecciones.setText(c.getAfecciones());
             txtNumeroT.setText(String.valueOf(c.getTelefono()));
             
         }
         
     }
-    private boolean tarjetaDeCredito(){
+    
+   /* private boolean tarjetaDeCredito(){
             //patron 1234 1234 1234 1243.
             String formato ="\\d{4}+\s+\\d{4}+\s+\\d{4}+\s+\\d{4}";
             String tarjeta;
@@ -966,4 +945,12 @@ public class GestionSpa extends javax.swing.JInternalFrame {
            
             return false;
     }
+   */
+    
+    private void ajusteDeFecha(){
+        Date fechaActual = Date.valueOf(LocalDate.now());
+        Date fechaFinLaborable = Date.valueOf(LocalDate.of(2025, 12, 25));
+        jdtFecha.setSelectableDateRange(fechaActual, fechaFinLaborable);
+    }
+    
 }

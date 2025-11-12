@@ -9,6 +9,8 @@ import java.util.Date;
 
 public class prueba {
     public static void main(String[] args){
+        
+    /*
     //CLASES ENTIDADES.....................................................................................
     DiaSpa diaS1 = new DiaSpa(LocalDateTime.of(2025, 9, 12, 18, 30),"facial",6, 1500, true);
     DiaSpa diaS2 = new DiaSpa(LocalDateTime.now(),"Corporal",7, 1500, true);
@@ -21,10 +23,10 @@ public class prueba {
     Masajista ma4 = new Masajista(2232,"Leandro Gutierrez",1231212,"Relajacion",true);
     Masajista ma5 = new Masajista(9999,"Prueba",99999,"Prueba",true);
     
-    Cliente c1 = new Cliente("Ian Quimey Pereyra",20, 43330, 2654512,"Alergico  a la crema",true);
-    Cliente c2 = new Cliente("Ramiro Elias Moran",23, 410002, 2512313,"Alergico a las piedras",true);
-    Cliente c3 = new Cliente("Agustin Rosales Neyra",21, 431230, 26123423,"Alergico al crema",true);
-    Cliente c4 = new Cliente("Prueba",99, 0011112, 1231231231,"Alergico a la alergia",true);
+    Cliente c1 = new Cliente("Ian Quimey Pereyra",20, 43330, 2654512,true);
+    Cliente c2 = new Cliente("Ramiro Elias Moran",23, 410002, 2512313,true);
+    Cliente c3 = new Cliente("Agustin Rosales Neyra",21, 431230, 26123423,true);
+    Cliente c4 = new Cliente("Prueba",99, 0011112, 1231231231,true);
     
     
     Instalacion i1 = new Instalacion("Jacuzzi","Entrar en la pileta y relajarse","Solo recreativo","Para todos",1500,true);
@@ -34,7 +36,7 @@ public class prueba {
     Instalacion i5 = new Instalacion("Sala de Infusiones ","Un area donde se ofrecen bebidas relajantes","Relajacion","Para todas las edades",2000, true);
     Instalacion i6 = new Instalacion("Prueba","Prueba","Prueba","Prueba",2000,true);
     
-    
+    //un tratamiento lo lleva a cabo un masajista que coincida con el tipo de tratamiento. por ejemplo tratamiento facial se le asigna un masajista especializado en lo facial
     Tratamiento t1 = new Tratamiento("Tratamiento Facial","Facial basico: exfoliacion y limpieza",LocalTime.of(2, 0, 0),10000,true,"facial");
     Tratamiento t2 = new Tratamiento("Tratamiento Corporal","Hidroterapia: Sesiones en saunas o jacuzzis",LocalTime.of(1, 0, 0),15000,true,"corporal");
     Tratamiento t3 = new Tratamiento("Masaje Especializado","Especialiado: incluye aromaterapia",LocalTime.of(2, 30, 0),10000,true,"especializado");
@@ -46,7 +48,9 @@ public class prueba {
     Sesion s3 = new Sesion(LocalDateTime.of(2025, 9, 9, 5, 0), LocalDateTime.of(2025, 9, 9, 8, 0),1,1,1111,1,true);
     Sesion s4 = new Sesion(LocalDateTime.of(2025, 9, 9, 5, 0), LocalDateTime.of(2025, 9, 9, 8, 0),1,1,1111,1,true);
     Sesion s5 = new Sesion(LocalDateTime.of(2025, 9, 9, 5, 0), LocalDateTime.of(2025, 9, 9, 8, 0),2,4444,6,3,true);
-
+    */
+    Masajista ma1 = new Masajista(1111,"Gloria Rosales",255512,"Facial",true);
+    Tratamiento t1 = new Tratamiento("Tratamiento Facial","Facial basico: exfoliacion y limpieza",LocalTime.of(2, 0, 0),10000,true,"facial",ma1);
     //CLASES DATAS.....................................................................................
     ClientesData clientes = new ClientesData();
     DiaSPAData dia= new DiaSPAData();
@@ -117,7 +121,9 @@ public class prueba {
     sesiones.actualizarSesion(s);
     */
 
-    
+    for(Tratamiento t : tratamientos.mostrarTratamientos()){
+        System.out.println(t.mostrarInfo());
+    }
     //SELECT * FROM tabla WHERE tabla.keyprimary = ? ;
         
         /*
@@ -171,11 +177,6 @@ public class prueba {
     }
         System.out.println(".....................................................................");
     */
-        System.out.println(dia.cargarDiaSpa(13).mostrarInfo());
-        
-        for(Tratamiento t: tratamientos.mostrarTratamientosTipos("Corporal")){
-            System.out.println(t.mostrarInfo());
-        }
     }
-    
+   
 }

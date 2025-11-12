@@ -5,8 +5,6 @@ import Entidades.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Date;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -191,32 +189,6 @@ public class InstalacionesData {
             ps.setInt(1, codInstal);
             if(ps.executeUpdate() > 0){
                 JOptionPane.showMessageDialog(null, "Instalacion dada de baja");
-            }
-        }catch(java.sql.SQLException error){
-            JOptionPane.showMessageDialog(null, error.getMessage());
-        }
-    }
-    
-        public void libre(int codInstal){
-            String sqlUP="UPDATE instalacion SET estado = 1 WHERE instalacion.codInstal = ?";
-        try{
-            PreparedStatement ps = con.prepareStatement(sqlUP);
-            ps.setInt(1, codInstal);
-            if(ps.executeUpdate() > 0){
-                System.out.println("Instalacion libre!!!!");
-            }
-        }catch(java.sql.SQLException error){
-            JOptionPane.showMessageDialog(null, error.getMessage());
-        }
-    }
-    
-    public void reserva(int codInstal){
-        String sqlUP="UPDATE instalacion SET estado = 0 WHERE instalacion.codInstal = ?";
-        try{
-            PreparedStatement ps = con.prepareStatement(sqlUP);
-            ps.setInt(1, codInstal);
-            if(ps.executeUpdate() > 0){
-                System.out.println("la instalacion fue reservada con exito!!!!!");
             }
         }catch(java.sql.SQLException error){
             JOptionPane.showMessageDialog(null, error.getMessage());

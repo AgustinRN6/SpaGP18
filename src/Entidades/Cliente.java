@@ -6,15 +6,13 @@ public class Cliente {
     private int codCli =-1;
     private String nombreC;
     private int edad;
-    private String afecciones;
     private int dni;
     private int telefono;
     private boolean estado;
     
-    public Cliente(String nombreC, int edad, int dni, int telefono, String afecciones, boolean estado){
+    public Cliente(String nombreC, int edad, int dni, int telefono , boolean estado){
         this.nombreC = nombreC;
         this.edad = edad;
-        this.afecciones = afecciones;
         this.dni = dni;
         this.telefono = telefono;
         this.estado = estado;
@@ -47,14 +45,6 @@ public class Cliente {
         this.edad = edad;
     }
 
-    public String getAfecciones() {
-        return afecciones;
-    }
-
-    public void setAfecciones(String afecciones) {
-        this.afecciones = afecciones;
-    }
-
     public int getDni() {
         return dni;
     }
@@ -79,6 +69,6 @@ public class Cliente {
         this.estado = estado;
     }
     public String getInfo(){
-        return'['+"Cod: "+ codCli+", Nombre completo: "+ nombreC+", Edad: "+edad+", dni: "+ dni+", Numero de telefono:"+ telefono+", afecciones: "+ afecciones+", estado: "+ estado;
+        return'['+"Cod: "+ codCli+", Nombre completo: "+ nombreC+", Edad: "+edad+", dni: "+ dni+", Numero de telefono:"+ telefono+", estado: "+ estado;
     }
 }

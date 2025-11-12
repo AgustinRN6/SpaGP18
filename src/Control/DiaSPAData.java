@@ -25,9 +25,6 @@ public class DiaSPAData {
     //INSERT
     public void crearDiaSpa(DiaSpa d) {
         
-        ClientesData clientes = new ClientesData();
-        Cliente c = clientes.buscarCliente(d.getCliente());
-        clientes.ocupado(c.getCodCli());
         
         String query = "INSERT INTO dia_de_spa(fechaHora, preferencias, estado, monto, cliente) VALUES (?,?,?,?,?)";
         
@@ -70,9 +67,7 @@ public class DiaSPAData {
         String query = "DELETE FROM dia_de_spa WHERE dia_de_spa.codPack = ?";
 
         try {
-            ClientesData clientes = new ClientesData();
-            DiaSpa d = cargarDiaSpa(eliminar);
-            clientes.libre(d.getCliente());
+            
             PreparedStatement ps = con.prepareStatement(query);
 
             ps.setInt(1, eliminar);
@@ -267,52 +262,10 @@ public class DiaSPAData {
         }
         
     }
-    //metodo que funciona en conjunto con la creacion de una sesion
-        public void libre(int alta) {
-        
-        String query = "UPDATE dia_de_spa SET estado= 1, monto = 0 WHERE codPack = ?";
 
-        try {
-
-            PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-
-            ps.setInt(1, alta);
-
-            if (ps.executeUpdate() > 0) {
-
-                System.out.println("El dia se ha liberado!!!!");
-            }
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "No pudo darse de alta el dia de spa " + ex.getMessage());
-        }
-        
-    }
     
-    //UPDATE baja lógica
-    public void Reserva(int baja) {
-
-        String query = "UPDATE dia_de_spa SET estado= 0 WHERE codPack = ?";
-
-        try {
-
-            PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-
-            ps.setInt(1, baja);
-
-            if (ps.executeUpdate() > 0) {
-
-                System.out.println("Se ha reservado el dia con exito!");
-
-            }
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "No pudo darse de baja el dia de spa " + ex.getMessage());
-        }
-        
-    }
- 
     public void actualizarMonto(DiaSpa d){
+        
     String sqlUP="UPDATE dia_de_spa SET monto = ? WHERE codPack = ?";
     
     try{

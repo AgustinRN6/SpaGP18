@@ -46,8 +46,6 @@ public class GestionClientes extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         txtEdad = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        txtAfecciones = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
         txtDNI = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -102,9 +100,11 @@ public class GestionClientes extends javax.swing.JInternalFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Edad");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Afecciones");
+        txtDNI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDNIActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -130,10 +130,6 @@ public class GestionClientes extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jpPaneelInfoClienteLayout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtAfecciones, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jpPaneelInfoClienteLayout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -154,10 +150,6 @@ public class GestionClientes extends javax.swing.JInternalFrame {
                 .addGroup(jpPaneelInfoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jpPaneelInfoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtAfecciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jpPaneelInfoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -249,8 +241,10 @@ public class GestionClientes extends javax.swing.JInternalFrame {
                     .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jpPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jpPaneelInfoCliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPanelClienteLayout.createSequentialGroup()
+                        .addComponent(jpPaneelInfoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32)))
                 .addGap(13, 13, 13))
         );
 
@@ -355,7 +349,7 @@ public class GestionClientes extends javax.swing.JInternalFrame {
                     .addComponent(jLabel8)
                     .addComponent(jpPanelBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -429,7 +423,7 @@ public class GestionClientes extends javax.swing.JInternalFrame {
                 .addComponent(jpPanelCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpPanelEstadoID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addComponent(jpPanelTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -491,7 +485,8 @@ public class GestionClientes extends javax.swing.JInternalFrame {
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
         // TODO add your handling code here:
-        setVisible(false);
+
+         dispose();
     }//GEN-LAST:event_jbSalirActionPerformed
 
     private void jbAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAltaActionPerformed
@@ -522,11 +517,14 @@ public class GestionClientes extends javax.swing.JInternalFrame {
         habilitarCampos();
     }//GEN-LAST:event_jbNuevoActionPerformed
 
+    private void txtDNIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDNIActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDNIActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -550,7 +548,6 @@ public class GestionClientes extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jpPanelTabla;
     private javax.swing.JTextField jtEstado;
     private javax.swing.JTable jtTablaClientes;
-    private javax.swing.JTextField txtAfecciones;
     private javax.swing.JTextField txtDNI;
     private javax.swing.JTextField txtEdad;
     private javax.swing.JTextField txtID;
@@ -564,7 +561,6 @@ public class GestionClientes extends javax.swing.JInternalFrame {
         modeloT.addColumn("Nombre Completo");
         modeloT.addColumn("Edad");
         modeloT.addColumn("DNI");
-        modeloT.addColumn("Afecciones");
         modeloT.addColumn("Telefono");
         modeloT.addColumn("¿Ocupado?");
         jtTablaClientes.setModel(modeloT);
@@ -573,7 +569,7 @@ public class GestionClientes extends javax.swing.JInternalFrame {
     public void cargarTabla() {
         borrarFilas();
         for (Cliente cli : clientes.mostrarClientes()) {
-            modeloT.addRow(new Object[]{cli.getCodCli(), cli.getNombreC(), cli.getEdad(), cli.getDni(), cli.getAfecciones(), cli.getTelefono(), cli.isEstado()});
+            modeloT.addRow(new Object[]{cli.getCodCli(), cli.getNombreC(), cli.getEdad(), cli.getDni(), cli.getTelefono(), cli.isEstado()});
         }
     }
     
@@ -592,9 +588,7 @@ public class GestionClientes extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Ingrese el Nombre completo!!!!!");
         } else if (txtEdad.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Ingrese la edad!!!!!");
-        } else if (txtAfecciones.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Ingrese la afecciones!!!!!");
-        } else if (txtDNI.getText().isEmpty()) {
+        }  else if (txtDNI.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Ingrese el DNI!!!!!");
         } else if (txtNumeroT.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Ingrese el numero Telefonico!!!!!");
@@ -603,14 +597,13 @@ public class GestionClientes extends javax.swing.JInternalFrame {
             try {
                 
                 String nombreC = txtNombreC.getText();
-                String afecciones = txtAfecciones.getText();
+               
                 int edad = Integer.parseInt(txtEdad.getText());
                 int dni = Integer.parseInt(txtDNI.getText());
                 int numeroT = Integer.parseInt(txtNumeroT.getText());
                 
                 c.setNombreC(nombreC);
                 c.setEdad(edad);
-                c.setAfecciones(afecciones);
                 c.setDni(dni);
                 c.setTelefono(numeroT);
                 c.setEstado(true);
@@ -627,7 +620,6 @@ public class GestionClientes extends javax.swing.JInternalFrame {
     private void vaciarCampos() {
         txtNombreC.setText("");
         txtNumeroT.setText("");
-        txtAfecciones.setText("");
         txtEdad.setText("");
         txtDNI.setText("");
         txtNumeroT.setText("");
@@ -664,7 +656,6 @@ public class GestionClientes extends javax.swing.JInternalFrame {
         }
         txtNombreC.setText(nombreC);
         txtNumeroT.setText(numeroT);
-        txtAfecciones.setText(afecciones);
         txtEdad.setText(edad);
         txtDNI.setText(dni);
         txtID.setText(id);
@@ -676,7 +667,6 @@ public class GestionClientes extends javax.swing.JInternalFrame {
         txtNombreC.setEnabled(false);
         txtNumeroT.setEnabled(false);
         txtEdad.setEnabled(false);
-        txtAfecciones.setEnabled(false);
         txtDNI.setEnabled(false);
         txtID.setEnabled(false);
         
@@ -686,7 +676,6 @@ public class GestionClientes extends javax.swing.JInternalFrame {
         txtNombreC.setEnabled(true);
         txtNumeroT.setEnabled(true);
         txtEdad.setEnabled(true);
-        txtAfecciones.setEnabled(true);
         txtDNI.setEnabled(true);
         txtID.setEnabled(true);
     }
