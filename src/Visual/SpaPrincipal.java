@@ -1,22 +1,58 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Visual;
-
+import Control.*;
 import javax.swing.JScrollPane;
+import Entidades.*;
+import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author Agustin
- */
 public class SpaPrincipal extends javax.swing.JFrame {
+    //Clases data
+     TratamientosData tratamientos = new TratamientosData();
+     MasajistasData masajistas = new MasajistasData();
+     SesionData sesiones = new SesionData();
+     InstalacionesData instalaciones = new InstalacionesData();
+     ClientesData clientes = new ClientesData();
+     
+    //MODELO DE TABLA: INSTALACION
+    private DefaultTableModel modeloTablaInstalacion = new DefaultTableModel() {
+        @Override
+        public boolean isCellEditable(int fila, int columna) {
+            return false;
+        }
+    };
+    //MODELO DE TABLA: TRATAMIENTO
+    private DefaultTableModel modeloTablaTratamientos = new DefaultTableModel() {
+        @Override
+        public boolean isCellEditable(int fila, int columna) {
+            return false;
+        }
+    };
+    //MODELO DE TABLA: MASAJISTA
+    private DefaultTableModel modeloTablaMasajistas = new DefaultTableModel() {
+        @Override
+        public boolean isCellEditable(int fila, int columna) {
+            return false;
+        }
+    };
+    //MODELO DE TABLA: SESION
+    private DefaultTableModel modeloTablaSesiones = new DefaultTableModel() {
+        @Override
+        public boolean isCellEditable(int fila, int columna) {
+            return false;
+        }
+    };
+    //MODELO DE TABLA: Clientes
+    private DefaultTableModel modeloTablaClientes = new DefaultTableModel() {
+        @Override
+        public boolean isCellEditable(int fila, int columna) {
+            return false;
+        }
+    };
 
-    /**
-     * Creates new form Spa
-     */
     public SpaPrincipal() {
         initComponents();
+        cargarDiseñosDeTablas();
+        cargarTablas();
     }
 
     /**
@@ -29,6 +65,26 @@ public class SpaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         Escritorio = new javax.swing.JDesktopPane();
+        jpTratamientos = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jtTratamientos = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jpInstalaciones = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jtInstalaciones = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
+        jpMasajistas = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jtMasajistas = new javax.swing.JTable();
+        jpClientes = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jtClientes = new javax.swing.JTable();
+        jpSesiones = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jtSesiones = new javax.swing.JTable();
         jmbMenu = new javax.swing.JMenuBar();
         jmClientes = new javax.swing.JMenu();
         jmiClientes = new javax.swing.JMenuItem();
@@ -46,17 +102,265 @@ public class SpaPrincipal extends javax.swing.JFrame {
         jmiCerrar = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(950, 900));
+
+        jpTratamientos.setBackground(new java.awt.Color(0, 153, 153));
+        jpTratamientos.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jtTratamientos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jtTratamientos);
+
+        jLabel1.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Tratamientos Disponibles");
+
+        javax.swing.GroupLayout jpTratamientosLayout = new javax.swing.GroupLayout(jpTratamientos);
+        jpTratamientos.setLayout(jpTratamientosLayout);
+        jpTratamientosLayout.setHorizontalGroup(
+            jpTratamientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpTratamientosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpTratamientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
+                    .addGroup(jpTratamientosLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jpTratamientosLayout.setVerticalGroup(
+            jpTratamientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpTratamientosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jpInstalaciones.setBackground(new java.awt.Color(0, 153, 153));
+        jpInstalaciones.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jtInstalaciones.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jtInstalaciones);
+
+        jLabel2.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Instalaciones Disponibles");
+
+        javax.swing.GroupLayout jpInstalacionesLayout = new javax.swing.GroupLayout(jpInstalaciones);
+        jpInstalaciones.setLayout(jpInstalacionesLayout);
+        jpInstalacionesLayout.setHorizontalGroup(
+            jpInstalacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpInstalacionesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpInstalacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
+                    .addGroup(jpInstalacionesLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jpInstalacionesLayout.setVerticalGroup(
+            jpInstalacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpInstalacionesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jpMasajistas.setBackground(new java.awt.Color(0, 153, 153));
+        jpMasajistas.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jLabel3.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Masajistas disponibles");
+
+        jtMasajistas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(jtMasajistas);
+
+        javax.swing.GroupLayout jpMasajistasLayout = new javax.swing.GroupLayout(jpMasajistas);
+        jpMasajistas.setLayout(jpMasajistasLayout);
+        jpMasajistasLayout.setHorizontalGroup(
+            jpMasajistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpMasajistasLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpMasajistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
+                    .addGroup(jpMasajistasLayout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jpMasajistasLayout.setVerticalGroup(
+            jpMasajistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpMasajistasLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jpClientes.setBackground(new java.awt.Color(0, 153, 153));
+        jpClientes.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jLabel4.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Clientes registrados");
+
+        jtClientes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane4.setViewportView(jtClientes);
+
+        javax.swing.GroupLayout jpClientesLayout = new javax.swing.GroupLayout(jpClientes);
+        jpClientes.setLayout(jpClientesLayout);
+        jpClientesLayout.setHorizontalGroup(
+            jpClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpClientesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(jpClientesLayout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(0, 142, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jpClientesLayout.setVerticalGroup(
+            jpClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpClientesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jpSesiones.setBackground(new java.awt.Color(0, 153, 153));
+        jpSesiones.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jLabel5.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("Sesiones en curso");
+
+        jtSesiones.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane5.setViewportView(jtSesiones);
+
+        javax.swing.GroupLayout jpSesionesLayout = new javax.swing.GroupLayout(jpSesiones);
+        jpSesiones.setLayout(jpSesionesLayout);
+        jpSesionesLayout.setHorizontalGroup(
+            jpSesionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpSesionesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpSesionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(jpSesionesLayout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(0, 161, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jpSesionesLayout.setVerticalGroup(
+            jpSesionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpSesionesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel5)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        Escritorio.setLayer(jpTratamientos, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        Escritorio.setLayer(jpInstalaciones, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        Escritorio.setLayer(jpMasajistas, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        Escritorio.setLayer(jpClientes, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        Escritorio.setLayer(jpSesiones, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout EscritorioLayout = new javax.swing.GroupLayout(Escritorio);
         Escritorio.setLayout(EscritorioLayout);
         EscritorioLayout.setHorizontalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 669, Short.MAX_VALUE)
+            .addGroup(EscritorioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jpTratamientos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jpMasajistas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jpInstalaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jpClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jpSesiones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         EscritorioLayout.setVerticalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 496, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EscritorioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jpTratamientos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addComponent(jpInstalaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jpMasajistas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(263, Short.MAX_VALUE))
+            .addGroup(EscritorioLayout.createSequentialGroup()
+                .addGap(142, 142, 142)
+                .addComponent(jpClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jpSesiones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jmClientes.setText("Clientes");
@@ -270,6 +574,16 @@ public class SpaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane Escritorio;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JMenu jmCerrar;
     private javax.swing.JMenu jmClientes;
     private javax.swing.JMenu jmDiaSpa;
@@ -285,5 +599,85 @@ public class SpaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmiMasajistas;
     private javax.swing.JMenuItem jmiSesion;
     private javax.swing.JMenuItem jmiTratamientos;
+    private javax.swing.JPanel jpClientes;
+    private javax.swing.JPanel jpInstalaciones;
+    private javax.swing.JPanel jpMasajistas;
+    private javax.swing.JPanel jpSesiones;
+    private javax.swing.JPanel jpTratamientos;
+    private javax.swing.JTable jtClientes;
+    private javax.swing.JTable jtInstalaciones;
+    private javax.swing.JTable jtMasajistas;
+    private javax.swing.JTable jtSesiones;
+    private javax.swing.JTable jtTratamientos;
     // End of variables declaration//GEN-END:variables
+
+    private void cargarDiseñosDeTablas() {
+        //DISEÑO TABLA: INSTALACION
+        modeloTablaInstalacion.addColumn("Nombre");
+        modeloTablaInstalacion.addColumn("Detalles de uso");
+        modeloTablaInstalacion.addColumn("Precio X 30MIN");
+        modeloTablaInstalacion.addColumn("APTO");
+        jtInstalaciones.setModel(modeloTablaInstalacion);
+        //DISEÑO TABLA: TRATAMIENTO
+        modeloTablaTratamientos.addColumn("Nombre");
+        modeloTablaTratamientos.addColumn("Detalles");
+        modeloTablaTratamientos.addColumn("Costo");
+        modeloTablaTratamientos.addColumn("Duracion");
+        jtTratamientos.setModel(modeloTablaTratamientos);
+        //DISEÑO TABLA: MASAJISTA
+        modeloTablaMasajistas.addColumn("Nombre completo");
+        modeloTablaMasajistas.addColumn("Especialidad");
+        modeloTablaMasajistas.addColumn("Numero de telefono");
+        jtMasajistas.setModel(modeloTablaMasajistas);
+        //DISEÑO TABLA: Sesion
+        modeloTablaSesiones.addColumn("Numero de Sesion");
+        modeloTablaSesiones.addColumn("Horario de inicio");
+        modeloTablaSesiones.addColumn("Horario de finalizacion");
+        jtSesiones.setModel(modeloTablaSesiones);
+        //DISEÑO TABLA: CLIENTE
+        modeloTablaClientes.addColumn("Nombre completo");
+        modeloTablaClientes.addColumn("¿Esta Libre?");
+        jtClientes.setModel(modeloTablaClientes);
+
+    }
+
+    private void cargarTablas() {
+        
+        Utilitario.limpiarTabla(modeloTablaSesiones);
+        Utilitario.limpiarTabla(modeloTablaInstalacion);
+        Utilitario.limpiarTabla(modeloTablaMasajistas);
+        Utilitario.limpiarTabla(modeloTablaSesiones);
+        Utilitario.limpiarTabla(modeloTablaClientes);
+
+        //tratamientos nombre, detalles del tratamineto costo y duracion
+        for (Tratamiento t : tratamientos.mostrarTratamientos()) {
+            modeloTablaTratamientos.addRow(new Object[]{t.getNombre(), t.getDetalle(), t.getCosto(), t.getDuracion()});
+        }
+         //instalaciones ATRIBUTOS: nombre, detallesDeUso, Precio30m y apto.
+        for(Instalacion i : instalaciones.mostrarInstalacionesLibres()){
+            modeloTablaInstalacion.addRow(new Object[]{i.getNombre(), i.getDetallesUso(), i.getPrecio30M(), i.getApto()});
+        }
+        //masajistas ATRIBUTOS: nombreC, especialidad, numero de telefono
+        for(Masajista m : masajistas.mostrarMasajistasDisponibles()){
+            modeloTablaMasajistas.addRow(new Object[]{m.getNombreCompleto(), m.getEspecialidad(), m.getNumeroT()});
+        }
+        //sesiones ATRIBUTOS: numero de sesion(id), horario de inicio y horario de finalizacion;
+        for(Sesion s : sesiones.mostrarTodasSesiones()){
+            modeloTablaSesiones.addRow(new Object[]{s.getCodSesion(), s.getFechaIn(), s.getFechaFin()});
+        }
+        //clientes ATRIBUTOS: nombreC y estado.
+        for(Cliente c: clientes.mostrarClientes()){
+            String libre = "Libre";
+            String ocupado = "Ocupado";
+            if(c.isEstado() == true){
+            modeloTablaClientes.addRow(new Object[]{c.getNombreC(), libre});
+            }else if(c.isEstado()==false){
+            modeloTablaClientes.addRow(new Object[]{c.getNombreC(), ocupado});
+            }
+            
+        }
+        
+    }
+    
+
 }
