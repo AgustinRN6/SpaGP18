@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-10-2025 a las 00:32:21
+-- Tiempo de generación: 13-11-2025 a las 00:26:36
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -35,7 +35,6 @@ CREATE TABLE `cliente` (
   `nombreCompleto` varchar(100) NOT NULL,
   `telefono` bigint(20) NOT NULL,
   `edad` tinyint(3) UNSIGNED NOT NULL,
-  `afecciones` varchar(100) NOT NULL,
   `estado` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -47,7 +46,7 @@ CREATE TABLE `cliente` (
 
 CREATE TABLE `dia_de_spa` (
   `codPack` int(11) NOT NULL,
-  `fechaHora` datetime NOT NULL,
+  `fechaDia` date NOT NULL,
   `preferencias` varchar(100) NOT NULL,
   `estado` tinyint(1) NOT NULL,
   `monto` int(11) NOT NULL,
@@ -95,7 +94,6 @@ CREATE TABLE `sesion` (
   `fechaHoraInicio` datetime NOT NULL,
   `fechaHoraFin` datetime NOT NULL,
   `tratamiento` int(11) NOT NULL,
-  `masajista` int(11) NOT NULL,
   `dia_De_Spa` int(11) NOT NULL,
   `estado` tinyint(1) NOT NULL,
   `instalacion` int(11) NOT NULL
@@ -109,6 +107,7 @@ CREATE TABLE `sesion` (
 
 CREATE TABLE `tratamiento` (
   `codTratam` int(11) NOT NULL,
+  `masajista` int(11) NOT NULL,
   `nombre` varchar(50) NOT NULL,
   `detalle` varchar(250) NOT NULL,
   `duracion` time NOT NULL,
@@ -152,7 +151,6 @@ ALTER TABLE `masajista`
 ALTER TABLE `sesion`
   ADD PRIMARY KEY (`codSesion`),
   ADD KEY `tratamiento` (`tratamiento`),
-  ADD KEY `masajista` (`masajista`),
   ADD KEY `dia_De_Spa` (`dia_De_Spa`),
   ADD KEY `instalacion` (`instalacion`);
 
@@ -160,7 +158,8 @@ ALTER TABLE `sesion`
 -- Indices de la tabla `tratamiento`
 --
 ALTER TABLE `tratamiento`
-  ADD PRIMARY KEY (`codTratam`);
+  ADD PRIMARY KEY (`codTratam`),
+  ADD KEY `masajista` (`masajista`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -211,9 +210,14 @@ ALTER TABLE `dia_de_spa`
 --
 ALTER TABLE `sesion`
   ADD CONSTRAINT `sesion_ibfk_1` FOREIGN KEY (`tratamiento`) REFERENCES `tratamiento` (`codTratam`),
-  ADD CONSTRAINT `sesion_ibfk_2` FOREIGN KEY (`masajista`) REFERENCES `masajista` (`matricula`),
   ADD CONSTRAINT `sesion_ibfk_3` FOREIGN KEY (`dia_De_Spa`) REFERENCES `dia_de_spa` (`codPack`),
   ADD CONSTRAINT `sesion_ibfk_4` FOREIGN KEY (`instalacion`) REFERENCES `instalacion` (`codInstal`);
+
+--
+-- Filtros para la tabla `tratamiento`
+--
+ALTER TABLE `tratamiento`
+  ADD CONSTRAINT `tratamiento_ibfk_1` FOREIGN KEY (`masajista`) REFERENCES `masajista` (`matricula`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
