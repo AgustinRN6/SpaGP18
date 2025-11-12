@@ -89,7 +89,6 @@ public class VistaSesion extends javax.swing.JInternalFrame {
         jlIDDatos = new javax.swing.JLabel();
         jlDetalle = new javax.swing.JLabel();
         jrbTratamientos = new javax.swing.JRadioButton();
-        jrbMasajistas = new javax.swing.JRadioButton();
         jrbInstalacion = new javax.swing.JRadioButton();
         jrbDiasDeSpa = new javax.swing.JRadioButton();
         jtfDetalles = new javax.swing.JTextField();
@@ -187,15 +186,6 @@ public class VistaSesion extends javax.swing.JInternalFrame {
             }
         });
 
-        bgDatos.add(jrbMasajistas);
-        jrbMasajistas.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
-        jrbMasajistas.setText("masajistas");
-        jrbMasajistas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jrbMasajistasActionPerformed(evt);
-            }
-        });
-
         bgDatos.add(jrbInstalacion);
         jrbInstalacion.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
         jrbInstalacion.setText("instalación");
@@ -271,14 +261,6 @@ public class VistaSesion extends javax.swing.JInternalFrame {
                         .addGroup(jpDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jlDetalle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jtfDetalles)))
-                    .addGroup(jpDatosLayout.createSequentialGroup()
-                        .addComponent(jrbMasajistas)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jrbDiasDeSpa))
-                    .addGroup(jpDatosLayout.createSequentialGroup()
-                        .addComponent(jrbTratamientos)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jrbInstalacion))
                     .addComponent(jspTablaDatos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jlDatos1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jpDatosLayout.createSequentialGroup()
@@ -300,7 +282,13 @@ public class VistaSesion extends javax.swing.JInternalFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpDatosLayout.createSequentialGroup()
                                 .addComponent(jtfHoraFin, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jtfMinutosFin, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jtfMinutosFin, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jpDatosLayout.createSequentialGroup()
+                        .addGroup(jpDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jrbInstalacion)
+                            .addComponent(jrbTratamientos))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jrbDiasDeSpa)))
                 .addContainerGap())
         );
         jpDatosLayout.setVerticalGroup(
@@ -337,14 +325,15 @@ public class VistaSesion extends javax.swing.JInternalFrame {
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jlDatos1)
-                .addGap(7, 7, 7)
-                .addGroup(jpDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jrbTratamientos)
-                    .addComponent(jrbInstalacion))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jpDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jrbMasajistas)
-                    .addComponent(jrbDiasDeSpa))
+                .addGroup(jpDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpDatosLayout.createSequentialGroup()
+                        .addGap(7, 7, 7)
+                        .addComponent(jrbTratamientos)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jrbInstalacion))
+                    .addGroup(jpDatosLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jrbDiasDeSpa)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jlDatos)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -559,11 +548,6 @@ public class VistaSesion extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jrbMasajistasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbMasajistasActionPerformed
-        columnasTablaSecundaria();
-        jlDatos.setText("Masajistas");
-    }//GEN-LAST:event_jrbMasajistasActionPerformed
-
     private void jrbTratamientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbTratamientosActionPerformed
         columnasTablaSecundaria();
         jlDatos.setText("Tratamientos");
@@ -663,7 +647,6 @@ public class VistaSesion extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jpTabla;
     private javax.swing.JRadioButton jrbDiasDeSpa;
     private javax.swing.JRadioButton jrbInstalacion;
-    private javax.swing.JRadioButton jrbMasajistas;
     private javax.swing.JRadioButton jrbTratamientos;
     private javax.swing.JScrollPane jspTabla;
     private javax.swing.JScrollPane jspTablaDatos;
@@ -812,19 +795,6 @@ public class VistaSesion extends javax.swing.JInternalFrame {
                 
         }
         
-        if (jrbMasajistas.isSelected()) {
-
-            modeloTablaSecundaria.addColumn("Matricula");
-            modeloTablaSecundaria.addColumn("nombre y apellido");
-            modeloTablaSecundaria.addColumn("numero");
-            modeloTablaSecundaria.addColumn("especialidad");
-            modeloTablaSecundaria.addColumn("estado");
-            jtTablaDatos.setModel(modeloTablaSecundaria);
-            
-            cargarTablaSecundaria(datos);
-
-        }
-        
         if (jrbInstalacion.isSelected()) {
 
             modeloTablaSecundaria.addColumn("ID");
@@ -861,54 +831,6 @@ public class VistaSesion extends javax.swing.JInternalFrame {
         
         Utilitario.limpiarTabla(modeloTablaSecundaria);
         
-        if(jrbMasajistas.isSelected())
-        {
-            int columnaID = 0;
-            
-            for (int i = 0; i < jtTablaDatos.getColumnCount(); i++) {
-                
-                if (jtTablaDatos.getColumnName(i).equalsIgnoreCase("Matricula")) {
-                    
-                    columnaID = i;
-                    
-                }
-                
-            }
-            //si el id no esta asginado todavia entonces no entra al bloque if e itera normalmente
-
-                Iterator<Masajista> iterar = masajistas.mostrarMasajistasDisponibles().iterator();
-            while (iterar.hasNext()) {
-                
-                Masajista m = iterar.next();
-                //if (opcion[0] == -1) {
-                    modeloTablaSecundaria.addRow(new Object[]{m.getMatricula(), m.getNombreCompleto(), m.getNumeroT(),
-                        m.getEspecialidad(), Utilitario.estadoParaTabla(m.isEstado())});
-                //}
-                
-                /*if (opcion[0] == columnaID) {
-                    
-                    modeloTablaSecundaria.addRow(new Object[]{m.getMatricula(), m.getNombreCompleto(), m.getNumeroT(),
-                        m.getEspecialidad(), Utilitario.estadoParaTabla(m.isEstado())});
-                    
-                }*/
-            
-            }
-            
-            
-
-            
-            //if(estadoGuardar) { //Que se presente en el cuadro ID y descripción la informacion guardada en datos
-                
-                if (datos[0] == -1) {
-                    jtfIDDatos.setText("");
-                }else {
-                    jtfIDDatos.setText("" + datos[0]);
-                }
-                
-            //}
-            
-        }
-            
         if (jrbTratamientos.isSelected())
         {
            
@@ -927,30 +849,16 @@ public class VistaSesion extends javax.swing.JInternalFrame {
             Iterator<Tratamiento> iterar = tratamientos.mostrarTratamientos().iterator();
             while (iterar.hasNext()) {
                 Tratamiento t = iterar.next();
-                //if (opcion[1] == -1) {
-                    modeloTablaSecundaria.addRow(new Object[]{t.getCodTrat(), t.getNombre(), t.getDetalle(),
-                        t.getDuracion(),t.getCosto(),t.getTipo(), Utilitario.estadoParaTabla(t.isEstado())});
-                //}
-                
-                /*if (opcion[1] == columnaID) {
-                    
-                    modeloTablaSecundaria.addRow(new Object[]{t.getCodTrat(), t.getNombre(), t.getDetalle(),
-                        t.getDuracion(), t.getCosto(), t.getTipo(), Utilitario.estadoParaTabla(t.isEstado())});
-                    
-                }*/
-                
+                modeloTablaSecundaria.addRow(new Object[]{t.getCodTrat(), t.getNombre(), t.getDetalle(),
+                t.getDuracion(),t.getCosto(),t.getTipo(), Utilitario.estadoParaTabla(t.isEstado())});                
             }
-            
-            //if(estadoGuardar) { //Que se presente en el cuadro ID y descripción la informacion guardada en datos
-                
-                if (datos[1] == -1) {
-                    jtfIDDatos.setText("");
-                }else {
-                    jtfIDDatos.setText("" + datos[1]);
-                }
-                
-            //}
-            
+ 
+            if (datos[1] == -1) {
+                jtfIDDatos.setText("");
+            }else {
+                jtfIDDatos.setText("" + datos[1]);
+            }
+   
         }
             
         if (jrbInstalacion.isSelected())
@@ -970,30 +878,16 @@ public class VistaSesion extends javax.swing.JInternalFrame {
             Iterator<Instalacion> iterar = instalaciones.mostrarInstalaciones().iterator();
             while (iterar.hasNext()) {
                 Instalacion i = iterar.next();
-                //if (opcion[2] == -1) {
-                    modeloTablaSecundaria.addRow(new Object[]{i.getCodIns(), i.getNombre(), i.getDetallesUso(),
-                        i.getUsos(),i.getApto(),i.getPrecio30M(), Utilitario.estadoParaTabla(i.getEstado())});
-                //}
-                
-                /*if (opcion[2] == columnaID) {
-                    
-                    modeloTablaSecundaria.addRow(new Object[]{i.getCodIns(), i.getNombre(), i.getDetallesUso(),
-                        i.getUsos(),i.getApto(),i.getPrecio30M(), Utilitario.estadoParaTabla(i.getEstado())});
-                    
-                }*/
-                
+                modeloTablaSecundaria.addRow(new Object[]{i.getCodIns(), i.getNombre(), i.getDetallesUso(),
+                i.getUsos(),i.getApto(),i.getPrecio30M(), Utilitario.estadoParaTabla(i.getEstado())});                
             }
-            
-            //if (estadoGuardar) { //Que se presente en el cuadro ID y descripción la informacion guardada en datos
 
-                if (datos[2] == -1) {
-                    jtfIDDatos.setText("");
-                }else {
-                    jtfIDDatos.setText("" + datos[2]);
-                }
+            if (datos[2] == -1) {
+                jtfIDDatos.setText("");
+            }else {
+                jtfIDDatos.setText("" + datos[2]);
+            }
 
-            //}
-            
         }
                         
         if (jrbDiasDeSpa.isSelected())
@@ -1013,31 +907,16 @@ public class VistaSesion extends javax.swing.JInternalFrame {
             Iterator<DiaSpa> iterar = diasdespa.cargarDiasSpaActivos().iterator();
             while (iterar.hasNext()) {
                 DiaSpa d = iterar.next();
-                //if (opcion[3] == -1) {
-                    modeloTablaSecundaria.addRow(new Object[]{d.getCodPack(), d.getFechayH(), d.getPrefencias(),
-                        d.getCliente(),d.getMonto(), Utilitario.estadoParaTabla(d.isEstado())});
-                //}
-                
-                /*if (opcion[3] == columnaID) {
-                    
-                    modeloTablaSecundaria.addRow(new Object[]{d.getCodPack(), d.getFechayH(), d.getPrefencias(),
-                        d.getCliente(),d.getMonto(), Utilitario.estadoParaTabla(d.isEstado())});
-                    
-                }*/
-                
+                modeloTablaSecundaria.addRow(new Object[]{d.getCodPack(), d.getFechayH(), d.getPrefencias(),
+                d.getCliente(),d.getMonto(), Utilitario.estadoParaTabla(d.isEstado())});
             }
             
-            //if (estadoGuardar) { //Que se presente en el cuadro ID y descripción la informacion guardada en datos
+            if (datos[3] == -1) {
+                jtfIDDatos.setText("");
+            } else {
+                jtfIDDatos.setText("" + datos[3]);
+            }
 
-                if (datos[3] == -1) {
-                    jtfIDDatos.setText("");
-                } else {
-                    jtfIDDatos.setText("" + datos[3]);
-                }
-
-
-            //}
-            
         }
         
         
@@ -1225,30 +1104,12 @@ public class VistaSesion extends javax.swing.JInternalFrame {
         
     }
     
+    //Carga la información en la tabla secundaria (izquierda) según la opción elegida
     private void cargarInformacionSecundaria(Point evento) {
         
         int seleccionFila = jtTablaDatos.rowAtPoint(evento); 
         
         int columnaID = 0;
-        
-        if (jrbMasajistas.isSelected()) {
-            
-            for (int i = 0; i < jtTablaDatos.getColumnCount(); i++) {
-                if (jtTabla.getColumnName(i).equals("Matricula")) {
-                    columnaID = i;
-                }
-            }
-            
-            int ID_Masajista = (int)(jtTablaDatos.getValueAt(seleccionFila, columnaID));
-            
-            datos[0] = ID_Masajista;
-            
-            jtfIDDatos.setText(""+datos[0]);
-        //metodo para cargar los JtextField  
-        Masajista m = masajistas.buscarMasajista(datos[0]);
-        jtfDetalles.setText(m.getEspecialidad());
-            
-        }
               
         if (jrbTratamientos.isSelected()) {
 
@@ -1325,6 +1186,7 @@ public class VistaSesion extends javax.swing.JInternalFrame {
         
     }
     
+    //carga la información en la tabla principal sobre las sesiones cargadas
     private void cargarInformacion(Point evento) {
         
         int seleccionFila = jtTabla.rowAtPoint(evento);

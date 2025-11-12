@@ -766,6 +766,10 @@ public class SpaPrincipal extends javax.swing.JFrame {
         for(Sesion s : sesiones.mostrarTodasSesiones()){
             modeloTablaSesiones.addRow(new Object[]{s.getCodSesion(), s.getFechaIn(), s.getFechaFin()});
         }      
+<<<<<<< Updated upstream
     }
+=======
+    }    
+>>>>>>> Stashed changes
     
 }
