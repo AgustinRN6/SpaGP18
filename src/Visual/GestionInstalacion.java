@@ -133,7 +133,7 @@ public class GestionInstalacion extends javax.swing.JInternalFrame {
                     .addGroup(jpPanelInfoILayout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtPrecio30M, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtPrecio30M, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jpPanelInfoILayout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -449,7 +449,7 @@ public class GestionInstalacion extends javax.swing.JInternalFrame {
         jtEstado.setBackground(new java.awt.Color(200, 242, 183));
         jtEstado.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         jtEstado.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jtEstado.setText("Libre");
+        jtEstado.setText("Apto para su uso");
         jtEstado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         javax.swing.GroupLayout jpPanelEstadoLayout = new javax.swing.GroupLayout(jpPanelEstado);
@@ -460,7 +460,7 @@ public class GestionInstalacion extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpPanelEstadoLayout.setVerticalGroup(
@@ -571,7 +571,7 @@ public class GestionInstalacion extends javax.swing.JInternalFrame {
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
         // TODO add your handling code here:
-        setVisible(false);
+         dispose();
     }//GEN-LAST:event_jbSalirActionPerformed
 
     private void jbAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAltaActionPerformed
@@ -653,14 +653,14 @@ public class GestionInstalacion extends javax.swing.JInternalFrame {
         modeloT.addColumn("PrecioX30M");
         modeloT.addColumn("Usos");
         modeloT.addColumn("Apto");
-        modeloT.addColumn("¿Ocupado?");
+        modeloT.addColumn("estado");
         jtTablaInstalaciones.setModel(modeloT);
     }
 
     public void cargarModeloS() {
         modeloTSec.addColumn("ID");
         modeloTSec.addColumn("Nombre");
-        modeloTSec.addColumn("¿Ocupado?");
+        modeloTSec.addColumn("estado");
         jtTablaInstalacionesLibres.setModel(modeloTSec);
     }
 
@@ -680,16 +680,27 @@ public class GestionInstalacion extends javax.swing.JInternalFrame {
 
 //CAMPOS TEXTFIELD..........................................................    
     private boolean validarCampos() {
+        
         if (txtNombre.getText().isEmpty()) {
+            
             JOptionPane.showMessageDialog(null, "Ingrese un nombre!!!");
+            
         } else if (txtDetallesUso.getText().isEmpty()) {
+            
             JOptionPane.showMessageDialog(null, "Ingrese Detalles de uso!!!");
+            
         } else if (txtApto.getText().isEmpty()) {
+            
             JOptionPane.showMessageDialog(null, "Ingrese para que es apto!!!");
+            
         } else if (txtPrecio30M.getText().isEmpty()) {
+            
             JOptionPane.showMessageDialog(null, "Ingrese el precio por media hora!!!");
+            
         } else if (txtUsos.getText().isEmpty()) {
+            
             JOptionPane.showMessageDialog(null, "Ingrese la cantidad de usos!!!");
+            
         } else {
             try {
                 String nombre = txtNombre.getText();
@@ -707,7 +718,7 @@ public class GestionInstalacion extends javax.swing.JInternalFrame {
 
                 return true;
             } catch (java.lang.NumberFormatException error) {
-                JOptionPane.showMessageDialog(null, "Ingrese los datos en el formato adecuado!!!");
+                JOptionPane.showMessageDialog(null, "Ingrese el precio en el formato adecuado!!!");
             }
         }
 
@@ -721,7 +732,7 @@ public class GestionInstalacion extends javax.swing.JInternalFrame {
         txtUsos.setText("");
         txtPrecio30M.setText("");
         txtID.setText("");
-        jtEstado.setText("Libre");
+        jtEstado.setText("Para usar");
         jtEstado.setBackground(verdeLibre);
         jtTablaInstalaciones.clearSelection();
         jbAlta.setEnabled(true);
@@ -758,14 +769,14 @@ public class GestionInstalacion extends javax.swing.JInternalFrame {
             jbAlta.setEnabled(false);
             jbBaja.setEnabled(true);
             jtEstado.setBackground(verdeLibre);
-            jtEstado.setText("Libre");
+            jtEstado.setText("Apto para su uso");
             
         } else if (estados == false) {
             
             jbAlta.setEnabled(true);
             jbBaja.setEnabled(false);
             jtEstado.setBackground(rojoOcupado);
-            jtEstado.setText("Ocupado");
+            jtEstado.setText("En reparaciones");
             
         }
     }

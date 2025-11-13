@@ -8,8 +8,7 @@ import java.sql.ResultSet;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -25,26 +24,23 @@ public class DiaSPAData {
     //INSERT
     public void crearDiaSpa(DiaSpa d) {
         
-        
-        String query = "INSERT INTO dia_de_spa(fechaHora, preferencias, estado, monto, cliente) VALUES (?,?,?,?,?)";
+        String query = "INSERT INTO dia_de_spa(fechaDia, preferencias, estado, monto, cliente) VALUES (?,?,?,?,?)";
         
         try {
             
             PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             
-            ps.setTimestamp(1, Timestamp.valueOf(d.getFechayH()));
+            ps.setDate(1, Date.valueOf(d.getFecha()));
             ps.setString(2, d.getPrefencias());
             ps.setBoolean(3, d.isEstado());
             ps.setInt(4, d.getMonto());
-            ps.setInt(5, d.getCliente());
+            ps.setInt(5, d.getCliente().getCodCli());
             
             if (ps.executeUpdate() > 0) {
                 
                 JOptionPane.showMessageDialog(null, "Se ha creado el día de spa con éxito!");
                 
             }
-            
-            
             
             ResultSet rs = ps.getGeneratedKeys();
             
@@ -53,7 +49,6 @@ public class DiaSPAData {
                 d.setCodPack(rs.getInt(1));
                 
             }
-            
             
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No pudo crearse el dia de spa " + ex.getMessage());
@@ -78,6 +73,7 @@ public class DiaSPAData {
                 
             }
 
+            
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No pudo eliminarse el dia de spa " + ex.getMessage());
         }
@@ -86,17 +82,17 @@ public class DiaSPAData {
     
     //UPDATE
     public void actualizarDiaSpa(DiaSpa d) {
-        
-        String query = "UPDATE dia_de_spa SET fechaHora= ? ,preferencias= ? ,monto= ? ,cliente= ? WHERE codPack = ?";
+    
+        String query = "UPDATE dia_de_spa SET fechaDia= ? ,preferencias= ? ,monto= ? ,cliente= ? WHERE codPack = ?";
         
         try {
-
+            
             PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 
-            ps.setTimestamp(1, Timestamp.valueOf(d.getFechayH()));
+            ps.setDate(1, Date.valueOf(d.getFecha()));
             ps.setString(2, d.getPrefencias());
             ps.setInt(3, d.getMonto());
-            ps.setInt(4, d.getCliente());
+            ps.setInt(4, d.getCliente().getCodCli());
             ps.setInt(5, d.getCodPack());
 
             if (ps.executeUpdate() > 0) {
@@ -104,7 +100,7 @@ public class DiaSPAData {
                 JOptionPane.showMessageDialog(null, "Se ha actualizado el día de spa con éxito!");
 
             }
-
+            
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No pudo actualizarse el dia de spa " + ex.getMessage());
         }
@@ -113,6 +109,8 @@ public class DiaSPAData {
     
     //SELECT 1
     public DiaSpa cargarDiaSpa(int cargar) {
+        
+        ClientesData clientes = new ClientesData();
         
         DiaSpa diaSpa = new DiaSpa();
         
@@ -130,11 +128,12 @@ public class DiaSPAData {
                 
                 
                 diaSpa.setCodPack(rs.getInt("codPack"));
-                diaSpa.setFechayH(rs.getTimestamp("fechaHora").toLocalDateTime());
+                diaSpa.setFecha(rs.getDate("fechaDia").toLocalDate());
                 diaSpa.setPrefencias(rs.getString("preferencias"));
                 diaSpa.setEstado(rs.getBoolean("estado"));
                 diaSpa.setMonto(rs.getInt("monto"));
-                diaSpa.setCliente(rs.getInt("cliente"));
+                Cliente c = clientes.buscarCliente(rs.getInt("cliente"));
+                diaSpa.setCliente(c);
                 
             }
                        
@@ -147,6 +146,8 @@ public class DiaSPAData {
         
     //SELECT TODOS
     public List<DiaSpa> cargarTodosDiaSpa() {
+        
+        ClientesData clientes = new ClientesData();
         
         List<DiaSpa> cargarTodos = new ArrayList();
         
@@ -163,12 +164,14 @@ public class DiaSPAData {
                 DiaSpa diaSpa = new DiaSpa();
 
                 diaSpa.setCodPack(rs.getInt("codPack"));
-                diaSpa.setFechayH(rs.getTimestamp("fechaHora").toLocalDateTime());
+                diaSpa.setFecha(rs.getDate("fechaDia").toLocalDate());
                 diaSpa.setPrefencias(rs.getString("preferencias"));
                 diaSpa.setEstado(rs.getBoolean("estado"));
                 diaSpa.setMonto(rs.getInt("monto"));
-                diaSpa.setCliente(rs.getInt("cliente"));
                 
+                Cliente c = clientes.buscarCliente(rs.getInt("cliente"));
+                diaSpa.setCliente(c);
+
                 cargarTodos.add(diaSpa);
                 
             }
@@ -184,6 +187,8 @@ public class DiaSPAData {
     
         public List<DiaSpa> cargarDiasSpaActivos() {
         
+        ClientesData clientes = new ClientesData();
+            
         List<DiaSpa> cargarTodos = new ArrayList();
         
         String query = "SELECT * FROM dia_de_spa WHERE dia_de_spa.estado = 1";
@@ -199,11 +204,13 @@ public class DiaSPAData {
                 DiaSpa diaSpa = new DiaSpa();
 
                 diaSpa.setCodPack(rs.getInt("codPack"));
-                diaSpa.setFechayH(rs.getTimestamp("fechaHora").toLocalDateTime());
+                diaSpa.setFecha(rs.getDate("fechaDia").toLocalDate());
                 diaSpa.setPrefencias(rs.getString("preferencias"));
                 diaSpa.setEstado(rs.getBoolean("estado"));
                 diaSpa.setMonto(rs.getInt("monto"));
-                diaSpa.setCliente(rs.getInt("cliente"));
+                
+                Cliente c = clientes.buscarCliente(rs.getInt("cliente"));
+                diaSpa.setCliente(c);
                 
                 cargarTodos.add(diaSpa);
                 

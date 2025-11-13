@@ -121,9 +121,6 @@ public class prueba {
     sesiones.actualizarSesion(s);
     */
 
-    for(Tratamiento t : tratamientos.mostrarTratamientos()){
-        System.out.println(t.mostrarInfo());
-    }
     //SELECT * FROM tabla WHERE tabla.keyprimary = ? ;
         
         /*
@@ -170,13 +167,13 @@ public class prueba {
     
 
         System.out.println(".....................................................................");
-        
+        */
         System.out.println("Sesiones");
     for(Sesion s: sesiones.mostrarTodasSesiones()){
         System.out.println(s.mostrarInfo());
     }
         System.out.println(".....................................................................");
-    */
+   
     }
    
 }

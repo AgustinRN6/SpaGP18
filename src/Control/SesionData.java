@@ -25,7 +25,7 @@ public class SesionData {
     public void crearSesion(Sesion s){
         
         
-        String query="INSERT INTO sesion(fechaHoraInicio, fechaHoraFin, tratamiento, masajista, dia_De_Spa, estado, instalacion) VALUES (?,?,?,?,?,?,?)";
+        String query="INSERT INTO sesion(fechaHoraInicio, fechaHoraFin, tratamiento, dia_De_Spa, estado, instalacion) VALUES (?,?,?,?,?,?,?)";
         
         try {
 
@@ -34,10 +34,9 @@ public class SesionData {
             ps.setTimestamp(1, Timestamp.valueOf(s.getFechaIn()));
             ps.setTimestamp(2, Timestamp.valueOf(s.getFechaFin()));
             ps.setInt(3, s.getTratamiento());
-            ps.setInt(4, s.getMasajista());
-            ps.setInt(5, s.getDiaS());
-            ps.setBoolean(6, s.isEstado());
-            ps.setInt(7, s.getInstalacion());
+            ps.setInt(4, s.getDiaS());
+            ps.setBoolean(5, s.isEstado());
+            ps.setInt(6, s.getInstalacion());
 
             if (ps.executeUpdate() > 0) {
 
@@ -67,9 +66,6 @@ public class SesionData {
             
         try {
             
-
-            
-            
             PreparedStatement ps = con.prepareStatement(query);
 
             ps.setInt(1, borrar);
@@ -92,7 +88,7 @@ public class SesionData {
     public void actualizarSesion(Sesion s) {
         
         String query = "UPDATE sesion SET fechaHoraInicio = ? ,fechaHoraFin = ? "
-                + ",tratamiento = ? , masajista = ? ,dia_De_Spa =  ? "
+                + ",tratamiento = ? ,dia_De_Spa =  ? "
                 + ",instalacion = ? WHERE codSesion = ?";
         
         try {
@@ -102,10 +98,9 @@ public class SesionData {
             ps.setTimestamp(1, Timestamp.valueOf(s.getFechaIn()));
             ps.setTimestamp(2, Timestamp.valueOf(s.getFechaFin()));
             ps.setInt(3, s.getTratamiento());
-            ps.setInt(4, s.getMasajista());
-            ps.setInt(5, s.getDiaS());
-            ps.setInt(6, s.getInstalacion());
-            ps.setInt(7, s.getCodSesion());
+            ps.setInt(4, s.getDiaS());
+            ps.setInt(5, s.getInstalacion());
+            ps.setInt(6, s.getCodSesion());
 
             if (ps.executeUpdate() > 0) {
 
@@ -141,7 +136,6 @@ public class SesionData {
                 sesion.setFechaIn(rs.getTimestamp("fechaHoraInicio").toLocalDateTime());
                 sesion.setFechaFin(rs.getTimestamp("fechaHoraFin").toLocalDateTime());
                 sesion.setTratamiento(rs.getInt("tratamiento"));
-                sesion.setMasajista(rs.getInt("masajista"));
                 sesion.setDiaS(rs.getInt("dia_De_Spa"));
                 sesion.setEstado(rs.getBoolean("estado"));
                 sesion.setInstalacion(rs.getInt("instalacion"));
@@ -178,7 +172,6 @@ public class SesionData {
                 sesion.setFechaIn(rs.getTimestamp("fechaHoraInicio").toLocalDateTime());
                 sesion.setFechaFin(rs.getTimestamp("fechaHoraFin").toLocalDateTime());
                 sesion.setTratamiento(rs.getInt("tratamiento"));
-                sesion.setMasajista(rs.getInt("masajista"));
                 sesion.setDiaS(rs.getInt("dia_De_Spa"));;
                 sesion.setEstado(rs.getBoolean("estado"));
                 sesion.setInstalacion(rs.getInt("instalacion"));

@@ -5,10 +5,7 @@ import Control.*;
 import Entidades.*;
 import java.awt.Color;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.sql.Date;
-import java.time.Month;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -52,15 +49,8 @@ public class GestionSpa extends javax.swing.JInternalFrame {
         jpPanelPrincipal = new javax.swing.JPanel();
         jpPanelDiaSpa = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        txtPreferencias = new javax.swing.JTextField();
         jPanelFecha = new javax.swing.JPanel();
-        txtMinuto = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        txtHora = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
         jdtFecha = new com.toedter.calendar.JDateChooser();
-        jLabel3 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -69,6 +59,9 @@ public class GestionSpa extends javax.swing.JInternalFrame {
         jbActualizar = new javax.swing.JButton();
         jbSubir = new javax.swing.JButton();
         jbNuevo = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        txtPreferencias = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
         jpPanelTabla = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtTablaDiaS = new javax.swing.JTable();
@@ -103,64 +96,33 @@ public class GestionSpa extends javax.swing.JInternalFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Dia de Spa");
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Ingrese sus preferencias");
-
-        txtPreferencias.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
         jPanelFecha.setBackground(new java.awt.Color(0, 102, 153));
         jPanelFecha.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("y");
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("A las");
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("El");
+        jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel16.setText("Agende el dia");
 
         javax.swing.GroupLayout jPanelFechaLayout = new javax.swing.GroupLayout(jPanelFecha);
         jPanelFecha.setLayout(jPanelFechaLayout);
         jPanelFechaLayout.setHorizontalGroup(
             jPanelFechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(jPanelFechaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jdtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtHora, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtMinuto, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addGap(14, 14, 14)
+                .addComponent(jLabel16)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jdtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30))
         );
         jPanelFechaLayout.setVerticalGroup(
             jPanelFechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFechaLayout.createSequentialGroup()
+            .addGroup(jPanelFechaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelFechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jdtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addGroup(jPanelFechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel4)
-                        .addComponent(txtHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel6)
-                        .addComponent(txtMinuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanelFechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel16)
+                    .addComponent(jdtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel16.setText("Agende el dia");
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 153));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -184,9 +146,9 @@ public class GestionSpa extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-                .addComponent(jcbClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jcbClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -233,13 +195,13 @@ public class GestionSpa extends javax.swing.JInternalFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(32, 32, 32)
                 .addComponent(jbActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jbSubir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jbNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -252,47 +214,65 @@ public class GestionSpa extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel3.setBackground(new java.awt.Color(0, 102, 153));
+        jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        txtPreferencias.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtPreferencias.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("Ingrese sus preferencias");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(120, 120, 120)
+                .addComponent(jLabel9)
+                .addGap(120, 120, 120))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txtPreferencias)
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txtPreferencias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout jpPanelDiaSpaLayout = new javax.swing.GroupLayout(jpPanelDiaSpa);
         jpPanelDiaSpa.setLayout(jpPanelDiaSpaLayout);
         jpPanelDiaSpaLayout.setHorizontalGroup(
             jpPanelDiaSpaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPanelDiaSpaLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel9)
-                .addGap(104, 104, 104))
             .addGroup(jpPanelDiaSpaLayout.createSequentialGroup()
-                .addGroup(jpPanelDiaSpaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanelFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jpPanelDiaSpaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jpPanelDiaSpaLayout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jLabel1))
-                        .addGroup(jpPanelDiaSpaLayout.createSequentialGroup()
-                            .addGap(117, 117, 117)
-                            .addComponent(jLabel16))
-                        .addGroup(jpPanelDiaSpaLayout.createSequentialGroup()
-                            .addContainerGap()
-                            .addGroup(jpPanelDiaSpaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtPreferencias)))))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(jpPanelDiaSpaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpPanelDiaSpaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanelFecha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpPanelDiaSpaLayout.setVerticalGroup(
             jpPanelDiaSpaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpPanelDiaSpaLayout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addGap(12, 12, 12)
+                .addGap(13, 13, 13)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel16)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jPanelFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtPreferencias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -353,11 +333,6 @@ public class GestionSpa extends javax.swing.JInternalFrame {
         });
 
         txtID.setEnabled(false);
-        txtID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIDActionPerformed(evt);
-            }
-        });
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
@@ -417,7 +392,7 @@ public class GestionSpa extends javax.swing.JInternalFrame {
                     .addComponent(jLabel7)
                     .addComponent(jpPanelBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -443,7 +418,7 @@ public class GestionSpa extends javax.swing.JInternalFrame {
         jLabel11.setFont(new java.awt.Font("Arial Black", 1, 16)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setText("Informacion del cliente");
+        jLabel11.setText("Informacion del cliente seleccionado");
 
         txtNombreC.setEditable(false);
 
@@ -472,13 +447,12 @@ public class GestionSpa extends javax.swing.JInternalFrame {
                         .addComponent(jLabel14)
                         .addGap(18, 18, 18)
                         .addComponent(txtDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jpPanelInformacionCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabel11)
-                        .addGroup(jpPanelInformacionCLayout.createSequentialGroup()
-                            .addComponent(jLabel5)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtNombreC, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(91, Short.MAX_VALUE))
+                    .addComponent(jLabel11)
+                    .addGroup(jpPanelInformacionCLayout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtNombreC, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpPanelInformacionCLayout.setVerticalGroup(
             jpPanelInformacionCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -522,11 +496,6 @@ public class GestionSpa extends javax.swing.JInternalFrame {
         jtEstado.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jtEstado.setText("Libre");
         jtEstado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        jtEstado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtEstadoActionPerformed(evt);
-            }
-        });
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
@@ -563,16 +532,16 @@ public class GestionSpa extends javax.swing.JInternalFrame {
                     .addComponent(jpPanelTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jpPanelPrincipalLayout.createSequentialGroup()
                         .addComponent(jpPanelDiaSpa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jpPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jpPanelInformacionC, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jpPanelPrincipalLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jpPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jpPanelInformacionC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPanelPrincipalLayout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(jpPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jpPanelPrincipalLayout.createSequentialGroup()
+                                .addGroup(jpPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPanelPrincipalLayout.createSequentialGroup()
                                         .addComponent(jpPanelEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(105, 105, 105))
-                                    .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(jbSalir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap())
         );
         jpPanelPrincipalLayout.setVerticalGroup(
@@ -599,7 +568,7 @@ public class GestionSpa extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jpPanelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -652,7 +621,7 @@ public class GestionSpa extends javax.swing.JInternalFrame {
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
         // TODO add your handling code here:
-        setVisible(false);
+        dispose();
     }//GEN-LAST:event_jbSalirActionPerformed
 
     private void jbActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbActualizarActionPerformed
@@ -693,14 +662,6 @@ public class GestionSpa extends javax.swing.JInternalFrame {
         habilitarCampos();
     }//GEN-LAST:event_jbNuevoActionPerformed
 
-    private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIDActionPerformed
-
-    private void jtEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtEstadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtEstadoActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -711,15 +672,13 @@ public class GestionSpa extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanelFecha;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbActualizar;
@@ -741,9 +700,7 @@ public class GestionSpa extends javax.swing.JInternalFrame {
     private javax.swing.JTable jtTablaDiaS;
     private javax.swing.JTextField txtDNI;
     private javax.swing.JTextField txtEdad;
-    private javax.swing.JTextField txtHora;
     private javax.swing.JTextField txtID;
-    private javax.swing.JTextField txtMinuto;
     private javax.swing.JTextField txtNombreC;
     private javax.swing.JTextField txtNumeroT;
     private javax.swing.JTextField txtPreferencias;
@@ -770,12 +727,14 @@ public class GestionSpa extends javax.swing.JInternalFrame {
     private void cargarTabla() {
         Utilitario.limpiarTabla(modeloT);
         for (DiaSpa diaS : dias.cargarTodosDiaSpa()) {
-            modeloT.addRow(new Object[]{diaS.getCodPack(), diaS.getFechayH(), diaS.getCliente(), diaS.getPrefencias(), diaS.getMonto(), diaS.isEstado()});
+            modeloT.addRow(new Object[]{diaS.getCodPack(), diaS.getFecha(), diaS.getCliente().getCodCli(), diaS.getPrefencias(), diaS.getMonto(), diaS.isEstado()});
         }
     }
 
 //este metodo es de tipo boolean porque me permite reutilizarlo devuelta a la hora de actualizar.
     private boolean validarCampos() {
+        ClientesData clientes = new ClientesData();
+        
         /*este metodo verifica si cada campo del jTextField esta vacio o contiene algun dato.
       en caso de que un campo este sin rellenar entra en un bloque if o if else y se le muestra una ventana emergente
      en donde le falta llenar y va hasta el final del metodo para retornar false*/
@@ -784,14 +743,15 @@ public class GestionSpa extends javax.swing.JInternalFrame {
             /*solamente verifico si algun campo de la informacion cliente esta vacia.
               si esta vacia se entiende que el usuario no selecciono ningun cliente*/
             JOptionPane.showMessageDialog(null, "Seleccione un cliente!!!!");
+            
         } else if (jdtFecha.getDate() == null) {
+            
             JOptionPane.showMessageDialog(null, "Ingrese la fecha");
-        } else if (txtHora.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Ingrese la hora");
-        } else if (txtMinuto.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Ingrese los minutos");
+            
         } else if (txtPreferencias.getText().isEmpty()) {
+            
             JOptionPane.showMessageDialog(null, "Ingrese sus preferencias");
+            
         }else {
             /*en caso de que todos los campos hayan comprobado que tienen algun dato,
         se procede a parsearlos a variables que sean faciales de identificar.
@@ -799,51 +759,63 @@ public class GestionSpa extends javax.swing.JInternalFrame {
         sale sus respectivos carteles indicando la falla*/
             try {
                 int idC = Integer.valueOf(jcbClientes.getSelectedItem().toString());
-                int hs = Integer.parseInt(txtHora.getText());
-                int minutos = Integer.parseInt(txtMinuto.getText());
+                Cliente c = clientes.buscarCliente(idC);
+                
                 String preferencias = txtPreferencias.getText();
+                
 
-                LocalTime hora = LocalTime.of(hs, minutos);
                 /*saco los valores del jDateChooser, para luego con esos datos formar un LocalDate
-             y poder integrarlo al atributo de DiaSpa que es de tipo LocalDateTime*/
+                y poder integrarlo al atributo de DiaSpa que es de tipo LocalDateTime*/
+                
                 int año = jdtFecha.getCalendar().get(Calendar.YEAR);
                 int mes = jdtFecha.getCalendar().get(Calendar.MONTH);
                 int dia = jdtFecha.getCalendar().get(Calendar.DAY_OF_MONTH);
 
                 LocalDate fecha = LocalDate.of(año, mes, dia);
+                
                 /*cada dato que el usuario haya ingresado se le asigna al objeto d(DiaSpa). menos el id que no es necesario es auto_incremental*/
-                d.setCliente(idC);
+                
+                d.setCliente(c);
                 d.setPrefencias(preferencias);
-                d.setFechayH(LocalDateTime.of(fecha, hora));
+                d.setFecha(fecha);
                 d.setMonto(0);
                 d.setEstado(true);
 
                 return true;
 
             } catch (java.lang.NumberFormatException error) {
-                JOptionPane.showMessageDialog(null, "Ingrese los datos en el formato adecuado!!!");
+                
+                JOptionPane.showMessageDialog(null, "Ingrese los datos(horas o minutos) en el formato adecuado!!!");
+                
             } catch (java.time.DateTimeException error) {
-                JOptionPane.showMessageDialog(null, "Ingrese bien la fecha y el horario (rango de hora(0-24) y rango de min (1-64) NO mas de dos digitos)");
+                
+                JOptionPane.showMessageDialog(null, "Ingrese bien la fecha y el horario (rango de hora(0-24) y rango de min (0-60) NO mas de dos digitos)");
             }
+            
         }
+        
         return false;
+        
     }
 
     private void vaciarCampos() {
         //setea los jTextField a "" y el jCombBox al indice  0, la jdtCalendar a null.
-        txtHora.setText("");
-        txtMinuto.setText("");
+        
         txtID.setText("");
         txtPreferencias.setText("");
-        jtEstado.setText("Libre");
-        jtEstado.setBackground(verdeActivo);
-        jcbClientes.setSelectedIndex(0);
-        jtTablaDiaS.clearSelection();
-        jdtFecha.setDate(null);
         txtNombreC.setText("");
         txtEdad.setText("");
         txtDNI.setText("");
         txtNumeroT.setText("");
+        
+        jtEstado.setText("Libre");
+        jtEstado.setBackground(verdeActivo);
+        
+        jcbClientes.setSelectedIndex(0);
+        jtTablaDiaS.clearSelection();
+        
+        jdtFecha.setDate(null);
+
         //setearlo al -1 me sirve para verificar si al seleccionar y cargar los campos y luego poner nuevo tiene seleccionado alguno
         d.setCodPack(-1);
         jbAlta.setEnabled(true);
@@ -851,64 +823,77 @@ public class GestionSpa extends javax.swing.JInternalFrame {
     }
 
     private void cargarCampos() {
-
+        
+        
         int filaS = jtTablaDiaS.getSelectedRow();
         //mediante estas dos variables le asigno al objeto d(DiaSpa) las dos llaves foraneas.
         int codPack = (Integer) jtTablaDiaS.getValueAt(filaS, 0);
-        int codClien = (Integer) jtTablaDiaS.getValueAt(filaS, 2);
+        int idC = (Integer) jtTablaDiaS.getValueAt(filaS, 2);
         //ya con el codPack(Key Primary o llave primaria) podemos dar de alta, baja, borra y actualizar. debido a que se lo setea al objeto d(DiaSpa)
+            Cliente c = clientes.buscarCliente(idC);
+            
+            txtNombreC.setText(c.getNombreC());
+            txtEdad.setText(String.valueOf(c.getEdad()));
+            txtDNI.setText(String.valueOf(c.getDni()));
+            txtNumeroT.setText(String.valueOf(c.getTelefono()));
+        
+        
         d.setCodPack(codPack);
-        d.setCliente(codClien);
+        
         /*creamos un objeto dia mediante el metodo cargarDiaSpa que nos retorna el diaDeSpa especifico mediante el codPack.
       para luego con los metodos get, obtener los datos y ponerlos en los jTextField*/
         DiaSpa dia = dias.cargarDiaSpa(codPack);
 
         //Todas estas variables sirven para poder setear los jTextField y por ende rellenar sus campos.
-        String cliente = String.valueOf(codClien);
-        String minuto = String.valueOf(dia.getFechayH().getMinute());
-        String hora = String.valueOf(dia.getFechayH().getHour());
+        String cliente = String.valueOf(idC);
         String preferencia = dia.getPrefencias();
         String id = String.valueOf(dia.getCodPack());
 
-        LocalDate fecha = dia.getFechayH().toLocalDate();
+        LocalDate fecha = dia.getFecha();
 
         jcbClientes.setSelectedItem(cliente);
-        
+  
         jdtFecha.setDate(Date.valueOf(fecha));
-        txtHora.setText(hora);
-        txtMinuto.setText(minuto);
+
         txtPreferencias.setText(preferencia);
         txtID.setText(id);
 
         //metodo que habilita o inhabilita segun el estado del objeto seleccionado.
+        
         boolean estado = Boolean.valueOf(jtTablaDiaS.getValueAt(filaS, 5).toString());
+        
         if (estado == true) {
+            
             jbAlta.setEnabled(false);
             jbBaja.setEnabled(true);
             jtEstado.setText("Libre");
             jtEstado.setBackground(verdeActivo);
+            
         } else if (estado == false) {
+            
             jbAlta.setEnabled(true);
             jbBaja.setEnabled(false);
             jtEstado.setText("Ocupado");
             jtEstado.setBackground(rojoInactivo);
+            
         }
+        
 
     }
     private void inhabilitarCampos() {
+        
         txtPreferencias.setEnabled(false);
-        txtHora.setEnabled(false);
-        txtMinuto.setEnabled(false);
         jdtFecha.setEnabled(false);
         jcbClientes.setEnabled(false);
+        
     }
 
     private void habilitarCampos() {
+        
         txtPreferencias.setEnabled(true);
-        txtHora.setEnabled(true);
-        txtMinuto.setEnabled(true);
         jdtFecha.setEnabled(true);
         jcbClientes.setEnabled(true);
+        
     }
 
     private void cargarCliente() {
@@ -919,6 +904,7 @@ public class GestionSpa extends javax.swing.JInternalFrame {
 
             int idC = Integer.valueOf(jcbClientes.getSelectedItem().toString());
             Cliente c = clientes.buscarCliente(idC);
+            
             txtNombreC.setText(c.getNombreC());
             txtEdad.setText(String.valueOf(c.getEdad()));
             txtDNI.setText(String.valueOf(c.getDni()));
@@ -948,9 +934,11 @@ public class GestionSpa extends javax.swing.JInternalFrame {
    */
     
     private void ajusteDeFecha(){
+        //seteo el rango seleccionable del jDateChooser
         Date fechaActual = Date.valueOf(LocalDate.now());
         Date fechaFinLaborable = Date.valueOf(LocalDate.of(2025, 12, 25));
         jdtFecha.setSelectableDateRange(fechaActual, fechaFinLaborable);
+        
     }
     
 }

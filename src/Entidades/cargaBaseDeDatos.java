@@ -57,6 +57,12 @@ Instalaciones de agua
     Masajista ma3 = new Masajista(4444,"Gustavo Dominguez",26641234,"Estetico",true);
     Masajista ma4 = new Masajista(2232,"Leandro Gutierrez",1231212,"Relajacion",true);
     Masajista ma5 = new Masajista(9999,"Gustavo Alfange",1231212,"Especializado",true);
+    
+    Masajista ma6 = new Masajista(5555,"Pepe Rosales",255512,"Facial",true);
+    Masajista ma7 = new Masajista(6666,"Mario Gonzales",2321312,"Corporal",true);
+    Masajista ma8 = new Masajista(7777," Dominguez",26641234,"Estetico",true);
+    Masajista ma9 = new Masajista(8888,"Leandro Gutierrez",1231212,"Relajacion",true);
+    Masajista ma10 = new Masajista(1010,"Gustavo Alfange",1231212,"Especializado",true);
     /**/
     /* 
     Masajes 
@@ -81,21 +87,21 @@ Tratamientos corporales
     
     /**/
     
-    Tratamiento t1 = new Tratamiento("Masaje sueco","Terapia de relajación de cuerpo completo con presión ligera a media.",LocalTime.of(1, 30),2000,true,ma4);
-    Tratamiento t2 = new Tratamiento("Masaje de tejido profundo","Para aliviar tensión muscular crónica y tratar contracturas, con presión más intensa.",LocalTime.of(2, 0),2500,true,ma4);
-    Tratamiento t3 = new Tratamiento("Masaje con piedras calientes","Utiliza piedras calientes para calmar los músculos y el sistema nervioso.",LocalTime.of(1, 0),1500,true,ma4); 
-    Tratamiento t4 = new Tratamiento("Masajes especializados","Incluyen técnicas como la aromaterapia, masajes para parejas o masajes prenatales.",LocalTime.of(2, 30),4000,true,ma5); 
-    Tratamiento t5 = new Tratamiento("Facial básico","Limpieza profunda, exfoliación y mascarilla para refrescar el cutis.",LocalTime.of(1, 0),4000,true,ma1);
-    Tratamiento t6 = new Tratamiento("Faciales avanzados","Pueden incluir tratamientos antienvejecimiento, microdermoabrasión o hidrafaciales.",LocalTime.of(2, 0),2000,true,ma1);
-    Tratamiento t7 = new Tratamiento("Microdermoabrasión","Exfolia la capa superficial de la piel usando puntas de diamante o microcristales.",LocalTime.of(1, 30),2500,true,ma1);
-    Tratamiento t8 = new Tratamiento("Radiofrecuencia","Usa ondas de radio para generar calor en la piel, estimulando la producción de colágeno y elastina.",LocalTime.of(0,30),3000,true,ma1);
-    Tratamiento t9 = new Tratamiento("Ultrasonido","Usa ondas sonoras de alta frecuencia para limpiar la piel, penetrar activos o hacer masajes profundos.",LocalTime.of(1,0),3500,true,ma1);
-    Tratamiento t10 = new Tratamiento("Luz Pulsada Intensa (IPL)","Utilizada para fotodepilación, rejuvenecimiento de la piel y tratamiento de manchas.",LocalTime.of(0,30),4000,true,ma1);
-    Tratamiento t11 = new Tratamiento("Vaporizador facial","Produce vapor para abrir los poros y limpiar la piel profundamente.",LocalTime.of(1,0),2000,true,ma4);
-    Tratamiento t12 = new Tratamiento("Exfoliación corporal","Elimina las células muertas de la piel con el uso de sales o azúcares.",LocalTime.of(1,30),2500,true,ma4);
-    Tratamiento t13 = new Tratamiento("Envolturas corporales","Hidratan y desintoxican la piel con ingredientes como algas, barro o chocolate.",LocalTime.of(2,30),3500,true,ma4);
-    Tratamiento t14 = new Tratamiento("Hidroterapia","Sesiones en saunas, jacuzzis o baños de vapor.",LocalTime.of(1,30),2000,true,ma4);
-    Tratamiento t15 = new Tratamiento("Vacumterapia","Es una succión corporal que mejora la circulación sanguínea y el drenaje linfático.",LocalTime.of(2,0),3500,true,ma4);
+    Tratamiento t1 = new Tratamiento("Masaje sueco","Terapia de relajación de cuerpo completo con presión ligera a media.",LocalTime.of(1, 30),2000,true,"Relajacion",ma4);
+    Tratamiento t2 = new Tratamiento("Masaje de tejido profundo","Para aliviar tensión muscular crónica y tratar contracturas, con presión más intensa.",LocalTime.of(2, 0),2500,true,"Relajacion",ma4);
+    Tratamiento t3 = new Tratamiento("Masaje con piedras calientes","Utiliza piedras calientes para calmar los músculos y el sistema nervioso.",LocalTime.of(1, 0),1500,true,"Relajacion",ma9); 
+    Tratamiento t4 = new Tratamiento("Masajes especializados","Incluyen técnicas como la aromaterapia, masajes para parejas o masajes prenatales.",LocalTime.of(2, 30),4000,true,"Especializado",ma5); 
+    Tratamiento t5 = new Tratamiento("Facial básico","Limpieza profunda, exfoliación y mascarilla para refrescar el cutis.",LocalTime.of(1, 0),4000,true,"Facial",ma1);
+    Tratamiento t6 = new Tratamiento("Faciales avanzados","Pueden incluir tratamientos antienvejecimiento, microdermoabrasión o hidrafaciales.",LocalTime.of(2, 0),2000,true,"Facial",ma6);
+    Tratamiento t7 = new Tratamiento("Microdermoabrasión","Exfolia la capa superficial de la piel usando puntas de diamante o microcristales.",LocalTime.of(1, 30),2500,true,"Facial",ma1);
+    Tratamiento t8 = new Tratamiento("Radiofrecuencia","Usa ondas de radio para generar calor en la piel, estimulando la producción de colágeno y elastina.",LocalTime.of(0,30),3000,true,"Corporal",ma6);
+    Tratamiento t9 = new Tratamiento("Ultrasonido","Usa ondas sonoras de alta frecuencia para limpiar la piel, penetrar activos o hacer masajes profundos.",LocalTime.of(1,0),3500,true,"Corporal",ma1);
+    Tratamiento t10 = new Tratamiento("Luz Pulsada Intensa (IPL)","Utilizada para fotodepilación, rejuvenecimiento de la piel y tratamiento de manchas.",LocalTime.of(0,30),4000,true,"Corporal",ma6);
+    Tratamiento t11 = new Tratamiento("Vaporizador facial","Produce vapor para abrir los poros y limpiar la piel profundamente.",LocalTime.of(1,0),2000,true,"Corporal",ma7);
+    Tratamiento t12 = new Tratamiento("Exfoliación corporal","Elimina las células muertas de la piel con el uso de sales o azúcares.",LocalTime.of(1,30),2500,true,"Corporal",ma2);
+    Tratamiento t13 = new Tratamiento("Envolturas corporales","Hidratan y desintoxican la piel con ingredientes como algas, barro o chocolate.",LocalTime.of(2,30),3500,true,"Corporal",ma7);
+    Tratamiento t14 = new Tratamiento("Hidroterapia","Sesiones en saunas, jacuzzis o baños de vapor.",LocalTime.of(1,30),2000,true,"Corporal",ma2);
+    Tratamiento t15 = new Tratamiento("Vacumterapia","Es una succión corporal que mejora la circulación sanguínea y el drenaje linfático.",LocalTime.of(2,0),3500,true,"Corporal",ma7);
     
     
     /**/
@@ -109,8 +115,9 @@ Tratamientos corporales
     Cliente c1 = new Cliente("Ian Quimey Pereyra",20, 43330, 2654512,true);
     Cliente c2 = new Cliente("Ramiro Elias Moran",23, 410002, 2512313,true);
     Cliente c3 = new Cliente("Agustin Rosales Neyra",21, 431230, 26123423,true);
-    Cliente c4 = new Cliente("Prueba",99, 0011112, 1231231231,true);
-    
+    Cliente c4 = new Cliente("Ni idea, me invitaron",12, 0011112, 3213123,true);
+    Cliente c5 = new Cliente("Prueba",99, 0011112, 1231231231,true);
+    Cliente c6 = new Cliente("Prueba de la prueba",98, 0011112, 1231231221,true);
 
     
     /*DATAS*/
@@ -123,10 +130,12 @@ Tratamientos corporales
     MasajistasData masajistas = new MasajistasData();
     
     /**/
-    
     /*RELLENAR BASE*/
+    Utilitario u = new Utilitario();
+    u.limpiarTodasLasTablas();
+ 
+
     
-    /*
     
     instalaciones.cargarInstalacion(i1);
     instalaciones.cargarInstalacion(i2);
@@ -138,6 +147,24 @@ Tratamientos corporales
     instalaciones.cargarInstalacion(i8);
     instalaciones.cargarInstalacion(i9);
     instalaciones.cargarInstalacion(i10);
+     
+    clientes.subirCliente(c1);
+    clientes.subirCliente(c2);
+    clientes.subirCliente(c3);
+    clientes.subirCliente(c4);
+    clientes.subirCliente(c5);
+    clientes.subirCliente(c6);
+    
+    masajistas.agregarMasajista(ma1);
+    masajistas.agregarMasajista(ma2);
+    masajistas.agregarMasajista(ma3);
+    masajistas.agregarMasajista(ma4);
+    masajistas.agregarMasajista(ma9);
+    masajistas.agregarMasajista(ma8);
+    masajistas.agregarMasajista(ma7);
+    masajistas.agregarMasajista(ma6);
+    masajistas.agregarMasajista(ma5);
+    masajistas.agregarMasajista(ma10);
     
     tratamientos.cargarTratamiento(t1);
     tratamientos.cargarTratamiento(t2);
@@ -154,19 +181,12 @@ Tratamientos corporales
     tratamientos.cargarTratamiento(t13);
     tratamientos.cargarTratamiento(t14);
     tratamientos.cargarTratamiento(t15);
+     
+       
+
+
     
-    clientes.subirCliente(c1);
-    clientes.subirCliente(c2);
-    clientes.subirCliente(c3);
-    clientes.subirCliente(c4);
-    
-    masajistas.agregarMasajista(ma1);
-    masajistas.agregarMasajista(ma2);
-    masajistas.agregarMasajista(ma3);
-    masajistas.agregarMasajista(ma4);
-    
-    */
-    
+  
     
     }
     

@@ -188,11 +188,10 @@ public class SpaPrincipal extends javax.swing.JFrame {
             .addGroup(jpMasajistasLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpMasajistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
                     .addGroup(jpMasajistasLayout.createSequentialGroup()
-                        .addGap(12, 12, 12)
                         .addComponent(jLabel3)
-                        .addGap(0, 96, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jpMasajistasLayout.setVerticalGroup(
@@ -263,7 +262,9 @@ public class SpaPrincipal extends javax.swing.JFrame {
 
         jtaDetallesT.setColumns(20);
         jtaDetallesT.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 16)); // NOI18N
+        jtaDetallesT.setLineWrap(true);
         jtaDetallesT.setRows(5);
+        jtaDetallesT.setWrapStyleWord(true);
         jtaDetallesT.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jScrollPane6.setViewportView(jtaDetallesT);
 
@@ -352,7 +353,9 @@ public class SpaPrincipal extends javax.swing.JFrame {
 
         jtaDetallesI.setColumns(20);
         jtaDetallesI.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 16)); // NOI18N
+        jtaDetallesI.setLineWrap(true);
         jtaDetallesI.setRows(5);
+        jtaDetallesI.setWrapStyleWord(true);
         jtaDetallesI.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jScrollPane7.setViewportView(jtaDetallesI);
 
@@ -437,21 +440,21 @@ public class SpaPrincipal extends javax.swing.JFrame {
         Escritorio.setLayout(EscritorioLayout);
         EscritorioLayout.setHorizontalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(EscritorioLayout.createSequentialGroup()
-                .addGap(94, 94, 94)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EscritorioLayout.createSequentialGroup()
+                .addContainerGap(231, Short.MAX_VALUE)
                 .addGroup(EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jpPanelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jpPanelSecundario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(143, Short.MAX_VALUE))
+                .addContainerGap())
         );
         EscritorioLayout.setVerticalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(EscritorioLayout.createSequentialGroup()
-                .addGap(50, 50, 50)
+                .addGap(42, 42, 42)
                 .addComponent(jpPanelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addComponent(jpPanelSecundario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addContainerGap(71, Short.MAX_VALUE))
         );
 
         jmClientes.setText("Clientes");
@@ -766,10 +769,8 @@ public class SpaPrincipal extends javax.swing.JFrame {
         for(Sesion s : sesiones.mostrarTodasSesiones()){
             modeloTablaSesiones.addRow(new Object[]{s.getCodSesion(), s.getFechaIn(), s.getFechaFin()});
         }      
-<<<<<<< Updated upstream
-    }
-=======
+
     }    
->>>>>>> Stashed changes
+
     
 }

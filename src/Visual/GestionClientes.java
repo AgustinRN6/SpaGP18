@@ -3,6 +3,7 @@ package Visual;
 
 import Entidades.Cliente;
 import Control.ClientesData;
+import Control.Utilitario;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -225,7 +226,7 @@ public class GestionClientes extends javax.swing.JInternalFrame {
                 .addGroup(jpPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpPanelClienteLayout.createSequentialGroup()
                         .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 369, Short.MAX_VALUE)
                         .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jpPanelClienteLayout.createSequentialGroup()
                         .addComponent(jpPaneelInfoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -359,8 +360,13 @@ public class GestionClientes extends javax.swing.JInternalFrame {
         jtEstado.setBackground(new java.awt.Color(200, 242, 180));
         jtEstado.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         jtEstado.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jtEstado.setText("Libre");
+        jtEstado.setText("Activo");
         jtEstado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jtEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtEstadoActionPerformed(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -485,7 +491,6 @@ public class GestionClientes extends javax.swing.JInternalFrame {
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
         // TODO add your handling code here:
-
          dispose();
     }//GEN-LAST:event_jbSalirActionPerformed
 
@@ -520,6 +525,10 @@ public class GestionClientes extends javax.swing.JInternalFrame {
     private void txtDNIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDNIActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDNIActionPerformed
+
+    private void jtEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtEstadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtEstadoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -567,31 +576,33 @@ public class GestionClientes extends javax.swing.JInternalFrame {
     }    
 
     public void cargarTabla() {
-        borrarFilas();
+        Utilitario.limpiarTabla(modeloT);
+        
         for (Cliente cli : clientes.mostrarClientes()) {
             modeloT.addRow(new Object[]{cli.getCodCli(), cli.getNombreC(), cli.getEdad(), cli.getDni(), cli.getTelefono(), cli.isEstado()});
         }
     }
     
-    public void borrarFilas() {
-        int indice = jtTablaClientes.getRowCount() - 1;
-        
-        for (int i = indice; i >= 0; i--) {
-            modeloT.removeRow(i);
-        }
-    }
 //CAMPOS TEXTFIELD..........................................................    
 
     private boolean validarCampos() {
         
         if (txtNombreC.getText().isEmpty()) {
+            
             JOptionPane.showMessageDialog(null, "Ingrese el Nombre completo!!!!!");
+            
         } else if (txtEdad.getText().isEmpty()) {
+            
             JOptionPane.showMessageDialog(null, "Ingrese la edad!!!!!");
+            
         }  else if (txtDNI.getText().isEmpty()) {
+            
             JOptionPane.showMessageDialog(null, "Ingrese el DNI!!!!!");
+            
         } else if (txtNumeroT.getText().isEmpty()) {
+            
             JOptionPane.showMessageDialog(null, "Ingrese el numero Telefonico!!!!!");
+            
         } else {
             
             try {
@@ -607,17 +618,22 @@ public class GestionClientes extends javax.swing.JInternalFrame {
                 c.setDni(dni);
                 c.setTelefono(numeroT);
                 c.setEstado(true);
+                
                 return true;
                 
             } catch (java.lang.NumberFormatException error) {
-                JOptionPane.showMessageDialog(null, "Ingrese los datos en el formato adecuado!!!!!");
+                
+                JOptionPane.showMessageDialog(null, "Ingrese los datos(EDAD, dni o numero telefonico) en el formato adecuado!!!!!");
+           
             }
         }
+        
         return false;
         
     }
 
     private void vaciarCampos() {
+        
         txtNombreC.setText("");
         txtNumeroT.setText("");
         txtEdad.setText("");
@@ -628,42 +644,52 @@ public class GestionClientes extends javax.swing.JInternalFrame {
         c.setCodCli(-1);
         jbAlta.setEnabled(true);
         jbBaja.setEnabled(true);
+        
     }
     
     private void cargarCampos() {
+        
         int filaS = jtTablaClientes.getSelectedRow();
+        
         String id = String.valueOf(jtTablaClientes.getValueAt(filaS, 0));
         String nombreC = String.valueOf(jtTablaClientes.getValueAt(filaS, 1));
         String edad = String.valueOf(jtTablaClientes.getValueAt(filaS, 2));
         String dni = String.valueOf(jtTablaClientes.getValueAt(filaS, 3));
-        String afecciones = String.valueOf(jtTablaClientes.getValueAt(filaS, 4));
-        String numeroT = String.valueOf(jtTablaClientes.getValueAt(filaS, 5));
+        String numeroT = String.valueOf(jtTablaClientes.getValueAt(filaS, 4));
         
         int idd = (Integer) jtTablaClientes.getValueAt(filaS, 0);
-        //habilita e inhabilita segun el estado del objeto.
-        boolean estados = Boolean.valueOf(jtTablaClientes.getValueAt(filaS, 6).toString());
         
-        if (estados == true) {
-            jbBaja.setEnabled(true);
-            jbAlta.setEnabled(false);
-            jtEstado.setText("Activo");
-            jtEstado.setBackground(verdeActivo);
-        } else if (estados == false) {
-            jbAlta.setEnabled(true);
-            jbBaja.setEnabled(false);
-            jtEstado.setBackground(rojoInactivo);
-            jtEstado.setText("Ocupado");
-        }
         txtNombreC.setText(nombreC);
         txtNumeroT.setText(numeroT);
         txtEdad.setText(edad);
         txtDNI.setText(dni);
         txtID.setText(id);
+        
         c.setCodCli(idd);
+        
+        //habilita e inhabilita segun el estado del objeto.
+        boolean estados = Boolean.valueOf(jtTablaClientes.getValueAt(filaS, 5).toString());
+        
+        if (estados == true) {
+            
+            jbBaja.setEnabled(true);
+            jbAlta.setEnabled(false);
+            jtEstado.setText("Activo");
+            jtEstado.setBackground(verdeActivo);
+            
+        } else if (estados == false) {
+            
+            jbAlta.setEnabled(true);
+            jbBaja.setEnabled(false);
+            jtEstado.setBackground(rojoInactivo);
+            jtEstado.setText("Inactivo");
+            
+        }
         
     }
     
     private void inhabilitarCampos() {
+        
         txtNombreC.setEnabled(false);
         txtNumeroT.setEnabled(false);
         txtEdad.setEnabled(false);
@@ -673,11 +699,13 @@ public class GestionClientes extends javax.swing.JInternalFrame {
     }
 
     private void habilitarCampos() {
+        
         txtNombreC.setEnabled(true);
         txtNumeroT.setEnabled(true);
         txtEdad.setEnabled(true);
         txtDNI.setEnabled(true);
         txtID.setEnabled(true);
+        
     }
     
 }

@@ -29,7 +29,7 @@ public class ClientesData {
             ps.setString(2, c.getNombreC());
             ps.setInt(3, c.getTelefono());
             ps.setInt(4, c.getEdad());
-            ps.setBoolean(6, c.isEstado());
+            ps.setBoolean(5, c.isEstado());
             
             if(ps.executeUpdate() > 0){
                 JOptionPane.showMessageDialog(null, "Cliente Agregado!!!!");
@@ -75,8 +75,8 @@ public class ClientesData {
             ps.setString(2, c.getNombreC());
             ps.setInt(3, c.getTelefono());
             ps.setInt(4, c.getEdad());
-            ps.setBoolean(6, c.isEstado());
-            ps.setInt(7, c.getCodCli());
+            ps.setBoolean(5, c.isEstado());
+            ps.setInt(6, c.getCodCli());
             
             if(ps.executeUpdate() > 0){
                 JOptionPane.showMessageDialog(null, "Cliente Modificado!!!!");

@@ -224,7 +224,7 @@ public class GestionMasajista extends javax.swing.JInternalFrame {
                     .addComponent(jLabel8)
                     .addGroup(jpPanelMasajistaLayout.createSequentialGroup()
                         .addComponent(jpPanelInfoMasajista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                         .addComponent(jpPanelBotones1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(20, 20, 20))
         );
@@ -396,7 +396,7 @@ public class GestionMasajista extends javax.swing.JInternalFrame {
                             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jcbEspecialidades, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtBuscarE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         jpPanelTablaSecundariaLayout.setVerticalGroup(
             jpPanelTablaSecundariaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -433,8 +433,8 @@ public class GestionMasajista extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jtEstado, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jpPanelEstadoLayout.setVerticalGroup(
             jpPanelEstadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -462,20 +462,19 @@ public class GestionMasajista extends javax.swing.JInternalFrame {
             .addGroup(jpPanelPrincipalLayout.createSequentialGroup()
                 .addGroup(jpPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpPanelPrincipalLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jpPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jpPanelMasajista, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
-                            .addComponent(jpPanelTabla, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                        .addGap(97, 97, 97)
+                        .addComponent(jpPanelEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jpPanelPrincipalLayout.createSequentialGroup()
-                        .addGap(138, 138, 138)
-                        .addComponent(jpPanelEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addContainerGap()
+                        .addGroup(jpPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jpPanelMasajista, javax.swing.GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE)
+                            .addComponent(jpPanelTabla, javax.swing.GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE))))
+                .addGap(18, 18, 18)
                 .addGroup(jpPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jpPanelTablaSecundaria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPanelPrincipalLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jpPanelPrincipalLayout.createSequentialGroup()
+                        .addGap(0, 243, Short.MAX_VALUE)
+                        .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jpPanelTablaSecundaria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jpPanelPrincipalLayout.setVerticalGroup(
@@ -556,7 +555,7 @@ public class GestionMasajista extends javax.swing.JInternalFrame {
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
         // TODO add your handling code here:
-        setVisible(false);
+        dispose();
     }//GEN-LAST:event_jbSalirActionPerformed
 
     private void jbAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAltaActionPerformed
@@ -670,14 +669,23 @@ private void cargarTablaEspecialidad(String especialidad){
 private boolean validarCampos(){
 
     if(txtMatricula.getText().isEmpty()){
+        
         JOptionPane.showMessageDialog(null, "Ingrese la matricula!!!!!");
+        
     } else if(txtNombreC.getText().isEmpty()){
+        
         JOptionPane.showMessageDialog(null, "Ingrese el Nombre completo!!!!!");
+        
     } else if(txtNumeroT.getText().isEmpty()){
+        
         JOptionPane.showMessageDialog(null, "Ingrese el numero Telefonico!!!!!");
+        
     }   else if(txtEspecialidad.getText().isEmpty()){
+        
         JOptionPane.showMessageDialog(null, "Ingrese la especialidad!!!!!");
+        
     }else{
+        
         try{
         
         String nombreC = txtNombreC.getText();
@@ -694,7 +702,7 @@ private boolean validarCampos(){
         return true;
         
         }catch(java.lang.NumberFormatException error){
-        JOptionPane.showMessageDialog(null, "Ingrese los datos en el formato adecuado!!!!!");
+        JOptionPane.showMessageDialog(null, "Ingrese los datos(Matricula o Numero telefonico) en el formato adecuado!!!!!");
         }
     }
        return false;
@@ -749,7 +757,7 @@ private void cargarCampos(){
         jbAlta.setEnabled(true);
         jbBaja.setEnabled(false);
         jtEstado.setBackground(rojoInactivo);
-        jtEstado.setText("Ocupado");
+        jtEstado.setText("En sesion");
     }
 }
 //METODO SELECT* FROM masajista WHERE especialidad LIKE '%tipo%'
