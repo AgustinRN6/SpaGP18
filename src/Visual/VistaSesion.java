@@ -669,7 +669,6 @@ public class VistaSesion extends javax.swing.JInternalFrame {
         modeloTabla.addColumn("Inicio");
         modeloTabla.addColumn("Fin");
         modeloTabla.addColumn("tratamiento");
-        modeloTabla.addColumn("masajista");
         modeloTabla.addColumn("instalacion");
         modeloTabla.addColumn("dia de spa");
         modeloTabla.addColumn("estado");
@@ -694,17 +693,14 @@ public class VistaSesion extends javax.swing.JInternalFrame {
             if (jtTabla.getColumnName(i).equals("tratamiento")) {
                 columnas[3] = i;
             }
-            if (jtTabla.getColumnName(i).equals("masajista")) {
+            if (jtTabla.getColumnName(i).equals("instalacion")) {
                 columnas[4] = i;
             }
-            if (jtTabla.getColumnName(i).equals("instalacion")) {
+            if (jtTabla.getColumnName(i).equals("dia de spa")) {
                 columnas[5] = i;
             }
-            if (jtTabla.getColumnName(i).equals("dia de spa")) {
-                columnas[6] = i;
-            }
             if (jtTabla.getColumnName(i).equals("estado")) {
-                columnas[7] = i;
+                columnas[6] = i;
             }
         }
 
@@ -723,12 +719,12 @@ public class VistaSesion extends javax.swing.JInternalFrame {
             Sesion s = iterar.next();
             if (filtro == null && opcion == -1) {
                 modeloTabla.addRow(new Object[]{s.getCodSesion(), s.getFechaIn(), s.getFechaFin(),
-                    s.getTratamiento(), s.getMasajista(),s.getInstalacion(),s.getDiaS(), Utilitario.estadoParaTabla(s.isEstado())});
+                    s.getTratamiento(),s.getInstalacion(),s.getDiaS(), Utilitario.estadoParaTabla(s.isEstado())});
             }
 
             if (columna[0] == opcion && Utilitario.compararValores(Integer.parseInt(filtro), s.getCodSesion())) { //Si la columna ID Alumno es igual al filtro
                 modeloTabla.addRow(new Object[]{s.getCodSesion(), s.getFechaIn(), s.getFechaFin(),
-                    s.getTratamiento(), s.getMasajista(),s.getInstalacion(),s.getDiaS(), Utilitario.estadoParaTabla(s.isEstado())});
+                    s.getTratamiento(),s.getInstalacion(),s.getDiaS(), Utilitario.estadoParaTabla(s.isEstado())});
             }
             /*
             if (columna[1] == opcion && compararValores(filtro, a.getNombre())) { //Si la columna Nombre es igual al filtro
@@ -907,7 +903,7 @@ public class VistaSesion extends javax.swing.JInternalFrame {
             Iterator<DiaSpa> iterar = diasdespa.cargarDiasSpaActivos().iterator();
             while (iterar.hasNext()) {
                 DiaSpa d = iterar.next();
-                modeloTablaSecundaria.addRow(new Object[]{d.getCodPack(), d.getFechayH(), d.getPrefencias(),
+                modeloTablaSecundaria.addRow(new Object[]{d.getCodPack(), d.getFecha(), d.getPrefencias(),
                 d.getCliente(),d.getMonto(), Utilitario.estadoParaTabla(d.isEstado())});
             }
             
@@ -1074,19 +1070,19 @@ public class VistaSesion extends javax.swing.JInternalFrame {
             } else {
                 
                 if (boton.equalsIgnoreCase("GUARDAR")) {
-                    Sesion s = new Sesion(fechaInicio, fechaFinal, codTratamientos, codMasajista, codInstalaciones, codDiaSpa, true);
+                    Sesion s = new Sesion(fechaInicio, fechaFinal, codTratamientos, codInstalaciones, codDiaSpa, true);
                     sesion.crearSesion(s);
                     
                     //metodo que carga el monto segun la instalacion y el tratamiento
-                    sesion.cargarPrecioTotal(s);
+                    //sesion.cargarPrecioTotal(s);
                 }
                 
                 if (boton.equalsIgnoreCase("ACTUALIZAR")) {
                     boolean estado = sesion.mostrarSesion(Integer.parseInt(jtfID.getText())).isEstado();
-                    Sesion s = new Sesion(fechaInicio, fechaFinal, codTratamientos, codMasajista, codInstalaciones, codDiaSpa, estado);
+                    Sesion s = new Sesion(fechaInicio, fechaFinal, codTratamientos, codInstalaciones, codDiaSpa, estado);
                     s.setCodSesion(Integer.parseInt(jtfID.getText()));
                     sesion.actualizarSesion(s);
-                    sesion.cargarPrecioTotal(s);
+                    //sesion.cargarPrecioTotal(s);  
                     
                 }
                 
@@ -1173,8 +1169,8 @@ public class VistaSesion extends javax.swing.JInternalFrame {
             
 
             DiaSpa d = diasdespa.cargarDiaSpa(datos[3]);
-            Date fecha = Date.from(d.getFechayH().toLocalDate().atStartOfDay(ZoneId.systemDefault()).toInstant());
-            String min = String.valueOf(d.getFechayH().getMinute());
+            Date fecha = Date.from(d.getFecha().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+            String min = String.valueOf(d.getFecha().getMinute());
             String hs = String.valueOf(d.getFechayH().getHour());
             jdcInicio.setDate(fecha);
             jdcFin.setDate(fecha);

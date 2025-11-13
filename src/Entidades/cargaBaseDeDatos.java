@@ -11,10 +11,10 @@ public class cargaBaseDeDatos {
         
     /*PRECAUCION , LA SIGUIENTE FUNCION LIMPIA TODAS LAS TABLAS DE LA BASE DE DATOS USARLA CON PRECAUCIÓN */
      
-    /*
+    /* 
         Utilitario update = new Utilitario();
         update.limpiarTodasLasTablas();
-    */    
+    */ 
 
         /*
         Se realizará la carga de toda la información del TP, tratamientos e instalaciones 
