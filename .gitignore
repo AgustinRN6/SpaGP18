@@ -23,6 +23,15 @@
 hs_err_pid*
 replay_pid*
 
+# NetBeans private configs 
+nbproject/private/
+
+# NetBeans user-specific properties
+nbproject/build-impl.xml
+nbproject/build.properties
+nbproject/private/private.properties
+nbproject/private/configurations.xml
+
 ### NetBeans ###
 **/nbproject/private/
 **/nbproject/Makefile-*.mk
