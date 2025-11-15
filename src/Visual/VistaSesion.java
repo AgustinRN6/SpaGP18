@@ -57,6 +57,7 @@ public class VistaSesion extends javax.swing.JInternalFrame {
 
     public VistaSesion() {
         initComponents();
+        ajusteDeFecha();
         columnaSesion();
         cargarSesion(null, -1);
         nuevaSesion(true);
@@ -1170,12 +1171,10 @@ public class VistaSesion extends javax.swing.JInternalFrame {
 
             DiaSpa d = diasdespa.cargarDiaSpa(datos[3]);
             Date fecha = Date.from(d.getFecha().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
-            String min = String.valueOf(d.getFecha().getMinute());
-            String hs = String.valueOf(d.getFechayH().getHour());
+
             jdcInicio.setDate(fecha);
             jdcFin.setDate(fecha);
-            jtfHoraInicio.setText(hs);
-            jtfMinutosInicio.setText(min);
+
         }
         
         
@@ -1219,7 +1218,6 @@ public class VistaSesion extends javax.swing.JInternalFrame {
         jtfHoraFin.setText("" + fechaHoraFin.getHour());
         jtfMinutosFin.setText("" + fechaHoraFin.getMinute());
         
-        datos[0] = s.getMasajista();
         datos[1] = s.getTratamiento();
         datos[2] = s.getInstalacion();
         datos[3] = s.getDiaS();
@@ -1252,6 +1250,14 @@ public class VistaSesion extends javax.swing.JInternalFrame {
         jtfIDDatos.setText("");
         jtfDetalles.setText("");
         cargarTablaSecundaria(datos);
+        
+    }
+    
+    private void ajusteDeFecha(){
+        //seteo el rango seleccionable del jDateChooser
+        java.sql.Date fechaActual = java.sql.Date.valueOf(LocalDate.now());
+        java.sql.Date fechaFinLaborable = java.sql.Date.valueOf(LocalDate.of(2025, 12, 25));
+        jdcInicio.setSelectableDateRange(fechaActual, fechaFinLaborable);
         
     }
 }

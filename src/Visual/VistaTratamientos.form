@@ -61,13 +61,13 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jpBotones" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
-                          <Component id="jpDatos" max="-2" attributes="0"/>
+                          <Component id="jlMasajista" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jpTabla" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          <Component id="jbEliminar1" min="-2" pref="70" max="-2" attributes="0"/>
+                          <Component id="jbSalir" min="-2" pref="70" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -85,12 +85,12 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-                  <Component id="jbEliminar1" min="-2" max="-2" attributes="0"/>
+                  <Component id="jbSalir" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jpTabla" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
-                          <Component id="jpDatos" min="-2" max="-2" attributes="0"/>
+                          <Component id="jlMasajista" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -269,7 +269,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jspTabla" alignment="0" pref="0" max="32767" attributes="0"/>
-                          <Component id="jlInfoSesiones" alignment="0" pref="407" max="32767" attributes="0"/>
+                          <Component id="jlInfoSesiones" alignment="0" pref="432" max="32767" attributes="0"/>
                           <Component id="jtfFiltro" alignment="0" max="32767" attributes="0"/>
                           <Component id="jlFiltro" alignment="1" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
@@ -285,7 +285,7 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jrbEstetico" max="32767" attributes="0"/>
+                                  <Component id="jrbEspecializado" max="32767" attributes="0"/>
                                   <Component id="jrbTodos" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -314,7 +314,7 @@
                           <Component id="jrbFacial" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jrbCorporal" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jrbRelajacion" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jrbEstetico" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jrbEspecializado" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jspTabla" min="-2" pref="279" max="-2" attributes="0"/>
@@ -420,7 +420,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jrbRelajacionActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JRadioButton" name="jrbEstetico">
+            <Component class="javax.swing.JRadioButton" name="jrbEspecializado">
               <Properties>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="bgBotonesTratamiento"/>
@@ -428,10 +428,10 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Consolas" size="14" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Est&#xe9;tico"/>
+                <Property name="text" type="java.lang.String" value="Especializado"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jrbEsteticoActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jrbEspecializadoActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JRadioButton" name="jrbTodos">
@@ -469,7 +469,7 @@
             <Property name="text" type="java.lang.String" value="Gestor de los tratamientos"/>
           </Properties>
         </Component>
-        <Container class="javax.swing.JPanel" name="jpDatos">
+        <Container class="javax.swing.JPanel" name="jlMasajista">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="f7" green="f3" red="c6" type="rgb"/>
@@ -491,37 +491,46 @@
                           <Component id="jlID" alignment="0" max="32767" attributes="0"/>
                           <Component id="jtfID" alignment="0" max="32767" attributes="0"/>
                           <Component id="jSeparator4" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jSeparator2" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="jtfNombre" alignment="0" pref="131" max="32767" attributes="0"/>
-                                  <Component id="jlNombre" alignment="0" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jtfNombre" pref="124" max="32767" attributes="0"/>
+                                  <Component id="jlNombre" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jtfTipo" pref="124" max="32767" attributes="0"/>
                                   <Component id="jlTipo" max="32767" attributes="0"/>
-                                  <Component id="jtfTipo" pref="142" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jtfPrecio" pref="124" max="32767" attributes="0"/>
+                                  <Component id="jlPrecio" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="jtfPrecio" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jlPrecio" alignment="0" pref="128" max="32767" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="jlDuracion" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jtfHoraInicio" min="-2" pref="50" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jtfMinutosInicio" min="-2" pref="50" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="jlDetalle" alignment="0" max="32767" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                                          <Component id="scpDetalle" min="-2" pref="277" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
                               </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="jtfEstado" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="jSeparator3" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jSeparator2" max="32767" attributes="0"/>
-                          <Component id="jlDetalle" alignment="1" max="32767" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <Component id="jlDuracion" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jtfHoraInicio" min="-2" pref="50" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jtfMinutosInicio" min="-2" pref="50" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
-                          <Component id="scpDetalle" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jlDetalle1" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jspTablaSecundaria" alignment="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -540,38 +549,38 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jlNombre" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jlTipo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jlPrecio" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jtfNombre" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jtfTipo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jtfPrecio" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jSeparator2" min="-2" pref="10" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="jlPrecio" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jlDuracion" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jtfHoraInicio" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jtfMinutosInicio" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jtfPrecio" min="-2" max="-2" attributes="0"/>
+                              <Component id="jlDetalle" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" max="-2" attributes="0"/>
+                              <Component id="scpDetalle" min="-2" pref="57" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jtfEstado" min="-2" pref="59" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jSeparator3" min="-2" pref="10" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jlDuracion" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jtfHoraInicio" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jtfMinutosInicio" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jtfEstado" min="-2" pref="116" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jSeparator4" min="-2" pref="10" max="-2" attributes="0"/>
+                      <Component id="jSeparator4" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jlDetalle" min="-2" max="-2" attributes="0"/>
+                      <Component id="jlDetalle1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jspTablaSecundaria" min="-2" pref="123" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="scpDetalle" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -632,8 +641,6 @@
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
               </Properties>
-            </Component>
-            <Component class="javax.swing.JSeparator" name="jSeparator3">
             </Component>
             <Component class="javax.swing.JLabel" name="jlDuracion">
               <Properties>
@@ -724,9 +731,45 @@
                 </Component>
               </SubComponents>
             </Container>
+            <Component class="javax.swing.JLabel" name="jlDetalle1">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Consolas" size="18" style="1"/>
+                </Property>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="text" type="java.lang.String" value="Masajistas"/>
+              </Properties>
+            </Component>
+            <Container class="javax.swing.JScrollPane" name="jspTablaSecundaria">
+              <AuxValues>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+              </AuxValues>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTable" name="jtTablaSecundaria">
+                  <Properties>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+                        <BevelBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Consolas" size="12" style="1"/>
+                    </Property>
+                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                      <Table columnCount="0" rowCount="0"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jtTablaSecundariaMouseClicked"/>
+                  </Events>
+                </Component>
+              </SubComponents>
+            </Container>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="jbEliminar1">
+        <Component class="javax.swing.JButton" name="jbSalir">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="33" red="ff" type="rgb"/>
@@ -737,7 +780,7 @@
             <Property name="text" type="java.lang.String" value="salir"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbEliminar1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbSalirActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

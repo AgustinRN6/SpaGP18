@@ -1,9 +1,9 @@
 
 package Visual;
 
-import Control.TratamientosData;
+import Control.*;
 import Control.Utilitario;
-import Entidades.Sesion;
+import Entidades.*;
 import Entidades.Tratamiento;
 import java.awt.Color;
 import java.awt.Point;
@@ -28,7 +28,7 @@ public class VistaTratamientos extends javax.swing.JInternalFrame {
     TratamientosData tratamientos = new TratamientosData();
     
     //Se crea constante global para filtrar el tipo de tratamiento
-    String[] opcion = {"facial", "corporal", "relajacion", "estetico"};
+    String[] opcion = {"facial", "corporal", "relajacion", "especializado"};
     byte punteroOpcion = -1;
     
     
@@ -39,12 +39,26 @@ public class VistaTratamientos extends javax.swing.JInternalFrame {
             return false;
         }
     };
+    
+    private DefaultTableModel modeloTablaSecundaria = new DefaultTableModel() {
+        @Override
+        public boolean isCellEditable(int fila, int columna) {
+            return false;
+        }
+    };
+    
+    MasajistasData masajistas = new MasajistasData();
+    
+    private int punteroMasajista = -1;
 
     public VistaTratamientos() {
         initComponents();
         columnaTratamientos();
         cargarTabla(-1);
         crearTratamiento();
+        columnaMasajistas();
+        cargarTablaSecundaria(null);
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -69,11 +83,11 @@ public class VistaTratamientos extends javax.swing.JInternalFrame {
         jrbFacial = new javax.swing.JRadioButton();
         jrbCorporal = new javax.swing.JRadioButton();
         jrbRelajacion = new javax.swing.JRadioButton();
-        jrbEstetico = new javax.swing.JRadioButton();
+        jrbEspecializado = new javax.swing.JRadioButton();
         jrbTodos = new javax.swing.JRadioButton();
         jlFiltroPorTipo = new javax.swing.JLabel();
         jlTitulo = new javax.swing.JLabel();
-        jpDatos = new javax.swing.JPanel();
+        jlMasajista = new javax.swing.JPanel();
         jlID = new javax.swing.JLabel();
         jtfID = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
@@ -82,7 +96,6 @@ public class VistaTratamientos extends javax.swing.JInternalFrame {
         jSeparator2 = new javax.swing.JSeparator();
         jlPrecio = new javax.swing.JLabel();
         jtfPrecio = new javax.swing.JTextField();
-        jSeparator3 = new javax.swing.JSeparator();
         jlDuracion = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
         jlTipo = new javax.swing.JLabel();
@@ -93,7 +106,10 @@ public class VistaTratamientos extends javax.swing.JInternalFrame {
         jlDetalle = new javax.swing.JLabel();
         scpDetalle = new javax.swing.JScrollPane();
         jtaDetalle = new javax.swing.JTextArea();
-        jbEliminar1 = new javax.swing.JButton();
+        jlDetalle1 = new javax.swing.JLabel();
+        jspTablaSecundaria = new javax.swing.JScrollPane();
+        jtTablaSecundaria = new javax.swing.JTable();
+        jbSalir = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(201, 233, 240));
 
@@ -252,12 +268,12 @@ public class VistaTratamientos extends javax.swing.JInternalFrame {
             }
         });
 
-        bgBotonesTratamiento.add(jrbEstetico);
-        jrbEstetico.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
-        jrbEstetico.setText("Estético");
-        jrbEstetico.addActionListener(new java.awt.event.ActionListener() {
+        bgBotonesTratamiento.add(jrbEspecializado);
+        jrbEspecializado.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        jrbEspecializado.setText("Especializado");
+        jrbEspecializado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jrbEsteticoActionPerformed(evt);
+                jrbEspecializadoActionPerformed(evt);
             }
         });
 
@@ -283,7 +299,7 @@ public class VistaTratamientos extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jpTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jspTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jlInfoSesiones, javax.swing.GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE)
+                    .addComponent(jlInfoSesiones, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
                     .addComponent(jtfFiltro)
                     .addComponent(jlFiltro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jpTablaLayout.createSequentialGroup()
@@ -297,7 +313,7 @@ public class VistaTratamientos extends javax.swing.JInternalFrame {
                             .addComponent(jlFiltroPorTipo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jpTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jrbEstetico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jrbEspecializado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jrbTodos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -320,7 +336,7 @@ public class VistaTratamientos extends javax.swing.JInternalFrame {
                     .addComponent(jrbFacial)
                     .addComponent(jrbCorporal)
                     .addComponent(jrbRelajacion)
-                    .addComponent(jrbEstetico))
+                    .addComponent(jrbEspecializado))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jspTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -330,8 +346,8 @@ public class VistaTratamientos extends javax.swing.JInternalFrame {
         jlTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlTitulo.setText("Gestor de los tratamientos");
 
-        jpDatos.setBackground(new java.awt.Color(198, 243, 247));
-        jpDatos.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jlMasajista.setBackground(new java.awt.Color(198, 243, 247));
+        jlMasajista.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jlID.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
         jlID.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -388,47 +404,74 @@ public class VistaTratamientos extends javax.swing.JInternalFrame {
         jtaDetalle.setRows(5);
         scpDetalle.setViewportView(jtaDetalle);
 
-        javax.swing.GroupLayout jpDatosLayout = new javax.swing.GroupLayout(jpDatos);
-        jpDatos.setLayout(jpDatosLayout);
-        jpDatosLayout.setHorizontalGroup(
-            jpDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpDatosLayout.createSequentialGroup()
+        jlDetalle1.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
+        jlDetalle1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlDetalle1.setText("Masajistas");
+
+        jtTablaSecundaria.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jtTablaSecundaria.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
+        jtTablaSecundaria.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jtTablaSecundaria.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtTablaSecundariaMouseClicked(evt);
+            }
+        });
+        jspTablaSecundaria.setViewportView(jtTablaSecundaria);
+
+        javax.swing.GroupLayout jlMasajistaLayout = new javax.swing.GroupLayout(jlMasajista);
+        jlMasajista.setLayout(jlMasajistaLayout);
+        jlMasajistaLayout.setHorizontalGroup(
+            jlMasajistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jlMasajistaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jpDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jlMasajistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator1)
                     .addComponent(jlID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jtfID)
                     .addComponent(jSeparator4)
-                    .addGroup(jpDatosLayout.createSequentialGroup()
-                        .addGroup(jpDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jtfNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
-                            .addComponent(jlNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jpDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jlTipo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jtfTipo, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)))
-                    .addGroup(jpDatosLayout.createSequentialGroup()
-                        .addGroup(jpDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jtfPrecio, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jlPrecio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jtfEstado))
-                    .addComponent(jSeparator3)
                     .addComponent(jSeparator2)
-                    .addComponent(jlDetalle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jpDatosLayout.createSequentialGroup()
-                        .addComponent(jlDuracion)
+                    .addGroup(jlMasajistaLayout.createSequentialGroup()
+                        .addGroup(jlMasajistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jtfNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
+                            .addComponent(jlNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtfHoraInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jlMasajistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jtfTipo, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
+                            .addComponent(jlTipo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtfMinutosInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(scpDetalle))
+                        .addGroup(jlMasajistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jtfPrecio, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
+                            .addComponent(jlPrecio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jlMasajistaLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addGroup(jlMasajistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jlMasajistaLayout.createSequentialGroup()
+                                .addComponent(jlDuracion)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jtfHoraInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jtfMinutosInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jlMasajistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jlDetalle, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jlMasajistaLayout.createSequentialGroup()
+                                    .addGap(6, 6, 6)
+                                    .addComponent(scpDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jtfEstado))
+                    .addComponent(jlDetalle1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jspTablaSecundaria, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        jpDatosLayout.setVerticalGroup(
-            jpDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpDatosLayout.createSequentialGroup()
+        jlMasajistaLayout.setVerticalGroup(
+            jlMasajistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jlMasajistaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jlID)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -436,44 +479,44 @@ public class VistaTratamientos extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jpDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jlMasajistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlNombre)
-                    .addComponent(jlTipo))
+                    .addComponent(jlTipo)
+                    .addComponent(jlPrecio))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jpDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jlMasajistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtfTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jpDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpDatosLayout.createSequentialGroup()
-                        .addComponent(jlPrecio)
+                .addGap(4, 4, 4)
+                .addGroup(jlMasajistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jlMasajistaLayout.createSequentialGroup()
+                        .addGroup(jlMasajistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jlDuracion)
+                            .addComponent(jtfHoraInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtfMinutosInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtfPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jtfEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jlDetalle)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(scpDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jpDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlDuracion)
-                    .addComponent(jtfHoraInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtfMinutosInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jlDetalle1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jlDetalle)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(scpDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jspTablaSecundaria, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jbEliminar1.setBackground(new java.awt.Color(255, 51, 0));
-        jbEliminar1.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
-        jbEliminar1.setText("salir");
-        jbEliminar1.addActionListener(new java.awt.event.ActionListener() {
+        jbSalir.setBackground(new java.awt.Color(255, 51, 0));
+        jbSalir.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
+        jbSalir.setText("salir");
+        jbSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbEliminar1ActionPerformed(evt);
+                jbSalirActionPerformed(evt);
             }
         });
 
@@ -486,12 +529,12 @@ public class VistaTratamientos extends javax.swing.JInternalFrame {
                 .addGroup(jpFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jpBotones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jpFondoLayout.createSequentialGroup()
-                        .addComponent(jpDatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jlMasajista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jpTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpFondoLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jbEliminar1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
             .addGroup(jpFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jpFondoLayout.createSequentialGroup()
@@ -503,12 +546,12 @@ public class VistaTratamientos extends javax.swing.JInternalFrame {
             jpFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpFondoLayout.createSequentialGroup()
                 .addGap(11, 11, 11)
-                .addComponent(jbEliminar1)
+                .addComponent(jbSalir)
                 .addGap(18, 18, 18)
                 .addGroup(jpFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jpTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jpFondoLayout.createSequentialGroup()
-                        .addComponent(jpDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jlMasajista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -577,67 +620,78 @@ public class VistaTratamientos extends javax.swing.JInternalFrame {
     private void jrbFacialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbFacialActionPerformed
         punteroOpcion = 0;
         cargarTabla(-1);
+        cargarTablaSecundaria("Facial");
     }//GEN-LAST:event_jrbFacialActionPerformed
 
     private void jrbCorporalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbCorporalActionPerformed
         punteroOpcion = 1;
         cargarTabla(-1);
+        cargarTablaSecundaria("Corporal");
     }//GEN-LAST:event_jrbCorporalActionPerformed
 
     private void jrbRelajacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbRelajacionActionPerformed
         punteroOpcion = 2;
         cargarTabla(-1);
+        cargarTablaSecundaria("Relajacion");
     }//GEN-LAST:event_jrbRelajacionActionPerformed
 
-    private void jrbEsteticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbEsteticoActionPerformed
+    private void jrbEspecializadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbEspecializadoActionPerformed
         punteroOpcion = 3;
         cargarTabla(-1);
-    }//GEN-LAST:event_jrbEsteticoActionPerformed
+        cargarTablaSecundaria("Especializado");
+    }//GEN-LAST:event_jrbEspecializadoActionPerformed
 
     private void jrbTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbTodosActionPerformed
         punteroOpcion = -1;
         cargarTabla(-1);
+        cargarTablaSecundaria(null);
     }//GEN-LAST:event_jrbTodosActionPerformed
 
-    private void jbEliminar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminar1ActionPerformed
+    private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
         setVisible(false);
-    }//GEN-LAST:event_jbEliminar1ActionPerformed
+    }//GEN-LAST:event_jbSalirActionPerformed
+
+    private void jtTablaSecundariaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtTablaSecundariaMouseClicked
+        elegirMasajista(evt.getPoint());
+    }//GEN-LAST:event_jtTablaSecundariaMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgBotonesTratamiento;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JButton jbActualizar;
     private javax.swing.JButton jbAltaLogica;
     private javax.swing.JButton jbBajaLogica;
     private javax.swing.JButton jbEliminar;
-    private javax.swing.JButton jbEliminar1;
     private javax.swing.JButton jbGuardar;
     private javax.swing.JButton jbNuevo;
+    private javax.swing.JButton jbSalir;
     private javax.swing.JLabel jlDetalle;
+    private javax.swing.JLabel jlDetalle1;
     private javax.swing.JLabel jlDuracion;
     private javax.swing.JLabel jlFiltro;
     private javax.swing.JLabel jlFiltroPorTipo;
     private javax.swing.JLabel jlID;
     private javax.swing.JLabel jlInfoSesiones;
+    private javax.swing.JPanel jlMasajista;
     private javax.swing.JLabel jlNombre;
     private javax.swing.JLabel jlPrecio;
     private javax.swing.JLabel jlTipo;
     private javax.swing.JLabel jlTitulo;
     private javax.swing.JPanel jpBotones;
-    private javax.swing.JPanel jpDatos;
     private javax.swing.JPanel jpFondo;
     private javax.swing.JPanel jpTabla;
     private javax.swing.JRadioButton jrbCorporal;
-    private javax.swing.JRadioButton jrbEstetico;
+    private javax.swing.JRadioButton jrbEspecializado;
     private javax.swing.JRadioButton jrbFacial;
     private javax.swing.JRadioButton jrbRelajacion;
     private javax.swing.JRadioButton jrbTodos;
     private javax.swing.JScrollPane jspTabla;
+    private javax.swing.JScrollPane jspTablaSecundaria;
     private javax.swing.JTable jtTabla;
+    private javax.swing.JTable jtTablaSecundaria;
     private javax.swing.JTextArea jtaDetalle;
     private javax.swing.JTextField jtfEstado;
     private javax.swing.JTextField jtfFiltro;
@@ -662,6 +716,46 @@ public class VistaTratamientos extends javax.swing.JInternalFrame {
             modeloTabla.addColumn("estado");
             jtTabla.setModel(modeloTabla);
                 
+    }
+    
+    //Completar las columnas de la tabla secundaria
+    private void columnaMasajistas() {
+    
+            modeloTablaSecundaria.addColumn("matricula");
+            modeloTablaSecundaria.addColumn("nombre y apellido");
+            modeloTablaSecundaria.addColumn("telefono");
+            modeloTablaSecundaria.addColumn("especialidad");
+            modeloTablaSecundaria.addColumn("estado");
+            jtTablaSecundaria.setModel(modeloTablaSecundaria);
+                
+    }
+    
+    //Carga la información de la base de datos a la tabla secundaria
+    private void cargarTablaSecundaria(String especialidad) {
+        
+        punteroMasajista = -1; // Se renueva el puntero porque se carga la tabla
+        
+        Utilitario.limpiarTabla(modeloTablaSecundaria);
+        
+        Iterator<Masajista> iterar;
+        if (punteroOpcion > -1) {
+            
+            iterar = masajistas.mostrarPorEspecialidad(especialidad).iterator();
+            
+        } else {
+            iterar = masajistas.mostrarMasajistas().iterator();
+        }
+        
+        while (iterar.hasNext()) {
+            Masajista m = iterar.next();
+            
+            modeloTablaSecundaria.addRow(new Object[]{m.getMatricula(), m.getNombreCompleto(), m.getNumeroT(),
+            m.getEspecialidad(), Utilitario.estadoParaTabla(m.isEstado())});
+            
+            
+
+        }
+        
     }
     
     //Carga la información de la base de datos a la tabla
@@ -728,6 +822,26 @@ public class VistaTratamientos extends javax.swing.JInternalFrame {
         //------------------
         
         nuevoTratamiento(false);
+
+        
+    }
+    
+    //Función cuando se clickea una opción de la información de la tabla
+    private void elegirMasajista(Point evento) {
+        
+        int seleccionFila = jtTablaSecundaria.rowAtPoint(evento);
+
+        int columnaID = 0;
+        
+        for (int i = 0; i < jtTablaSecundaria.getColumnCount(); i++) {
+            if (jtTabla.getColumnName(i).equals("matricula")) {
+                columnaID = i;
+            }
+        }
+        
+        int ID = (int)(jtTablaSecundaria.getValueAt(seleccionFila, columnaID));
+        
+        punteroMasajista = ID;
 
         
     }
@@ -859,7 +973,22 @@ public class VistaTratamientos extends javax.swing.JInternalFrame {
                 errores++;
             }
             
-            int precio = Integer.parseInt(jtfPrecio.getText());                   
+            int precio = Integer.parseInt(jtfPrecio.getText());  
+            
+            Masajista masajista = new Masajista();
+            
+            if (punteroMasajista == -1) {
+                JOptionPane.showMessageDialog(null, "Debe seleccionar a un masajista");
+                errores++;
+            } else {
+                masajista = masajistas.buscarMasajista(punteroMasajista); 
+                if (!masajista.getEspecialidad().equalsIgnoreCase(tipo)) {
+                    JOptionPane.showMessageDialog(null, "Debe seleccionar a un masajista acorde para el tipo: " + tipo);
+                    errores++;
+                }                
+            }
+            
+            
 
             if (errores > 0) {
                 if (boton.equalsIgnoreCase("GUARDAR")) {
@@ -872,7 +1001,7 @@ public class VistaTratamientos extends javax.swing.JInternalFrame {
             } else {
 
                 if (boton.equalsIgnoreCase("GUARDAR")) {
-                    Tratamiento t = new Tratamiento(nombre,detalle,tiempo,precio,true,tipo);
+                    Tratamiento t = new Tratamiento(nombre,detalle,tiempo,precio,true,tipo,masajista);
                     tratamientos.cargarTratamiento(t);
                     cargarTabla(-1);
                     crearTratamiento();    
@@ -880,7 +1009,7 @@ public class VistaTratamientos extends javax.swing.JInternalFrame {
 
                 if (boton.equalsIgnoreCase("ACTUALIZAR")) {
                     boolean estado = tratamientos.buscarTratamiento(Integer.parseInt(jtfID.getText())).isEstado();
-                    Tratamiento t = new Tratamiento(nombre,detalle,tiempo,precio,true,tipo);
+                    Tratamiento t = new Tratamiento(nombre,detalle,tiempo,precio,true,tipo,masajista);
                     t.setCodTrat(Integer.parseInt(jtfID.getText()));
                     tratamientos.actualizarTratamiento(t);
                     cargarTabla(-1);
