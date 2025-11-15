@@ -5,6 +5,7 @@ import Control.*;
 import Entidades.*;
 import java.awt.Color;
 import java.awt.Point;
+import java.beans.PropertyVetoException;
 import java.time.DateTimeException;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -36,6 +37,10 @@ public class VistaSesion extends javax.swing.JInternalFrame {
     
 
     SesionData sesion = new SesionData(); //Se utilizará para las consultas de la base de datos
+    
+    //Variables globales para que se sepa que está seleccionado (fecha y (tratamiento o instalacion))
+    private LocalDate fechaSeleccionada = LocalDate.now();
+    private String Seleccion = "Tratamiento";
     
     
     //Se crea el modelo de la tabla, y se reemplaza el valor de celda editable a falso
@@ -97,6 +102,7 @@ public class VistaSesion extends javax.swing.JInternalFrame {
         jtTablaDatos = new javax.swing.JTable();
         jlDatos1 = new javax.swing.JLabel();
         jtfEstado = new javax.swing.JTextField();
+        jbSeleccionar = new javax.swing.JButton();
         jpBotones = new javax.swing.JPanel();
         jbNuevo = new javax.swing.JButton();
         jbGuardar = new javax.swing.JButton();
@@ -110,7 +116,7 @@ public class VistaSesion extends javax.swing.JInternalFrame {
         jlInfoSesiones = new javax.swing.JLabel();
         jlFiltro = new javax.swing.JLabel();
         jtfFiltro = new javax.swing.JTextField();
-        jbEliminar1 = new javax.swing.JButton();
+        jbSalir = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(222, 243, 248));
         setPreferredSize(new java.awt.Dimension(700, 500));
@@ -135,6 +141,11 @@ public class VistaSesion extends javax.swing.JInternalFrame {
         jlFechaHora.setText("Fecha y hora de la sesión");
 
         jdcInicio.setDateFormatString("dd MMM yyyy");
+        jdcInicio.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jdcInicioPropertyChange(evt);
+            }
+        });
 
         jdcFin.setDateFormatString("dd MMM yyyy");
 
@@ -240,6 +251,15 @@ public class VistaSesion extends javax.swing.JInternalFrame {
         jtfEstado.setText("INACTIVO");
         jtfEstado.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        jbSeleccionar.setBackground(new java.awt.Color(239, 242, 183));
+        jbSeleccionar.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
+        jbSeleccionar.setText("Seleccionar");
+        jbSeleccionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSeleccionarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpDatosLayout = new javax.swing.GroupLayout(jpDatos);
         jpDatos.setLayout(jpDatosLayout);
         jpDatosLayout.setHorizontalGroup(
@@ -288,6 +308,8 @@ public class VistaSesion extends javax.swing.JInternalFrame {
                         .addGroup(jpDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jrbInstalacion)
                             .addComponent(jrbTratamientos))
+                        .addGap(46, 46, 46)
+                        .addComponent(jbSeleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jrbDiasDeSpa)))
                 .addContainerGap())
@@ -334,8 +356,11 @@ public class VistaSesion extends javax.swing.JInternalFrame {
                         .addComponent(jrbInstalacion))
                     .addGroup(jpDatosLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jrbDiasDeSpa)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jrbDiasDeSpa))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpDatosLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jbSeleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(24, 24, 24)
                 .addComponent(jlDatos)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -504,12 +529,12 @@ public class VistaSesion extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        jbEliminar1.setBackground(new java.awt.Color(255, 51, 0));
-        jbEliminar1.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
-        jbEliminar1.setText("salir");
-        jbEliminar1.addActionListener(new java.awt.event.ActionListener() {
+        jbSalir.setBackground(new java.awt.Color(255, 51, 0));
+        jbSalir.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
+        jbSalir.setText("salir");
+        jbSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbEliminar1ActionPerformed(evt);
+                jbSalirActionPerformed(evt);
             }
         });
 
@@ -528,14 +553,14 @@ public class VistaSesion extends javax.swing.JInternalFrame {
                             .addComponent(jpTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jbEliminar1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jbEliminar1)
+                .addComponent(jbSalir)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -552,6 +577,7 @@ public class VistaSesion extends javax.swing.JInternalFrame {
     private void jrbTratamientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbTratamientosActionPerformed
         columnasTablaSecundaria();
         jlDatos.setText("Tratamientos");
+        Seleccion = "Tratamiento";
 
     }//GEN-LAST:event_jrbTratamientosActionPerformed
 
@@ -571,7 +597,7 @@ public class VistaSesion extends javax.swing.JInternalFrame {
     private void jrbInstalacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbInstalacionActionPerformed
         columnasTablaSecundaria();
         jlDatos.setText("Instalaciones");
-            
+        Seleccion = "Instalacion";    
     }//GEN-LAST:event_jrbInstalacionActionPerformed
 
     private void jrbDiasDeSpaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbDiasDeSpaActionPerformed
@@ -614,9 +640,28 @@ public class VistaSesion extends javax.swing.JInternalFrame {
         crearSesion();
     }//GEN-LAST:event_jbBajaLogicaActionPerformed
 
-    private void jbEliminar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminar1ActionPerformed
+    private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
         setVisible(false);
-    }//GEN-LAST:event_jbEliminar1ActionPerformed
+    }//GEN-LAST:event_jbSalirActionPerformed
+
+    private void jbSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSeleccionarActionPerformed
+        jdSeleccionar ventanaSeleccionar = new jdSeleccionar(null, true);
+        ventanaSeleccionar.setEleccion(Seleccion);
+        ventanaSeleccionar.setFecha(fechaSeleccionada);
+        ventanaSeleccionar.ModificacionDatos();
+        ventanaSeleccionar.setLocationRelativeTo(this);
+        ventanaSeleccionar.setVisible(true);
+        
+    }//GEN-LAST:event_jbSeleccionarActionPerformed
+
+    private void jdcInicioPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jdcInicioPropertyChange
+        try {
+            fechaSeleccionada = (jdcInicio.getDate()).toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        } catch (java.lang.NullPointerException er) {
+            fechaSeleccionada = LocalDate.now();
+        }
+        
+    }//GEN-LAST:event_jdcInicioPropertyChange
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -627,9 +672,10 @@ public class VistaSesion extends javax.swing.JInternalFrame {
     private javax.swing.JButton jbAltaLogica;
     private javax.swing.JButton jbBajaLogica;
     private javax.swing.JButton jbEliminar;
-    private javax.swing.JButton jbEliminar1;
     private javax.swing.JButton jbGuardar;
     private javax.swing.JButton jbNuevo;
+    private javax.swing.JButton jbSalir;
+    private javax.swing.JButton jbSeleccionar;
     private com.toedter.calendar.JDateChooser jdcFin;
     private com.toedter.calendar.JDateChooser jdcInicio;
     private javax.swing.JLabel jlDatos;
@@ -727,31 +773,6 @@ public class VistaSesion extends javax.swing.JInternalFrame {
                 modeloTabla.addRow(new Object[]{s.getCodSesion(), s.getFechaIn(), s.getFechaFin(),
                     s.getTratamiento(),s.getInstalacion(),s.getDiaS(), Utilitario.estadoParaTabla(s.isEstado())});
             }
-            /*
-            if (columna[1] == opcion && compararValores(filtro, a.getNombre())) { //Si la columna Nombre es igual al filtro
-                modeloTabla.addRow(new Object[]{a.getId(), a.getNombre(), a.getApellido(),
-                    a.getDni(), a.getFechaNacimiento(), estadoAlumnoParaTabla(a.isEstado())});
-            }
-
-            if (columna[2] == opcion && compararValores(filtro, a.getApellido())) { //Si la columna Apellido es igual al filtro
-                modeloTabla.addRow(new Object[]{a.getId(), a.getNombre(), a.getApellido(),
-                    a.getDni(), a.getFechaNacimiento(), estadoAlumnoParaTabla(a.isEstado())});
-            }
-
-            if (columna[3] == opcion && compararValores(Integer.parseInt(filtro), a.getDni())) { //Si la columna ID Alumno es igual al filtro
-                modeloTabla.addRow(new Object[]{a.getId(), a.getNombre(), a.getApellido(),
-                    a.getDni(), a.getFechaNacimiento(), estadoAlumnoParaTabla(a.isEstado())});
-            }
-
-            if (columna[5] == opcion && filtro.equalsIgnoreCase("Activos") && a.isEstado()) { //Si la columna estado es igual a true
-                modeloTabla.addRow(new Object[]{a.getId(), a.getNombre(), a.getApellido(),
-                    a.getDni(), a.getFechaNacimiento(), estadoAlumnoParaTabla(a.isEstado())});
-            }
-
-            if (columna[5] == opcion && filtro.equalsIgnoreCase("Inactivos") && !a.isEstado()) { //Si la columna estado es igual a false
-                modeloTabla.addRow(new Object[]{a.getId(), a.getNombre(), a.getApellido(),
-                    a.getDni(), a.getFechaNacimiento(), estadoAlumnoParaTabla(a.isEstado())});
-            }*/
 
         }
     }
