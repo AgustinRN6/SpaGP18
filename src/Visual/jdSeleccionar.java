@@ -1,16 +1,35 @@
 
 package Visual;
 
+import Control.*;
+import Entidades.*;
+import java.time.Duration;
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.Iterator;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class jdSeleccionar extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(jdSeleccionar.class.getName());
 
+    private TratamientosData tratamientos = new TratamientosData();
+    private MasajistasData masajistas = new MasajistasData();
+    
+    //Dia de spa comprendiendo entre los siguientes horarios de trabajo =
+    private LocalTime inicioJornada = LocalTime.of(7, 0);
+    private LocalTime finJornada = LocalTime.of(21, 0);
+    
+    //Horarios que se disponen (horario , intervalo)
+    private ArrayList<LocalTime> horarioDisponible = new ArrayList<>();
+    private int intervalo;
+    
     //Datos que brindará la vistaSesion
     private String eleccion = "";
     private LocalDate fecha = LocalDate.now();
+    private int codigo = -1;
 
     public void setEleccion(String eleccion) {
         this.eleccion = eleccion;
@@ -19,6 +38,12 @@ public class jdSeleccionar extends javax.swing.JDialog {
     public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+    
+    
      
     
     public jdSeleccionar(java.awt.Frame parent, boolean modal) {
@@ -32,6 +57,7 @@ public class jdSeleccionar extends javax.swing.JDialog {
         
         columnaSeleccion(eleccion);
         fechaElegida();
+        cargarTabla(eleccion,codigo);
         
     }
     
@@ -177,7 +203,8 @@ public class jdSeleccionar extends javax.swing.JDialog {
             modeloTabla.addColumn("duracion");
             modeloTabla.addColumn("costo");
             modeloTabla.addColumn("Masajista");
-            modeloTabla.addColumn("Horario");
+            modeloTabla.addColumn("Horario inicial");
+            modeloTabla.addColumn("Horario Final");
             jtTabla.setModel(modeloTabla);
         }
         
@@ -193,6 +220,64 @@ public class jdSeleccionar extends javax.swing.JDialog {
     
     public void fechaElegida() {
         jtfFecha.setText(fecha.toString());
+    }
+    
+    public void cargarTabla(String eleccion, int codigo) {
+        
+        Utilitario.limpiarTabla(modeloTabla);
+        
+        if (eleccion.equalsIgnoreCase("Tratamiento")) {
+            
+            try {
+                Iterator<diaSpaTratamiento> iterar = tratamientos.ListadoTratamientosDelDia(fecha, codigo).iterator();
+
+                Tratamiento t = tratamientos.buscarTratamiento(codigo);
+                
+                //Se calcula cuantos tratamientos hay disponibles en el dia, segun la duracion del mismo
+                int cuantasVeces;
+                if (t.getDuracion().getMinute() > 0) {
+                    cuantasVeces = (int) ((finJornada.getHour() - inicioJornada.getHour()) - (t.getDuracion().getHour()+1));
+                } else {
+                    cuantasVeces = (int) ((finJornada.getHour() - inicioJornada.getHour()) - (t.getDuracion().getHour()));
+                }
+                
+                
+                System.out.println(cuantasVeces);
+                
+                horarioDisponible.add(inicioJornada);
+
+                for (int i = 0; i < cuantasVeces; i++) {
+
+                    horarioDisponible.add(horarioDisponible.getLast().plusHours(t.getDuracion().getHour()));
+
+                }
+
+                while (iterar.hasNext()) {
+                    diaSpaTratamiento d = iterar.next();
+                    //No disponible
+                    modeloTabla.addRow(new Object[]{d.getCodTrat(), d.getNombre(), d.getDetalle(), d.getDuracion(), d.getCosto(),
+                        d.getMasajista(), d.getInicio(), d.getFin()});
+                }
+
+                for (int i = 0; i < cuantasVeces; i++) {
+
+                    diaSpaTratamiento d = new diaSpaTratamiento(codigo, t.getNombre(), t.getDetalle(), t.getDuracion(),
+                            t.getCosto(), t.getMasajista().getNombreCompleto(), horarioDisponible.get(i), horarioDisponible.get(i).plusHours(t.getDuracion().getHour()));
+                    modeloTabla.addRow(new Object[]{d.getCodTrat(), d.getNombre(), d.getDetalle(), d.getDuracion(), d.getCosto(),
+                        d.getMasajista(), d.getInicio(), d.getFin()});
+
+                }
+            } catch (java.lang.NullPointerException er) {
+                
+                JOptionPane.showMessageDialog(null, "Sin tratamiento seleccionado, sal de esta ventana y selecciona uno");
+                
+            }
+            
+            
+            
+        }
+        
+        
     }
 
 

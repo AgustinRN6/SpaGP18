@@ -9,6 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import java.sql.Time;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 
 public class TratamientosData {
 
@@ -231,6 +235,57 @@ public class TratamientosData {
         } catch (java.sql.SQLException error) {
             JOptionPane.showMessageDialog(null, error.getMessage());
         }
+        
+    }
+    
+    //Se utilizará para realizar un listado de los tratamientos de un día de spa correspondiente
+    public List<diaSpaTratamiento> ListadoTratamientosDelDia(LocalDate fecha, int codTratamiento) {
+        
+        ArrayList<diaSpaTratamiento> tratamientos = new ArrayList<>();
+
+        //Se realiza un JOIN de masajistas y tratamientos con respecto a la sesion, para corroborar cuales son los tratamientos
+        //de la fecha elegida por el usuario
+        String query = "SELECT t.codTratam, t.nombre, t.detalle, t.duracion, t.costo," +
+        "m.nombreApellido, TIME(s.fechaHoraInicio) 'horario', TIME(s.fechaHoraFin) 'horarioFinal'\n" +
+        "FROM tratamiento t\n" +
+        "JOIN masajista m ON t.masajista = m.matricula\n" +
+        "JOIN sesion s ON t.codTratam = s.tratamiento \n" +
+        "AND date(s.fechaHoraInicio) = date(?)"+ 
+        "AND t.codTratam = ?;";
+        
+        try {
+            
+            PreparedStatement ps = con.prepareStatement(query);
+            //Se utiliza para consultar por fecha brindada por parametro
+            ps.setString(1, fecha.toString());
+            ps.setInt(2, codTratamiento);
+
+            ResultSet resultado = ps.executeQuery();
+            
+            while(resultado.next()) {
+                
+                diaSpaTratamiento t = new diaSpaTratamiento();
+                
+                t.setCodTrat(resultado.getInt("codTratam"));
+                t.setNombre(resultado.getString("nombre"));
+                t.setDetalle(resultado.getString("detalle"));
+                t.setDuracion(resultado.getTime("duracion").toLocalTime());
+                t.setCosto(resultado.getInt("costo"));
+                t.setMasajista(resultado.getString("nombreApellido"));
+                t.setInicio(resultado.getTime("horario").toLocalTime());
+                t.setFin(resultado.getTime("horarioFinal").toLocalTime());
+                
+                tratamientos.add(t);
+                
+            }
+
+        } catch (java.sql.SQLException error) {
+            JOptionPane.showMessageDialog(null, error.getMessage());
+        }
+        
+        
+        return tratamientos;
+        
         
     }
     

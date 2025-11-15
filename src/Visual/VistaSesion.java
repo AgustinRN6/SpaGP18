@@ -648,6 +648,7 @@ public class VistaSesion extends javax.swing.JInternalFrame {
         jdSeleccionar ventanaSeleccionar = new jdSeleccionar(null, true);
         ventanaSeleccionar.setEleccion(Seleccion);
         ventanaSeleccionar.setFecha(fechaSeleccionada);
+        ventanaSeleccionar.setCodigo(datos[1]);
         ventanaSeleccionar.ModificacionDatos();
         ventanaSeleccionar.setLocationRelativeTo(this);
         ventanaSeleccionar.setVisible(true);
