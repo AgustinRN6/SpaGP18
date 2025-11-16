@@ -53,6 +53,7 @@ public class VistaTratamientos extends javax.swing.JInternalFrame {
 
     public VistaTratamientos() {
         initComponents();
+        rellenarJbcTipo();
         columnaTratamientos();
         cargarTabla(-1);
         crearTratamiento();
@@ -99,7 +100,6 @@ public class VistaTratamientos extends javax.swing.JInternalFrame {
         jlDuracion = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
         jlTipo = new javax.swing.JLabel();
-        jtfTipo = new javax.swing.JTextField();
         jtfEstado = new javax.swing.JTextField();
         jtfHoraInicio = new javax.swing.JTextField();
         jtfMinutosInicio = new javax.swing.JTextField();
@@ -109,6 +109,7 @@ public class VistaTratamientos extends javax.swing.JInternalFrame {
         jlDetalle1 = new javax.swing.JLabel();
         jspTablaSecundaria = new javax.swing.JScrollPane();
         jtTablaSecundaria = new javax.swing.JTable();
+        jcbTipo = new javax.swing.JComboBox<>();
         jbSalir = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(201, 233, 240));
@@ -379,9 +380,6 @@ public class VistaTratamientos extends javax.swing.JInternalFrame {
         jlTipo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlTipo.setText("Tipo");
 
-        jtfTipo.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
-        jtfTipo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
         jtfEstado.setEditable(false);
         jtfEstado.setBackground(new java.awt.Color(245, 164, 164));
         jtfEstado.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
@@ -443,8 +441,10 @@ public class VistaTratamientos extends javax.swing.JInternalFrame {
                             .addComponent(jlNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jlMasajistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtfTipo, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
-                            .addComponent(jlTipo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jlTipo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jlMasajistaLayout.createSequentialGroup()
+                                .addComponent(jcbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jlMasajistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jtfPrecio, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
@@ -484,11 +484,12 @@ public class VistaTratamientos extends javax.swing.JInternalFrame {
                     .addComponent(jlTipo)
                     .addComponent(jlPrecio))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jlMasajistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtfTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtfPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jlMasajistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jlMasajistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jtfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jtfPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jcbTipo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
                 .addGroup(jlMasajistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -668,6 +669,7 @@ public class VistaTratamientos extends javax.swing.JInternalFrame {
     private javax.swing.JButton jbGuardar;
     private javax.swing.JButton jbNuevo;
     private javax.swing.JButton jbSalir;
+    private javax.swing.JComboBox<String> jcbTipo;
     private javax.swing.JLabel jlDetalle;
     private javax.swing.JLabel jlDetalle1;
     private javax.swing.JLabel jlDuracion;
@@ -700,7 +702,6 @@ public class VistaTratamientos extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jtfMinutosInicio;
     private javax.swing.JTextField jtfNombre;
     private javax.swing.JTextField jtfPrecio;
-    private javax.swing.JTextField jtfTipo;
     private javax.swing.JScrollPane scpDetalle;
     // End of variables declaration//GEN-END:variables
     
@@ -807,7 +808,7 @@ public class VistaTratamientos extends javax.swing.JInternalFrame {
         
         jtfNombre.setText(t.getNombre());
         
-        jtfTipo.setText(t.getTipo());
+        jcbTipo.setSelectedIndex(-1);
         
         jtfPrecio.setText(""+t.getCosto());
         
@@ -886,11 +887,21 @@ public class VistaTratamientos extends javax.swing.JInternalFrame {
         
     }
     
+    private void rellenarJbcTipo() {
+        
+        jcbTipo.addItem("Facial");
+        jcbTipo.addItem("Corporal");
+        jcbTipo.addItem("Relajacion");
+        jcbTipo.addItem("Especializado");
+        
+        
+    }
+    
     private void crearTratamiento() {
         
         jtfID.setText("");
         jtfNombre.setText("");
-        jtfTipo.setText("");
+        jcbTipo.setSelectedIndex(-1);
         jtfPrecio.setText("");
         jtfHoraInicio.setText("");
         jtfMinutosInicio.setText("");
@@ -955,7 +966,7 @@ public class VistaTratamientos extends javax.swing.JInternalFrame {
                 errores++;
             }
             
-            String tipo = jtfTipo.getText();
+            String tipo = (String)jcbTipo.getSelectedItem();
             if (tipo.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "El casillero tipo no puede estar vacío");
                 errores++;
