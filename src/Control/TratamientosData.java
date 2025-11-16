@@ -243,11 +243,11 @@ public class TratamientosData {
     public List<diaSpaTratamiento> ListadoTratamientosDelDia(LocalDate fecha, int codTratamiento) {
         
         ArrayList<diaSpaTratamiento> tratamientos = new ArrayList<>();
-
+        MasajistasData masajistas = new MasajistasData();
         //Se realiza un JOIN de masajistas y tratamientos con respecto a la sesion, para corroborar cuales son los tratamientos
         //de la fecha elegida por el usuario
         String query = "SELECT t.codTratam, t.nombre, t.detalle, t.duracion, t.costo," +
-        "m.nombreApellido, TIME(s.fechaHoraInicio) 'horario', TIME(s.fechaHoraFin) 'horarioFinal'\n" +
+        "m.matricula, TIME(s.fechaHoraInicio) 'horario', TIME(s.fechaHoraFin) 'horarioFinal'\n" +
         "FROM tratamiento t\n" +
         "JOIN masajista m ON t.masajista = m.matricula\n" +
         "JOIN sesion s ON t.codTratam = s.tratamiento \n" +
@@ -272,7 +272,7 @@ public class TratamientosData {
                 t.setDetalle(resultado.getString("detalle"));
                 t.setDuracion(resultado.getTime("duracion").toLocalTime());
                 t.setCosto(resultado.getInt("costo"));
-                t.setMasajista(resultado.getString("nombreApellido"));
+                t.setMasajista(masajistas.buscarMasajista(resultado.getInt("matricula")));
                 t.setInicio(resultado.getTime("horario").toLocalTime());
                 t.setFin(resultado.getTime("horarioFinal").toLocalTime());
                 
@@ -290,9 +290,12 @@ public class TratamientosData {
         
     }
     
-    public boolean masajistaDisponible(LocalDateTime fecha, int codTratamiento) {
+    public boolean masajistaDisponible(LocalDateTime fechaI, int codTratamiento, int codMasajista) {
         
+        boolean hd = false;
         boolean md = false;
+        boolean td = false;
+        MasajistasData masajistas = new MasajistasData();
         
         String query = "SELECT COUNT(matricula) \n" +
         "FROM masajista m\n" +
@@ -301,34 +304,48 @@ public class TratamientosData {
         "AND date(s.fechaHoraInicio) = date(?)\n" +
         "AND time(s.fechaHoraInicio) = time(?)\n" +
         "AND t.codTratam = ? \n" + 
-        "AND s.estado = 1;";
+        "AND s.estado = 1 \n;";
 
         try {
 
             PreparedStatement ps = con.prepareStatement(query);
             //Se utiliza para consultar por fecha brindada por parametro
-            ps.setString(1, fecha.toLocalDate().toString());
-            ps.setString(2, fecha.toLocalTime().toString());
+            ps.setString(1, fechaI.toLocalDate().toString());
+            ps.setString(2, fechaI.toLocalTime().toString());
             ps.setInt(3, codTratamiento);
-
+            
+            
             ResultSet resultado = ps.executeQuery();
 
-            if (resultado.next()) {
-                
-                if (resultado.getInt(1) > 0) {
-                    md = true;
+            if (resultado.next()) { 
+                if (resultado.getInt(1) == 0) {
+                    hd = true;
+                } else {
                 }
                 
+                if (masajistas.buscarMasajista(codMasajista).isEstado()) {
+                    md = true;
+                } else {
+                    md = false;
+                }
                 
-            } else {
-                md = false;
+                if (buscarTratamiento(codTratamiento).isEstado()) {
+                    td = true;
+                } else {
+                    td = false;
+                }
+                
             }
+
+
+            
+            
 
         } catch (java.sql.SQLException error) {
             JOptionPane.showMessageDialog(null, error.getMessage());
         }
 
-        return md;
+        return md && hd && td;
         
     }
     

@@ -10,11 +10,11 @@ public class diaSpaTratamiento {
    private String detalle;
    private LocalTime duracion;
    private int costo;
-   private String Masajista;
+   private Masajista Masajista;
    private LocalTime Inicio;
    private LocalTime fin;
 
-    public diaSpaTratamiento(int codTrat, String nombre, String detalle, LocalTime duracion, int costo, String Masajista, LocalTime Inicio, LocalTime fin) {
+    public diaSpaTratamiento(int codTrat, String nombre, String detalle, LocalTime duracion, int costo, Masajista Masajista, LocalTime Inicio, LocalTime fin) {
         this.codTrat = codTrat;
         this.nombre = nombre;
         this.detalle = detalle;
@@ -70,11 +70,11 @@ public class diaSpaTratamiento {
         this.costo = costo;
     }
 
-    public String getMasajista() {
+    public Masajista getMasajista() {
         return Masajista;
     }
 
-    public void setMasajista(String Masajista) {
+    public void setMasajista(Masajista Masajista) {
         this.Masajista = Masajista;
     }
 

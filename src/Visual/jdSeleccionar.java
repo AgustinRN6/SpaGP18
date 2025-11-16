@@ -3,6 +3,7 @@ package Visual;
 
 import Control.*;
 import Entidades.*;
+import java.awt.Point;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -18,6 +19,20 @@ public class jdSeleccionar extends javax.swing.JDialog {
 
     private TratamientosData tratamientos = new TratamientosData();
     private MasajistasData masajistas = new MasajistasData();
+    
+    //Variable global para elegir el horario en sesión
+    private LocalTime horaElegida = LocalTime.now();
+    private boolean seSelecciono = false;
+
+
+    private enviarSeleccion envio;
+
+    public void setEnvio(enviarSeleccion envio) {
+        this.envio = envio;
+    }
+    
+    
+    
     
     //Indice global de diaSpaTratamiento
     private int indiceTratamiento = 0;
@@ -46,7 +61,6 @@ public class jdSeleccionar extends javax.swing.JDialog {
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
-    
     
      
     
@@ -84,6 +98,7 @@ public class jdSeleccionar extends javax.swing.JDialog {
         jtTabla = new javax.swing.JTable();
         jlPresentacion2 = new javax.swing.JLabel();
         jtfFecha = new javax.swing.JTextField();
+        jbSeleccionar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -101,6 +116,11 @@ public class jdSeleccionar extends javax.swing.JDialog {
 
             }
         ));
+        jtTabla.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtTablaMouseClicked(evt);
+            }
+        });
         jspPanelTabla.setViewportView(jtTabla);
 
         jlPresentacion2.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
@@ -111,6 +131,15 @@ public class jdSeleccionar extends javax.swing.JDialog {
         jtfFecha.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
         jtfFecha.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
+        jbSeleccionar.setBackground(new java.awt.Color(239, 242, 183));
+        jbSeleccionar.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
+        jbSeleccionar.setText("Seleccionar");
+        jbSeleccionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSeleccionarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpPanelLayout = new javax.swing.GroupLayout(jpPanel);
         jpPanel.setLayout(jpPanelLayout);
         jpPanelLayout.setHorizontalGroup(
@@ -118,11 +147,15 @@ public class jdSeleccionar extends javax.swing.JDialog {
             .addGroup(jpPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlPresentacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jlPresentacion, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
                     .addComponent(jlPresentacion2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jspPanelTabla)
                     .addComponent(jtfFecha))
                 .addContainerGap())
+            .addGroup(jpPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jbSeleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpPanelLayout.setVerticalGroup(
             jpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,6 +166,8 @@ public class jdSeleccionar extends javax.swing.JDialog {
                 .addComponent(jtfFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jlPresentacion2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jbSeleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jspPanelTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -153,6 +188,21 @@ public class jdSeleccionar extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jbSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSeleccionarActionPerformed
+
+        if (envio != null) {
+            
+            envio.devolverHorario(horaElegida);
+            
+        }
+        dispose();
+
+    }//GEN-LAST:event_jbSeleccionarActionPerformed
+
+    private void jtTablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtTablaMouseClicked
+        seleccion(evt.getPoint());
+    }//GEN-LAST:event_jtTablaMouseClicked
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -189,6 +239,7 @@ public class jdSeleccionar extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jbSeleccionar;
     private javax.swing.JLabel jlPresentacion;
     private javax.swing.JLabel jlPresentacion2;
     private javax.swing.JPanel jpPanel;
@@ -207,7 +258,7 @@ public class jdSeleccionar extends javax.swing.JDialog {
             modeloTabla.addColumn("Masajista");
             modeloTabla.addColumn("Horario inicial");
             modeloTabla.addColumn("Horario Final");
-            modeloTabla.addColumn("Masajista Disponible");
+            modeloTabla.addColumn("Disponibilidad");
             jtTabla.setModel(modeloTabla);
         }
         
@@ -216,6 +267,7 @@ public class jdSeleccionar extends javax.swing.JDialog {
             modeloTabla.addColumn("uso");
             modeloTabla.addColumn("precio x30M");
             modeloTabla.addColumn("Horario");
+            modeloTabla.addColumn("Disponibilidad");
             jtTabla.setModel(modeloTabla);
         }
         
@@ -243,11 +295,11 @@ public class jdSeleccionar extends javax.swing.JDialog {
     }
     
     //Determina si en un momento dado el masajista está disponible o no
-    public boolean masajistaDisponible(LocalTime hora,int codigo) {
+    public boolean masajistaDisponible(LocalTime horaI,int codigo, int codMasajista) {
         
-        LocalDateTime fechaHora = LocalDateTime.of(fecha, hora);
+        LocalDateTime fechaHoraI = LocalDateTime.of(fecha, horaI);
         
-        return tratamientos.masajistaDisponible(fechaHora, codigo);
+        return tratamientos.masajistaDisponible(fechaHoraI, codigo, codMasajista);
     
     }
     
@@ -274,31 +326,40 @@ public class jdSeleccionar extends javax.swing.JDialog {
                 //Se calcula cuantos tratamientos hay disponibles en el dia, segun la duracion del mismo
                 int cuantasVeces;
                 if (t.getDuracion().getMinute() > 0) {
-                    cuantasVeces = (int) ((finJornada.getHour() - inicioJornada.getHour()) - (t.getDuracion().getHour()+1));
+                    cuantasVeces = (int) ((finJornada.getHour() - inicioJornada.getHour()) / (t.getDuracion().getHour()+1));
                 } else {
-                    cuantasVeces = (int) ((finJornada.getHour() - inicioJornada.getHour()) - (t.getDuracion().getHour()));
+                    cuantasVeces = (int) ((finJornada.getHour() - inicioJornada.getHour()) / (t.getDuracion().getHour()));
                 }
 
                 horarioDisponible.add(inicioJornada);
                 
-
                 for (int i = 0; i < cuantasVeces; i++) {
-
-                    horarioDisponible.add(horarioDisponible.getLast().plusHours(t.getDuracion().getHour()));
+                    
+                    LocalTime horarioSiguiente = horarioDisponible.getLast().plusHours(t.getDuracion().getHour());
+                    
+                    
+                    if (t.getDuracion().getMinute() > 0) {
+                        
+                        horarioSiguiente = horarioSiguiente.plusHours(1);
+                        System.out.println("hora agregada");
+                        
+                    }
+                    
+                    horarioDisponible.add(horarioSiguiente);
+                    
 
                 }
                 
 
                 for (int i = 0; i < cuantasVeces; i++) {
                     
-                    System.out.println(codigo);
                     diaSpaTratamiento d = new diaSpaTratamiento(codigo, t.getNombre(), t.getDetalle(), t.getDuracion(),
-                        t.getCosto(), t.getMasajista().getNombreCompleto(), horarioDisponible.get(i), horarioDisponible.get(i).plusHours(t.getDuracion().getHour()));;
+                        t.getCosto(), t.getMasajista(), horarioDisponible.get(i), horarioDisponible.get(i).plusHours(t.getDuracion().getHour()));;
                     
                     //En caso de que sea un minuto entre 1 a 59, se redondea para arriba el turno, para que no haya entrecruzamiento
                     if (t.getDuracion().getMinute() > 0) {
                         
-                        d.getFin().plusHours(1);
+                        d.setFin(d.getFin().plusHours(1));
                         
                     } 
                     
@@ -326,16 +387,9 @@ public class jdSeleccionar extends javax.swing.JDialog {
     public void rellenarTablaTratamiento(diaSpaTratamiento d) {
         
         try {
-            diaSpaTratamiento dOcupado = corroborarTratamiento(codigo);
 
             boolean noDispo;
-
-            System.out.println(d.getInicio().isBefore(dOcupado.getInicio()));
-            System.out.println(d.getFin().isBefore(dOcupado.getFin()));
-            System.out.println(d.getInicio().isAfter(dOcupado.getInicio()));
-            System.out.println(d.getFin().isAfter(dOcupado.getFin()));
-
-            if ((d.getInicio().isBefore(dOcupado.getInicio()) || d.getInicio().equals(dOcupado.getInicio()))
+            /*if ((d.getInicio().isBefore(dOcupado.getInicio()) || d.getInicio().equals(dOcupado.getInicio()))
                     && (d.getFin().isAfter(dOcupado.getFin()) || d.getFin().equals(dOcupado.getFin()))) {
 
                 noDispo = false;
@@ -343,33 +397,49 @@ public class jdSeleccionar extends javax.swing.JDialog {
                     dOcupado.getMasajista(), dOcupado.getInicio(), dOcupado.getFin(), noDisponible(noDispo)});
                 indiceTratamiento++;
 
-            } else if (masajistaDisponible(d.getInicio(), codigo)) {
+            } else */
+            if (!masajistaDisponible(d.getInicio(), codigo, d.getMasajista().getMatricula())) {
 
                 noDispo = false;
                 modeloTabla.addRow(new Object[]{d.getCodTrat(), d.getNombre(), d.getDuracion(),
-                    d.getMasajista(), d.getInicio(), d.getFin(), noDisponible(noDispo)});
+                    d.getMasajista().getNombreCompleto(), d.getInicio(), d.getFin(), noDisponible(noDispo)});
 
             } else {
 
                 noDispo = true;
                 modeloTabla.addRow(new Object[]{d.getCodTrat(), d.getNombre(), d.getDuracion(),
-                    d.getMasajista(), d.getInicio(), d.getFin(), noDisponible(noDispo)});
+                    d.getMasajista().getNombreCompleto(), d.getInicio(), d.getFin(), noDisponible(noDispo)});
 
             }
-            System.out.println(indiceTratamiento);
             
         } catch(java.lang.NullPointerException er) {
             
-            boolean noDispo = true;
-            modeloTabla.addRow(new Object[]{d.getCodTrat(), d.getNombre(), d.getDuracion(),
-                d.getMasajista(), d.getInicio(), d.getFin(), noDisponible(noDispo)});
+            System.out.println(er.getMessage());
             
         }
+   
+    }
+    
+    public void seleccion(Point seleccionado) {
         
+        int seleccionFila = jtTabla.rowAtPoint(seleccionado);
 
+        int columnaHorario = 0;
+        
+        for (int i = 0; i < jtTabla.getColumnCount(); i++) {
+            if (jtTabla.getColumnName(i).equals("Horario inicial")) {
+                columnaHorario = i;
+            }
+        }
+        
+        horaElegida = (LocalTime)(jtTabla.getValueAt(seleccionFila, columnaHorario));
+        System.out.println(horaElegida);
+        seSelecciono = true;
         
         
     }
+    
+
 
 
 }

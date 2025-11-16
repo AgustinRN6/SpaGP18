@@ -645,13 +645,23 @@ public class VistaSesion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbSalirActionPerformed
 
     private void jbSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSeleccionarActionPerformed
-        jdSeleccionar ventanaSeleccionar = new jdSeleccionar(null, true);
-        ventanaSeleccionar.setEleccion(Seleccion);
-        ventanaSeleccionar.setFecha(fechaSeleccionada);
-        ventanaSeleccionar.setCodigo(datos[1]);
-        ventanaSeleccionar.ModificacionDatos();
-        ventanaSeleccionar.setLocationRelativeTo(this);
-        ventanaSeleccionar.setVisible(true);
+        
+        if (jrbTratamientos.isSelected()) {
+            
+            if (datos[1] == -1) {
+                crearVentanaEmergente();
+            
+            }else if (!tratamientos.buscarTratamiento(datos[1]).isEstado()) {
+                int respuesta = JOptionPane.showConfirmDialog(null, "Ha seleccionado un tratamiento que está inactivo, desea seguir?", "Seleccionar sesión", JOptionPane.YES_NO_OPTION);
+                if (respuesta == 0) {
+                    crearVentanaEmergente();
+                }
+            } else{
+                crearVentanaEmergente();
+            }
+            
+        }
+        
         
     }//GEN-LAST:event_jbSeleccionarActionPerformed
 
@@ -1199,8 +1209,7 @@ public class VistaSesion extends javax.swing.JInternalFrame {
             jdcFin.setDate(fecha);
 
         }
-        
-        
+ 
         
     }
     
@@ -1208,7 +1217,7 @@ public class VistaSesion extends javax.swing.JInternalFrame {
     private void cargarInformacion(Point evento) {
         
         int seleccionFila = jtTabla.rowAtPoint(evento);
-
+        
         int columnaID = 0;
         
         for (int i = 0; i < jtTabla.getColumnCount(); i++) {
@@ -1282,5 +1291,34 @@ public class VistaSesion extends javax.swing.JInternalFrame {
         java.sql.Date fechaFinLaborable = java.sql.Date.valueOf(LocalDate.of(2025, 12, 25));
         jdcInicio.setSelectableDateRange(fechaActual, fechaFinLaborable);
         
+    }
+    
+    private void crearVentanaEmergente() {
+        
+        if (jrbTratamientos.isSelected()) {
+            jdSeleccionar ventanaSeleccionar = new jdSeleccionar(null, true);
+            ventanaSeleccionar.setEnvio(new enviarSeleccion() {
+                @Override
+                public void devolverHorario(LocalTime horario) {
+                    recibirHora(horario);
+                }
+
+            });
+            ventanaSeleccionar.setEleccion(Seleccion);
+            ventanaSeleccionar.setFecha(fechaSeleccionada);
+            ventanaSeleccionar.setCodigo(datos[1]);
+            ventanaSeleccionar.ModificacionDatos();
+            ventanaSeleccionar.setLocationRelativeTo(this);
+            ventanaSeleccionar.setVisible(true);
+        }
+        
+    }
+    
+    public void recibirHora(LocalTime hora) {
+        jtfHoraInicio.setText(""+hora.getHour());
+        jtfMinutosInicio.setText(""+hora.getMinute());
+        System.out.println(tratamientos.buscarTratamiento(datos[1]).getDuracion().getHour());
+        jtfHoraFin.setText(""+(hora.getHour()+tratamientos.buscarTratamiento(datos[1]).getDuracion().getHour()));
+        jtfMinutosFin.setText(""+(hora.getMinute()+tratamientos.buscarTratamiento(datos[1]).getDuracion().getMinute()));
     }
 }
