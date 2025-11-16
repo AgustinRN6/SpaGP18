@@ -5,6 +5,7 @@ import Control.*;
 import Entidades.*;
 import java.time.Duration;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -17,6 +18,9 @@ public class jdSeleccionar extends javax.swing.JDialog {
 
     private TratamientosData tratamientos = new TratamientosData();
     private MasajistasData masajistas = new MasajistasData();
+    
+    //Indice global de diaSpaTratamiento
+    private int indiceTratamiento = 0;
     
     //Dia de spa comprendiendo entre los siguientes horarios de trabajo =
     private LocalTime inicioJornada = LocalTime.of(7, 0);
@@ -199,12 +203,11 @@ public class jdSeleccionar extends javax.swing.JDialog {
         if (eleccion.equalsIgnoreCase("Tratamiento")) {
             modeloTabla.addColumn("ID Tratamiento");
             modeloTabla.addColumn("Nombre");
-            modeloTabla.addColumn("detalle");
             modeloTabla.addColumn("duracion");
-            modeloTabla.addColumn("costo");
             modeloTabla.addColumn("Masajista");
             modeloTabla.addColumn("Horario inicial");
             modeloTabla.addColumn("Horario Final");
+            modeloTabla.addColumn("Masajista Disponible");
             jtTabla.setModel(modeloTabla);
         }
         
@@ -222,6 +225,42 @@ public class jdSeleccionar extends javax.swing.JDialog {
         jtfFecha.setText(fecha.toString());
     }
     
+    public diaSpaTratamiento corroborarTratamiento(int codigo) {
+        
+        ArrayList<diaSpaTratamiento> tratamientosDiaSpa = (ArrayList) tratamientos.ListadoTratamientosDelDia(fecha, codigo);
+        diaSpaTratamiento d = new diaSpaTratamiento();
+        
+        try {
+            d = tratamientosDiaSpa.get(indiceTratamiento);
+        }catch(java.lang.IndexOutOfBoundsException er) {
+            return d;
+        }
+        
+        
+
+        return d;
+        
+    }
+    
+    //Determina si en un momento dado el masajista está disponible o no
+    public boolean masajistaDisponible(LocalTime hora,int codigo) {
+        
+        LocalDateTime fechaHora = LocalDateTime.of(fecha, hora);
+        
+        return tratamientos.masajistaDisponible(fechaHora, codigo);
+    
+    }
+    
+    public String noDisponible(boolean dispo) {
+        
+        if (dispo) {
+            return "disponible";
+        } else {
+            return "no disponible";
+        }
+        
+    }
+    
     public void cargarTabla(String eleccion, int codigo) {
         
         Utilitario.limpiarTabla(modeloTabla);
@@ -229,8 +268,7 @@ public class jdSeleccionar extends javax.swing.JDialog {
         if (eleccion.equalsIgnoreCase("Tratamiento")) {
             
             try {
-                Iterator<diaSpaTratamiento> iterar = tratamientos.ListadoTratamientosDelDia(fecha, codigo).iterator();
-
+                //Iterator<diaSpaTratamiento> iterar = tratamientos.ListadoTratamientosDelDia(fecha, codigo).iterator();
                 Tratamiento t = tratamientos.buscarTratamiento(codigo);
                 
                 //Se calcula cuantos tratamientos hay disponibles en el dia, segun la duracion del mismo
@@ -240,42 +278,95 @@ public class jdSeleccionar extends javax.swing.JDialog {
                 } else {
                     cuantasVeces = (int) ((finJornada.getHour() - inicioJornada.getHour()) - (t.getDuracion().getHour()));
                 }
-                
-                
-                System.out.println(cuantasVeces);
-                
+
                 horarioDisponible.add(inicioJornada);
+                
 
                 for (int i = 0; i < cuantasVeces; i++) {
 
                     horarioDisponible.add(horarioDisponible.getLast().plusHours(t.getDuracion().getHour()));
 
                 }
-
-                while (iterar.hasNext()) {
-                    diaSpaTratamiento d = iterar.next();
-                    //No disponible
-                    modeloTabla.addRow(new Object[]{d.getCodTrat(), d.getNombre(), d.getDetalle(), d.getDuracion(), d.getCosto(),
-                        d.getMasajista(), d.getInicio(), d.getFin()});
-                }
+                
 
                 for (int i = 0; i < cuantasVeces; i++) {
-
+                    
+                    System.out.println(codigo);
                     diaSpaTratamiento d = new diaSpaTratamiento(codigo, t.getNombre(), t.getDetalle(), t.getDuracion(),
-                            t.getCosto(), t.getMasajista().getNombreCompleto(), horarioDisponible.get(i), horarioDisponible.get(i).plusHours(t.getDuracion().getHour()));
-                    modeloTabla.addRow(new Object[]{d.getCodTrat(), d.getNombre(), d.getDetalle(), d.getDuracion(), d.getCosto(),
-                        d.getMasajista(), d.getInicio(), d.getFin()});
+                        t.getCosto(), t.getMasajista().getNombreCompleto(), horarioDisponible.get(i), horarioDisponible.get(i).plusHours(t.getDuracion().getHour()));;
+                    
+                    //En caso de que sea un minuto entre 1 a 59, se redondea para arriba el turno, para que no haya entrecruzamiento
+                    if (t.getDuracion().getMinute() > 0) {
+                        
+                        d.getFin().plusHours(1);
+                        
+                    } 
+                    
+                    rellenarTablaTratamiento(d);
+
+                    
 
                 }
+                
+                
             } catch (java.lang.NullPointerException er) {
                 
                 JOptionPane.showMessageDialog(null, "Sin tratamiento seleccionado, sal de esta ventana y selecciona uno");
+                System.out.println(er.getMessage());
                 
             }
             
             
             
         }
+        
+        
+    }
+    
+    public void rellenarTablaTratamiento(diaSpaTratamiento d) {
+        
+        try {
+            diaSpaTratamiento dOcupado = corroborarTratamiento(codigo);
+
+            boolean noDispo;
+
+            System.out.println(d.getInicio().isBefore(dOcupado.getInicio()));
+            System.out.println(d.getFin().isBefore(dOcupado.getFin()));
+            System.out.println(d.getInicio().isAfter(dOcupado.getInicio()));
+            System.out.println(d.getFin().isAfter(dOcupado.getFin()));
+
+            if ((d.getInicio().isBefore(dOcupado.getInicio()) || d.getInicio().equals(dOcupado.getInicio()))
+                    && (d.getFin().isAfter(dOcupado.getFin()) || d.getFin().equals(dOcupado.getFin()))) {
+
+                noDispo = false;
+                modeloTabla.addRow(new Object[]{dOcupado.getCodTrat(), dOcupado.getNombre(), dOcupado.getDuracion(),
+                    dOcupado.getMasajista(), dOcupado.getInicio(), dOcupado.getFin(), noDisponible(noDispo)});
+                indiceTratamiento++;
+
+            } else if (masajistaDisponible(d.getInicio(), codigo)) {
+
+                noDispo = false;
+                modeloTabla.addRow(new Object[]{d.getCodTrat(), d.getNombre(), d.getDuracion(),
+                    d.getMasajista(), d.getInicio(), d.getFin(), noDisponible(noDispo)});
+
+            } else {
+
+                noDispo = true;
+                modeloTabla.addRow(new Object[]{d.getCodTrat(), d.getNombre(), d.getDuracion(),
+                    d.getMasajista(), d.getInicio(), d.getFin(), noDisponible(noDispo)});
+
+            }
+            System.out.println(indiceTratamiento);
+            
+        } catch(java.lang.NullPointerException er) {
+            
+            boolean noDispo = true;
+            modeloTabla.addRow(new Object[]{d.getCodTrat(), d.getNombre(), d.getDuracion(),
+                d.getMasajista(), d.getInicio(), d.getFin(), noDisponible(noDispo)});
+            
+        }
+        
+
         
         
     }

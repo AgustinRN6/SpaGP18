@@ -15,6 +15,7 @@ public class diaSpaTratamiento {
    private LocalTime fin;
 
     public diaSpaTratamiento(int codTrat, String nombre, String detalle, LocalTime duracion, int costo, String Masajista, LocalTime Inicio, LocalTime fin) {
+        this.codTrat = codTrat;
         this.nombre = nombre;
         this.detalle = detalle;
         this.duracion = duracion;

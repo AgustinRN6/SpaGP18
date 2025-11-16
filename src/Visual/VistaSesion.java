@@ -807,6 +807,7 @@ public class VistaSesion extends javax.swing.JInternalFrame {
             modeloTablaSecundaria.addColumn("duración");
             modeloTablaSecundaria.addColumn("costo");
             modeloTablaSecundaria.addColumn("tipo");
+            modeloTablaSecundaria.addColumn("Masajista");
             modeloTablaSecundaria.addColumn("estado");
             jtTablaDatos.setModel(modeloTablaSecundaria);
             
@@ -869,7 +870,7 @@ public class VistaSesion extends javax.swing.JInternalFrame {
             while (iterar.hasNext()) {
                 Tratamiento t = iterar.next();
                 modeloTablaSecundaria.addRow(new Object[]{t.getCodTrat(), t.getNombre(), t.getDetalle(),
-                t.getDuracion(),t.getCosto(),t.getTipo(), Utilitario.estadoParaTabla(t.isEstado())});                
+                t.getDuracion(),t.getCosto(),t.getTipo(), t.getMasajista().getNombreCompleto(), Utilitario.estadoParaTabla(t.isEstado())});                
             }
  
             if (datos[1] == -1) {
@@ -1134,7 +1135,7 @@ public class VistaSesion extends javax.swing.JInternalFrame {
 
                 
             for (int i = 0; i < jtTablaDatos.getColumnCount(); i++) {
-                if (jtTabla.getColumnName(i).equals("ID")) {
+                if (jtTablaDatos.getColumnName(i).equals("ID")) {
                     columnaID = i;
                 }
             }

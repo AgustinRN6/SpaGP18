@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import java.sql.Time;
 import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
 
@@ -286,6 +287,48 @@ public class TratamientosData {
         
         return tratamientos;
         
+        
+    }
+    
+    public boolean masajistaDisponible(LocalDateTime fecha, int codTratamiento) {
+        
+        boolean md = false;
+        
+        String query = "SELECT COUNT(matricula) \n" +
+        "FROM masajista m\n" +
+        "JOIN tratamiento t ON t.masajista = m.matricula\n" +
+        "JOIN sesion s ON s.tratamiento = t.codTratam\n" +
+        "AND date(s.fechaHoraInicio) = date(?)\n" +
+        "AND time(s.fechaHoraInicio) = time(?)\n" +
+        "AND t.codTratam = ? \n" + 
+        "AND s.estado = 1;";
+
+        try {
+
+            PreparedStatement ps = con.prepareStatement(query);
+            //Se utiliza para consultar por fecha brindada por parametro
+            ps.setString(1, fecha.toLocalDate().toString());
+            ps.setString(2, fecha.toLocalTime().toString());
+            ps.setInt(3, codTratamiento);
+
+            ResultSet resultado = ps.executeQuery();
+
+            if (resultado.next()) {
+                
+                if (resultado.getInt(1) > 0) {
+                    md = true;
+                }
+                
+                
+            } else {
+                md = false;
+            }
+
+        } catch (java.sql.SQLException error) {
+            JOptionPane.showMessageDialog(null, error.getMessage());
+        }
+
+        return md;
         
     }
     
