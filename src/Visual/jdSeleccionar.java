@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Iterator;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -23,6 +24,12 @@ public class jdSeleccionar extends javax.swing.JDialog {
     //Variable global para elegir el horario en sesión
     private LocalTime horaElegida = LocalTime.now();
     private boolean seSelecciono = false;
+
+    public void setJlPresentacion(String cambiarTexto) {
+        this.jlPresentacion.setText(cambiarTexto);
+    }
+    
+    
 
 
     private enviarSeleccion envio;
@@ -99,6 +106,8 @@ public class jdSeleccionar extends javax.swing.JDialog {
         jlPresentacion2 = new javax.swing.JLabel();
         jtfFecha = new javax.swing.JTextField();
         jbSeleccionar = new javax.swing.JButton();
+        jlEleccion = new javax.swing.JLabel();
+        jbSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -140,6 +149,20 @@ public class jdSeleccionar extends javax.swing.JDialog {
             }
         });
 
+        jlEleccion.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        jlEleccion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlEleccion.setText("Usted ha elegido el horario: ");
+        jlEleccion.setToolTipText("");
+
+        jbSalir.setBackground(new java.awt.Color(255, 51, 0));
+        jbSalir.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
+        jbSalir.setText("Salir");
+        jbSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSalirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpPanelLayout = new javax.swing.GroupLayout(jpPanel);
         jpPanel.setLayout(jpPanelLayout);
         jpPanelLayout.setHorizontalGroup(
@@ -148,14 +171,17 @@ public class jdSeleccionar extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jlPresentacion, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
-                    .addComponent(jlPresentacion2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jpPanelLayout.createSequentialGroup()
+                        .addComponent(jbSalir)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jlPresentacion2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jspPanelTabla)
-                    .addComponent(jtfFecha))
+                    .addComponent(jtfFecha)
+                    .addGroup(jpPanelLayout.createSequentialGroup()
+                        .addComponent(jbSeleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jlEleccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jpPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jbSeleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpPanelLayout.setVerticalGroup(
             jpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,9 +191,13 @@ public class jdSeleccionar extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jtfFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jlPresentacion2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jbSeleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlPresentacion2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbSalir))
+                .addGap(9, 9, 9)
+                .addGroup(jpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlEleccion, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbSeleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jspPanelTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -204,6 +234,10 @@ public class jdSeleccionar extends javax.swing.JDialog {
         seleccion(evt.getPoint());
     }//GEN-LAST:event_jtTablaMouseClicked
 
+    private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
+        dispose();
+    }//GEN-LAST:event_jbSalirActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -239,7 +273,9 @@ public class jdSeleccionar extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jbSalir;
     private javax.swing.JButton jbSeleccionar;
+    private javax.swing.JLabel jlEleccion;
     private javax.swing.JLabel jlPresentacion;
     private javax.swing.JLabel jlPresentacion2;
     private javax.swing.JPanel jpPanel;
@@ -337,11 +373,10 @@ public class jdSeleccionar extends javax.swing.JDialog {
                     
                     LocalTime horarioSiguiente = horarioDisponible.getLast().plusHours(t.getDuracion().getHour());
                     
-                    
+                    //En caso de que sea un minuto entre 1 a 59, se redondea para arriba el turno, para que no haya entrecruzamiento
                     if (t.getDuracion().getMinute() > 0) {
                         
                         horarioSiguiente = horarioSiguiente.plusHours(1);
-                        System.out.println("hora agregada");
                         
                     }
                     
@@ -354,12 +389,12 @@ public class jdSeleccionar extends javax.swing.JDialog {
                 for (int i = 0; i < cuantasVeces; i++) {
                     
                     diaSpaTratamiento d = new diaSpaTratamiento(codigo, t.getNombre(), t.getDetalle(), t.getDuracion(),
-                        t.getCosto(), t.getMasajista(), horarioDisponible.get(i), horarioDisponible.get(i).plusHours(t.getDuracion().getHour()));;
+                        t.getCosto(), t.getMasajista(), horarioDisponible.get(i), horarioDisponible.get(i).plusHours(t.getDuracion().getHour()));
                     
-                    //En caso de que sea un minuto entre 1 a 59, se redondea para arriba el turno, para que no haya entrecruzamiento
+                    
                     if (t.getDuracion().getMinute() > 0) {
                         
-                        d.setFin(d.getFin().plusHours(1));
+                        d.setFin(d.getFin().plusMinutes(t.getDuracion().getMinute()));
                         
                     } 
                     
@@ -435,7 +470,16 @@ public class jdSeleccionar extends javax.swing.JDialog {
         horaElegida = (LocalTime)(jtTabla.getValueAt(seleccionFila, columnaHorario));
         System.out.println(horaElegida);
         seSelecciono = true;
+        cambioTexto();
         
+    }
+    
+    
+    public void cambioTexto() {
+        
+        if (seSelecciono) {
+            jlEleccion.setText("Usted ha elegido el horario: "+ horaElegida.toString());
+        }
         
     }
     

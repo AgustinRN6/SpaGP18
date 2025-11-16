@@ -5,6 +5,9 @@ import Entidades.Masajista;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -137,6 +140,14 @@ public class Utilitario {
         } else {
             return "inactivo";
         }
+    }
+    
+    public static Date deLDaD(LocalDate ld) {
+        
+        Date d = Date.from(ld.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        
+        return d;
+        
     }
     
 }

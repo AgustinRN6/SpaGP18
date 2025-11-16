@@ -33,7 +33,7 @@ public class VistaSesion extends javax.swing.JInternalFrame {
     MasajistasData masajistas = new MasajistasData(); //0
     TratamientosData tratamientos = new TratamientosData(); //1
     InstalacionesData instalaciones = new InstalacionesData(); //2
-    DiaSPAData diasdespa = new DiaSPAData(); //3
+    DiaSPAData diasdespa  = new DiaSPAData(); //3
     
 
     SesionData sesion = new SesionData(); //Se utilizará para las consultas de la base de datos
@@ -62,12 +62,12 @@ public class VistaSesion extends javax.swing.JInternalFrame {
 
     public VistaSesion() {
         initComponents();
-        ajusteDeFecha();
         columnaSesion();
         cargarSesion(null, -1);
         nuevaSesion(true);
         columnasTablaSecundaria();
         cargarTablaSecundaria(datos);
+        bienvenida();
     }
 
     @SuppressWarnings("unchecked")
@@ -80,8 +80,6 @@ public class VistaSesion extends javax.swing.JInternalFrame {
         jlIDSesion = new javax.swing.JLabel();
         jtfID = new javax.swing.JTextField();
         jlFechaHora = new javax.swing.JLabel();
-        jdcInicio = new com.toedter.calendar.JDateChooser();
-        jdcFin = new com.toedter.calendar.JDateChooser();
         jlFechaHoraInicio = new javax.swing.JLabel();
         jlFechaHoraFin = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -103,6 +101,8 @@ public class VistaSesion extends javax.swing.JInternalFrame {
         jlDatos1 = new javax.swing.JLabel();
         jtfEstado = new javax.swing.JTextField();
         jbSeleccionar = new javax.swing.JButton();
+        jtfFechaI = new javax.swing.JTextField();
+        jtfFechaF = new javax.swing.JTextField();
         jpBotones = new javax.swing.JPanel();
         jbNuevo = new javax.swing.JButton();
         jbGuardar = new javax.swing.JButton();
@@ -139,15 +139,6 @@ public class VistaSesion extends javax.swing.JInternalFrame {
         jlFechaHora.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
         jlFechaHora.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlFechaHora.setText("Fecha y hora de la sesión");
-
-        jdcInicio.setDateFormatString("dd MMM yyyy");
-        jdcInicio.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                jdcInicioPropertyChange(evt);
-            }
-        });
-
-        jdcFin.setDateFormatString("dd MMM yyyy");
 
         jlFechaHoraInicio.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
         jlFechaHoraInicio.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -260,6 +251,22 @@ public class VistaSesion extends javax.swing.JInternalFrame {
             }
         });
 
+        jtfFechaI.setEditable(false);
+        jtfFechaI.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
+        jtfFechaI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfFechaIActionPerformed(evt);
+            }
+        });
+
+        jtfFechaF.setEditable(false);
+        jtfFechaF.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
+        jtfFechaF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfFechaFActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpDatosLayout = new javax.swing.GroupLayout(jpDatos);
         jpDatos.setLayout(jpDatosLayout);
         jpDatosLayout.setHorizontalGroup(
@@ -285,25 +292,23 @@ public class VistaSesion extends javax.swing.JInternalFrame {
                     .addComponent(jspTablaDatos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jlDatos1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jpDatosLayout.createSequentialGroup()
-                        .addGroup(jpDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jpDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jlFechaHoraInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jdcInicio, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE))
+                        .addGroup(jpDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jlFechaHoraInicio, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
                             .addGroup(jpDatosLayout.createSequentialGroup()
                                 .addComponent(jtfHoraInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jtfMinutosInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jtfMinutosInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jtfFechaI))
                         .addGap(18, 18, 18)
                         .addComponent(jtfEstado)
                         .addGap(18, 18, 18)
-                        .addGroup(jpDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jdcFin, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
-                                .addComponent(jlFechaHoraFin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jpDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jlFechaHoraFin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpDatosLayout.createSequentialGroup()
                                 .addComponent(jtfHoraFin, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jtfMinutosFin, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jtfMinutosFin, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jtfFechaF, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(jpDatosLayout.createSequentialGroup()
                         .addGroup(jpDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jrbInstalacion)
@@ -333,10 +338,13 @@ public class VistaSesion extends javax.swing.JInternalFrame {
                         .addGroup(jpDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jlFechaHoraInicio)
                             .addComponent(jlFechaHoraFin))
-                        .addGap(4, 4, 4)
-                        .addGroup(jpDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jdcInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jdcFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jpDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jpDatosLayout.createSequentialGroup()
+                                .addGap(4, 4, 4)
+                                .addComponent(jtfFechaI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpDatosLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jtfFechaF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jpDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jtfHoraInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -646,33 +654,60 @@ public class VistaSesion extends javax.swing.JInternalFrame {
 
     private void jbSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSeleccionarActionPerformed
         
-        if (jrbTratamientos.isSelected()) {
-            
-            if (datos[1] == -1) {
-                crearVentanaEmergente();
-            
-            }else if (!tratamientos.buscarTratamiento(datos[1]).isEstado()) {
-                int respuesta = JOptionPane.showConfirmDialog(null, "Ha seleccionado un tratamiento que está inactivo, desea seguir?", "Seleccionar sesión", JOptionPane.YES_NO_OPTION);
-                if (respuesta == 0) {
-                    crearVentanaEmergente();
+        if (datos[3] < 0) {
+           JOptionPane.showMessageDialog(null, "Debes seleccionar un dia de spa y un tratamiento/instalacion antes de ingresar a esta opción");
+        } else {
+            if (diasdespa.cargarDiaSpa(datos[3]).isEstado()) {
+                if (jrbTratamientos.isSelected()) {
+
+                    if (datos[1] == -1) {
+                        crearVentanaEmergente();
+
+                    } else if (!tratamientos.buscarTratamiento(datos[1]).isEstado()) {
+                        int respuesta = JOptionPane.showConfirmDialog(null, "Ha seleccionado un tratamiento que está inactivo, desea seguir?", "Seleccionar sesión", JOptionPane.YES_NO_OPTION);
+                        if (respuesta == 0) {
+                            crearVentanaEmergente();
+                        }
+                    } else {
+                        crearVentanaEmergente();
+                    }
+
+                } else if (jrbInstalacion.isSelected()) {
+
+                    if (datos[2] == -1) {
+                        crearVentanaEmergente();
+
+                    } else if (!instalaciones.buscarInstalacion(datos[2]).getEstado()) {
+                        int respuesta = JOptionPane.showConfirmDialog(null, "Ha seleccionado una instalación que está inactivo, desea seguir?", "Seleccionar sesión", JOptionPane.YES_NO_OPTION);
+                        if (respuesta == 0) {
+                            crearVentanaEmergente();
+                        }
+                    } else {
+                        crearVentanaEmergente();
+                    }
+
+                }else {
+                    JOptionPane.showMessageDialog(null, "Primero elije la opción tratamieto o instalación, para ingresar al cuadro de selección");
                 }
+                
             } else{
-                crearVentanaEmergente();
+                JOptionPane.showMessageDialog(null, "Elije un dia de spa que esté habilitado/activo");
             }
-            
         }
+        
+
+
         
         
     }//GEN-LAST:event_jbSeleccionarActionPerformed
 
-    private void jdcInicioPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jdcInicioPropertyChange
-        try {
-            fechaSeleccionada = (jdcInicio.getDate()).toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        } catch (java.lang.NullPointerException er) {
-            fechaSeleccionada = LocalDate.now();
-        }
-        
-    }//GEN-LAST:event_jdcInicioPropertyChange
+    private void jtfFechaIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfFechaIActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfFechaIActionPerformed
+
+    private void jtfFechaFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfFechaFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfFechaFActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -687,8 +722,6 @@ public class VistaSesion extends javax.swing.JInternalFrame {
     private javax.swing.JButton jbNuevo;
     private javax.swing.JButton jbSalir;
     private javax.swing.JButton jbSeleccionar;
-    private com.toedter.calendar.JDateChooser jdcFin;
-    private com.toedter.calendar.JDateChooser jdcInicio;
     private javax.swing.JLabel jlDatos;
     private javax.swing.JLabel jlDatos1;
     private javax.swing.JLabel jlDetalle;
@@ -712,6 +745,8 @@ public class VistaSesion extends javax.swing.JInternalFrame {
     private javax.swing.JTable jtTablaDatos;
     private javax.swing.JTextField jtfDetalles;
     private javax.swing.JTextField jtfEstado;
+    private javax.swing.JTextField jtfFechaF;
+    private javax.swing.JTextField jtfFechaI;
     private javax.swing.JTextField jtfFiltro;
     private javax.swing.JTextField jtfHoraFin;
     private javax.swing.JTextField jtfHoraInicio;
@@ -938,7 +973,7 @@ public class VistaSesion extends javax.swing.JInternalFrame {
             while (iterar.hasNext()) {
                 DiaSpa d = iterar.next();
                 modeloTablaSecundaria.addRow(new Object[]{d.getCodPack(), d.getFecha(), d.getPrefencias(),
-                d.getCliente(),d.getMonto(), Utilitario.estadoParaTabla(d.isEstado())});
+                d.getCliente().getNombreC(),d.getMonto(), Utilitario.estadoParaTabla(d.isEstado())});
             }
             
             if (datos[3] == -1) {
@@ -1014,7 +1049,7 @@ public class VistaSesion extends javax.swing.JInternalFrame {
                 errores++;
             }
             
-            Date fechaInicioDate = jdcInicio.getDate();
+            Date fechaInicioDate = Utilitario.deLDaD(diasdespa.cargarDiaSpa(datos[3]).getFecha());
             
             LocalDateTime fechaInicio = null;
             
@@ -1201,12 +1236,13 @@ public class VistaSesion extends javax.swing.JInternalFrame {
             
             jtfIDDatos.setText(""+datos[3]);
             
+            DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("dd-MMM-yyyy");
 
             DiaSpa d = diasdespa.cargarDiaSpa(datos[3]);
-            Date fecha = Date.from(d.getFecha().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+            //Date fecha = Date.from(d.getFecha().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
 
-            jdcInicio.setDate(fecha);
-            jdcFin.setDate(fecha);
+            jtfFechaI.setText(d.getFecha().format(formatoFecha));
+            jtfFechaF.setText(d.getFecha().format(formatoFecha));
 
         }
  
@@ -1230,15 +1266,17 @@ public class VistaSesion extends javax.swing.JInternalFrame {
         
         Sesion s = sesion.mostrarSesion(ID_Sesion);
         
+        DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("dd-MMM-yyyy");
+        
         jtfID.setText(""+s.getCodSesion());
    
         Date fechaInicio = Date.from(s.getFechaIn().toLocalDate().atStartOfDay(ZoneId.systemDefault()).toInstant());
         
-        jdcInicio.setDate(fechaInicio);
+        jtfFechaI.setText(s.getFechaIn().format(formatoFecha));
         
         Date fechaFin = Date.from(s.getFechaFin().toLocalDate().atStartOfDay(ZoneId.systemDefault()).toInstant());
         
-        jdcFin.setDate(fechaFin);
+        jtfFechaF.setText(s.getFechaFin().format(formatoFecha));
         
         LocalDateTime fechaHoraInicio = s.getFechaIn();
         
@@ -1267,8 +1305,8 @@ public class VistaSesion extends javax.swing.JInternalFrame {
     private void crearSesion() {
         
         jtfID.setText("");
-        jdcInicio.setDate(null);
-        jdcFin.setDate(null);
+        jtfFechaI.setText("");
+        jtfFechaF.setText("");
         jtfHoraInicio.setText("");
         jtfHoraFin.setText("");
         jtfMinutosInicio.setText("");
@@ -1285,14 +1323,6 @@ public class VistaSesion extends javax.swing.JInternalFrame {
         
     }
     
-    private void ajusteDeFecha(){
-        //seteo el rango seleccionable del jDateChooser
-        java.sql.Date fechaActual = java.sql.Date.valueOf(LocalDate.now());
-        java.sql.Date fechaFinLaborable = java.sql.Date.valueOf(LocalDate.of(2025, 12, 25));
-        jdcInicio.setSelectableDateRange(fechaActual, fechaFinLaborable);
-        
-    }
-    
     private void crearVentanaEmergente() {
         
         if (jrbTratamientos.isSelected()) {
@@ -1304,6 +1334,25 @@ public class VistaSesion extends javax.swing.JInternalFrame {
                 }
 
             });
+            ventanaSeleccionar.setJlPresentacion("Seleccione el tratamiento que desea realizar en la fecha:");
+            ventanaSeleccionar.setEleccion(Seleccion);
+            ventanaSeleccionar.setFecha(fechaSeleccionada);
+            ventanaSeleccionar.setCodigo(datos[1]);
+            ventanaSeleccionar.ModificacionDatos();
+            ventanaSeleccionar.setLocationRelativeTo(this);
+            ventanaSeleccionar.setVisible(true);
+        }
+        
+        if (jrbInstalacion.isSelected()) {
+            jdSeleccionar ventanaSeleccionar = new jdSeleccionar(null, true);
+            ventanaSeleccionar.setEnvio(new enviarSeleccion() {
+                @Override
+                public void devolverHorario(LocalTime horario) {
+                    recibirHora(horario);
+                }
+
+            });
+            ventanaSeleccionar.setJlPresentacion("Seleccione la instalación que desea utilizar en la fecha:");
             ventanaSeleccionar.setEleccion(Seleccion);
             ventanaSeleccionar.setFecha(fechaSeleccionada);
             ventanaSeleccionar.setCodigo(datos[1]);
@@ -1314,6 +1363,7 @@ public class VistaSesion extends javax.swing.JInternalFrame {
         
     }
     
+    //Recibe la hora del tratamiento en el cuadro de selección
     public void recibirHora(LocalTime hora) {
         jtfHoraInicio.setText(""+hora.getHour());
         jtfMinutosInicio.setText(""+hora.getMinute());
@@ -1321,4 +1371,15 @@ public class VistaSesion extends javax.swing.JInternalFrame {
         jtfHoraFin.setText(""+(hora.getHour()+tratamientos.buscarTratamiento(datos[1]).getDuracion().getHour()));
         jtfMinutosFin.setText(""+(hora.getMinute()+tratamientos.buscarTratamiento(datos[1]).getDuracion().getMinute()));
     }
+    
+    
+    public void bienvenida() {
+        
+        JOptionPane.showMessageDialog(null, "BIENVENIDO AL SISTEMA DE SESIONES,"
+                + " ELIGE UN DIA DE SPA, Y LUEGO EL TRATAMIENTO O INSTALACIÓN DESEADA");
+        
+    }
+    
+    
+    
 }
