@@ -89,7 +89,13 @@ public class jdSeleccionar extends javax.swing.JDialog {
         
         columnaSeleccion(eleccion);
         fechaElegida();
-        cargarTabla(eleccion,codigo);
+        if (eleccion.equalsIgnoreCase("Tratamiento")) {
+            cargarTabla(eleccion,codigo);
+        }
+        if (eleccion.equalsIgnoreCase("Instalacion")) {
+            cargarTablaInstalacion();
+        }
+        
         
     }
     
@@ -582,9 +588,7 @@ public class jdSeleccionar extends javax.swing.JDialog {
         
         try {
             
-            if (instalaciones.InstalacionDisponible(LocalDateTime.of(fecha, dsi.getHorario()), dsi.getInstalacion().getCodIns())) {
-                dsi.setDisponible(false);
-            }
+            
             modeloTabla.addRow(new Object[]{dsi.getInstalacion().getCodIns(), dsi.getInstalacion().getUsos(),
             dsi.getInstalacion().getPrecio30M(), dsi.getHorario(), dsi.getHorario().plusHours(plus), noDisponible(dsi.isDisponible())});
 
@@ -612,7 +616,9 @@ public class jdSeleccionar extends javax.swing.JDialog {
         
         horaElegida = (LocalTime)(jtTabla.getValueAt(seleccionFila, columnaHorario));
         if (eleccion.equalsIgnoreCase("Instalacion")) {
-            horaElegidaF = horaElegida.plusHours((int) Math.ceil((int)JStiempo.getValue() / 60));
+            horaElegidaF = horaElegida.plusMinutes((int) (JStiempo.getValue()));
+            System.out.println(horaElegidaF+ " hora Elegida Final");
+            
         }
         System.out.println(horaElegida);
         seSelecciono = true;

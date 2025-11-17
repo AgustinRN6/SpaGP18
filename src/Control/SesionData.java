@@ -25,7 +25,7 @@ public class SesionData {
     public void crearSesion(Sesion s){
         
         
-        String query="INSERT INTO sesion(fechaHoraInicio, fechaHoraFin, tratamiento, dia_De_Spa, estado, instalacion) VALUES (?,?,?,?,?,?,?)";
+        String query="INSERT INTO sesion(fechaHoraInicio, fechaHoraFin, tratamiento, dia_De_Spa, estado, instalacion) VALUES (?,?,?,?,?,?)";
         
         try {
 
@@ -33,10 +33,21 @@ public class SesionData {
 
             ps.setTimestamp(1, Timestamp.valueOf(s.getFechaIn()));
             ps.setTimestamp(2, Timestamp.valueOf(s.getFechaFin()));
-            ps.setInt(3, s.getTratamiento());
+            if (s.getTratamiento() <= 0) {
+                ps.setString(3, null);
+            } else {
+                ps.setInt(3, s.getTratamiento());
+            }
+            
+            
             ps.setInt(4, s.getDiaS());
             ps.setBoolean(5, s.isEstado());
-            ps.setInt(6, s.getInstalacion());
+            if (s.getInstalacion() <= 0) {
+                ps.setString(6, null);
+            } else {
+                ps.setInt(6, s.getInstalacion()); 
+            }
+            
 
             if (ps.executeUpdate() > 0) {
 

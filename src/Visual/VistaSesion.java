@@ -658,10 +658,11 @@ public class VistaSesion extends javax.swing.JInternalFrame {
            JOptionPane.showMessageDialog(null, "Debes seleccionar un dia de spa y un tratamiento/instalacion antes de ingresar a esta opción");
         } else {
             if (diasdespa.cargarDiaSpa(datos[3]).isEstado()) {
+                byte sinSeleccion = 0;
                 if (jrbTratamientos.isSelected()) {
 
                     if (datos[1] == -1) {
-                        crearVentanaEmergente();
+                        JOptionPane.showMessageDialog(null, "Elija un tratamiento para seguir con la opción");
 
                     } else if (!tratamientos.buscarTratamiento(datos[1]).isEstado()) {
                         int respuesta = JOptionPane.showConfirmDialog(null, "Ha seleccionado un tratamiento que está inactivo, desea seguir?", "Seleccionar sesión", JOptionPane.YES_NO_OPTION);
@@ -671,11 +672,12 @@ public class VistaSesion extends javax.swing.JInternalFrame {
                     } else {
                         crearVentanaEmergente();
                     }
-
-                } else if (jrbInstalacion.isSelected()) {
+                    sinSeleccion++;
+                } 
+                if (jrbInstalacion.isSelected()) {
 
                     if (datos[2] == -1) {
-                        crearVentanaEmergente();
+                        JOptionPane.showMessageDialog(null, "Elija una instalación para seguir con la opción");;
 
                     } else if (!instalaciones.buscarInstalacion(datos[2]).getEstado()) {
                         int respuesta = JOptionPane.showConfirmDialog(null, "Ha seleccionado una instalación que está inactivo, desea seguir?", "Seleccionar sesión", JOptionPane.YES_NO_OPTION);
@@ -685,8 +687,10 @@ public class VistaSesion extends javax.swing.JInternalFrame {
                     } else {
                         crearVentanaEmergente();
                     }
-
-                }else {
+                    sinSeleccion++;
+                }
+                if (sinSeleccion == 0) {
+                    
                     JOptionPane.showMessageDialog(null, "Primero elije la opción tratamieto o instalación, para ingresar al cuadro de selección");
                 }
                 
@@ -1073,28 +1077,8 @@ public class VistaSesion extends javax.swing.JInternalFrame {
             }
             
             
-            if (datos[0] == -1) {
-                JOptionPane.showMessageDialog(null, "Debe seleccionar un masajista de la lista");
-                errores++;
-            }
-            if (datos[1] == -1) {
-                JOptionPane.showMessageDialog(null, "Debe seleccionar un tratamiento de la lista");
-                errores++;
-            }
-            if (datos[2] == -1) {
-                JOptionPane.showMessageDialog(null, "Debe seleccionar una instalación de la lista");
-                errores++;
-            }
-            if (datos[3] == -1) {
-                JOptionPane.showMessageDialog(null, "Debe seleccionar un dia de spa de la lista");
-                errores++;
-            }
             
-            int codMasajista = datos[0];
-            int codTratamientos = datos[1];
-            int codInstalaciones = datos[2];
-            int codDiaSpa = datos[3];
-            
+
             
 
             LocalDateTime fechaFinal = null;
@@ -1128,6 +1112,35 @@ public class VistaSesion extends javax.swing.JInternalFrame {
                 
             }
             
+            if (datos[3] == -1) {
+                JOptionPane.showMessageDialog(null, "Debe seleccionar un dia de spa de la lista");
+                errores++;
+
+            }  else {
+                if (datos[1] == -1 && datos[2] == -1) {
+                JOptionPane.showMessageDialog(null, "Debe seleccionar un tratamiento o una instalacion de la lista");
+                errores++;
+                } 
+                if (datos[1] > -1 && datos[2] > -1) {
+                String[] cual = {"Tratamiento", "Instalación"};
+                int opcion = JOptionPane.showOptionDialog(null, "Está seleccionado una instalación y un tratamiento, ¿Cuál decide "
+                + "guardar?", "Gestor de Sesión", JOptionPane.DEFAULT_OPTION,
+                JOptionPane.QUESTION_MESSAGE, null, cual, cual[0]);
+
+                    if (opcion == 0) {
+                        datos[2] = -1;
+                    } else if (opcion == 1) {
+                        datos[1] = -1;
+                    }
+                    
+                }
+            }  
+            
+            int codTratamientos = datos[1];           
+            int codInstalaciones = datos[2];
+            int codDiaSpa = datos[3];
+            
+            
             if(errores > 0) {
                 if (boton.equalsIgnoreCase("GUARDAR")) {
                     JOptionPane.showMessageDialog(null, "Debe atender a los errores anteriormente mencionados, no se pudo guardar la sesión");
@@ -1139,6 +1152,7 @@ public class VistaSesion extends javax.swing.JInternalFrame {
             } else {
                 
                 if (boton.equalsIgnoreCase("GUARDAR")) {
+                    
                     Sesion s = new Sesion(fechaInicio, fechaFinal, codTratamientos, codInstalaciones, codDiaSpa, true);
                     sesion.crearSesion(s);
                     
@@ -1243,6 +1257,8 @@ public class VistaSesion extends javax.swing.JInternalFrame {
 
             jtfFechaI.setText(d.getFecha().format(formatoFecha));
             jtfFechaF.setText(d.getFecha().format(formatoFecha));
+            
+            fechaSeleccionada = d.getFecha();
 
         }
  
@@ -1383,12 +1399,12 @@ public class VistaSesion extends javax.swing.JInternalFrame {
         jtfMinutosFin.setText(""+(hora.getMinute()+tratamientos.buscarTratamiento(datos[1]).getDuracion().getMinute()));
     }
     
-    public void recibirHora(LocalTime hora, LocalTime cantidad) {
+    public void recibirHora(LocalTime hora, LocalTime horaF) {
         jtfHoraInicio.setText(""+hora.getHour());
         jtfMinutosInicio.setText(""+hora.getMinute());
-        System.out.println(tratamientos.buscarTratamiento(datos[1]).getDuracion().getHour());
-        jtfHoraFin.setText(""+(hora.getHour()+cantidad.getHour()));
-        jtfMinutosFin.setText(""+(hora.getMinute()+cantidad.getMinute()));
+        
+        jtfHoraFin.setText(""+(horaF.getHour()));
+        jtfMinutosFin.setText(""+(horaF.getMinute()));
     }
     
     
