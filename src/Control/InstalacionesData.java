@@ -5,7 +5,9 @@ import Entidades.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -194,4 +196,52 @@ public class InstalacionesData {
             JOptionPane.showMessageDialog(null, error.getMessage());
         }
     }
+    
+    
+    public boolean InstalacionDisponible(LocalDateTime fecha, int codInstalacion) {
+        
+        boolean dsi = false;
+        
+        String query = 
+            "SELECT COUNT(i.codInstal)\n" +
+            "FROM instalacion i \n" +
+            "JOIN sesion s ON s.instalacion = i.codInstal\n" +
+            "JOIN dia_de_spa d ON s.dia_De_Spa = d.codPack\n" +
+            "WHERE\n" +
+            "	date(s.fechaHoraInicio) = date(?) AND\n" +
+            "    (time(?) BETWEEN time(s.fechaHoraInicio) AND time(s.fechaHoraFin))\n" +
+            "    AND s.estado = 1\n" +
+            "    AND d.estado = 1\n" + 
+            "    AND i.codInstal = ?;";
+        
+        PreparedStatement ps;
+        try {
+            
+            ps = con.prepareStatement(query);
+            //Se utiliza para consultar por fecha brindada por parametro
+            ps.setString(1, fecha.toLocalDate().toString());
+            ps.setString(2, fecha.toLocalTime().toString());
+            ps.setInt(3, codInstalacion);
+            
+            ResultSet resultado = ps.executeQuery();
+
+            if (resultado.next()) { 
+                
+                if (resultado.getInt(1) > 0) {
+                    dsi = true;
+                } else {
+                    dsi = false;
+                }
+                
+            }
+            
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+        return dsi;
+        
+    }
+    
+    
 }

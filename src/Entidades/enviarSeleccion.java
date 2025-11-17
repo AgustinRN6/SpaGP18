@@ -7,4 +7,6 @@ public interface enviarSeleccion {
     
     void devolverHorario(LocalTime horarioI);
     
+    void devolverHorario(LocalTime horarioI, LocalTime horarioF);
+    
 }

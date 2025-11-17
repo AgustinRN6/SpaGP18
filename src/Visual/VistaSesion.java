@@ -1333,8 +1333,14 @@ public class VistaSesion extends javax.swing.JInternalFrame {
                     recibirHora(horario);
                 }
 
+                @Override
+                public void devolverHorario(LocalTime horarioI, LocalTime horarioF) {
+                   
+                }
+
             });
             ventanaSeleccionar.setJlPresentacion("Seleccione el tratamiento que desea realizar en la fecha:");
+            ventanaSeleccionar.setJpInstalacion(false);
             ventanaSeleccionar.setEleccion(Seleccion);
             ventanaSeleccionar.setFecha(fechaSeleccionada);
             ventanaSeleccionar.setCodigo(datos[1]);
@@ -1348,14 +1354,20 @@ public class VistaSesion extends javax.swing.JInternalFrame {
             ventanaSeleccionar.setEnvio(new enviarSeleccion() {
                 @Override
                 public void devolverHorario(LocalTime horario) {
-                    recibirHora(horario);
+                   
+                }
+
+                @Override
+                public void devolverHorario(LocalTime horarioI, LocalTime horarioF) {
+                    recibirHora(horarioI, horarioF);
                 }
 
             });
             ventanaSeleccionar.setJlPresentacion("Seleccione la instalación que desea utilizar en la fecha:");
+            ventanaSeleccionar.setJpInstalacion(true);
             ventanaSeleccionar.setEleccion(Seleccion);
             ventanaSeleccionar.setFecha(fechaSeleccionada);
-            ventanaSeleccionar.setCodigo(datos[1]);
+            ventanaSeleccionar.setCodigo(datos[2]);
             ventanaSeleccionar.ModificacionDatos();
             ventanaSeleccionar.setLocationRelativeTo(this);
             ventanaSeleccionar.setVisible(true);
@@ -1367,10 +1379,19 @@ public class VistaSesion extends javax.swing.JInternalFrame {
     public void recibirHora(LocalTime hora) {
         jtfHoraInicio.setText(""+hora.getHour());
         jtfMinutosInicio.setText(""+hora.getMinute());
-        System.out.println(tratamientos.buscarTratamiento(datos[1]).getDuracion().getHour());
         jtfHoraFin.setText(""+(hora.getHour()+tratamientos.buscarTratamiento(datos[1]).getDuracion().getHour()));
         jtfMinutosFin.setText(""+(hora.getMinute()+tratamientos.buscarTratamiento(datos[1]).getDuracion().getMinute()));
     }
+    
+    public void recibirHora(LocalTime hora, LocalTime cantidad) {
+        jtfHoraInicio.setText(""+hora.getHour());
+        jtfMinutosInicio.setText(""+hora.getMinute());
+        System.out.println(tratamientos.buscarTratamiento(datos[1]).getDuracion().getHour());
+        jtfHoraFin.setText(""+(hora.getHour()+cantidad.getHour()));
+        jtfMinutosFin.setText(""+(hora.getMinute()+cantidad.getMinute()));
+    }
+    
+    
     
     
     public void bienvenida() {

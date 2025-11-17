@@ -4,14 +4,15 @@ package Visual;
 import Control.*;
 import Entidades.*;
 import java.awt.Point;
-import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Iterator;
-import javax.swing.JLabel;
+import javax.swing.JComponent;
+import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JSpinner;
 import javax.swing.table.DefaultTableModel;
 
 public class jdSeleccionar extends javax.swing.JDialog {
@@ -20,13 +21,19 @@ public class jdSeleccionar extends javax.swing.JDialog {
 
     private TratamientosData tratamientos = new TratamientosData();
     private MasajistasData masajistas = new MasajistasData();
+    private InstalacionesData instalaciones = new InstalacionesData();
     
     //Variable global para elegir el horario en sesión
+    private LocalTime horaElegidaF = LocalTime.now();
     private LocalTime horaElegida = LocalTime.now();
     private boolean seSelecciono = false;
 
     public void setJlPresentacion(String cambiarTexto) {
         this.jlPresentacion.setText(cambiarTexto);
+    }
+
+    public void setJpInstalacion(boolean esVisible) {
+        this.jpInstalacion.setVisible(esVisible);
     }
     
     
@@ -108,6 +115,9 @@ public class jdSeleccionar extends javax.swing.JDialog {
         jbSeleccionar = new javax.swing.JButton();
         jlEleccion = new javax.swing.JLabel();
         jbSalir = new javax.swing.JButton();
+        jpInstalacion = new javax.swing.JPanel();
+        jlEleccion2 = new javax.swing.JLabel();
+        JStiempo = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -163,6 +173,48 @@ public class jdSeleccionar extends javax.swing.JDialog {
             }
         });
 
+        jpInstalacion.setBackground(new java.awt.Color(198, 243, 247));
+
+        jlEleccion2.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        jlEleccion2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlEleccion2.setText("Elija la cantidad de minutos para su instalación:");
+        jlEleccion2.setToolTipText("");
+
+        JStiempo.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
+        JStiempo.setModel(new javax.swing.SpinnerNumberModel(30, 30, 480, 30));
+        JComponent editor = JStiempo.getEditor();
+
+        JFormattedTextField texto = ((JSpinner.DefaultEditor) editor).getTextField();
+
+        texto.setEditable(false);
+
+        texto.setFocusable(false);
+        JStiempo.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                JStiempoStateChanged(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jpInstalacionLayout = new javax.swing.GroupLayout(jpInstalacion);
+        jpInstalacion.setLayout(jpInstalacionLayout);
+        jpInstalacionLayout.setHorizontalGroup(
+            jpInstalacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpInstalacionLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jlEleccion2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(JStiempo, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jpInstalacionLayout.setVerticalGroup(
+            jpInstalacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpInstalacionLayout.createSequentialGroup()
+                .addGap(0, 8, Short.MAX_VALUE)
+                .addGroup(jpInstalacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlEleccion2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JStiempo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+
         javax.swing.GroupLayout jpPanelLayout = new javax.swing.GroupLayout(jpPanel);
         jpPanel.setLayout(jpPanelLayout);
         jpPanelLayout.setHorizontalGroup(
@@ -170,17 +222,18 @@ public class jdSeleccionar extends javax.swing.JDialog {
             .addGroup(jpPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlPresentacion, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
+                    .addComponent(jspPanelTabla, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jlPresentacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jpPanelLayout.createSequentialGroup()
                         .addComponent(jbSalir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jlPresentacion2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jspPanelTabla)
                     .addComponent(jtfFecha)
                     .addGroup(jpPanelLayout.createSequentialGroup()
                         .addComponent(jbSeleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jlEleccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jlEleccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jpInstalacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jpPanelLayout.setVerticalGroup(
@@ -198,8 +251,10 @@ public class jdSeleccionar extends javax.swing.JDialog {
                 .addGroup(jpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlEleccion, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbSeleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jpInstalacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jspPanelTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jspPanelTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -221,12 +276,27 @@ public class jdSeleccionar extends javax.swing.JDialog {
 
     private void jbSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSeleccionarActionPerformed
 
-        if (envio != null) {
-            
-            envio.devolverHorario(horaElegida);
-            
-        }
+        if (seSelecciono) {
+            if (eleccion == "Tratamiento") {
+                if (envio != null) {
+                envio.devolverHorario(horaElegida);
+                seSelecciono = false;
+                }
+            }
+            if (eleccion == "Instalacion") {
+                
+                if (envio != null) {
+                envio.devolverHorario(horaElegida, horaElegidaF);
+                seSelecciono = false;
+                }
+            }
+
         dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "Elije algún horario para guardarlo en la sesión");
+        }
+
+
 
     }//GEN-LAST:event_jbSeleccionarActionPerformed
 
@@ -237,6 +307,10 @@ public class jdSeleccionar extends javax.swing.JDialog {
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
         dispose();
     }//GEN-LAST:event_jbSalirActionPerformed
+
+    private void JStiempoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_JStiempoStateChanged
+        cargarTablaInstalacion();
+    }//GEN-LAST:event_JStiempoStateChanged
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -273,11 +347,14 @@ public class jdSeleccionar extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JSpinner JStiempo;
     private javax.swing.JButton jbSalir;
     private javax.swing.JButton jbSeleccionar;
     private javax.swing.JLabel jlEleccion;
+    private javax.swing.JLabel jlEleccion2;
     private javax.swing.JLabel jlPresentacion;
     private javax.swing.JLabel jlPresentacion2;
+    private javax.swing.JPanel jpInstalacion;
     private javax.swing.JPanel jpPanel;
     private javax.swing.JScrollPane jspPanelTabla;
     private javax.swing.JTable jtTabla;
@@ -302,7 +379,8 @@ public class jdSeleccionar extends javax.swing.JDialog {
             modeloTabla.addColumn("ID Instalacion");
             modeloTabla.addColumn("uso");
             modeloTabla.addColumn("precio x30M");
-            modeloTabla.addColumn("Horario");
+            modeloTabla.addColumn("Horario inicial");
+            modeloTabla.addColumn("Horario Final");
             modeloTabla.addColumn("Disponibilidad");
             jtTabla.setModel(modeloTabla);
         }
@@ -455,6 +533,71 @@ public class jdSeleccionar extends javax.swing.JDialog {
    
     }
     
+    //Rellena la tabla de instalaciones, dependiendo del tiempo x30 minutos
+    public void cargarTablaInstalacion() {
+        
+        horarioDisponible.clear();
+        
+        Utilitario.limpiarTabla(modeloTabla);
+        
+        int minutox30 = (Integer) (JStiempo.getValue());
+        
+        //Si no se eleva a 1 hora, el cuadro brinda informacion que no corresponde
+        if (minutox30 <= 30) {
+            minutox30 += 30;
+        }
+        
+        double hx30 = Math.ceil((double)minutox30 / 60);
+     
+        double cuantasVeces;
+  
+        cuantasVeces = (double) ((finJornada.getHour() - (inicioJornada.getHour()))/hx30);
+
+        //redondear hacia arriba
+        cuantasVeces = Math.ceil(cuantasVeces);
+        
+        horarioDisponible.add(inicioJornada);
+        
+        for (int i = 0; i < cuantasVeces; i++) {
+            
+            LocalTime hu = horarioDisponible.getLast().plusHours((int)hx30);
+            
+            horarioDisponible.add(hu);
+            
+        }
+        
+        for (int i = 0; i < cuantasVeces; i++) {
+            
+            diaSpaInstalacion dsi = new diaSpaInstalacion(instalaciones.buscarInstalacion(codigo), horarioDisponible.get(i), true);
+
+            cargarInformacionInstalacion(dsi, (int)hx30);  
+            
+        }
+        
+        
+        
+    }
+    
+    public void cargarInformacionInstalacion(diaSpaInstalacion dsi, int plus) {
+        
+        try {
+            
+            if (instalaciones.InstalacionDisponible(LocalDateTime.of(fecha, dsi.getHorario()), dsi.getInstalacion().getCodIns())) {
+                dsi.setDisponible(false);
+            }
+            modeloTabla.addRow(new Object[]{dsi.getInstalacion().getCodIns(), dsi.getInstalacion().getUsos(),
+            dsi.getInstalacion().getPrecio30M(), dsi.getHorario(), dsi.getHorario().plusHours(plus), noDisponible(dsi.isDisponible())});
+
+
+        }catch (java.lang.NullPointerException er) {
+            
+            System.out.println(er.getMessage());
+            
+        }
+        
+    }
+    
+    
     public void seleccion(Point seleccionado) {
         
         int seleccionFila = jtTabla.rowAtPoint(seleccionado);
@@ -468,6 +611,9 @@ public class jdSeleccionar extends javax.swing.JDialog {
         }
         
         horaElegida = (LocalTime)(jtTabla.getValueAt(seleccionFila, columnaHorario));
+        if (eleccion.equalsIgnoreCase("Instalacion")) {
+            horaElegidaF = horaElegida.plusHours((int) Math.ceil((int)JStiempo.getValue() / 60));
+        }
         System.out.println(horaElegida);
         seSelecciono = true;
         cambioTexto();
