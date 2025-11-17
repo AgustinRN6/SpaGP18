@@ -94,7 +94,7 @@ public class GestionInstalacion extends javax.swing.JInternalFrame {
 
         jLabel2.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Instalacion");
+        jLabel2.setText("Instalacion - ingreso de datos");
 
         jpPanelInfoI.setBackground(new java.awt.Color(0, 102, 153));
         jpPanelInfoI.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -282,7 +282,7 @@ public class GestionInstalacion extends javax.swing.JInternalFrame {
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Instalaciones");
+        jLabel1.setText("Instalaciones registradas");
 
         jpPanelBotones.setBackground(new java.awt.Color(0, 102, 153));
         jpPanelBotones.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -328,11 +328,11 @@ public class GestionInstalacion extends javax.swing.JInternalFrame {
         jpPanelBotonesLayout.setHorizontalGroup(
             jpPanelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPanelBotonesLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 144, Short.MAX_VALUE)
+                .addGap(52, 52, 52)
                 .addComponent(jbBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jbAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -362,7 +362,7 @@ public class GestionInstalacion extends javax.swing.JInternalFrame {
             .addGroup(jpPanelTablaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpPanelTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 865, Short.MAX_VALUE)
                     .addGroup(jpPanelTablaLayout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -487,11 +487,13 @@ public class GestionInstalacion extends javax.swing.JInternalFrame {
                             .addGroup(jpPanelPrincipalLayout.createSequentialGroup()
                                 .addGap(83, 83, 83)
                                 .addComponent(jpPanelEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(11, 11, 11)
                         .addGroup(jpPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jpPanelInstalacionesD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPanelPrincipalLayout.createSequentialGroup()
-                                .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jpPanelPrincipalLayout.createSequentialGroup()
+                                .addGap(11, 11, 11)
+                                .addComponent(jpPanelInstalacionesD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jpPanelPrincipalLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(12, 12, 12)))))
                 .addContainerGap())
         );
@@ -540,6 +542,8 @@ public class GestionInstalacion extends javax.swing.JInternalFrame {
             cargarTabla();
             vaciarCampos();
             inhabilitarCampos();
+            jbActualizar.setEnabled(false);
+            jbSubir.setEnabled(true);
         }
     }//GEN-LAST:event_jbSubirActionPerformed
 
@@ -550,44 +554,62 @@ public class GestionInstalacion extends javax.swing.JInternalFrame {
             cargarTabla();
             vaciarCampos();
             cargarTablaS();
-            
+            jbActualizar.setEnabled(false);
+            jbSubir.setEnabled(true);
         }
     }//GEN-LAST:event_jbActualizarActionPerformed
 
     private void jbBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBorrarActionPerformed
         // TODO add your handling code here:
+        if(i.getCodIns() == -1){
+            JOptionPane.showMessageDialog(null, "Seleccione una instalacion para borrar");
+        }else{
             instalaciones.borrarInstalacion(i.getCodIns());
             cargarTabla();
             vaciarCampos();
             cargarTablaS();
-        
+            jbActualizar.setEnabled(false);
+            jbSubir.setEnabled(true);
+        }
     }//GEN-LAST:event_jbBorrarActionPerformed
 
     private void jtTablaInstalacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtTablaInstalacionesMouseClicked
         // TODO add your handling code here:
+        
         cargarCampos();
         habilitarCampos();
+        jbActualizar.setEnabled(true);
+        jbSubir.setEnabled(false);
+        
     }//GEN-LAST:event_jtTablaInstalacionesMouseClicked
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
         // TODO add your handling code here:
+        
          dispose();
+         
     }//GEN-LAST:event_jbSalirActionPerformed
 
     private void jbAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAltaActionPerformed
         // TODO add your handling code here:
+        
         if(i.getCodIns() == -1){
             JOptionPane.showMessageDialog(null, "Seleccione alguna instalacion");
+            
         }else{
             instalaciones.darDeAlta(i.getCodIns());
             cargarTabla();
             cargarTablaS();
             vaciarCampos();
+            jbActualizar.setEnabled(false);
+            jbSubir.setEnabled(true);
         }
+        
     }//GEN-LAST:event_jbAltaActionPerformed
 
     private void jbBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBajaActionPerformed
         // TODO add your handling code here:
+        
         if(i.getCodIns() == -1){
             JOptionPane.showMessageDialog(null, "Seleccione alguna instalacion");
         }else{
@@ -595,11 +617,15 @@ public class GestionInstalacion extends javax.swing.JInternalFrame {
             cargarTabla();
             cargarTablaS();
             vaciarCampos();
+            jbActualizar.setEnabled(false);
+            jbSubir.setEnabled(true);
         }
+        
     }//GEN-LAST:event_jbBajaActionPerformed
 
     private void jbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoActionPerformed
         // TODO add your handling code here:
+        
         vaciarCampos();
         habilitarCampos();
         

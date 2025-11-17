@@ -6,12 +6,13 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="jmClientes">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Clientes"/>
+            <Property name="text" type="java.lang.String" value="Cliente"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jmiClientes">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Ingreso de datos"/>
+                <Property name="text" type="java.lang.String" value="Ingrese sus datos"/>
+                <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmiClientesActionPerformed"/>
