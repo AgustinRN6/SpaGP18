@@ -99,13 +99,19 @@ public class GestionInstalacion extends javax.swing.JInternalFrame {
         jpPanelInfoI.setBackground(new java.awt.Color(0, 102, 153));
         jpPanelInfoI.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        txtNombre.setToolTipText("");
+
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Nombre de la instalacion");
 
+        txtDetallesUso.setToolTipText("Ingrese su funcion, que proposito cumple, etc.");
+
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Detalles de usos");
+
+        txtApto.setToolTipText("Ingrese para que publico puede ser apto su uso");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -114,6 +120,10 @@ public class GestionInstalacion extends javax.swing.JInternalFrame {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Precio X 30M ($)");
+
+        txtPrecio30M.setToolTipText("Ingrese solo digitos");
+
+        txtUsos.setToolTipText("Ingrese el fin o proposito de la instalacion");
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -709,23 +719,23 @@ public class GestionInstalacion extends javax.swing.JInternalFrame {
         
         if (txtNombre.getText().isEmpty()) {
             
-            JOptionPane.showMessageDialog(null, "Ingrese un nombre!!!");
+            JOptionPane.showMessageDialog(null, "Ingrese un nombre!!!", "Cuidado", JOptionPane.WARNING_MESSAGE);
             
         } else if (txtDetallesUso.getText().isEmpty()) {
             
-            JOptionPane.showMessageDialog(null, "Ingrese Detalles de uso!!!");
+            JOptionPane.showMessageDialog(null, "Ingrese Detalles de uso!!!", "Cuidado", JOptionPane.WARNING_MESSAGE);
             
         } else if (txtApto.getText().isEmpty()) {
             
-            JOptionPane.showMessageDialog(null, "Ingrese para que es apto!!!");
+            JOptionPane.showMessageDialog(null, "Ingrese para que es apto!!!", "Cuidado", JOptionPane.WARNING_MESSAGE);
             
         } else if (txtPrecio30M.getText().isEmpty()) {
             
-            JOptionPane.showMessageDialog(null, "Ingrese el precio por media hora!!!");
+            JOptionPane.showMessageDialog(null, "Ingrese el precio por media hora!!!", "Cuidado", JOptionPane.WARNING_MESSAGE);
             
         } else if (txtUsos.getText().isEmpty()) {
             
-            JOptionPane.showMessageDialog(null, "Ingrese la cantidad de usos!!!");
+            JOptionPane.showMessageDialog(null, "Ingrese para que fin esta destinado su uso.EJ:(Relajacion)!!!", "Cuidado", JOptionPane.WARNING_MESSAGE);
             
         } else {
             try {
@@ -744,7 +754,7 @@ public class GestionInstalacion extends javax.swing.JInternalFrame {
 
                 return true;
             } catch (java.lang.NumberFormatException error) {
-                JOptionPane.showMessageDialog(null, "Ingrese el precio en el formato adecuado!!!");
+                JOptionPane.showMessageDialog(null, "Ingrese el precio en el formato adecuado!!!", "Error en el formato",JOptionPane.ERROR_MESSAGE);
             }
         }
 

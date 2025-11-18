@@ -247,6 +247,9 @@
               </Layout>
               <SubComponents>
                 <Component class="javax.swing.JTextField" name="txtNombre">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value=""/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel3">
                   <Properties>
@@ -260,6 +263,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtDetallesUso">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="Ingrese su funcion, que proposito cumple, etc."/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel4">
                   <Properties>
@@ -273,6 +279,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtApto">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="Ingrese para que publico puede ser apto su uso"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel5">
                   <Properties>
@@ -297,8 +306,14 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtPrecio30M">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="Ingrese solo digitos"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtUsos">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="Ingrese el fin o proposito de la instalacion"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel7">
                   <Properties>

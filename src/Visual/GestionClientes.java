@@ -23,6 +23,10 @@ public class GestionClientes extends javax.swing.JInternalFrame {
         return false;
     }
     };
+    
+    private boolean msj = false;
+    
+    
     public GestionClientes() {
         initComponents();
         cargarModelo();
@@ -94,14 +98,19 @@ public class GestionClientes extends javax.swing.JInternalFrame {
         jpPaneelInfoCliente.setBackground(new java.awt.Color(0, 102, 153));
         jpPaneelInfoCliente.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        txtNombreC.setToolTipText("Ingrese el nombre y apellido");
+
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Nombre completo");
+
+        txtEdad.setToolTipText("Ingrese solo digitos");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Edad");
 
+        txtDNI.setToolTipText("Ingrese solo digitos");
         txtDNI.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDNIActionPerformed(evt);
@@ -115,6 +124,8 @@ public class GestionClientes extends javax.swing.JInternalFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("telefono");
+
+        txtNumeroT.setToolTipText("Ingrese solo digitos");
 
         javax.swing.GroupLayout jpPaneelInfoClienteLayout = new javax.swing.GroupLayout(jpPaneelInfoCliente);
         jpPaneelInfoCliente.setLayout(jpPaneelInfoClienteLayout);
@@ -337,7 +348,7 @@ public class GestionClientes extends javax.swing.JInternalFrame {
                     .addComponent(jScrollPane1)
                     .addGroup(jpPanelTablaLayout.createSequentialGroup()
                         .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jpPanelBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -439,7 +450,7 @@ public class GestionClientes extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jpPanelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)
+                .addComponent(jpPanelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -603,19 +614,19 @@ public class GestionClientes extends javax.swing.JInternalFrame {
         
         if (txtNombreC.getText().isEmpty()) {
             
-            JOptionPane.showMessageDialog(null, "Ingrese el Nombre completo!!!!!");
+            JOptionPane.showMessageDialog(null, "Ingrese el Nombre completo!!!!!","Cuidado", JOptionPane.WARNING_MESSAGE);
             
         } else if (txtEdad.getText().isEmpty()) {
             
-            JOptionPane.showMessageDialog(null, "Ingrese la edad!!!!!");
+            JOptionPane.showMessageDialog(null, "Ingrese la edad!!!!!","Cuidado", JOptionPane.WARNING_MESSAGE);
             
         }  else if (txtDNI.getText().isEmpty()) {
             
-            JOptionPane.showMessageDialog(null, "Ingrese el DNI!!!!!");
+            JOptionPane.showMessageDialog(null, "Ingrese el DNI!!!!!","Cuidado", JOptionPane.WARNING_MESSAGE);
             
         } else if (txtNumeroT.getText().isEmpty()) {
             
-            JOptionPane.showMessageDialog(null, "Ingrese el numero Telefonico!!!!!");
+            JOptionPane.showMessageDialog(null, "Ingrese el numero Telefonico!!!!!","Cuidado", JOptionPane.WARNING_MESSAGE);
             
         } else {
             
@@ -637,7 +648,7 @@ public class GestionClientes extends javax.swing.JInternalFrame {
                 
             } catch (java.lang.NumberFormatException error) {
                 
-                JOptionPane.showMessageDialog(null, "Ingrese los datos(EDAD, dni o numero telefonico) en el formato adecuado!!!!!");
+                JOptionPane.showMessageDialog(null, "Ingrese los datos(EDAD, dni o numero telefonico) en el formato adecuado!!!!!", "Error en el formato",JOptionPane.ERROR_MESSAGE);
            
             }
         }

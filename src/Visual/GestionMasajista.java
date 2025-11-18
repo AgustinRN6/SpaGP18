@@ -37,6 +37,7 @@ public class GestionMasajista extends javax.swing.JInternalFrame {
         cargarCombo();
         cargarTabla();
         cargarModeloS();
+        
     }
 
     /**
@@ -96,17 +97,25 @@ public class GestionMasajista extends javax.swing.JInternalFrame {
         jpPanelInfoMasajista.setBackground(new java.awt.Color(0, 102, 153));
         jpPanelInfoMasajista.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        txtMatricula.setToolTipText("Solo digitos. EJ: 114972");
+
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Matricula");
+
+        txtNombreC.setToolTipText("Ingrese el nombre completo");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nombre completo");
 
+        txtNumeroT.setToolTipText("solo digitos");
+
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Numero de Telefono");
+
+        txtEspecialidad.setToolTipText("Facial, Corporal, Estetico, Especializado, Relajacion");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -426,11 +435,6 @@ public class GestionMasajista extends javax.swing.JInternalFrame {
         jtEstado.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jtEstado.setText("Libre");
         jtEstado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        jtEstado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtEstadoActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jpPanelEstadoLayout = new javax.swing.GroupLayout(jpPanelEstado);
         jpPanelEstado.setLayout(jpPanelEstadoLayout);
@@ -607,13 +611,10 @@ public class GestionMasajista extends javax.swing.JInternalFrame {
 
     private void txtBuscarEKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarEKeyTyped
         // TODO add your handling code here:
+        jcbEspecialidades.setSelectedIndex(0);
         String especialidad = txtBuscarE.getText();
         cargarTablaEspecialidad(especialidad);
     }//GEN-LAST:event_txtBuscarEKeyTyped
-
-    private void jtEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtEstadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtEstadoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -691,19 +692,19 @@ private boolean validarCampos(){
 
     if(txtMatricula.getText().isEmpty()){
         
-        JOptionPane.showMessageDialog(null, "Ingrese la matricula!!!!!");
+        JOptionPane.showMessageDialog(null, "Ingrese la matricula!!!!!","Cuidado", JOptionPane.WARNING_MESSAGE);
         
     } else if(txtNombreC.getText().isEmpty()){
         
-        JOptionPane.showMessageDialog(null, "Ingrese el Nombre completo!!!!!");
+        JOptionPane.showMessageDialog(null, "Ingrese el Nombre completo!!!!!","Cuidado", JOptionPane.WARNING_MESSAGE);
         
     } else if(txtNumeroT.getText().isEmpty()){
         
-        JOptionPane.showMessageDialog(null, "Ingrese el numero Telefonico!!!!!");
+        JOptionPane.showMessageDialog(null, "Ingrese el numero Telefonico!!!!!", "Cuidado", JOptionPane.WARNING_MESSAGE);
         
     }   else if(txtEspecialidad.getText().isEmpty()){
         
-        JOptionPane.showMessageDialog(null, "Ingrese la especialidad!!!!!");
+        JOptionPane.showMessageDialog(null, "Ingrese la especialidad!!!!!", "Cuidado", JOptionPane.WARNING_MESSAGE);
         
     }else{
         
@@ -723,7 +724,7 @@ private boolean validarCampos(){
         return true;
         
         }catch(java.lang.NumberFormatException error){
-        JOptionPane.showMessageDialog(null, "Ingrese los datos(Matricula o Numero telefonico) en el formato adecuado!!!!!");
+        JOptionPane.showMessageDialog(null, "Ingrese los datos(Matricula o Numero telefonico) en el formato adecuado!!!!!","Error en el formato", JOptionPane.ERROR_MESSAGE);
         }
     }
        return false;
@@ -790,7 +791,7 @@ private void cargarCombo(){
     jcbEspecialidades.addItem("Corporal");
     jcbEspecialidades.addItem("Relajacion");
     jcbEspecialidades.addItem("Estetico");
-   
+    jcbEspecialidades.addItem("Especializado");
 }
 
 
