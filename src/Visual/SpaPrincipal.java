@@ -496,9 +496,10 @@ public class SpaPrincipal extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jmClientes.setText("Clientes");
+        jmClientes.setText("Cliente");
 
-        jmiClientes.setText("Ingreso de datos");
+        jmiClientes.setText("Ingrese sus datos");
+        jmiClientes.setToolTipText("");
         jmiClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmiClientesActionPerformed(evt);

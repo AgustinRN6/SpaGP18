@@ -12,6 +12,8 @@ import javax.swing.table.DefaultTableModel;
 
 public class GestionSpa extends javax.swing.JInternalFrame {
     
+    boolean estadoDeLaVentana= true;
+    
     //colores para el texfield de estado
     Color verdeActivo = new Color(200,242,183);
     Color rojoInactivo = new Color(245,164,164);
@@ -35,6 +37,7 @@ public class GestionSpa extends javax.swing.JInternalFrame {
         cargarModelo();
         cargarTabla();
         ajusteDeFecha();
+        jbActualizar.setEnabled(false);
     }
 
     /**
@@ -94,7 +97,7 @@ public class GestionSpa extends javax.swing.JInternalFrame {
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Dia de Spa");
+        jLabel1.setText("Agende su dia de spa");
 
         jPanelFecha.setBackground(new java.awt.Color(0, 102, 153));
         jPanelFecha.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -133,6 +136,7 @@ public class GestionSpa extends javax.swing.JInternalFrame {
 
         jcbClientes.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jcbClientes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione a un cliente" }));
+        jcbClientes.setToolTipText("");
         jcbClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcbClientesActionPerformed(evt);
@@ -146,7 +150,7 @@ public class GestionSpa extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addComponent(jcbClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32))
         );
@@ -194,24 +198,24 @@ public class GestionSpa extends javax.swing.JInternalFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jbActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(27, 27, 27)
                 .addComponent(jbSubir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(27, 27, 27)
                 .addComponent(jbNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addGap(32, 32, 32))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbSubir, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jPanel3.setBackground(new java.awt.Color(0, 102, 153));
@@ -228,22 +232,20 @@ public class GestionSpa extends javax.swing.JInternalFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(120, 120, 120)
-                .addComponent(jLabel9)
-                .addGap(120, 120, 120))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(txtPreferencias)
-                .addContainerGap())
+                .addComponent(jLabel9)
+                .addGap(18, 18, 18)
+                .addComponent(txtPreferencias, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txtPreferencias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(9, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(txtPreferencias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -253,13 +255,12 @@ public class GestionSpa extends javax.swing.JInternalFrame {
             jpPanelDiaSpaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpPanelDiaSpaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jpPanelDiaSpaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpPanelDiaSpaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanelFecha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jpPanelDiaSpaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanelFecha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpPanelDiaSpaLayout.setVerticalGroup(
@@ -270,9 +271,9 @@ public class GestionSpa extends javax.swing.JInternalFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanelFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
+                .addGap(39, 39, 39)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -300,7 +301,7 @@ public class GestionSpa extends javax.swing.JInternalFrame {
 
         jLabel7.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Dias agendados");
+        jLabel7.setText("Dias de spa agendados");
 
         jpPanelBotones.setBackground(new java.awt.Color(0, 102, 153));
         jpPanelBotones.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -388,9 +389,9 @@ public class GestionSpa extends javax.swing.JInternalFrame {
             jpPanelTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpPanelTablaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jpPanelTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addComponent(jpPanelBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jpPanelTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jpPanelBotones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
                 .addContainerGap())
@@ -494,7 +495,7 @@ public class GestionSpa extends javax.swing.JInternalFrame {
         jtEstado.setBackground(new java.awt.Color(200, 242, 180));
         jtEstado.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         jtEstado.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jtEstado.setText("Libre");
+        jtEstado.setText("Activo");
         jtEstado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
@@ -541,7 +542,7 @@ public class GestionSpa extends javax.swing.JInternalFrame {
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPanelPrincipalLayout.createSequentialGroup()
                                         .addComponent(jpPanelEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(105, 105, 105))
-                                    .addComponent(jbSalir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(jbSalir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap())
         );
         jpPanelPrincipalLayout.setVerticalGroup(
@@ -549,13 +550,13 @@ public class GestionSpa extends javax.swing.JInternalFrame {
             .addGroup(jpPanelPrincipalLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jpPanelDiaSpa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jpPanelPrincipalLayout.createSequentialGroup()
-                        .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
+                        .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(jpPanelInformacionC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
-                        .addComponent(jpPanelEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jpPanelDiaSpa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(21, 21, 21)
+                        .addComponent(jpPanelEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jpPanelTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -596,6 +597,8 @@ public class GestionSpa extends javax.swing.JInternalFrame {
         
         cargarCampos();
         habilitarCampos();
+        jbActualizar.setEnabled(true);
+        jbSubir.setEnabled(false);
     }//GEN-LAST:event_jtTablaDiaSMouseClicked
 
     private void jbSubirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSubirActionPerformed
@@ -607,16 +610,22 @@ public class GestionSpa extends javax.swing.JInternalFrame {
                 cargarTabla();
                 vaciarCampos();
                 inhabilitarCampos();
-                
+                jbSubir.setEnabled(false);
             }
     }//GEN-LAST:event_jbSubirActionPerformed
 
     private void jbBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBorrarActionPerformed
         // TODO add your handling code here:
+            if(d.getCodPack() == -1){
+                JOptionPane.showMessageDialog(null, "Seleccione un dia para borrar");
+            }else{
             dias.borrarDiaSpa(d.getCodPack());
             cargarTabla();
             vaciarCampos();
             
+            jbActualizar.setEnabled(false);
+            jbSubir.setEnabled(true);
+            }
     }//GEN-LAST:event_jbBorrarActionPerformed
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
@@ -631,6 +640,9 @@ public class GestionSpa extends javax.swing.JInternalFrame {
             cargarTabla();
             vaciarCampos();
             inhabilitarCampos();
+            
+            jbActualizar.setEnabled(false);
+            jbSubir.setEnabled(true);
         }
     }//GEN-LAST:event_jbActualizarActionPerformed
 
@@ -642,6 +654,9 @@ public class GestionSpa extends javax.swing.JInternalFrame {
         dias.altaLogicaDiaSpa(d);
         cargarTabla();
         vaciarCampos();
+        
+        jbActualizar.setEnabled(false);
+        jbSubir.setEnabled(true);
         }
     }//GEN-LAST:event_jbAltaActionPerformed
 
@@ -653,6 +668,9 @@ public class GestionSpa extends javax.swing.JInternalFrame {
         dias.bajaLogicaDiaSpa(d);
         cargarTabla();
         vaciarCampos();
+        
+        jbActualizar.setEnabled(false);
+        jbSubir.setEnabled(true);
        }
     }//GEN-LAST:event_jbBajaActionPerformed
 
@@ -660,6 +678,9 @@ public class GestionSpa extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         vaciarCampos();
         habilitarCampos();
+        
+        jbActualizar.setEnabled(false);
+        jbSubir.setEnabled(true);
     }//GEN-LAST:event_jbNuevoActionPerformed
 
 
@@ -709,17 +730,16 @@ public class GestionSpa extends javax.swing.JInternalFrame {
     private void cargarCombo() {
         //carga el jcombobox con todos los clientes sin importar su estado.
         for (Cliente c : clientes.mostrarClientesActivos()) {
-            String id = String.valueOf(c.getCodCli());
+            String id = String.valueOf(c.getCodCli()+" - "+ c.getNombreC());
             jcbClientes.addItem(id);
         }
     }
 
     private void cargarModelo() {
         modeloT.addColumn("CodPack");
-        modeloT.addColumn("FechayHora");
+        modeloT.addColumn("Fecha");
         modeloT.addColumn("Cliente");
         modeloT.addColumn("Preferencias");
-        modeloT.addColumn("Monto");
         modeloT.addColumn("Estado");
         jtTablaDiaS.setModel(modeloT);
     }
@@ -727,7 +747,7 @@ public class GestionSpa extends javax.swing.JInternalFrame {
     private void cargarTabla() {
         Utilitario.limpiarTabla(modeloT);
         for (DiaSpa diaS : dias.cargarTodosDiaSpa()) {
-            modeloT.addRow(new Object[]{diaS.getCodPack(), diaS.getFecha(), diaS.getCliente().getCodCli(), diaS.getPrefencias(), diaS.getMonto(), diaS.isEstado()});
+            modeloT.addRow(new Object[]{diaS.getCodPack(), diaS.getFecha(), diaS.getCliente().getCodCli(), diaS.getPrefencias(), diaS.isEstado()});
         }
     }
 
@@ -758,7 +778,14 @@ public class GestionSpa extends javax.swing.JInternalFrame {
         en caso de haber un error en tema de parseo de string a int o un datetime excepcion
         sale sus respectivos carteles indicando la falla*/
             try {
-                int idC = Integer.valueOf(jcbClientes.getSelectedItem().toString());
+                //patron que identifica caracteres alfabeticos junto con el punto  y coma.
+                String rgX="[-,.A-Za-z]";
+               //cliente es el id con espacios pero sin el nombreCompleto 
+                String cliente = jcbClientes.getSelectedItem().toString().replaceAll(rgX, "");
+                //el string id es el numero identificador limpio sin espacios.
+                String id = cliente.replace(" ", "");
+                int idC = Integer.valueOf(id);
+                
                 Cliente c = clientes.buscarCliente(idC);
                 
                 String preferencias = txtPreferencias.getText();
@@ -768,9 +795,9 @@ public class GestionSpa extends javax.swing.JInternalFrame {
                 y poder integrarlo al atributo de DiaSpa que es de tipo LocalDateTime*/
                 
                 int año = jdtFecha.getCalendar().get(Calendar.YEAR);
-                int mes = jdtFecha.getCalendar().get(Calendar.MONTH);
-                int dia = jdtFecha.getCalendar().get(Calendar.DAY_OF_MONTH);
-
+                int mes = jdtFecha.getCalendar().get(Calendar.MONTH) + 1;
+                int dia = jdtFecha.getCalendar().get(Calendar.DAY_OF_MONTH) ;
+                
                 LocalDate fecha = LocalDate.of(año, mes, dia);
                 
                 /*cada dato que el usuario haya ingresado se le asigna al objeto d(DiaSpa). menos el id que no es necesario es auto_incremental*/
@@ -785,11 +812,11 @@ public class GestionSpa extends javax.swing.JInternalFrame {
 
             } catch (java.lang.NumberFormatException error) {
                 
-                JOptionPane.showMessageDialog(null, "Ingrese los datos(horas o minutos) en el formato adecuado!!!");
+                JOptionPane.showMessageDialog(null, error.getMessage());
                 
             } catch (java.time.DateTimeException error) {
                 
-                JOptionPane.showMessageDialog(null, "Ingrese bien la fecha y el horario (rango de hora(0-24) y rango de min (0-60) NO mas de dos digitos)");
+                JOptionPane.showMessageDialog(null, "Ingrese bien la fecha y el horario (rango de hora(0-24) y rango de min (0-60) NO mas de dos digitos)"+ error.getMessage());
             }
             
         }
@@ -808,7 +835,7 @@ public class GestionSpa extends javax.swing.JInternalFrame {
         txtDNI.setText("");
         txtNumeroT.setText("");
         
-        jtEstado.setText("Libre");
+        jtEstado.setText("Activo");
         jtEstado.setBackground(verdeActivo);
         
         jcbClientes.setSelectedIndex(0);
@@ -845,35 +872,30 @@ public class GestionSpa extends javax.swing.JInternalFrame {
         DiaSpa dia = dias.cargarDiaSpa(codPack);
 
         //Todas estas variables sirven para poder setear los jTextField y por ende rellenar sus campos.
-        String cliente = String.valueOf(idC);
         String preferencia = dia.getPrefencias();
         String id = String.valueOf(dia.getCodPack());
-
+        jcbClientes.setSelectedItem(c.getCodCli()+" - "+ c.getNombreC());
         LocalDate fecha = dia.getFecha();
-
-        jcbClientes.setSelectedItem(cliente);
-  
         jdtFecha.setDate(Date.valueOf(fecha));
-
         txtPreferencias.setText(preferencia);
         txtID.setText(id);
 
         //metodo que habilita o inhabilita segun el estado del objeto seleccionado.
         
-        boolean estado = Boolean.valueOf(jtTablaDiaS.getValueAt(filaS, 5).toString());
+        boolean estado = Boolean.valueOf(jtTablaDiaS.getValueAt(filaS, 4).toString());
         
         if (estado == true) {
             
             jbAlta.setEnabled(false);
             jbBaja.setEnabled(true);
-            jtEstado.setText("Libre");
+            jtEstado.setText("Activo");
             jtEstado.setBackground(verdeActivo);
             
         } else if (estado == false) {
             
             jbAlta.setEnabled(true);
             jbBaja.setEnabled(false);
-            jtEstado.setText("Ocupado");
+            jtEstado.setText("Inactivo");
             jtEstado.setBackground(rojoInactivo);
             
         }
@@ -893,18 +915,31 @@ public class GestionSpa extends javax.swing.JInternalFrame {
         txtPreferencias.setEnabled(true);
         jdtFecha.setEnabled(true);
         jcbClientes.setEnabled(true);
+        jbSubir.setEnabled(true);
         
     }
 
     private void cargarCliente() {
+        /*esto patron regeX identifica un grupo de caracter alfabetico junto con el guion y coma.
+          esta cadena va a servir para poder extraer el ID de tipo int solo y poder cargar la informacion del cliente*/
+        String rgX="[-,.A-Za-z]";
+        
         /*metodo que funciona en conjunto al Jcombobox.
-     el usario elije el id y carga informacion que este relacionada al id*/
+        el usario elije el id y carga informacion que este relacionada al id*/
+        
         //si el item seleccionado no es igual a ID clientes. que proceda a cargar la info. en caso contrario no carga nada.
         if (!jcbClientes.getSelectedItem().toString().equals("Seleccione a un cliente")) {
-
-            int idC = Integer.valueOf(jcbClientes.getSelectedItem().toString());
-            Cliente c = clientes.buscarCliente(idC);
             
+            //mediante el rgX de arriba remplazamos todos los caracter alfabeticos junto con el - a espacioes en blanco
+            String cliente = jcbClientes.getSelectedItem().toString().replaceAll(rgX, "");
+            
+            //elimina los espacios en blanco
+            String id = cliente.replace(" ", "");
+            
+            //se procede al parseo 
+            int idC = Integer.valueOf(id);
+            Cliente c = clientes.buscarCliente(idC);
+            //se carga la informacion
             txtNombreC.setText(c.getNombreC());
             txtEdad.setText(String.valueOf(c.getEdad()));
             txtDNI.setText(String.valueOf(c.getDni()));
@@ -940,5 +975,4 @@ public class GestionSpa extends javax.swing.JInternalFrame {
         jdtFecha.setSelectableDateRange(fechaActual, fechaFinLaborable);
         
     }
-    
 }

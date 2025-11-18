@@ -27,6 +27,7 @@ public class GestionClientes extends javax.swing.JInternalFrame {
         initComponents();
         cargarModelo();
         cargarTabla();
+        jbActualizar.setEnabled(false);
     }
 
     /**
@@ -79,7 +80,7 @@ public class GestionClientes extends javax.swing.JInternalFrame {
 
         jLabel9.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Cliente");
+        jLabel9.setText("Cliente - ingreso de datos");
 
         jbSalir.setBackground(new java.awt.Color(255, 51, 51));
         jbSalir.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
@@ -224,14 +225,12 @@ public class GestionClientes extends javax.swing.JInternalFrame {
             .addGroup(jpPanelClienteLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpPanelClienteLayout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 369, Short.MAX_VALUE)
-                        .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jpPanelClienteLayout.createSequentialGroup()
-                        .addComponent(jpPaneelInfoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jpPaneelInfoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jpPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jbSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jpPanelClienteLayout.setVerticalGroup(
@@ -272,7 +271,7 @@ public class GestionClientes extends javax.swing.JInternalFrame {
 
         jLabel8.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Clientes");
+        jLabel8.setText("Clientes registrados");
 
         jpPanelBotones.setBackground(new java.awt.Color(0, 102, 153));
         jpPanelBotones.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -335,10 +334,10 @@ public class GestionClientes extends javax.swing.JInternalFrame {
             .addGroup(jpPanelTablaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpPanelTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 548, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addGroup(jpPanelTablaLayout.createSequentialGroup()
                         .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                         .addComponent(jpPanelBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -347,8 +346,8 @@ public class GestionClientes extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPanelTablaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpPanelTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8)
-                    .addComponent(jpPanelBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jpPanelBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
                 .addContainerGap())
@@ -440,7 +439,7 @@ public class GestionClientes extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jpPanelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 576, Short.MAX_VALUE)
+                .addComponent(jpPanelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -468,15 +467,22 @@ public class GestionClientes extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         cargarCampos();
         habilitarCampos();
+        jbActualizar.setEnabled(true);
+        jbSubir.setEnabled(false);
     }//GEN-LAST:event_jtTablaClientesMouseClicked
 
     private void jbBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBorrarActionPerformed
         // TODO add your handling code here:
-
+        if(c.getCodCli() == -1){
+            JOptionPane.showMessageDialog(null, "Seleccione un cliente para borrar");
+        }else{
             clientes.borrarCliente(c.getCodCli());
             cargarTabla();
             vaciarCampos();
-        
+            
+        jbActualizar.setEnabled(false);
+        jbSubir.setEnabled(true);
+        }
     }//GEN-LAST:event_jbBorrarActionPerformed
 
     private void jbActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbActualizarActionPerformed
@@ -486,6 +492,8 @@ public class GestionClientes extends javax.swing.JInternalFrame {
             cargarTabla();
             vaciarCampos();
             inhabilitarCampos();
+            jbActualizar.setEnabled(false);
+            jbSubir.setEnabled(true);
         }
     }//GEN-LAST:event_jbActualizarActionPerformed
 
@@ -502,6 +510,9 @@ public class GestionClientes extends javax.swing.JInternalFrame {
             clientes.darDeAlta(c.getCodCli());
             cargarTabla();
             vaciarCampos();
+            
+            jbActualizar.setEnabled(false);
+            jbSubir.setEnabled(true);
         }
     }//GEN-LAST:event_jbAltaActionPerformed
 
@@ -513,6 +524,9 @@ public class GestionClientes extends javax.swing.JInternalFrame {
             clientes.darDeBaja(c.getCodCli());
             cargarTabla();
             vaciarCampos();
+            
+            jbActualizar.setEnabled(false);
+            jbSubir.setEnabled(true);
         }
     }//GEN-LAST:event_jbBajaActionPerformed
 
@@ -705,7 +719,7 @@ public class GestionClientes extends javax.swing.JInternalFrame {
         txtEdad.setEnabled(true);
         txtDNI.setEnabled(true);
         txtID.setEnabled(true);
-        
+        jbSubir.setEnabled(true);
     }
     
 }
