@@ -35,6 +35,15 @@ public class VistaSesion extends javax.swing.JInternalFrame {
     InstalacionesData instalaciones = new InstalacionesData(); //2
     DiaSPAData diasdespa  = new DiaSPAData(); //3
     
+    //Variables globales sobre Tratamiento e Instalación seleccionada
+    private LocalTime fechaTratamientoI = LocalTime.now();
+    private LocalTime fechaTratamientoF = LocalTime.now();
+    private int codigoTSeleccionado = -1;
+    
+    private LocalTime fechaInstalacionI = LocalTime.now();
+    private LocalTime fechaInstalacionF = LocalTime.now();
+    private int codigoISeleccionado = -1;
+    
 
     SesionData sesion = new SesionData(); //Se utilizará para las consultas de la base de datos
     
@@ -1027,7 +1036,7 @@ public class VistaSesion extends javax.swing.JInternalFrame {
         int errores = 0;
         
         try {
-            
+            /*
             int HoraInicio = Integer.parseInt(jtfHoraInicio.getText());
             int MinutosInicio = Integer.parseInt(jtfMinutosInicio.getText());
             
@@ -1052,39 +1061,16 @@ public class VistaSesion extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, "Los minutos no pueden ser más de 59 minutos, por favor, corrijalo");
                 errores++;
             }
-            
-            Date fechaInicioDate = Utilitario.deLDaD(diasdespa.cargarDiaSpa(datos[3]).getFecha());
-            
+            */
+
+
             LocalDateTime fechaInicio = null;
-            
-            if (fechaInicioDate == null) {
-                JOptionPane.showMessageDialog(null, "Debe colocar una fecha de inicio de la sesión");
-                errores++;
-            } else {
-                               
-                //Se pasa de Date a LocalDateTime para tratarlo en nuestro sistema
-                LocalDate fechaInicioLocalDate = fechaInicioDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                
-                LocalTime horarioInicio = LocalTime.of(HoraInicio, MinutosInicio);
-                
-                fechaInicio = LocalDateTime.of(fechaInicioLocalDate, horarioInicio);
-
-                //Se crea un formato similar a la base de datos año-mes-dia
-                DateTimeFormatter formatoLocalDateTime = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm");
-
-                //Se coloca el formato en el LocalDate que será cargado a la fecha de nacimiento del Alumno
-                fechaInicio.format(formatoLocalDateTime);
-            }
-            
-            
-            
-
             
 
             LocalDateTime fechaFinal = null;
             
             //la fecha y hora final se calcula en base a la duración y la misma fecha del tratamiento anteriormente seleccionada
-            if (datos[1] == -1) {
+            /*if (datos[1] == -1) {
                 JOptionPane.showMessageDialog(null, "Se necesita saber cuál es el tratamiento para brindar la fecha y hora final, por favor elige");
                 errores++;
             } else if(fechaInicio == null) {
@@ -1110,7 +1096,7 @@ public class VistaSesion extends javax.swing.JInternalFrame {
                 
                 
                 
-            }
+            }*/
             
             if (datos[3] == -1) {
                 JOptionPane.showMessageDialog(null, "Debe seleccionar un dia de spa de la lista");
@@ -1129,6 +1115,7 @@ public class VistaSesion extends javax.swing.JInternalFrame {
 
                     if (opcion == 0) {
                         datos[2] = -1;
+
                     } else if (opcion == 1) {
                         datos[1] = -1;
                     }
@@ -1139,6 +1126,30 @@ public class VistaSesion extends javax.swing.JInternalFrame {
             int codTratamientos = datos[1];           
             int codInstalaciones = datos[2];
             int codDiaSpa = datos[3];
+            
+            if (datos[1] > -1) {
+                
+                if (datos[1] == codigoTSeleccionado) {
+                    fechaInicio = LocalDateTime.of(diasdespa.cargarDiaSpa(datos[3]).getFecha(), fechaTratamientoI);
+                    fechaFinal = LocalDateTime.of(diasdespa.cargarDiaSpa(datos[3]).getFecha(), fechaTratamientoF);
+                } else {
+                    JOptionPane.showMessageDialog(null, "No debe cambiar el tratamiento seleccionado, elije uno nuevo con su horario correspondiente");
+                    errores++;
+                }
+                
+            }
+            
+            if (datos[2] > -1) {
+
+                if (datos[2] == codigoISeleccionado) {
+                    fechaInicio = LocalDateTime.of(diasdespa.cargarDiaSpa(datos[3]).getFecha(), fechaInstalacionI);
+                    fechaFinal = LocalDateTime.of(diasdespa.cargarDiaSpa(datos[3]).getFecha(), fechaInstalacionF);
+                } else {
+                    JOptionPane.showMessageDialog(null, "No debe cambiar la instalación seleccionado, elije uno nuevo con su horario correspondiente");
+                    errores++;
+                }
+
+            }
             
             
             if(errores > 0) {
@@ -1397,6 +1408,11 @@ public class VistaSesion extends javax.swing.JInternalFrame {
         jtfMinutosInicio.setText(""+hora.getMinute());
         jtfHoraFin.setText(""+(hora.getHour()+tratamientos.buscarTratamiento(datos[1]).getDuracion().getHour()));
         jtfMinutosFin.setText(""+(hora.getMinute()+tratamientos.buscarTratamiento(datos[1]).getDuracion().getMinute()));
+        fechaTratamientoI = hora;
+        int horaF = hora.getHour()+tratamientos.buscarTratamiento(datos[1]).getDuracion().getHour();
+        int minutoF = hora.getMinute()+tratamientos.buscarTratamiento(datos[1]).getDuracion().getMinute();
+        fechaTratamientoF = LocalTime.of(horaF, minutoF);
+        codigoTSeleccionado = datos[1];
     }
     
     public void recibirHora(LocalTime hora, LocalTime horaF) {
@@ -1405,6 +1421,10 @@ public class VistaSesion extends javax.swing.JInternalFrame {
         
         jtfHoraFin.setText(""+(horaF.getHour()));
         jtfMinutosFin.setText(""+(horaF.getMinute()));
+        
+        fechaInstalacionI = hora;
+        fechaInstalacionF = horaF;
+        codigoISeleccionado = datos[2];
     }
     
     

@@ -108,9 +108,19 @@ public class SesionData {
 
             ps.setTimestamp(1, Timestamp.valueOf(s.getFechaIn()));
             ps.setTimestamp(2, Timestamp.valueOf(s.getFechaFin()));
-            ps.setInt(3, s.getTratamiento());
+            
+            if (s.getTratamiento() <= 0) {
+                ps.setString(3, null);
+            } else {
+                ps.setInt(3, s.getTratamiento());
+            }
+
             ps.setInt(4, s.getDiaS());
-            ps.setInt(5, s.getInstalacion());
+            if (s.getInstalacion() <= 0) {
+                ps.setString(5, null);
+            } else {
+                ps.setInt(5, s.getInstalacion());
+            }
             ps.setInt(6, s.getCodSesion());
 
             if (ps.executeUpdate() > 0) {

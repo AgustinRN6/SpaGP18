@@ -27,6 +27,7 @@ public class jdSeleccionar extends javax.swing.JDialog {
     private LocalTime horaElegidaF = LocalTime.now();
     private LocalTime horaElegida = LocalTime.now();
     private boolean seSelecciono = false;
+    private boolean estaDisponible = false;
 
     public void setJlPresentacion(String cambiarTexto) {
         this.jlPresentacion.setText(cambiarTexto);
@@ -283,21 +284,28 @@ public class jdSeleccionar extends javax.swing.JDialog {
     private void jbSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSeleccionarActionPerformed
 
         if (seSelecciono) {
-            if (eleccion == "Tratamiento") {
-                if (envio != null) {
-                envio.devolverHorario(horaElegida);
-                seSelecciono = false;
-                }
-            }
-            if (eleccion == "Instalacion") {
+            
+            if (estaDisponible) {
                 
-                if (envio != null) {
-                envio.devolverHorario(horaElegida, horaElegidaF);
-                seSelecciono = false;
+                if (eleccion == "Tratamiento") {
+                    if (envio != null) {
+                        envio.devolverHorario(horaElegida);
+                        seSelecciono = false;
+                    }
                 }
+                if (eleccion == "Instalacion") {
+
+                    if (envio != null) {
+                        envio.devolverHorario(horaElegida, horaElegidaF);
+                        seSelecciono = false;
+                    }
+                }
+
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Elije algún horario que esté disponible");
             }
 
-        dispose();
         } else {
             JOptionPane.showMessageDialog(null, "Elije algún horario para guardarlo en la sesión");
         }
@@ -415,11 +423,11 @@ public class jdSeleccionar extends javax.swing.JDialog {
     }
     
     //Determina si en un momento dado el masajista está disponible o no
-    public boolean masajistaDisponible(LocalTime horaI,int codigo, int codMasajista) {
+    public boolean masajistaDisponible(LocalTime horaI, LocalTime horaF,int codigo, int codMasajista) {
         
-        LocalDateTime fechaHoraI = LocalDateTime.of(fecha, horaI);
+
         
-        return tratamientos.masajistaDisponible(fechaHoraI, codigo, codMasajista);
+        return masajistas.buscarMasajistaEnFechaHorario(horaI, horaF, fecha, codMasajista, codigo);
     
     }
     
@@ -517,7 +525,7 @@ public class jdSeleccionar extends javax.swing.JDialog {
                 indiceTratamiento++;
 
             } else */
-            if (!masajistaDisponible(d.getInicio(), codigo, d.getMasajista().getMatricula())) {
+            if (!masajistaDisponible(d.getInicio(), d.getFin(), codigo, d.getMasajista().getMatricula())) {
 
                 noDispo = false;
                 modeloTabla.addRow(new Object[]{d.getCodTrat(), d.getNombre(), d.getDuracion(),
@@ -607,20 +615,40 @@ public class jdSeleccionar extends javax.swing.JDialog {
         int seleccionFila = jtTabla.rowAtPoint(seleccionado);
 
         int columnaHorario = 0;
+        int columnaDisponible = 6;
+        
+        if (eleccion.equalsIgnoreCase("Tratamiento")) {
+            columnaDisponible = 6;
+        }
+        if (eleccion.equalsIgnoreCase("Instalacion")) {
+            columnaDisponible = 5;
+        }
+        
         
         for (int i = 0; i < jtTabla.getColumnCount(); i++) {
             if (jtTabla.getColumnName(i).equals("Horario inicial")) {
                 columnaHorario = i;
             }
+            if (jtTabla.getColumnName(i).equals("Disponibilidad")) {
+                columnaDisponible = i;
+            }
+
         }
         
         horaElegida = (LocalTime)(jtTabla.getValueAt(seleccionFila, columnaHorario));
+        
+        String disponible = (String)(jtTabla.getValueAt(seleccionFila, columnaDisponible));
+        
+        if (disponible.equalsIgnoreCase("no disponible")) {
+            estaDisponible = false;
+        } else {
+            estaDisponible = true;
+        }
+        
         if (eleccion.equalsIgnoreCase("Instalacion")) {
             horaElegidaF = horaElegida.plusMinutes((int) (JStiempo.getValue()));
-            System.out.println(horaElegidaF+ " hora Elegida Final");
-            
+            System.out.println(horaElegidaF+ " hora Elegida Final");   
         }
-        System.out.println(horaElegida);
         seSelecciono = true;
         cambioTexto();
         
