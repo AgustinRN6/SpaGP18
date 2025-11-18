@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-11-2025 a las 00:26:36
+-- Tiempo de generación: 18-11-2025 a las 01:44:20
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -93,10 +93,10 @@ CREATE TABLE `sesion` (
   `codSesion` int(11) NOT NULL,
   `fechaHoraInicio` datetime NOT NULL,
   `fechaHoraFin` datetime NOT NULL,
-  `tratamiento` int(11) NOT NULL,
+  `tratamiento` int(11) DEFAULT NULL,
   `dia_De_Spa` int(11) NOT NULL,
   `estado` tinyint(1) NOT NULL,
-  `instalacion` int(11) NOT NULL
+  `instalacion` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -150,9 +150,9 @@ ALTER TABLE `masajista`
 --
 ALTER TABLE `sesion`
   ADD PRIMARY KEY (`codSesion`),
-  ADD KEY `tratamiento` (`tratamiento`),
   ADD KEY `dia_De_Spa` (`dia_De_Spa`),
-  ADD KEY `instalacion` (`instalacion`);
+  ADD KEY `sesion_ibfk_1` (`tratamiento`),
+  ADD KEY `sesion_ibfk_4` (`instalacion`);
 
 --
 -- Indices de la tabla `tratamiento`
@@ -209,9 +209,9 @@ ALTER TABLE `dia_de_spa`
 -- Filtros para la tabla `sesion`
 --
 ALTER TABLE `sesion`
-  ADD CONSTRAINT `sesion_ibfk_1` FOREIGN KEY (`tratamiento`) REFERENCES `tratamiento` (`codTratam`),
+  ADD CONSTRAINT `sesion_ibfk_1` FOREIGN KEY (`tratamiento`) REFERENCES `tratamiento` (`codTratam`) ON DELETE SET NULL ON UPDATE SET NULL,
   ADD CONSTRAINT `sesion_ibfk_3` FOREIGN KEY (`dia_De_Spa`) REFERENCES `dia_de_spa` (`codPack`),
-  ADD CONSTRAINT `sesion_ibfk_4` FOREIGN KEY (`instalacion`) REFERENCES `instalacion` (`codInstal`);
+  ADD CONSTRAINT `sesion_ibfk_4` FOREIGN KEY (`instalacion`) REFERENCES `instalacion` (`codInstal`) ON DELETE SET NULL ON UPDATE SET NULL;
 
 --
 -- Filtros para la tabla `tratamiento`
