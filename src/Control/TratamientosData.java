@@ -74,7 +74,7 @@ public class TratamientosData {
 
     public void actualizarTratamiento(Tratamiento t) {
         
-        String sqlUP = "UPDATE tratamiento SET nombre = ?, detalle = ?, duracion = ?, costo = ?, estado = ?, tipo ?,masajista = ? WHERE tratamiento.codTratam = ?";
+        String sqlUP = "UPDATE tratamiento SET nombre = ?, detalle = ?, duracion = ?, costo = ?, estado = ?, tipo = ?,masajista = ? WHERE tratamiento.codTratam = ?";
         
         try {
             
