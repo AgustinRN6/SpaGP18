@@ -56,13 +56,13 @@ Instalaciones de agua
     Masajista ma2 = new Masajista(3333,"Mario Gonzales",2321312,"Corporal",true);
     Masajista ma3 = new Masajista(4444,"Gustavo Dominguez",26641234,"Estetico",true);
     Masajista ma4 = new Masajista(2232,"Leandro Gutierrez",1231212,"Relajacion",true);
-    Masajista ma5 = new Masajista(9999,"Gustavo Alfange",1231212,"Especializado",true);
+    Masajista ma5 = new Masajista(9999,"Carla Alfange",1231212,"Especializado",true);
     
-    Masajista ma6 = new Masajista(5555,"Pepe Rosales",255512,"Facial",true);
-    Masajista ma7 = new Masajista(6666,"Mario Gonzales",2321312,"Corporal",true);
-    Masajista ma8 = new Masajista(7777," Dominguez",26641234,"Estetico",true);
-    Masajista ma9 = new Masajista(8888,"Leandro Gutierrez",1231212,"Relajacion",true);
-    Masajista ma10 = new Masajista(1010,"Gustavo Alfange",1231212,"Especializado",true);
+    Masajista ma6 = new Masajista(5555,"Pepe Estabon",255512,"Facial",true);
+    Masajista ma7 = new Masajista(6666,"Carlos Pestelo",2321312,"Corporal",true);
+    Masajista ma8 = new Masajista(7777,"Fabio Mendoza",26641234,"Estetico",true);
+    Masajista ma9 = new Masajista(8888,"Karina Sosa",1231212,"Relajacion",true);
+    Masajista ma10 = new Masajista(1010,"Guiselle Esquivan",1231212,"Especializado",true);
     /**/
     /* 
     Masajes 

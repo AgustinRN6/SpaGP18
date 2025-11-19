@@ -124,29 +124,7 @@ public class InstalacionesData {
         }
     return instalaciones;
     }
-    public List<Instalacion> mostrarInstalacionesMasSolicitadas(){
-        List<Instalacion>instalaciones = new ArrayList();
-        
-        try{
-            String sqlSL="Select i.* FROM instalacion i, sesion s WHERE i.codInstal = s.instalacion AND i.estado = 0";
-            PreparedStatement ps = con.prepareStatement(sqlSL);
-            ResultSet resultado = ps.executeQuery();
-            while(resultado.next()){
-                Instalacion i = new Instalacion();
-                i.setCodIns(resultado.getInt("codInstal"));
-                i.setNombre(resultado.getString("nombre"));
-                i.setDetallesUso(resultado.getString("detalleDeUso"));
-                i.setPrecio30M(resultado.getInt("precio30M"));
-                i.setEstado(resultado.getBoolean("estado"));
-                i.setUsos(resultado.getString("usos"));
-                i.setApto(resultado.getString("apto"));
-                instalaciones.add(i);
-            }
-        }catch(java.sql.SQLException error){
-            JOptionPane.showMessageDialog(null, error.getMessage());
-        }
-    return instalaciones;
-    }
+
     public List<Instalacion> mostrarInstalacionesLibres(){
         List<Instalacion>instalaciones = new ArrayList();
         
