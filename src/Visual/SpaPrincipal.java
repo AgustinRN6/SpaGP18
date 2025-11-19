@@ -7,6 +7,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class SpaPrincipal extends javax.swing.JFrame {
     //Clases data
+    
      TratamientosData tratamientos = new TratamientosData();
      MasajistasData masajistas = new MasajistasData();
      SesionData sesiones = new SesionData();
@@ -106,8 +107,9 @@ public class SpaPrincipal extends javax.swing.JFrame {
         jmiCerrar = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-
-        Escritorio.setPreferredSize(new java.awt.Dimension(900, 700));
+        setPreferredSize(new java.awt.Dimension(1300, 800));
+        setResizable(false);
+        setSize(new java.awt.Dimension(0, 0));
 
         jpPanelSecundario.setBackground(new java.awt.Color(165, 189, 210));
         jpPanelSecundario.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(153, 204, 255), new java.awt.Color(0, 153, 204)));
@@ -155,8 +157,8 @@ public class SpaPrincipal extends javax.swing.JFrame {
             .addGroup(jpSesionesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel5)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -201,12 +203,12 @@ public class SpaPrincipal extends javax.swing.JFrame {
             .addGroup(jpMasajistasLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpMasajistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 645, Short.MAX_VALUE)
                     .addGroup(jpMasajistasLayout.createSequentialGroup()
                         .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jcbEspecialidadesM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addGap(91, 91, 91))))
         );
         jpMasajistasLayout.setVerticalGroup(
             jpMasajistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -214,9 +216,9 @@ public class SpaPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jpMasajistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jcbEspecialidadesM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jcbEspecialidadesM, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -228,17 +230,18 @@ public class SpaPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jpSesiones, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jpMasajistas, javax.swing.GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE)
+                .addComponent(jpMasajistas, javax.swing.GroupLayout.DEFAULT_SIZE, 657, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jpPanelSecundarioLayout.setVerticalGroup(
             jpPanelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPanelSecundarioLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jpPanelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jpSesiones, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                    .addComponent(jpMasajistas, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jpMasajistas, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPanelSecundarioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jpSesiones, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE))
         );
 
         jpPanelPrincipal.setBackground(new java.awt.Color(165, 189, 210));
@@ -298,7 +301,7 @@ public class SpaPrincipal extends javax.swing.JFrame {
                     .addGroup(jpDetallesTLayout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane6))
                 .addContainerGap())
         );
         jpDetallesTLayout.setVerticalGroup(
@@ -328,11 +331,13 @@ public class SpaPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jpTratamientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jpTratamientosLayout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18))
+                    .addGroup(jpTratamientosLayout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jcbTiposT, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jcbTiposT, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)))
                 .addComponent(jpDetallesT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -344,7 +349,7 @@ public class SpaPrincipal extends javax.swing.JFrame {
                     .addGroup(jpTratamientosLayout.createSequentialGroup()
                         .addGroup(jpTratamientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
-                            .addComponent(jcbTiposT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jcbTiposT, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jpDetallesT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -402,7 +407,7 @@ public class SpaPrincipal extends javax.swing.JFrame {
             .addGroup(jpDetallesILayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpDetallesILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane7)
                     .addGroup(jpDetallesILayout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -436,11 +441,13 @@ public class SpaPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jpInstalacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jpInstalacionesLayout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18))
+                    .addGroup(jpInstalacionesLayout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtbInstalacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jtbInstalacion, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)))
                 .addComponent(jpDetallesI, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -451,11 +458,11 @@ public class SpaPrincipal extends javax.swing.JFrame {
                 .addGroup(jpInstalacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jpDetallesI, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jpInstalacionesLayout.createSequentialGroup()
-                        .addGroup(jpInstalacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(jpInstalacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addComponent(jtbInstalacion))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                            .addComponent(jtbInstalacion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -475,7 +482,7 @@ public class SpaPrincipal extends javax.swing.JFrame {
             .addGroup(jpPanelPrincipalLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jpTratamientos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addComponent(jpInstalaciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -490,7 +497,7 @@ public class SpaPrincipal extends javax.swing.JFrame {
         jTextArea1.setForeground(new java.awt.Color(255, 243, 204));
         jTextArea1.setLineWrap(true);
         jTextArea1.setRows(5);
-        jTextArea1.setText("Bienvenidos  al\nSPA - TODO AMOR\n\nLes proporcionamos informacion correspondientes a nuestras:\n\n-Instalaciones\n\n-Masajistas\n\n-Tratamientos\n\n-Sesiones\n\nQue tenga un excelente Dia!!!\n");
+        jTextArea1.setText("Bienvenidos  al\nSPA - TODO AMOR\n\nLes proporcionamos informacion correspondientes a nuestras:\n\n-Instalaciones\n\n-Masajistas\n\n-Tratamientos\n\n-Sesiones\n\nQue tenga un excelente Dia!!!");
         jTextArea1.setWrapStyleWord(true);
         jTextArea1.setBorder(null);
         jScrollPane4.setViewportView(jTextArea1);
@@ -535,11 +542,11 @@ public class SpaPrincipal extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addGroup(EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(EscritorioLayout.createSequentialGroup()
-                        .addComponent(jpPanelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EscritorioLayout.createSequentialGroup()
+                        .addComponent(jpPanelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(30, 30, 30)
                         .addComponent(jpPanelSecundario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jmClientes.setText("Cliente");
@@ -629,14 +636,14 @@ public class SpaPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 1050, Short.MAX_VALUE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(Escritorio)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 723, Short.MAX_VALUE)
+                .addComponent(Escritorio)
                 .addContainerGap())
         );
 
@@ -665,6 +672,7 @@ public class SpaPrincipal extends javax.swing.JFrame {
         gm.setVisible(true);
         Escritorio.add(gm);
         Escritorio.moveToFront(gm);
+        
     }//GEN-LAST:event_jmiMasajistasActionPerformed
 
     private void jmiClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiClientesActionPerformed
@@ -745,7 +753,7 @@ public class SpaPrincipal extends javax.swing.JFrame {
             }
         }
     }catch(java.lang.NullPointerException error){
-        JOptionPane.showMessageDialog(null, "En este momento. La instalaciones tienen un registro de uso", "Recordatorio",JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "En este momento. La instalaciones  NO tienen un registro de uso", "Recordatorio",JOptionPane.INFORMATION_MESSAGE);
     }
     
     }//GEN-LAST:event_jtbInstalacionActionPerformed
@@ -944,7 +952,7 @@ public class SpaPrincipal extends javax.swing.JFrame {
         public void bienvenida() {
         
         JOptionPane.showMessageDialog(null, "BIENVENIDO AL SISTEMA DE SESIONES,"
-                + " ELIGE UN DIA DE SPA, Y LUEGO EL TRATAMIENTO O INSTALACIÓN DESEADA");
+                + " ELIGE UN DIA DE SPA, Y LUEGO EL TRATAMIENTO O INSTALACIÓN DESEADA","Instrucciones de uso", JOptionPane.INFORMATION_MESSAGE);
         
     }
 

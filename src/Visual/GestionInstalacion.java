@@ -762,6 +762,7 @@ public class GestionInstalacion extends javax.swing.JInternalFrame {
     }
 
     private void vaciarCampos() {
+        
         txtNombre.setText("");
         txtDetallesUso.setText("");
         txtApto.setText("");
@@ -774,6 +775,7 @@ public class GestionInstalacion extends javax.swing.JInternalFrame {
         jbAlta.setEnabled(true);
         jbBaja.setEnabled(true);
         i.setCodIns(-1);
+        
     }
 
 //METODO ACTUALIZAR..........................................................

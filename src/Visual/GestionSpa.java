@@ -640,6 +640,7 @@ public class GestionSpa extends javax.swing.JInternalFrame {
     private void jbActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbActualizarActionPerformed
         // TODO add your handling code here:
         if(validarCampos()==true){
+            
             dias.actualizarDiaSpa(d);
             cargarTabla();
             vaciarCampos();
@@ -647,6 +648,7 @@ public class GestionSpa extends javax.swing.JInternalFrame {
             
             jbActualizar.setEnabled(false);
             jbSubir.setEnabled(true);
+            
         }
     }//GEN-LAST:event_jbActualizarActionPerformed
 

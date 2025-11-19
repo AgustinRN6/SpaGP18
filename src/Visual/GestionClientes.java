@@ -719,7 +719,6 @@ public class GestionClientes extends javax.swing.JInternalFrame {
         txtNumeroT.setEnabled(false);
         txtEdad.setEnabled(false);
         txtDNI.setEnabled(false);
-        txtID.setEnabled(false);
         
     }
 
@@ -729,7 +728,6 @@ public class GestionClientes extends javax.swing.JInternalFrame {
         txtNumeroT.setEnabled(true);
         txtEdad.setEnabled(true);
         txtDNI.setEnabled(true);
-        txtID.setEnabled(true);
         jbSubir.setEnabled(true);
     }
     
