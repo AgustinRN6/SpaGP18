@@ -537,6 +537,11 @@ public class VistaSesion extends javax.swing.JInternalFrame {
 
         jtfFiltro.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
         jtfFiltro.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jtfFiltro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtfFiltroKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpTablaLayout = new javax.swing.GroupLayout(jpTabla);
         jpTabla.setLayout(jpTablaLayout);
@@ -744,6 +749,29 @@ public class VistaSesion extends javax.swing.JInternalFrame {
     private void jbSeleccionar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSeleccionar1ActionPerformed
         mostrarInstalacionMasSolicitada();
     }//GEN-LAST:event_jbSeleccionar1ActionPerformed
+
+    private void jtfFiltroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfFiltroKeyReleased
+        
+        String tomarValorFiltro = jtfFiltro.getText();
+        
+        try {
+            int i = Integer.parseInt(tomarValorFiltro);
+        }
+            catch (NumberFormatException e) {
+                tomarValorFiltro = null;
+            } 
+            catch (NullPointerException e) {
+                tomarValorFiltro = null;
+            }
+        
+        
+        
+        if (tomarValorFiltro != null) {
+            cargarSesion(tomarValorFiltro, 0);
+        } else {
+            cargarSesion(null, -1);
+        }
+    }//GEN-LAST:event_jtfFiltroKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1451,11 +1479,6 @@ public class VistaSesion extends javax.swing.JInternalFrame {
         codigoISeleccionado = datos[2];
     }
     
-    
-    
-    
-
-
     private void mostrarInstalacionMasSolicitada() {
         
         Instalacion i = instalaciones.InstalacionMasUtilizada();
