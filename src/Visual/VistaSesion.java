@@ -15,7 +15,9 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Iterator;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 public class VistaSesion extends javax.swing.JInternalFrame {
@@ -76,7 +78,6 @@ public class VistaSesion extends javax.swing.JInternalFrame {
         nuevaSesion(true);
         columnasTablaSecundaria();
         cargarTablaSecundaria(datos);
-        bienvenida();
     }
 
     @SuppressWarnings("unchecked")
@@ -112,6 +113,7 @@ public class VistaSesion extends javax.swing.JInternalFrame {
         jbSeleccionar = new javax.swing.JButton();
         jtfFechaI = new javax.swing.JTextField();
         jtfFechaF = new javax.swing.JTextField();
+        jbSeleccionar1 = new javax.swing.JButton();
         jpBotones = new javax.swing.JPanel();
         jbNuevo = new javax.swing.JButton();
         jbGuardar = new javax.swing.JButton();
@@ -276,6 +278,15 @@ public class VistaSesion extends javax.swing.JInternalFrame {
             }
         });
 
+        jbSeleccionar1.setBackground(new java.awt.Color(239, 242, 183));
+        jbSeleccionar1.setFont(new java.awt.Font("Consolas", 1, 10)); // NOI18N
+        jbSeleccionar1.setText("Instalación más Solicitada");
+        jbSeleccionar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSeleccionar1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpDatosLayout = new javax.swing.GroupLayout(jpDatos);
         jpDatos.setLayout(jpDatosLayout);
         jpDatosLayout.setHorizontalGroup(
@@ -289,7 +300,6 @@ public class VistaSesion extends javax.swing.JInternalFrame {
                     .addComponent(jlIDSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jtfID)
                     .addComponent(jSeparator1)
-                    .addComponent(jlDatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jpDatosLayout.createSequentialGroup()
                         .addGroup(jpDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jlIDDatos, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
@@ -298,7 +308,7 @@ public class VistaSesion extends javax.swing.JInternalFrame {
                         .addGroup(jpDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jlDetalle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jtfDetalles)))
-                    .addComponent(jspTablaDatos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jspTablaDatos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
                     .addComponent(jlDatos1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jpDatosLayout.createSequentialGroup()
                         .addGroup(jpDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -321,11 +331,15 @@ public class VistaSesion extends javax.swing.JInternalFrame {
                     .addGroup(jpDatosLayout.createSequentialGroup()
                         .addGroup(jpDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jrbInstalacion)
-                            .addComponent(jrbTratamientos))
-                        .addGap(46, 46, 46)
-                        .addComponent(jbSeleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jrbDiasDeSpa)))
+                            .addComponent(jrbTratamientos)
+                            .addComponent(jbSeleccionar1))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jpDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jlDatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jpDatosLayout.createSequentialGroup()
+                                .addComponent(jbSeleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jrbDiasDeSpa)))))
                 .addContainerGap())
         );
         jpDatosLayout.setVerticalGroup(
@@ -377,8 +391,13 @@ public class VistaSesion extends javax.swing.JInternalFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpDatosLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbSeleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(24, 24, 24)
-                .addComponent(jlDatos)
+                .addGroup(jpDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpDatosLayout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(jlDatos))
+                    .addGroup(jpDatosLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jbSeleccionar1)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlIDDatos)
@@ -722,6 +741,10 @@ public class VistaSesion extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtfFechaFActionPerformed
 
+    private void jbSeleccionar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSeleccionar1ActionPerformed
+        mostrarInstalacionMasSolicitada();
+    }//GEN-LAST:event_jbSeleccionar1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgDatos;
@@ -735,6 +758,7 @@ public class VistaSesion extends javax.swing.JInternalFrame {
     private javax.swing.JButton jbNuevo;
     private javax.swing.JButton jbSalir;
     private javax.swing.JButton jbSeleccionar;
+    private javax.swing.JButton jbSeleccionar1;
     private javax.swing.JLabel jlDatos;
     private javax.swing.JLabel jlDatos1;
     private javax.swing.JLabel jlDetalle;
@@ -1430,10 +1454,27 @@ public class VistaSesion extends javax.swing.JInternalFrame {
     
     
     
-    public void bienvenida() {
+
+
+    private void mostrarInstalacionMasSolicitada() {
         
-        JOptionPane.showMessageDialog(null, "BIENVENIDO AL SISTEMA DE SESIONES,"
-                + " ELIGE UN DIA DE SPA, Y LUEGO EL TRATAMIENTO O INSTALACIÓN DESEADA");
+        Instalacion i = instalaciones.InstalacionMasUtilizada();
+        
+        if (i != null) {
+            String muestra = "La instalación más seleccionada por nuestros clientes es:"
+                    + "\nID: " + i.getCodIns() + "\n"
+                    + "nombre: " + i.getNombre() + "\n"
+            + "detalle usos: " + i.getDetallesUso() + "\n"
+            + "Usos: " + i.getUsos() + "\n"
+            + "Precio cada 30M: " + i.getPrecio30M() + "\n"
+            + "estado: " + Utilitario.estadoParaTabla(i.getEstado());
+            
+            JOptionPane.showMessageDialog(null, muestra);
+        } else {
+            JOptionPane.showMessageDialog(null, "No hay instalación disponible para mostrar");
+        }
+        
+        
         
     }
     

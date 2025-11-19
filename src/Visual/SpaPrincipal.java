@@ -2,6 +2,7 @@
 package Visual;
 import Control.*;
 import Entidades.*;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class SpaPrincipal extends javax.swing.JFrame {
@@ -651,6 +652,8 @@ public class SpaPrincipal extends javax.swing.JFrame {
         vs.setResizable(true);
         Escritorio.add(vs);
         Escritorio.moveToFront(vs);
+        bienvenida();
+        
         
     }//GEN-LAST:event_jmiSesionActionPerformed
 
@@ -815,6 +818,13 @@ public class SpaPrincipal extends javax.swing.JFrame {
         }      
 
     }    
+    
+        public void bienvenida() {
+        
+        JOptionPane.showMessageDialog(null, "BIENVENIDO AL SISTEMA DE SESIONES,"
+                + " ELIGE UN DIA DE SPA, Y LUEGO EL TRATAMIENTO O INSTALACIÓN DESEADA");
+        
+    }
 
     
 }

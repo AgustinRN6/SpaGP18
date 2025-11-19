@@ -95,7 +95,6 @@
                       <Component id="jlIDSesion" alignment="0" max="32767" attributes="0"/>
                       <Component id="jtfID" alignment="0" max="32767" attributes="0"/>
                       <Component id="jSeparator1" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jlDatos" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="jlIDDatos" pref="135" max="32767" attributes="0"/>
@@ -107,7 +106,7 @@
                               <Component id="jtfDetalles" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <Component id="jspTablaDatos" alignment="1" pref="0" max="32767" attributes="0"/>
+                      <Component id="jspTablaDatos" alignment="1" pref="478" max="32767" attributes="0"/>
                       <Component id="jlDatos1" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -136,11 +135,17 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jrbInstalacion" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jrbTratamientos" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jbSeleccionar1" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-                          <Component id="jbSeleccionar" min="-2" pref="128" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jrbDiasDeSpa" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jlDatos" alignment="0" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jbSeleccionar" min="-2" pref="128" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="jrbDiasDeSpa" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -207,8 +212,16 @@
                           <Component id="jbSeleccionar" min="-2" pref="51" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                  <Component id="jlDatos" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                          <Component id="jlDatos" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jbSeleccionar1" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jlIDDatos" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -503,6 +516,20 @@
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value=""/>
           </AuxValues>
+        </Component>
+        <Component class="javax.swing.JButton" name="jbSeleccionar1">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="b7" green="f2" red="ef" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Consolas" size="10" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Instalaci&#xf3;n m&#xe1;s Solicitada"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbSeleccionar1ActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

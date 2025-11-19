@@ -243,5 +243,39 @@ public class InstalacionesData {
         
     }
     
+    public Instalacion InstalacionMasUtilizada() {
+        
+        Instalacion i = new Instalacion();
+        
+        String query
+                = "SELECT i.codInstal, count(i.codInstal) cantidad\n" +
+                "FROM instalacion i \n" +
+                "JOIN sesion s ON s.instalacion = i.codInstal\n" +
+                "GROUP BY i.codInstal DESC LIMIT 1;";
+
+        PreparedStatement ps;
+        try {
+
+            ps = con.prepareStatement(query);
+
+            ResultSet resultado = ps.executeQuery();
+
+            if (resultado.next()) {
+
+                int cod = resultado.getInt(1);
+                
+                i = buscarInstalacion(cod);
+
+            } else return null;
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        }
+
+        return i;
+        
+    }
+    
     
 }
