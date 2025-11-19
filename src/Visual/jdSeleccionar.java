@@ -395,7 +395,7 @@ public class jdSeleccionar extends javax.swing.JDialog {
         if (eleccion.equalsIgnoreCase("Instalacion")) {
             modeloTabla.addColumn("ID Instalacion");
             modeloTabla.addColumn("uso");
-            modeloTabla.addColumn("precio x30M");
+            modeloTabla.addColumn("precio final");
             modeloTabla.addColumn("Horario inicial");
             modeloTabla.addColumn("Horario Final");
             modeloTabla.addColumn("Disponibilidad");
@@ -560,6 +560,7 @@ public class jdSeleccionar extends javax.swing.JDialog {
         Utilitario.limpiarTabla(modeloTabla);
         
         int minutox30 = (Integer) (JStiempo.getValue());
+        double precioM = (minutox30/30);
         
         //Si no se eleva a 1 hora, el cuadro brinda informacion que no corresponde
         if (minutox30 <= 30) {
@@ -567,6 +568,7 @@ public class jdSeleccionar extends javax.swing.JDialog {
         }
         
         double hx30 = Math.ceil((double)minutox30 / 60);
+        
      
         double cuantasVeces;
   
@@ -589,7 +591,7 @@ public class jdSeleccionar extends javax.swing.JDialog {
             
             diaSpaInstalacion dsi = new diaSpaInstalacion(instalaciones.buscarInstalacion(codigo), horarioDisponible.get(i), true);
 
-            cargarInformacionInstalacion(dsi, (int)hx30);  
+            cargarInformacionInstalacion(dsi, (int)hx30, precioM);  
             
         }
         
@@ -597,18 +599,18 @@ public class jdSeleccionar extends javax.swing.JDialog {
         
     }
     
-    public void cargarInformacionInstalacion(diaSpaInstalacion dsi, int plus) {
+    public void cargarInformacionInstalacion(diaSpaInstalacion dsi, int plus, double precioM) {
         
         try {
             
             LocalDateTime fechaHoraInstalacion = LocalDateTime.of(fecha, dsi.getHorario());
             if (fechaHoraInstalacion.isAfter(fechaHoraActual)) {
                 modeloTabla.addRow(new Object[]{dsi.getInstalacion().getCodIns(), dsi.getInstalacion().getUsos(),
-                    dsi.getInstalacion().getPrecio30M(), dsi.getHorario(), dsi.getHorario().plusHours(plus), noDisponible(dsi.isDisponible())});
+                    dsi.getInstalacion().getPrecio30M() * precioM, dsi.getHorario(), dsi.getHorario().plusHours(plus), noDisponible(dsi.isDisponible())});
             } else {
                 dsi.setDisponible(false);
                 modeloTabla.addRow(new Object[]{dsi.getInstalacion().getCodIns(), dsi.getInstalacion().getUsos(),
-                    dsi.getInstalacion().getPrecio30M(), dsi.getHorario(), dsi.getHorario().plusHours(plus), noDisponible(dsi.isDisponible())});
+                    dsi.getInstalacion().getPrecio30M() * precioM, dsi.getHorario(), dsi.getHorario().plusHours(plus), noDisponible(dsi.isDisponible())});
             }
             
 
