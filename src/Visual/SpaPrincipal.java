@@ -12,7 +12,6 @@ public class SpaPrincipal extends javax.swing.JFrame {
      MasajistasData masajistas = new MasajistasData();
      SesionData sesiones = new SesionData();
      InstalacionesData instalaciones = new InstalacionesData();
-     ClientesData clientes = new ClientesData();
      
     //MODELO DE TABLA: INSTALACION
     private DefaultTableModel modeloTablaInstalacion = new DefaultTableModel() {
@@ -149,7 +148,7 @@ public class SpaPrincipal extends javax.swing.JFrame {
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(jpSesionesLayout.createSequentialGroup()
                         .addComponent(jLabel5)
-                        .addGap(0, 111, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jpSesionesLayout.setVerticalGroup(
@@ -203,12 +202,12 @@ public class SpaPrincipal extends javax.swing.JFrame {
             .addGroup(jpMasajistasLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpMasajistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 645, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 508, Short.MAX_VALUE)
                     .addGroup(jpMasajistasLayout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jcbEspecialidadesM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(91, 91, 91))))
+                        .addContainerGap())))
         );
         jpMasajistasLayout.setVerticalGroup(
             jpMasajistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -228,9 +227,9 @@ public class SpaPrincipal extends javax.swing.JFrame {
             jpPanelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpPanelSecundarioLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jpSesiones, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jpSesiones, javax.swing.GroupLayout.DEFAULT_SIZE, 446, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jpMasajistas, javax.swing.GroupLayout.DEFAULT_SIZE, 657, Short.MAX_VALUE)
+                .addComponent(jpMasajistas, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jpPanelSecundarioLayout.setVerticalGroup(
@@ -279,6 +278,7 @@ public class SpaPrincipal extends javax.swing.JFrame {
         jpDetallesT.setBackground(new java.awt.Color(0, 207, 170));
         jpDetallesT.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        jtaDetallesT.setEditable(false);
         jtaDetallesT.setColumns(20);
         jtaDetallesT.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 16)); // NOI18N
         jtaDetallesT.setLineWrap(true);
@@ -301,7 +301,7 @@ public class SpaPrincipal extends javax.swing.JFrame {
                     .addGroup(jpDetallesTLayout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane6))
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jpDetallesTLayout.setVerticalGroup(
@@ -388,6 +388,7 @@ public class SpaPrincipal extends javax.swing.JFrame {
         jpDetallesI.setBackground(new java.awt.Color(0, 207, 170));
         jpDetallesI.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        jtaDetallesI.setEditable(false);
         jtaDetallesI.setColumns(20);
         jtaDetallesI.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 16)); // NOI18N
         jtaDetallesI.setLineWrap(true);
@@ -653,6 +654,7 @@ public class SpaPrincipal extends javax.swing.JFrame {
     private void jmiInstalacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiInstalacionesActionPerformed
         // TODO add your handling code here:
         
+        cargarTablas();
         Escritorio.repaint();
         GestionInstalacion gi = new GestionInstalacion();
         gi.setVisible(true);
@@ -666,18 +668,16 @@ public class SpaPrincipal extends javax.swing.JFrame {
 
     private void jmiMasajistasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiMasajistasActionPerformed
         // TODO add your handling code here:
-        
+        cargarTablas();
         Escritorio.repaint();
         GestionMasajista gm = new GestionMasajista();
         gm.setVisible(true);
         Escritorio.add(gm);
         Escritorio.moveToFront(gm);
-        
     }//GEN-LAST:event_jmiMasajistasActionPerformed
 
     private void jmiClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiClientesActionPerformed
         // TODO add your handling code here:
-        
         Escritorio.repaint();
         GestionClientes gc = new GestionClientes();
         gc.setVisible(true);
@@ -687,16 +687,18 @@ public class SpaPrincipal extends javax.swing.JFrame {
 
     private void jmiDiaSpaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiDiaSpaActionPerformed
         // TODO add your handling code here:
-        
+        cargarTablas();
         Escritorio.repaint();
         GestionSpa gs = new GestionSpa();
         gs.setVisible(true);
         Escritorio.add(gs);
         Escritorio.moveToFront(gs);
+        
     }//GEN-LAST:event_jmiDiaSpaActionPerformed
 
     private void jmiSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiSesionActionPerformed
-                
+        
+        cargarTablas();
         Escritorio.repaint();
         VistaSesion vs = new VistaSesion();
         vs.setVisible(true);
@@ -712,6 +714,7 @@ public class SpaPrincipal extends javax.swing.JFrame {
 
     private void jmiTratamientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiTratamientosActionPerformed
         
+        cargarTablas();
         Escritorio.repaint();
         VistaTratamientos vt = new VistaTratamientos();
         vt.setVisible(true);
@@ -918,7 +921,7 @@ public class SpaPrincipal extends javax.swing.JFrame {
         jtMasajistas.setModel(modeloTablaMasajistas);
         //DISEÑO TABLA: Sesion
         modeloTablaSesiones.addColumn("Numero de Sesion");
-        modeloTablaSesiones.addColumn("Horario de inicio");
+        modeloTablaSesiones.addColumn("Dia Spa");
         modeloTablaSesiones.addColumn("Horario de finalizacion");
         jtSesiones.setModel(modeloTablaSesiones);
     }
@@ -944,7 +947,7 @@ public class SpaPrincipal extends javax.swing.JFrame {
         }
         //sesiones ATRIBUTOS: numero de sesion(id), horario de inicio y horario de finalizacion;
         for(Sesion s : sesiones.mostrarTodasSesiones()){
-            modeloTablaSesiones.addRow(new Object[]{s.getCodSesion(), s.getFechaIn(), s.getFechaFin()});
+            modeloTablaSesiones.addRow(new Object[]{s.getCodSesion(), s.getDiaS(), s.getFechaFin()});
         }      
 
     }    
