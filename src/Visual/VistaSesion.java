@@ -880,7 +880,7 @@ public class VistaSesion extends javax.swing.JInternalFrame {
                     s.getTratamiento(),s.getInstalacion(),s.getDiaS(), Utilitario.estadoParaTabla(s.isEstado())});
             }
 
-            if (columna[0] == opcion && Utilitario.compararValores(Integer.parseInt(filtro), s.getCodSesion())) { //Si la columna ID Alumno es igual al filtro
+            if (0 == opcion && Utilitario.compararValores(Integer.parseInt(filtro), s.getCodSesion())) { //Si la columna ID Alumno es igual al filtro
                 modeloTabla.addRow(new Object[]{s.getCodSesion(), s.getFechaIn(), s.getFechaFin(),
                     s.getTratamiento(),s.getInstalacion(),s.getDiaS(), Utilitario.estadoParaTabla(s.isEstado())});
             }
@@ -1037,8 +1037,11 @@ public class VistaSesion extends javax.swing.JInternalFrame {
             Iterator<DiaSpa> iterar = diasdespa.cargarDiasSpaActivos().iterator();
             while (iterar.hasNext()) {
                 DiaSpa d = iterar.next();
-                modeloTablaSecundaria.addRow(new Object[]{d.getCodPack(), d.getFecha(), d.getPrefencias(),
-                d.getCliente().getNombreC(),d.getMonto(), Utilitario.estadoParaTabla(d.isEstado())});
+                if (d.isEstado()) {
+                    modeloTablaSecundaria.addRow(new Object[]{d.getCodPack(), d.getFecha(), d.getPrefencias(),
+                        d.getCliente().getNombreC(), d.getMonto(), Utilitario.estadoParaTabla(d.isEstado())});
+                }
+                
             }
             
             if (datos[3] == -1) {

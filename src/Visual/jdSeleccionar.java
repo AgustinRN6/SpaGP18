@@ -28,6 +28,9 @@ public class jdSeleccionar extends javax.swing.JDialog {
     private LocalTime horaElegida = LocalTime.now();
     private boolean seSelecciono = false;
     private boolean estaDisponible = false;
+    
+    //Constantes globales
+    private static final LocalDateTime fechaHoraActual = LocalDateTime.now();
 
     public void setJlPresentacion(String cambiarTexto) {
         this.jlPresentacion.setText(cambiarTexto);
@@ -516,6 +519,7 @@ public class jdSeleccionar extends javax.swing.JDialog {
         try {
 
             boolean noDispo;
+            LocalDateTime fechaHoraTratamiento = LocalDateTime.of(fecha, d.getInicio());
             /*if ((d.getInicio().isBefore(dOcupado.getInicio()) || d.getInicio().equals(dOcupado.getInicio()))
                     && (d.getFin().isAfter(dOcupado.getFin()) || d.getFin().equals(dOcupado.getFin()))) {
 
@@ -525,7 +529,8 @@ public class jdSeleccionar extends javax.swing.JDialog {
                 indiceTratamiento++;
 
             } else */
-            if (!masajistaDisponible(d.getInicio(), d.getFin(), codigo, d.getMasajista().getMatricula())) {
+            if (!masajistaDisponible(d.getInicio(), d.getFin(), codigo, d.getMasajista().getMatricula()) ||
+                    (fechaHoraTratamiento.isBefore(fechaHoraActual))) {
 
                 noDispo = false;
                 modeloTabla.addRow(new Object[]{d.getCodTrat(), d.getNombre(), d.getDuracion(),
@@ -596,9 +601,16 @@ public class jdSeleccionar extends javax.swing.JDialog {
         
         try {
             
+            LocalDateTime fechaHoraInstalacion = LocalDateTime.of(fecha, dsi.getHorario());
+            if (fechaHoraInstalacion.isAfter(fechaHoraActual)) {
+                modeloTabla.addRow(new Object[]{dsi.getInstalacion().getCodIns(), dsi.getInstalacion().getUsos(),
+                    dsi.getInstalacion().getPrecio30M(), dsi.getHorario(), dsi.getHorario().plusHours(plus), noDisponible(dsi.isDisponible())});
+            } else {
+                dsi.setDisponible(false);
+                modeloTabla.addRow(new Object[]{dsi.getInstalacion().getCodIns(), dsi.getInstalacion().getUsos(),
+                    dsi.getInstalacion().getPrecio30M(), dsi.getHorario(), dsi.getHorario().plusHours(plus), noDisponible(dsi.isDisponible())});
+            }
             
-            modeloTabla.addRow(new Object[]{dsi.getInstalacion().getCodIns(), dsi.getInstalacion().getUsos(),
-            dsi.getInstalacion().getPrecio30M(), dsi.getHorario(), dsi.getHorario().plusHours(plus), noDisponible(dsi.isDisponible())});
 
 
         }catch (java.lang.NullPointerException er) {
